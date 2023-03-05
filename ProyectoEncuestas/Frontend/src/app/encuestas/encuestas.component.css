@@ -1,0 +1,51 @@
+.encuesta{
+}
+.encuesta h2{
+  font-size: 20px;
+  padding: 5px 0px;
+  border-radius: 10px;
+}
+
+
+label{
+  font-weight: 500;
+  font-size: 15px;
+}
+input:hover{
+  border: solid 2px;
+  border-color: var(--color1);
+}
+.icono{
+  font-size: 150px;
+  color: var(--color1);
+}
+button{
+  margin-right: 10px;
+}
+.alineado{
+  padding-right: 5px;
+  text-align:right;
+}
+.mar{
+  margin-left: 10px;
+}
+/*Pantallas xs*/
+
+/*Pantallas sm*/
+@media screen and (max-width:767px) {
+  .iconoForm{
+    font-size: 10px;
+  }
+  label{
+    font-size: 10px;
+  }
+  select,input{
+    font-size: 10px;
+  }
+}
+/*Pantallas md*/
+@media screen and (max-width:991px) {
+  .icono{
+    font-size: 100px;
+  }
+}

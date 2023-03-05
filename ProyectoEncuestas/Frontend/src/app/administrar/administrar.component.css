@@ -1,0 +1,126 @@
+.administrar {
+  border: 30 solid white;
+  padding: 30px;
+  background-color: #fff;
+}
+.imgPadre{
+  overflow: scroll;
+  justify-content: center;
+}
+.imgPadre div{
+  margin: 0px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: 0px;
+  margin-right: 0px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 133px);
+  grid-auto-rows: 220px;
+  justify-content: center;
+}
+.imgFondoCard {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  grid-column: span 2;
+  height: 283px;
+  transition: 0.5s filter;
+  cursor: pointer;  
+  background: url(../../assets/img/fondo.png);
+  background-size: cover;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.titleCard{
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+.imgFondoCard:first-of-type {
+  grid-column:2 / span 2;
+
+}
+a {
+  text-decoration: none;
+  margin: 0px 10px;
+}
+
+#i1 {
+  background-color: aqua;
+}
+#i2 {
+  background-color: red;
+}
+#i3 {
+  background-color: purple;
+}
+#i4 {
+  background-color: palegreen;
+}
+#i5 {
+  background-color: slateblue;
+}
+#i6 {
+  background-color: yellow;
+}
+#i7 {
+  background-color: violet;
+}
+/*
+#i1,#i2,#i3,#i4,#i5,#i6, #i7,#i8,#i9,#i10{
+  filter: brightness(1.5);
+}*/
+#i1:hover,
+#i2:hover,
+#i3:hover,
+#i4:hover,
+#i5:hover,
+#i6:hover,
+#i7:hover { 
+  filter: brightness(0.6);
+}
+
+/**/
+/*------------Media Querys------------*/
+@media screen and (max-width: 575px) {
+  h2 {
+    font-size: 10px !important;
+  }
+}
+
+/*Pantallas sm
+@media screen and (max-width: 767px) {
+  .galeriaItem {
+    width: 100%;
+    height: 60px;
+    grid-column: none;
+    margin: 0px;
+    clip-path: none;
+    margin: 10px 0px;
+    border-radius: 15px;
+  }
+  h2 {
+    font-size: 15px;
+  }
+  .galeria {
+    gap: 0px;
+    grid-auto-rows: none;
+    display: block;
+  }
+
+  .imgFondoCard {
+    border-radius: 15px;
+  }
+  .alineacion {
+    box-sizing: none;
+  }
+}
+/*Pantallas md
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .galeriaItem:nth-of-type(3n + 1) {
+    grid-column: 2 / span 2;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+}
+*/

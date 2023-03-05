@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}
+:root {
+  --color1: #71C4CF;
+  --color2: #d43e2f;
+  --btn1: #006c05;
+  --btn2: #1e90ff;
+  --btn3: #d43e2f;
+}
+body {
+  background: url(assets/img/fondo.png),
+    -webkit-gradient(linear, right top, left top, from(var(--color1)), to(var(--color2)));
+  background-position: center center;
+}

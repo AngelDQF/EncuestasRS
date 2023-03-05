@@ -1,0 +1,63 @@
+<div class="contenido bordeContenido">
+  <div class="headerListar">
+    <div class="row mb-2 align-items-center">
+      <div class="col-12 text-center">
+        <h1 class="titulo">Usuarios Desactivados</h1>
+      </div>
+      <div id="a1"
+        class="col-xl-2 col-xxl-2 col-lg-4 col-md-3 text-bold text-center text-sm-center text-md-center text-lg-start btnPrincipal ">
+        <a routerLink="../" class="btn form-control btnEliminar mar">Regresar</a>
+      </div>
+      <div id="a2"
+        class="col-xl-3 col-xxl-2 col-lg-4 col-md-3 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+        <a routerLink="../" class="form-control btn btnEditar mar">Ver Asignaciones</a>
+      </div>
+      <div id="a3"
+        class="pt-md-0 col-xl-7 col-xxl-8 col-lg-4 col-md-6 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+        <div class="input-group mt-2 mb-2 inpBuscar">
+          <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
+            <input name="bus" type="text" class="form-control" placeholder="Buscar por ID">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tabla table-responsive">
+    <table class="table">
+      <thead class="table-dark align-middle">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Opciones</th>
+          <th scope="col">Nombre Completo</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Identidad</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Creado</th>
+          <th scope="col">Actualizado</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="body" *ngFor="let desactivado of desactivados" class="align-middle text-center">
+          <th scope="row" class="text-center"><strong>{{desactivado.id}}</strong></th>
+          <td>
+            <div class=" d-grid mb-1">
+              <a class="btn btnGuardar">Activar</a>
+            </div>
+          </td>
+          <td>{{desactivado.name}}</td>
+          <td>{{desactivado.tel}}</td>
+          <td>{{desactivado.dni}}</td>
+          <td>{{desactivado.email}}</td>
+          <td>{{desactivado.creado}}</td>
+          <td>{{desactivado.cambio}}</td>
+          <td>{{desactivado.tipo}}</td>
+          <td>{{desactivado.sexo}}</td>
+          <td class="text-danger">{{desactivado.estado}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

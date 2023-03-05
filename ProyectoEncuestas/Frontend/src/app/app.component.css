@@ -1,0 +1,238 @@
+.contenido {
+  padding: 30px;
+  background-color: #fff;
+  height: 680px;
+  font-family:"Gill Sans Extrabold", Helvetica, sans-serif
+}
+.contForms {
+  padding: 30px;
+  background-color: #fff;
+  font-family:"Verdana", Geneva, Tahoma, sans-serif;
+}
+.bordeContenido {
+  border-radius: 30px;
+}
+
+.titulo {
+  color: var(--color1);
+  font-weight: bold;
+  font-size: 35px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.titulo p {
+  font-size: 150px;
+  padding: 0px;
+  margin: 0px;
+}
+.fondo {
+  padding: 15px;
+}
+.contenedorImagen {
+  padding-top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imagen {
+  align-self: center;
+  width: 300px;
+}
+.pad {
+  padding: 20px;
+  margin: 0px;
+}
+.btnEditar {
+  background-color: #fff;
+  border: 1px solid;
+  color: var(--btn1);
+
+}
+.inpBuscar label{
+  background-color: var(--color1);
+  border: 1px solid var(--color1);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 0px 0px 0px 0px;
+ text-align: center;
+}
+.inpBuscar input{
+  background-color: #fff;
+  color: var(--color1);
+  text-align: center;
+  margin-right: 0px;
+  margin-top: 0px;
+  border-radius: 0px 10px 10px 0px;
+  cursor:text;
+}
+.inpBuscar i{
+  padding: 0px 10px;
+}
+.inpBuscar label:hover{
+  border: 1px solid var(--btn3);
+  padding-top: 0px;
+}
+.inpBuscar input::placeholder{
+  color: var(--color1);
+}
+
+.btnGuardar {
+  background-color: #fff;
+  border: 1px solid;
+  color: var(--btn2);
+}
+.btnGuardar i,
+.btnEliminar i,
+.btnEditar i {
+  margin-right: 5px;
+}
+.btnGuardar,
+.btnEliminar,
+.btnEditar,.inpBuscar{
+  font-size: 15px;
+  transition: all 0.6s ease;
+  border-radius: 10px;
+}
+.btnEliminar {
+  background-color: #fff;
+  border: 1px solid;
+  color: var(--btn3);
+}
+.btnEditar:hover {
+  background-color: var(--btn1);
+  color: #fff;
+}
+.btnGuardar:hover {
+  background-color: var(--btn2);
+  color: #fff;
+}
+.btnEliminar:hover {
+  background-color: var(--btn3);
+  color: #fff;
+}
+.mar {
+  margin-right: 5px;
+}
+.mar i {
+  margin-right: 5px;
+}
+.btnPrincipal a {
+  font-size: 15px;
+}
+.tabla th {
+  font-size: 15px;
+  text-align: center;
+}
+.tabla {
+  height: 500px !important;
+  overflow: scroll;
+}
+.headerListar{
+  padding: 0px 12px 0px 12px;
+  border-bottom:1px solid var(--color1);
+  margin-bottom: 0px;
+}
+.tabla td {
+  font-size: 15px;
+}
+
+.tabla #body:hover {
+  background-color: #71c4cf60;
+}
+.tabla a {
+  font-size: 15px;
+  text-decoration: none;
+}
+
+/*Pantallas xs*/
+@media screen and (max-width: 575px) {
+  .pad {
+    padding: 0px 0px;
+  }
+  .titulo{
+    font-size: 15px !important;
+  }
+  .titulo p {
+    font-size: 30px ;
+  }
+  .tabla {
+    height: 100%;
+  }
+  .contenido {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+  }
+  .contForms {
+    width: 100%;
+    margin: 0px;
+    font-size: 10px;
+  }
+}
+/*Pantallas sm*/
+@media screen and (max-width: 767px){
+  .pad {
+    padding: 0px 0px;
+  }
+
+
+  .titulo p {
+    font-size: 40px ;
+  }
+  .btnGuardar,
+  .btnEliminar,
+  .btnEditar {
+    font-size: 10px;
+  }
+  .tabla th,
+  .table td,
+  .table a {
+    font-size: 10px;
+  }
+  .btnPrincipal a {
+    font-size: 10px;
+  }
+  .tabla {
+    height: 60% ;
+  }
+}
+/*Pantallas md*/
+@media screen and (max-width: 991px){
+  .pad {
+    padding: 0px 0px;
+  }
+  .bordeContenido {
+    border-radius: 0px;
+  }
+  .titulo{
+    font-size: 30px;
+  }
+  .titulo p {
+    font-size: 70px ;
+  }
+  .contenido {
+    padding: 0px 15px 15px 15px ;
+  }
+  .contForms {
+    padding: 0px 15px 15px 15px ;
+  }
+  .tabla {
+    padding-top: 5px;
+    height: 75%;
+  }
+  .btnPrincipal a {
+    margin-bottom: 5px;
+  }
+  .inpBuscar input, .inpBuscar label{
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .contenido {
+    height: 750px;
+  }
+  .tabla {
+    height: 75%;
+  }
+}

@@ -1,0 +1,84 @@
+.colorBtn {
+  background-color: var(--color1);
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+}
+.colorBtn:hover {
+  border: solid 2px var(--color2);
+}
+/*
+.fondo {
+  background-color: white;
+  padding: 20px;
+  border-radius: 40px;
+}*/
+.tituloLogin {
+  color: var(--color1);
+  font-weight: bold;
+  font-family: "Georgia", sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 0px;
+  padding-top: 40px;
+}
+.padding {
+  padding-left: 5px;
+}
+.cuerpo {
+  font-size: 1.5rem;
+  font-family: "Georgia", sans-serif;
+  font-weight: 500;
+  color: rgb(0, 156, 199);
+}
+.borde {
+  border-bottom: solid 5px var(--color1);
+  border-top: solid 5px var(--color1);
+  border-left: solid 5px var(--color2);
+  border-right: solid 5px var(--color2);
+  border-radius: 30px;
+}
+.borde.img {
+  width: 500px;
+}
+.imagenLogo {
+  align-self: center;
+  width: 400px;
+}
+@media screen and (max-width: 720px) {
+  /*
+  .tituloLogin{
+    color:#fff;
+    margin-top: 0px;
+  }
+
+  .fondo {
+    background-color: rgba(255,255,255,0%);
+    padding: 20px;
+    border-radius: 40px;
+  }
+  .cuerpo{
+    color:#fff;
+  }*/
+  .tituloLogin {
+  color: #828181;
+    font-size: 1.5rem;
+    padding-top: 10px;
+  }
+  .cuerpo {
+    font-size: 1rem;
+  }
+  .borde {
+    border: none;
+  }
+  .imagenLogo {
+    align-self: center;
+    width: 150px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+}
+.olvido {
+  text-decoration: none;
+  color: #fff;
+}

@@ -1,0 +1,71 @@
+<div class="contenido bordeContenido">
+  <div class="headerListar">
+    <div class="row mb-2 align-items-center ">
+      <div class="col-12 text-center">
+        <h1 class="titulo">Usuarios</h1>
+      </div>
+      <div id="a1" class="col-xl-3 col-xxl-2 col-lg-6 col-md-6">
+        <a routerLink="agregar" class="btn btnEditar form-control"><i class="bi bi-person-plus-fill"></i>Nuevo
+          Usuario</a>
+      </div>
+
+      <div id="a2" class="col-xl-4 col-xxl-3 col-lg-6 col-md-6">
+        <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-person-x-fill"></i>Usuarios
+          Desactivados</a>
+      </div>
+      <div id="a3"
+      class="col-xl-5 col-xxl-7 col-lg-12 col-md-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+      <div class="input-group mt-2 mb-2 inpBuscar">
+        <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
+          <input name="bus" type="text" class="form-control btn" placeholder="Buscar Usuario">
+        </label>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="tabla">
+    <table class="table">
+      <thead class="table-dark align-middle">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Opciones</th>
+          <th scope="col">Nombre Completo</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Identidad</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Creado</th>
+          <th scope="col">Actualizado</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Sexo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="body" *ngFor="let usuario of usuarios" class="align-middle text-center">
+          <th scope="row" class="text-center"><strong>{{usuario.id}}</strong></th>
+          <td>
+            <div class=" d-grid mt-1 pb-1">
+              <a class="form-control btn btnEditar">Editar</a>
+            </div>
+            <div class=" d-grid pb-1">
+              <a class="form-control btn btnGuardar">Asignar</a>
+            </div>
+            <div class=" d-grid mb-1">
+              <a class="form-control btn btnEliminar">Desactivar</a>
+            </div>
+          </td>
+          <td>{{usuario.name}}</td>
+          <td>{{usuario.tel}}</td>
+          <td><a routerLink=":dni">{{usuario.dni}}</a></td>
+          <td>{{usuario.email}}</td>
+          <td>{{usuario.creacion}}</td>
+          <td>{{usuario.cambio}}</td>
+          <td>{{usuario.tipo}}</td>
+          <td class="text-info fw-bold">{{usuario.estado}}</td>
+          <td>{{usuario.sexo}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

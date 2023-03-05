@@ -1,0 +1,33 @@
+  <div class="contForms bordeContenido">
+    <div class="row borde fondo">
+      <div class="col-lg-6 col-sm-12  contenedorImagen">
+        <img class="img-fluid col-sm-4 col-lg-12 imagenLogo" width="" src="assets/img/logo.png" alt="logo">
+      </div>
+      <div class="col-lg-6 col-sm-12 p-lg-5 p-sm-0">
+        <h2 class="fw-bold text-center pb-lg-5 tituloLogin">Encuestas</h2>
+        <form class="cuerpo" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+          <div class="mb-4">
+            <label for="email" class="form-label">Correo Electronico</label>
+            <input formControlName="usuario" type="text" placeholder="Email" class="form-control" />
+          </div>
+          <div class="mb-4">
+            <label for="password" class="form-label">Contraseña</label>
+            <input formControlName="password" type="password" placeholder="Password" class="form-control" />
+          </div>
+          <div class="mb-4">
+            <input type="checkbox" placeholder="Password" name="connected" class="form-check-input" id="" />
+            <label class="padding form-check-label" for="connected">Mostrar Contraseña</label>
+          </div>
+          <div class="d-grid">
+            <input type="submit" class="btn colorBtn" value="Ingresar">
+          </div>
+        </form>
+
+        <div class="my-3">
+          <span>
+            <a class="olvido">¿Olvidaste tu contraseña?</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
