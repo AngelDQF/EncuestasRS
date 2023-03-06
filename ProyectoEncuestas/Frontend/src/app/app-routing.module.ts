@@ -10,6 +10,7 @@ import { ListarComponent } from './listar_usuarios/listar_usuarios.component';
 import { UsuariosDeactivadosComponent } from './listar_usuarios/usuarios_desactivados';
 import { JuntaComponent } from './junta/junta.component';
 import { EjesComponent } from './junta/ejes/ejes.component';
+import { CargosComponent } from './junta/cargos/cargos.component';
 const routes: Routes = [
   { path: '', component: IndexComponent },
   {
@@ -29,6 +30,8 @@ const routes: Routes = [
     children:[
       {path:'',component: JuntaComponent},
       {path:'ejes',component:EjesComponent},
+      {path:'cargos',component:CargosComponent},
+
     ]},
       {path:'junta/ejes',component: JuntaComponent},
     ]

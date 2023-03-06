@@ -5,7 +5,7 @@ const model = {//TODO: Exportamos todos los modelos hijos
   ejesModel: require('./ejes.model'),//TODO: Exportamos el modelo de ejes
   ubicacionModel: require('./ubicacion.model'),//TODO: Exportamos el modelo de ubicacion
   departamentosModel: require('./departamentos.model'),//TODO: Exportamos el modelo de departamentos
-
+  cargoModel:require('./cargos.model'),//TODO: Exportamos el modelo de Cargos
 
 
 

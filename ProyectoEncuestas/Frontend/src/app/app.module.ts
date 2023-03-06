@@ -18,6 +18,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { JuntaService } from './services/junta.service';
 import { EjesComponent } from './junta/ejes/ejes.component';
+import { CargosComponent } from './junta/cargos/cargos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { EjesComponent } from './junta/ejes/ejes.component';
     EncuestasComponent,
     NavbarComponent,
     HeaderComponent,
-    EjesComponent
+    EjesComponent,
+    CargosComponent
   ],
   imports: [
     BrowserModule,
