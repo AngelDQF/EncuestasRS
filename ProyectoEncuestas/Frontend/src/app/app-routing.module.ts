@@ -8,6 +8,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AdministrarComponent } from './administrar/administrar.component';
 import { ListarComponent } from './listar_usuarios/listar_usuarios.component';
 import { UsuariosDeactivadosComponent } from './listar_usuarios/usuarios_desactivados';
+import { JuntaComponent } from './junta/junta.component';
+import { EjesComponent } from './junta/ejes/ejes.component';
 const routes: Routes = [
   { path: '', component: IndexComponent },
   {
@@ -19,7 +21,18 @@ const routes: Routes = [
     ],
     // children: [{ path: 'agregar', component: FormularioComponent }, { path: ':id', component: FormularioComponent },],
   },
-  { path: 'administrar', component: AdministrarComponent },
+  {
+    path:'administrar',
+    children:[
+      {path:'',component: AdministrarComponent},
+      {path:'junta',
+    children:[
+      {path:'',component: JuntaComponent},
+      {path:'ejes',component:EjesComponent},
+    ]},
+      {path:'junta/ejes',component: JuntaComponent},
+    ]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'encuestas', component: EncuestasComponent },
 

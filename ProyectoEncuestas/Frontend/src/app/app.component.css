@@ -12,7 +12,9 @@
 .bordeContenido {
   border-radius: 30px;
 }
-
+a{
+  text-decoration: none;
+}
 .titulo {
   color: var(--color1);
   font-weight: bold;

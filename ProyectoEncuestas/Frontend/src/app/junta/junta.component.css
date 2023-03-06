@@ -1,0 +1,82 @@
+.tarjetaBoton {
+  margin: 0px;
+  height: 500px;
+}
+.padT {
+  padding-left: 0px;
+}
+.iconoRegresar i {
+  color: var(--btn3);
+  border: 1px solid var(--btn3);
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 5px;
+}
+.iconoRegresar i:hover {
+  color: white;
+  background-color: var(--btn3);
+}
+
+.titulo {
+  padding-bottom: 10px;
+}
+.hijo {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tarjetaBoton div {
+  height: 10% !important;
+}
+h2 {
+  font-size: 30px;
+}
+a {
+  transition: 0.6s;
+}
+.row {
+  margin: 0px;
+}
+#a1 {
+  background-color: #f18537;
+  border-radius: 15px;
+}
+#a2 {
+  background-color: var(--color1);
+  border-radius: 15px;
+}
+#a1:hover {
+  background: url(../../assets/img/fondo.png), chocolate;
+  background-size: cover;
+}
+#a2:hover {
+  background: url(../../assets/img/fondo.png), darkcyan;
+  background-size: cover;
+}
+/*Media Querys*/
+
+/*Pantallas sm*/
+@media screen and (max-width: 767px) {
+  h2 {
+    font-size: 10px;
+  }
+  .hijo {
+    height: 100px;
+  }
+  .iconoRegresar i {
+    font-size: 10px;
+  }
+}
+/*Pantallas md*/
+@media screen and (min-width: 767px) and (max-width: 991px) {
+  h2 {
+    font-size: 20px;
+  }
+  .iconoRegresar i {
+    font-size: 10px;
+  }
+}

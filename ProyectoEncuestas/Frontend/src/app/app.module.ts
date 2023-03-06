@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatosComponent } from './datos/datos.component';
-import { JuntaComponent } from './datos/junta/junta.component';
+import { JuntaComponent } from './junta/junta.component';
 import { AdministrarComponent } from './administrar/administrar.component';
 import { ListarComponent } from './listar_usuarios/listar_usuarios.component';
 import { UsuariosService } from './services/usuarios.service';
@@ -16,6 +16,8 @@ import { LoginComponent } from './login/login.component';
 import { EncuestasComponent } from './encuestas/encuestas.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
+import { JuntaService } from './services/junta.service';
+import { EjesComponent } from './junta/ejes/ejes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { HeaderComponent } from './header/header.component';
     LoginComponent,
     EncuestasComponent,
     NavbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    EjesComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UsuariosService],
+  providers: [UsuariosService,JuntaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
