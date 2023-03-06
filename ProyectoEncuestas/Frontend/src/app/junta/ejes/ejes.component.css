@@ -14,13 +14,14 @@
   background-color: var(--btn3);
 }
 /*Pantallas md*/
-@media screen and (min-width: 767px) and (max-width: 991px) {
-  .iconoRegresar{
-    font-size: 10px;
+@media screen and (max-width: 991px) {
+  .iconoRegresar i{
+    font-size: 15px !important;
   }
 }
 @media screen and (max-width: 1200px) {
-  .iconoRegresar{
+  .iconoRegresar i{
     font-size: 20px;
   }
 }
+

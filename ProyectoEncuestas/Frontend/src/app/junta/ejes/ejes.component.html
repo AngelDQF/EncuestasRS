@@ -11,7 +11,7 @@
         <a routerLink="agregar" class="btn btnEditar form-control"><i class="bi bi-person-plus-fill"></i>Nuevo Eje</a>
       </div>
 
-      <div id="a2" class="col-xl-4 col-xxl-3 col-lg-6 col-md-6">
+      <div id="a2" class="col-xl-4 col-xxl-3 col-lg-6 col-md-6 pt-lg-0 pt-md-0 pt-sm-2 pt-2">
         <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-person-x-fill"></i>Ejes
           Desactivados</a>
       </div>
@@ -50,7 +50,7 @@
             </div>
           </td>
           <td>{{eje.eje}}</td>
-          <td>{{eje.estado}}</td>
+          <td class="text-info fw-bold">{{eje.estado}}</td>
         </tr>
       </tbody>
     </table>
