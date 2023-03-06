@@ -32,11 +32,26 @@ SELECT id_Tipo_Usuario AS id, descripcion_Tipo AS tipo, estado_Tipo_Usuario AS e
 FROM     dbo.tbl_Tipos_Usuario
 where estado_Tipo_Usuario=1
 GO
+--Vitas Junta Directiva
+/*Creacion Vista Listar Cargos*/
+CREATE VIEW [dbo].[vew_Cargos_Listar]
+as
+	SELECT id_Cargo AS id, descripcion_Cargo AS cargo, estado_Cargo AS estado
+	FROM     dbo.tbl_Cargos
+	where estado_Cargo=1
+GO
 /*Creación Vista Listar Ejes*/
 CREATE VIEW [dbo].[vew_Ejes_Listar]
 AS
-SELECT id_Eje AS ID, descripcion_Eje AS Eje, estado_Eje AS Estado
+SELECT id_Eje AS id, descripcion_Eje AS eje, estado_Eje AS estado
 FROM    dbo.tbl_Ejes
+where estado_Eje=1
+/*Creacion vista litar Ejes Desactivados*/
+CREATE VIEW [dbo].[vew_Ejes_Listar_Desactivados]
+AS
+SELECT id_Eje AS id, descripcion_Eje AS eje, estado_Eje AS estado
+FROM    dbo.tbl_Ejes
+where estado_Eje=0
 /*Creacion vista de las Asignaciones de los usuarios*/
 CREATE VIEW [dbo].[vew_Asignaciones_Usuario]
 AS
