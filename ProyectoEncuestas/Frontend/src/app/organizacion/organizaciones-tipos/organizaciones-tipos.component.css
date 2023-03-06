@@ -15,11 +15,8 @@
 }
 /*Pantallas md*/
 @media screen and (max-width: 991px) {
-  .iconoRegresar{
-    margin-top: 0px;
-  }
   .iconoRegresar i{
-    font-size: 7px !important;
+    font-size: 15px !important;
   }
 }
 @media screen and (max-width: 1200px) {

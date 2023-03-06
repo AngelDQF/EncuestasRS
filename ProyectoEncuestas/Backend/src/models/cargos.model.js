@@ -16,5 +16,17 @@ async function getCargos() {//TODO: Función para obtener todos los usuarios
     throw error;
   }
 }
+async function getCargosDesactivados() {//TODO: Función para obtener todos los usuarios
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query("SELECT * FROM vew_Cargos_Listar_Desactivados");//TODO: Ejecutamos la consulta
+    //console.log(result.recordset);
+    return result.recordset;//TODO: Retornamos los datos
+    pool.close();//TODO: Cerramos la conexión
 
-module.exports = { getCargos };//TODO: Exportamos las funcionessss
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+module.exports = { getCargos,getCargosDesactivados };//TODO: Exportamos las funcionessss

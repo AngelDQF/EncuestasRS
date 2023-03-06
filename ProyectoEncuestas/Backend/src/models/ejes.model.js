@@ -20,6 +20,19 @@ async function getEjes() {//TODO: Creamos la función que se encargará de lista
     console.log(error);
   }
 }
+async function getEjesDesactivados() {//TODO: Función para obtener todos los usuarios
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query("SELECT * FROM vew_Ejes_Listar_Desactivados");//TODO: Ejecutamos la consulta
+    //console.log(result.recordset);
+    return result.recordset;//TODO: Retornamos los datos
+    pool.close();//TODO: Cerramos la conexión
+
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 /**
  * TODO: Funcion para obtener un eje en base a su nombre
  * @param {*} eje 
@@ -169,4 +182,4 @@ async function verificarEjeID(id) {//TODO: Creamos la función que se encargará
   }
 }
 
-module.exports = { getEjes, getEje, postEjes, verificarEje, putEjeNombre, putEjeEstado };//TODO: Exportamos las funcionessss
+module.exports = { getEjes,getEjesDesactivados, getEje, postEjes, verificarEje, putEjeNombre, putEjeEstado };//TODO: Exportamos las funcionessss

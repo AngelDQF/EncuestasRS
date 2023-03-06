@@ -17,8 +17,17 @@ import { EncuestasComponent } from './encuestas/encuestas.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { JuntaService } from './services/junta.service';
+import {EjesDesactivadosComponent}from  './junta/ejes/ejes.desactivados.component';
+import { CargosDesactivadosComponent } from './junta/cargos/cargos-desactivados.component';
+import { OrganizacionComponent } from './organizacion/organizacion.component';
+import { OrganizacionesService } from './services/organizaciones.service';
 import { EjesComponent } from './junta/ejes/ejes.component';
 import { CargosComponent } from './junta/cargos/cargos.component';
+import { OrganizacionesComponent } from './organizacion/organizaciones/organizaciones.component';
+import { OrganizacionesTiposComponent } from './organizacion/organizaciones-tipos/organizaciones-tipos.component';
+import { OrganizacionesTiposDesactivadosComponent } from './organizacion/organizaciones-tipos/organizaciones-tipos-desactivados.component';
+import { OrganizacionesDesactivadosComponent } from './organizacion/organizaciones/organizaciones-desactivados.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +43,14 @@ import { CargosComponent } from './junta/cargos/cargos.component';
     NavbarComponent,
     HeaderComponent,
     EjesComponent,
-    CargosComponent
+    CargosComponent,
+    EjesDesactivadosComponent,
+    CargosDesactivadosComponent,
+    OrganizacionComponent,
+    OrganizacionesComponent,
+    OrganizacionesTiposComponent,
+    OrganizacionesTiposDesactivadosComponent,
+    OrganizacionesDesactivadosComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +59,7 @@ import { CargosComponent } from './junta/cargos/cargos.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UsuariosService,JuntaService],
+  providers: [UsuariosService,OrganizacionesService,JuntaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

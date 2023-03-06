@@ -131,7 +131,7 @@ a{
   overflow: scroll;
 }
 .headerListar{
-  padding: 0px 12px 0px 12px;
+  padding: 0px;
   border-bottom:1px solid var(--color1);
   margin-bottom: 0px;
 }

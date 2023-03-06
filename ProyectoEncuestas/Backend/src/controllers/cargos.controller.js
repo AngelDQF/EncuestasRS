@@ -11,5 +11,14 @@ const ctrGetCargos = async (req, res) => {//TODO: Funcion para hacer get a los e
   }
 
 }
+const ctrGetCargosDesactivados = async (req, res) => {//TODO: Funcion para hacer get a los ejes
+  try {
+    cargoModel.getCargosDesactivados().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+      res.json({results:result})//TODO: Mostramos el resultado en un json
+    });
+  } catch{
+    handleHttpError(res, 'ERROR_LISTAR_CARGOS_DESACTIVADOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
 
-module.exports = { ctrGetCargos };//TODO: Exportamos las funciones del controlador
+}
+module.exports = { ctrGetCargos,ctrGetCargosDesactivados };//TODO: Exportamos las funciones del controlador

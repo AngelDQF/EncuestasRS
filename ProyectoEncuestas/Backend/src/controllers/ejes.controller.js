@@ -11,6 +11,16 @@ const ctrGetEjes = async (req, res) => {//TODO: Funcion para hacer get a los eje
   }
 
 }
+const ctrGetEjesDesactivados = async (req, res) => {//TODO: Funcion para hacer get a los ejes
+  try {
+    ejesModel.getEjesDesactivados().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+      res.json({results:result})//TODO: Mostramos el resultado en un json
+    });
+  } catch{
+    handleHttpError(res, 'ERROR_LISTAR_EJES_DESACTIVADOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+
+}
 /**
  * TODO: Creacion del controlador para listar un eje por su nombre
  * @param {*} req 
@@ -70,4 +80,4 @@ const ctrPutEjeEstado = async (req, res) => {//TODO: Funcion para hacer put a un
     handleHttpError(res, 'ERROR_UPDATE_EJE_ESTADO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-module.exports = { ctrGetEjes, ctrGetEje, ctrPostEje, ctrPutEje, ctrPutEjeEstado };//TODO: Exportamos las funciones del controlador
+module.exports = { ctrGetEjes, ctrGetEjesDesactivados,ctrGetEje, ctrPostEje, ctrPutEje, ctrPutEjeEstado };//TODO: Exportamos las funciones del controlador

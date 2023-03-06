@@ -40,6 +40,13 @@ as
 	FROM     dbo.tbl_Cargos
 	where estado_Cargo=1
 GO
+--Creacion Vesta Listar Cargos Desactivados
+CREATE VIEW [dbo].[vew_Cargos_Listar_Desactivados]
+as
+	SELECT id_Cargo AS id, descripcion_Cargo AS cargo, estado_Cargo AS estado
+	FROM     dbo.tbl_Cargos
+	where estado_Cargo=0
+GO
 /*Creación Vista Listar Ejes*/
 CREATE VIEW [dbo].[vew_Ejes_Listar]
 AS
@@ -60,3 +67,19 @@ FROM     dbo.tbl_Usuarios INNER JOIN
                   dbo.tbl_Asignacion_Usuario ON dbo.tbl_Usuarios.id_Usuario = dbo.tbl_Asignacion_Usuario.id_Usuario INNER JOIN
                   dbo.tbl_Municipios ON dbo.tbl_Asignacion_Usuario.id_Municipio = dbo.tbl_Municipios.id_Municipio
 GO
+--------------------------------------------------------------------------------------------------------------------------------------
+--Creacion Vistas Organizaciones
+--Creacion Vista Listar Tipos de Organizaciones
+CREATE VIEW [dbo].[vew_Tipos_Organizaciones_Listar]
+as
+	SELECT id_Tipo_Organizacion AS id, tipo_Organizacion AS tipo, estado_Tipo_Organizacion AS estado
+	FROM     dbo.tbl_Tipos_Organizacion
+	where estado_Tipo_Organizacion=1
+go
+--Creacion Vista Listar Tipos de Organizaciones Desactivadas
+CREATE VIEW [dbo].[vew_Tipos_Organizaciones_Listar_Desactivados]
+as
+	SELECT id_Tipo_Organizacion AS id, tipo_Organizacion AS tipo, estado_Tipo_Organizacion AS estado
+	FROM     dbo.tbl_Tipos_Organizacion
+	where estado_Tipo_Organizacion=0
+go

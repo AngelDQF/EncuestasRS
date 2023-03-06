@@ -6,32 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "01 Departamentos",
-			"item": [
-				{
-					"name": "New Request",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/redsolidaria/departamentos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"redsolidaria",
-								"departamentos"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "03 Aldeas",
+			"name": "01 Aldeas",
 			"item": [
 				{
 					"name": "Listar Aldeas",
@@ -69,6 +44,77 @@
 								"redsolidaria",
 								"aldeas",
 								"La"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03 Departamentos",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/departamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"departamentos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03 Cargos",
+			"item": [
+				{
+					"name": "Listar Cargos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/cargos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"cargos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Cargos Desactivados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/cargos/desactivados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"cargos",
+								"desactivados"
 							]
 						}
 					},
@@ -127,7 +173,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Angel David Quintanilla Ferrufino\",\r\n    \"telefono\":\"9750-7470\",\r\n    \"dni\":\"07042003000259\",\r\n    \"correo\":\"angeldavidquintanilla@gmail.com\",\r\n    \"contra\":\"admin777\",\r\n    \"estado\":1,\r\n    \"tipo\":\"1\",\r\n    \"sexo\":\"Hombre\"\r\n}",
+							"raw": "{\r\n    \"nombre\":\"David Leiva\",\r\n    \"telefono\":\"9750-7470\",\r\n    \"dni\":\"0702199218833\",\r\n    \"correo\":\"dleiva@gmail.com\",\r\n    \"contra\":\"admin777\",\r\n    \"estado\":1,\r\n    \"tipo\":\"2\",\r\n    \"sexo\":\"Hombre\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -166,6 +212,48 @@
 								"redsolidaria",
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuarios Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/usuarios/tipos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"usuarios",
+								"tipos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuarios Desactivados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/usuarios/des",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"usuarios",
+								"des"
 							]
 						}
 					},
@@ -300,6 +388,75 @@
 							"path": [
 								"redsolidaria",
 								"ejes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Ejes Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ejes/desactivados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ejes",
+								"desactivados"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "32 Organizaciones",
+			"item": [
+				{
+					"name": "Listar Tipos Organizaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/organizaciones/tipos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"organizaciones",
+								"tipos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Tipos Organizaciones Desactivadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/organizaciones/tipos/desactivados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"organizaciones",
+								"tipos",
+								"desactivados"
 							]
 						}
 					},

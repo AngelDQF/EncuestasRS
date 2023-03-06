@@ -6,7 +6,7 @@ const model = {//TODO: Exportamos todos los modelos hijos
   ubicacionModel: require('./ubicacion.model'),//TODO: Exportamos el modelo de ubicacion
   departamentosModel: require('./departamentos.model'),//TODO: Exportamos el modelo de departamentos
   cargoModel:require('./cargos.model'),//TODO: Exportamos el modelo de Cargos
-
+  organizacionesModel:require('./organizaciones'),//TODO: Exportamos el modelo de Organizaciones
 
 
 };
