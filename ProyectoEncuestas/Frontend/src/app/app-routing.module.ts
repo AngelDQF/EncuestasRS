@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EncuestasComponent } from './encuestas/encuestas.component';
-import { IndexComponent } from './index/index.component';
+import { IndexComponent } from './shared/index/index.component';
 import { LoginComponent } from './login/login.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -18,6 +18,7 @@ import { OrganizacionesTiposComponent } from './organizacion/organizaciones-tipo
 import { OrganizacionesComponent } from './organizacion/organizaciones/organizaciones.component';
 import { OrganizacionesDesactivadosComponent } from './organizacion/organizaciones/organizaciones-desactivados.component';
 import { OrganizacionesTiposDesactivadosComponent } from './organizacion/organizaciones-tipos/organizaciones-tipos-desactivados.component';
+import { ErrorComponent } from './shared/error/error.component';
 const routes: Routes = [
   { path: '', component: IndexComponent },
   {
@@ -68,7 +69,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'encuestas', component: EncuestasComponent },
 
-  // { path: '**', component: ErrorComponent },
+  { path: '**', component: ErrorComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
