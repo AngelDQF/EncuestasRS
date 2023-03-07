@@ -1,10 +1,4 @@
---Creacion Vista para Listar los Departamentos
-CREATE VIEW [dbo].[vew_Departamentos_Listar]
-AS
-SELECT id_Departamento AS ID, departamento AS Departamento
-FROM     dbo.tbl_Departamentos
-
---Creación Vistas  Usuarios
+--CreaciÃ³n Vistas  Usuarios
 --Vista para listar todos los usuarios
 CREATE VIEW [dbo].[vew_Usuarios_Listar]
 AS
@@ -33,7 +27,7 @@ FROM     dbo.tbl_Tipos_Usuario
 where estado_Tipo_Usuario=1
 GO
 --Vitas Junta Directiva
-/*Creacion Vista Listar Cargos*/
+--Creacion Vista Listar Cargos
 CREATE VIEW [dbo].[vew_Cargos_Listar]
 as
 	SELECT id_Cargo AS id, descripcion_Cargo AS cargo, estado_Cargo AS estado
@@ -47,26 +41,18 @@ as
 	FROM     dbo.tbl_Cargos
 	where estado_Cargo=0
 GO
-/*Creación Vista Listar Ejes*/
+--CreaciÃ³n Vista Listar Ejes
 CREATE VIEW [dbo].[vew_Ejes_Listar]
 AS
 SELECT id_Eje AS id, descripcion_Eje AS eje, estado_Eje AS estado
 FROM    dbo.tbl_Ejes
 where estado_Eje=1
-/*Creacion vista litar Ejes Desactivados*/
+--Creacion vista litar Ejes Desactivados
 CREATE VIEW [dbo].[vew_Ejes_Listar_Desactivados]
 AS
 SELECT id_Eje AS id, descripcion_Eje AS eje, estado_Eje AS estado
 FROM    dbo.tbl_Ejes
 where estado_Eje=0
-/*Creacion vista de las Asignaciones de los usuarios*/
-CREATE VIEW [dbo].[vew_Asignaciones_Usuario]
-AS
-SELECT dbo.tbl_Asignacion_Usuario.id_Asignacion AS ID, dbo.tbl_Usuarios.nombre_Usuario AS Usuario, dbo.tbl_Municipios.municipio AS Municipio, dbo.tbl_Asignacion_Usuario.estado_Asignacion AS Estado
-FROM     dbo.tbl_Usuarios INNER JOIN
-                  dbo.tbl_Asignacion_Usuario ON dbo.tbl_Usuarios.id_Usuario = dbo.tbl_Asignacion_Usuario.id_Usuario INNER JOIN
-                  dbo.tbl_Municipios ON dbo.tbl_Asignacion_Usuario.id_Municipio = dbo.tbl_Municipios.id_Municipio
-GO
 --------------------------------------------------------------------------------------------------------------------------------------
 --Creacion Vistas Organizaciones
 --Creacion Vista Listar Tipos de Organizaciones

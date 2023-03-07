@@ -10,7 +10,7 @@ import { AdministrarComponent } from './administrar/administrar.component';
 import { ListarComponent } from './listar_usuarios/listar_usuarios.component';
 import { UsuariosService } from './services/usuarios.service';
 import { UsuariosDeactivadosComponent } from './listar_usuarios/usuarios_desactivados';
-import { IndexComponent } from './shared/index/index.component';
+import { IndexComponent } from './shared/components/index/index.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { LoginComponent } from './login/login.component';
 import { EncuestasComponent } from './encuestas/encuestas.component';
@@ -27,7 +27,7 @@ import { OrganizacionesComponent } from './organizacion/organizaciones/organizac
 import { OrganizacionesTiposComponent } from './organizacion/organizaciones-tipos/organizaciones-tipos.component';
 import { OrganizacionesTiposDesactivadosComponent } from './organizacion/organizaciones-tipos/organizaciones-tipos-desactivados.component';
 import { OrganizacionesDesactivadosComponent } from './organizacion/organizaciones/organizaciones-desactivados.component';
-import { ErrorComponent } from './shared/error/error.component';
+import { ErrorComponent } from './shared/components/error/error.component';
 
 @NgModule({
   declarations: [
