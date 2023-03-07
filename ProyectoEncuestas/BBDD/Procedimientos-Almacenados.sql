@@ -209,5 +209,56 @@ as begin
            ,@estado)
 
 end
+
+--Creación Procedimientos Almacenados  de Servicios
+--Creación Procedimiento Almacenado para Listar Servicios Locales
+create procedure prc_Servicios_Locales_Listar
+as
+begin
+	SELECT dbo.tbl_Servicios.id_Servicio AS id, dbo.tbl_Servicios.servicio, dbo.tbl_Tipo_Servicios.tipo_Servicio AS tipo, dbo.tbl_Servicios.estado_Servicio AS estado
+	FROM     dbo.tbl_Tipo_Servicios INNER JOIN
+                  dbo.tbl_Servicios ON dbo.tbl_Tipo_Servicios.id_Tipo_Servicio = dbo.tbl_Servicios.id_Tipo_Servicio
+	where estado_Servicio=1 and dbo.tbl_Servicios.id_Tipo_Servicio=1
+	order by id_Servicio
+end
+--Creación Procedimiento Almacenado para Listar Servicios Locales Desactivados
+create procedure prc_Servicios_Locales_Listar_Desactivados
+as
+begin
+	SELECT dbo.tbl_Servicios.id_Servicio AS id, dbo.tbl_Servicios.servicio, dbo.tbl_Tipo_Servicios.tipo_Servicio AS tipo, dbo.tbl_Servicios.estado_Servicio AS estado
+	FROM     dbo.tbl_Tipo_Servicios INNER JOIN
+                  dbo.tbl_Servicios ON dbo.tbl_Tipo_Servicios.id_Tipo_Servicio = dbo.tbl_Servicios.id_Tipo_Servicio
+	where estado_Servicio=0 and dbo.tbl_Servicios.id_Tipo_Servicio=1
+	order by id_Servicio
+end
+--Creación Procedimiento Almacenado para Listar Servicios Basicos
+create procedure prc_Servicios_Basicos_Listar
+as
+begin
+	SELECT dbo.tbl_Servicios.id_Servicio AS id, dbo.tbl_Servicios.servicio, dbo.tbl_Tipo_Servicios.tipo_Servicio AS tipo, dbo.tbl_Servicios.estado_Servicio AS estado
+	FROM     dbo.tbl_Tipo_Servicios INNER JOIN
+                  dbo.tbl_Servicios ON dbo.tbl_Tipo_Servicios.id_Tipo_Servicio = dbo.tbl_Servicios.id_Tipo_Servicio
+	where estado_Servicio=1 and dbo.tbl_Servicios.id_Tipo_Servicio=2
+	order by id_Servicio
+end
+--Creación Procedimiento Almacenado para Listar Servicios Basicos Desactivados
+create procedure prc_Servicios_Basicos_Listar_Desactivados
+as
+begin
+	SELECT dbo.tbl_Servicios.id_Servicio AS id, dbo.tbl_Servicios.servicio, dbo.tbl_Tipo_Servicios.tipo_Servicio AS tipo, dbo.tbl_Servicios.estado_Servicio AS estado
+	FROM     dbo.tbl_Tipo_Servicios INNER JOIN
+                  dbo.tbl_Servicios ON dbo.tbl_Tipo_Servicios.id_Tipo_Servicio = dbo.tbl_Servicios.id_Tipo_Servicio
+	where estado_Servicio=0 and dbo.tbl_Servicios.id_Tipo_Servicio=2
+	order by id_Servicio
+end
+
+
+
+
+
+
+
+
+
 --Reiniciar id en 1
 --DBCC CHECKIDENT ([tbl_Usuarios]  , RESEED, 0);

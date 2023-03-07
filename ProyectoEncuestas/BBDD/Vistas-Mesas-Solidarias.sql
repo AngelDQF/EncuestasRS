@@ -1,4 +1,4 @@
---CreaciÃ³n Vistas  Usuarios
+--Creación Vistas  Usuarios
 --Vista para listar todos los usuarios
 CREATE VIEW [dbo].[vew_Usuarios_Listar]
 AS
@@ -27,7 +27,7 @@ FROM     dbo.tbl_Tipos_Usuario
 where estado_Tipo_Usuario=1
 GO
 --Vitas Junta Directiva
---Creacion Vista Listar Cargos
+/*Creacion Vista Listar Cargos*/
 CREATE VIEW [dbo].[vew_Cargos_Listar]
 as
 	SELECT id_Cargo AS id, descripcion_Cargo AS cargo, estado_Cargo AS estado
@@ -41,13 +41,13 @@ as
 	FROM     dbo.tbl_Cargos
 	where estado_Cargo=0
 GO
---CreaciÃ³n Vista Listar Ejes
+/*Creación Vista Listar Ejes*/
 CREATE VIEW [dbo].[vew_Ejes_Listar]
 AS
 SELECT id_Eje AS id, descripcion_Eje AS eje, estado_Eje AS estado
 FROM    dbo.tbl_Ejes
 where estado_Eje=1
---Creacion vista litar Ejes Desactivados
+/*Creacion vista litar Ejes Desactivados*/
 CREATE VIEW [dbo].[vew_Ejes_Listar_Desactivados]
 AS
 SELECT id_Eje AS id, descripcion_Eje AS eje, estado_Eje AS estado
@@ -69,3 +69,20 @@ as
 	FROM     dbo.tbl_Tipos_Organizacion
 	where estado_Tipo_Organizacion=0
 go
+--Creación Vista Listar Organizaciones
+CREATE VIEW [dbo].[vew_Organizaciones_Listar]
+as
+	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo, dbo.tbl_Organizaciones.estado_Organizacion AS estado
+	FROM     dbo.tbl_Organizaciones INNER JOIN
+                  dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
+	where estado_Organizacion=1
+go
+--Creación Vista Listar Organizaciones Desactivadas
+CREATE VIEW [dbo].[vew_Organizaciones_Listar_Desactivados]
+as
+	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo, dbo.tbl_Organizaciones.estado_Organizacion AS estado
+	FROM     dbo.tbl_Organizaciones INNER JOIN
+                  dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
+	where estado_Organizacion=0
+go
+

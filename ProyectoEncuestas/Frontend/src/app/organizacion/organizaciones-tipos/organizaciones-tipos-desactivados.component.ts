@@ -4,7 +4,7 @@ import { OrganizacionesService, TiposOrganizacion, TiposOrganizacionResponse } f
 @Component({
   selector: 'app-organizaciones-tipos-desactivados',
   templateUrl: './organizaciones-tipos-desactivados.component.html',
-  styleUrls: ['./organizaciones-tipos.component.css','../../app.component.css']
+  styleUrls: ['../organizacion.component.css','../../app.component.css']
 })
 export class OrganizacionesTiposDesactivadosComponent {
   orgs: TiposOrganizacion[] = [];

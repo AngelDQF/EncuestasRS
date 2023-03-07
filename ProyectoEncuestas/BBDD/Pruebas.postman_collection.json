@@ -417,6 +417,97 @@
 			]
 		},
 		{
+			"name": "23 Servicios",
+			"item": [
+				{
+					"name": "Listar Servicios Locales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/servicios/locales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"servicios",
+								"locales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Servicios Locales Desactivados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/servicios/locales/desactivados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"servicios",
+								"locales",
+								"desactivados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Servicios Basicos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/servicios/basicos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"servicios",
+								"basicos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Servicios Basicos Desactivados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/servicios/basicos/desactivados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"servicios",
+								"basicos",
+								"desactivados"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "32 Organizaciones",
 			"item": [
 				{
@@ -456,6 +547,47 @@
 								"redsolidaria",
 								"organizaciones",
 								"tipos",
+								"desactivados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Organizaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/organizaciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"organizaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Organizaciones Desactivadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/organizaciones/desactivados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"organizaciones",
 								"desactivados"
 							]
 						}

@@ -28,6 +28,12 @@ import { OrganizacionesTiposComponent } from './organizacion/organizaciones-tipo
 import { OrganizacionesTiposDesactivadosComponent } from './organizacion/organizaciones-tipos/organizaciones-tipos-desactivados.component';
 import { OrganizacionesDesactivadosComponent } from './organizacion/organizaciones/organizaciones-desactivados.component';
 import { ErrorComponent } from './shared/components/error/error.component';
+import { ServiciosComponent } from './servicios/servicios.component';
+import { LocalesComponent } from './servicios/locales/locales.component';
+import { LocalesDesactivadosComponent } from './servicios/locales/locales-desactivados.component';
+import { BasicosComponent } from './servicios/basicos/basicos.component';
+import { BasicosDesactivadosComponent } from './servicios/basicos/basicos-desactivados.component';
+import { ServiciosService } from './services/servicios.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +58,12 @@ import { ErrorComponent } from './shared/components/error/error.component';
     OrganizacionesTiposComponent,
     OrganizacionesTiposDesactivadosComponent,
     OrganizacionesDesactivadosComponent,
-    ErrorComponent
+    ErrorComponent,
+    ServiciosComponent,
+    LocalesComponent,
+    LocalesDesactivadosComponent,
+    BasicosComponent,
+    BasicosDesactivadosComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +72,7 @@ import { ErrorComponent } from './shared/components/error/error.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UsuariosService,OrganizacionesService,JuntaService],
+  providers: [UsuariosService,OrganizacionesService,ServiciosService,JuntaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

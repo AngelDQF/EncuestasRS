@@ -1,9 +1,9 @@
 let pool = require('./config.model');// TODO: Importamos el archivo de configuración
 
-async function getOrganizaciones() {
+async function getServiciosLocales() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    let result = await pool.request().query("SELECT * from vew_Organizaciones_Listar");//TODO: Ejecutamos la consulta
+    let result = await pool.request().query("Exec prc_Servicios_Locales_Listar");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
     return result.recordset;//TODO: Retornamos los datos
     pool.close();//TODO: Cerramos la conexión
@@ -12,10 +12,10 @@ async function getOrganizaciones() {
     console.log(error);
   }
 }
-async function getOrganizacionesDesactivadas() {
+async function getServiciosLocalesDesactivadas() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    let result = await pool.request().query("SELECT * from vew_Organizaciones_Listar_Desactivados");//TODO: Ejecutamos la consulta
+    let result = await pool.request().query("Exec prc_Servicios_Locales_Listar_Desactivados");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
     return result.recordset;//TODO: Retornamos los datos
     pool.close();//TODO: Cerramos la conexión
@@ -24,10 +24,10 @@ async function getOrganizacionesDesactivadas() {
     console.log(error);
   }
 }
-async function getTipoOrganizaciones() {//TODO: Función para obtener todos los usuarios
+async function getServiciosBasicos() {//TODO: Función para obtener todos los usuarios
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    let result = await pool.request().query("SELECT * from vew_Tipos_Organizaciones_Listar");//TODO: Ejecutamos la consulta
+    let result = await pool.request().query("Exec prc_Servicios_Basicos_Listar");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
     return result.recordset;//TODO: Retornamos los datos
     pool.close();//TODO: Cerramos la conexión
@@ -36,10 +36,10 @@ async function getTipoOrganizaciones() {//TODO: Función para obtener todos los 
     console.log(error);
   }
 }
-async function getTipoOrganizacionesDesactivadas() {//TODO: Función para obtener todos los usuarios
+async function getServiciosBasicosDesactivados() {//TODO: Función para obtener todos los usuarios
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    let result = await pool.request().query("SELECT * from vew_Tipos_Organizaciones_Listar_Desactivados");//TODO: Ejecutamos la consulta
+    let result = await pool.request().query("Exec prc_Servicios_Basicos_Listar_Desactivados");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
     return result.recordset;//TODO: Retornamos los datos
     pool.close();//TODO: Cerramos la conexiónsss
@@ -49,4 +49,9 @@ async function getTipoOrganizacionesDesactivadas() {//TODO: Función para obtene
     throw error;
   }
 }
-module.exports = { getTipoOrganizaciones, getOrganizacionesDesactivadas,getTipoOrganizacionesDesactivadas, getOrganizaciones };//TODO: Exportamos las Funciones
+module.exports = {
+  getServiciosLocales,
+  getServiciosLocalesDesactivadas,
+  getServiciosBasicos,
+  getServiciosBasicosDesactivados
+};//TODO: Exportamos las Funciones

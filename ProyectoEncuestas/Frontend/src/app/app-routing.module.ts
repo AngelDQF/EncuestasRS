@@ -4,7 +4,6 @@ import { EncuestasComponent } from './encuestas/encuestas.component';
 import { IndexComponent } from './shared/components/index/index.component';
 import { LoginComponent } from './login/login.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AdministrarComponent } from './administrar/administrar.component';
 import { ListarComponent } from './listar_usuarios/listar_usuarios.component';
 import { UsuariosDeactivadosComponent } from './listar_usuarios/usuarios_desactivados';
@@ -19,6 +18,11 @@ import { OrganizacionesComponent } from './organizacion/organizaciones/organizac
 import { OrganizacionesDesactivadosComponent } from './organizacion/organizaciones/organizaciones-desactivados.component';
 import { OrganizacionesTiposDesactivadosComponent } from './organizacion/organizaciones-tipos/organizaciones-tipos-desactivados.component';
 import { ErrorComponent } from './shared/components/error/error.component';
+import { ServiciosComponent } from './servicios/servicios.component';
+import { BasicosComponent } from './servicios/basicos/basicos.component';
+import { BasicosDesactivadosComponent } from './servicios/basicos/basicos-desactivados.component';
+import { LocalesComponent } from './servicios/locales/locales.component';
+import { LocalesDesactivadosComponent } from './servicios/locales/locales-desactivados.component';
 const routes: Routes = [
   { path: '', component: IndexComponent },
   {
@@ -53,17 +57,40 @@ const routes: Routes = [
 
         ]
       },
-      { path: 'org',children:[
-        {path:'',component:OrganizacionComponent},
-        {path:'organizaciones',children:[
-          {path:'',component:OrganizacionesComponent},
-          {path:'desactivados',component:OrganizacionesDesactivadosComponent}
-        ]},
-        {path:'tipos',children:[
-          {path:'',component:OrganizacionesTiposComponent},
-          {path:'desactivados',component:OrganizacionesTiposDesactivadosComponent}
-        ]}
-      ]  },
+      {
+        path: 'org', children: [
+          { path: '', component: OrganizacionComponent },
+          {
+            path: 'organizaciones', children: [
+              { path: '', component: OrganizacionesComponent },
+              { path: 'desactivados', component: OrganizacionesDesactivadosComponent }
+            ]
+          },
+          {
+            path: 'tipos', children: [
+              { path: '', component: OrganizacionesTiposComponent },
+              { path: 'desactivados', component: OrganizacionesTiposDesactivadosComponent }
+            ]
+          }
+        ]
+      },
+      {
+        path: 'servicios', children: [
+          { path: '', component: ServiciosComponent },
+          {
+            path: 'basicos', children: [
+              { path: '', component: BasicosComponent },
+              { path: 'desactivados', component: BasicosDesactivadosComponent }
+            ]
+          },
+          {
+            path: 'locales', children: [
+              { path: '', component: LocalesComponent },
+              { path: 'desactivados', component: LocalesDesactivadosComponent }
+            ]
+          },
+        ]
+      },
     ]
   },
   { path: 'login', component: LoginComponent },

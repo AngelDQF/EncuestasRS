@@ -11,7 +11,12 @@ export class OrganizacionesService {
   getTiposOrganizacionDesactivados() {
     return this.http.get<TiposOrganizacionResponse>('http://localhost:8080/redsolidaria/organizaciones/tipos/desactivados')
   }
-
+  getOrganizaciones() {
+    return this.http.get<OrganizacionesResponse>('http://localhost:8080/redsolidaria/organizaciones')
+  }
+  getOrganizacionesDesactivados() {
+    return this.http.get<OrganizacionesResponse>('http://localhost:8080/redsolidaria/organizaciones/desactivados')
+  }
 }
 
 export interface TiposOrganizacionResponse {
@@ -19,6 +24,15 @@ export interface TiposOrganizacionResponse {
 }
 export interface TiposOrganizacion{
   id: number
+  tipo: string
+  estado: boolean
+}
+export interface OrganizacionesResponse {
+  results: Organizacion[];
+}
+export interface Organizacion{
+  id: number
+  org: string
   tipo: string
   estado: boolean
 }

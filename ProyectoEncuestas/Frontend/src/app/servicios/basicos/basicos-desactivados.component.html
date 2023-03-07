@@ -5,12 +5,12 @@
         <div class=" col-lg-2 col-xl-2">
           <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
         </div>
-        <h1 class="col-10 text-center titulo ">Cargos Desactivados</h1>
+        <h1 class="col-10 text-center titulo ">Servicios Desactivadas</h1>
       </div>
       <div id="a3" class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Eje">
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Servicio">
           </label>
         </div>
       </div>
@@ -22,20 +22,22 @@
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Opciones</th>
-          <th scope="col">Nombre del Cargo</th>
+          <th scope="col">Servicio</th>
+          <th scope="col">Tipo de Servicio</th>
           <th scope="col">Estado</th>
         </tr>
       </thead>
       <tbody>
-        <tr id="body" *ngFor="let cargo of cargosDesactivados" class="align-middle text-center">
-          <th scope="row" class="text-center"><a routerLink=":id" class="fw-bold">{{cargo.id}}</a></th>
+        <tr id="body" *ngFor="let servicio of servicios" class="align-middle text-center">
+          <th routerLink=":id" scope="row" class="text-center"><strong>{{servicio.id}}</strong></th>
           <td>
             <div class=" d-grid pb-1">
               <a class="form-control btn btnGuardar">Activar</a>
             </div>
           </td>
-          <td>{{cargo.cargo}}</td>
-          <td class="text-danger fw-bold">{{cargo.estado}}</td>
+          <td>{{servicio.servicio}}</td>
+          <td>{{servicio.tipo}}</td>
+          <td class="text-danger fw-bold">{{servicio.estado}}</td>
         </tr>
       </tbody>
     </table>
