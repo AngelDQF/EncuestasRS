@@ -33,6 +33,15 @@ import { TiposFinanciamientosComponent } from './financiamientos/tipos/tipos-fin
 import { TiposFinanciamientosDesactivadosComponent } from './financiamientos/tipos/tipos-financiamientos-desactivados.component';
 import { FuentesFinanciamientosDesactivadasComponent } from './financiamientos/fuentes/fuentes-financiamientos-desactivadas.component';
 import { FuentesFinanciamientosComponent } from './financiamientos/fuentes/fuentes-financiamientos.component';
+import { RequerimientosComponent } from './requerimientos/requerimientos.component';
+import { MercadosComponent } from './requerimientos/mercados/mercados.component';
+import { MercadosDesactivadosComponent } from './requerimientos/mercados/mercados-desactivados.component';
+import { UsosTierrasComponent } from './requerimientos/tierras/usos-tierras/usos-tierras.component';
+import { UsosTierrasDesactivadosComponent } from './requerimientos/tierras/usos-tierras/usos-tierras-desactivados.component';
+import { TenenciaTierrasComponent } from './requerimientos/tierras/tenencia-tierras/tenencia-tierras.component';
+import { TenenciaTierrasDesactivadasComponent } from './requerimientos/tierras/tenencia-tierras/tenencia-tierras-desactivadas.component';
+import { EstructurasComponent } from './requerimientos/estructuras/estructuras.component';
+import { EstructurasDesactivadasComponent } from './requerimientos/estructuras/estructuras-desactivadas.component';
 const routes: Routes = [
   { path: '', component: IndexComponent },
   {
@@ -132,6 +141,35 @@ const routes: Routes = [
             path: 'fuentes', children: [
               { path: '', component:  FuentesFinanciamientosComponent},
               { path: 'desactivados', component: FuentesFinanciamientosDesactivadasComponent }
+            ]
+          },
+        ]
+      },
+      {
+        path: 'requerimientos', children: [
+          { path: '', component: RequerimientosComponent },
+          {
+            path: 'mercados', children: [
+              { path: '', component:  MercadosComponent},
+              { path: 'desactivados', component: MercadosDesactivadosComponent }
+            ]
+          },
+          {
+            path: 'tierras', children: [
+              { path: 'usos',children:[
+                {path:'',component:UsosTierrasComponent},
+                {path:'desactivados',component:UsosTierrasDesactivadosComponent}
+              ]},
+              { path: 'tenencia', children:[
+                {path:'',component:TenenciaTierrasComponent},
+                {path:'desactivados',component:TenenciaTierrasDesactivadasComponent}
+              ]}
+            ]
+          },
+          {
+            path: 'estructuras', children: [
+              { path: '', component:  EstructurasComponent},
+              { path: 'desactivados', component: EstructurasDesactivadasComponent }
             ]
           },
         ]

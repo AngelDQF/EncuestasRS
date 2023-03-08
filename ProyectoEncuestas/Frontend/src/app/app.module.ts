@@ -46,6 +46,16 @@ import { TiposFinanciamientosDesactivadosComponent } from './financiamientos/tip
 import { TiposFinanciamientosComponent } from './financiamientos/tipos/tipos-financiamientos.component';
 import { FuentesFinanciamientosComponent } from './financiamientos/fuentes/fuentes-financiamientos.component';
 import { FuentesFinanciamientosDesactivadasComponent } from './financiamientos/fuentes/fuentes-financiamientos-desactivadas.component';
+import { RequerimientosComponent } from './requerimientos/requerimientos.component';
+import { MercadosComponent } from './requerimientos/mercados/mercados.component';
+import { MercadosDesactivadosComponent } from './requerimientos/mercados/mercados-desactivados.component';
+import { UsosTierrasComponent } from './requerimientos/tierras/usos-tierras/usos-tierras.component';
+import { TenenciaTierrasComponent } from './requerimientos/tierras/tenencia-tierras/tenencia-tierras.component';
+import { TenenciaTierrasDesactivadasComponent } from './requerimientos/tierras/tenencia-tierras/tenencia-tierras-desactivadas.component';
+import { UsosTierrasDesactivadosComponent } from './requerimientos/tierras/usos-tierras/usos-tierras-desactivados.component';
+import { EstructurasComponent } from './requerimientos/estructuras/estructuras.component';
+import { EstructurasDesactivadasComponent } from './requerimientos/estructuras/estructuras-desactivadas.component';
+import { RequerimientosService } from './services/requerimientos.service';
 
 @NgModule({
   declarations: [
@@ -86,6 +96,15 @@ import { FuentesFinanciamientosDesactivadasComponent } from './financiamientos/f
     TiposFinanciamientosComponent,
     FuentesFinanciamientosComponent,
     FuentesFinanciamientosDesactivadasComponent,
+    RequerimientosComponent,
+    MercadosComponent,
+    MercadosDesactivadosComponent,
+    UsosTierrasComponent,
+    TenenciaTierrasComponent,
+    TenenciaTierrasDesactivadasComponent,
+    UsosTierrasDesactivadosComponent,
+    EstructurasComponent,
+    EstructurasDesactivadasComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,7 +113,7 @@ import { FuentesFinanciamientosDesactivadasComponent } from './financiamientos/f
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UsuariosService,OrganizacionesService,ServiciosService,JuntaService,RecursosService,FinanciamientosService],
+  providers: [UsuariosService,OrganizacionesService,ServiciosService,JuntaService,RecursosService,FinanciamientosService,RequerimientosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

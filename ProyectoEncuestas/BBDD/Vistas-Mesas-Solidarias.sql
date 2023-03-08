@@ -127,10 +127,25 @@ as
 	where estado_Tipo_Financiamiento=1
 go
 --Creacion Vista Listar Tipos de Financiamientos
-CREATE VIEW [dbo].[vew_Financiamientos_Listar_Tipos]
+CREATE VIEW [dbo].[vew_Financiamientos_Listar_Tipos_Desactivados]
 as
 	SELECT id_Tipo_Financiamiento AS id, financiamiento AS tipo, estado_Tipo_Financiamiento AS estado
 	FROM     dbo.tbl_Tipos_Financiamiento
-	where estado_Tipo_Financiamiento=1
+	where estado_Tipo_Financiamiento=0
 go
-
+--Creacion Vista Listar Fuentes de Financiamientos
+CREATE VIEW [dbo].[vew_Financiamientos_Listar_Fuentes]
+as
+	SELECT id_Fuente_Financiamiento AS id, fuente_Financiamiento AS fuente, estado_Fuente_Financiamiento AS estado
+	FROM     dbo.tbl_Fuentes_Financiamiento
+	where estado_Fuente_Financiamiento=1
+go
+--Creacion Vista Listar Fuentes de Financiamientos Desactivadas
+CREATE VIEW [dbo].[vew_Financiamientos_Listar_Fuentes_Desactivadas]
+as
+	SELECT id_Fuente_Financiamiento AS id, fuente_Financiamiento AS fuente, estado_Fuente_Financiamiento AS estado
+	FROM     dbo.tbl_Fuentes_Financiamiento
+	where estado_Fuente_Financiamiento=0
+go
+--------------------------------------------------------------------------------------------------------------------------------------
+--Creacion Vistas Requerimientos de Inversión
