@@ -2,8 +2,6 @@ import { TipoSueloDesactivadosComponent } from './recursos/tipo-suelo/tipo-suelo
 import { TipoSueloComponent } from './recursos/tipo-suelo/tipo-suelo.component';
 import { BosquesDesactivadosComponent } from './recursos/bosques/bosques-desactivados.component';
 import { BosquesComponent } from './recursos/bosques/bosques.component';
-import { RiosDesactivadosComponent } from './recursos/rios/rios-desactivados.component';
-import { RiosComponent } from './recursos/rios/rios.component';
 import { RecursosComponent } from './recursos/recursos.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -101,12 +99,7 @@ const routes: Routes = [
       {
         path: 'rn', children: [
           { path: '', component: RecursosComponent },
-          {
-            path: 'rios', children: [
-              { path: '', component: RiosComponent },
-              { path: 'desactivados', component: RiosDesactivadosComponent }
-            ]
-          },
+
           {
             path: 'bosques', children: [
               { path: '', component: BosquesComponent },

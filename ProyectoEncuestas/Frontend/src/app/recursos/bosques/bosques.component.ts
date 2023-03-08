@@ -1,4 +1,4 @@
-import { Bosque, BosquesResponse, RecursosService } from './../../services/recursos.service';
+import { Natural, NaturalesResponse, RecursosService } from './../../services/recursos.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['../recursos.component.css','../../app.component.css']
 })
 export class BosquesComponent {
-  bosques: Bosque[] = [];
+  bosques: Natural[] = [];
   constructor(private bosquesModel: RecursosService) {
-    this.bosquesModel.getBosques().subscribe((data: BosquesResponse) => {
+    this.bosquesModel.getBosques().subscribe((data: NaturalesResponse) => {
       this.bosques = data.results;
     })
   }

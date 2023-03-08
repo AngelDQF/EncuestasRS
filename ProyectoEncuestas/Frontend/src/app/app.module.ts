@@ -36,8 +36,6 @@ import { BasicosComponent } from './servicios/basicos/basicos.component';
 import { BasicosDesactivadosComponent } from './servicios/basicos/basicos-desactivados.component';
 import { ServiciosService } from './services/servicios.service';
 import { RecursosComponent } from './recursos/recursos.component';
-import { RiosComponent } from './recursos/rios/rios.component';
-import { RiosDesactivadosComponent } from './recursos/rios/rios-desactivados.component';
 import { BosquesComponent } from './recursos/bosques/bosques.component';
 import { BosquesDesactivadosComponent } from './recursos/bosques/bosques-desactivados.component';
 import { TipoSueloComponent } from './recursos/tipo-suelo/tipo-suelo.component';
@@ -73,8 +71,6 @@ import { TipoSueloDesactivadosComponent } from './recursos/tipo-suelo/tipo-suelo
     BasicosComponent,
     BasicosDesactivadosComponent,
     RecursosComponent,
-    RiosComponent,
-    RiosDesactivadosComponent,
     BosquesComponent,
     BosquesDesactivadosComponent,
     TipoSueloComponent,

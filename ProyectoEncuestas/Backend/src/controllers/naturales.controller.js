@@ -7,18 +7,37 @@ const ctrGetBosques = async (req, res) => {//TODO: Controlador para hacer get a 
       res.json({results:result})//TODO: Mostramos el resultado en un json
     });
   } catch{
-    handleHttpError(res, 'ERROR_LISTAR_EJES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'ERROR_LISTAR_SUELOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 
 }
-const ctrGetBosquesDesactivados = async (req, res) => {//TODO: Funcion para hacer get a los ejes
+const ctrGetBosquesDesactivados = async (req, res) => {//TODO: Funcion para hacer get a los Bosques Desactivados
   try {
-    ejesModel.getEjesDesactivados().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+    naturalesModel.getSuelos().then(result => {//TODO: Ejecutamos la funcion getSuelos del modelo
       res.json({results:result})//TODO: Mostramos el resultado en un json
     });
   } catch{
-    handleHttpError(res, 'ERROR_LISTAR_EJES_DESACTIVADOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'ERROR_LISTAR_SUELOS_DESACTIVADOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
+const ctrGetSuelos = async (req, res) => {//TODO: Controlador para hacer get a los Tipos de Suelos
+  try {
+    naturalesModel.getSuelosDesactivados().then(result => {//TODO: Ejecutamos la funcion getSuelosDesactivados del modelo
+      res.json({results:result})//TODO: Mostramos el resultado en un json
+    });
+  } catch{
+    handleHttpError(res, 'ERROR_LISTAR_SUELOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 
 }
-module.exports = { ctrGetBosques, ctrGetBosquesDesactivados};//TODO: Exportamos las funciones del controlador
+const ctrGetSuelosDesactivados = async (req, res) => {//TODO: Funcion para hacer get a los Tipos de Suelos Desactivados
+  try {
+    SUELOSModel.getSUELOSDesactivados().then(result => {//TODO: Ejecutamos la funcion getSUELOS del modelo
+      res.json({results:result})//TODO: Mostramos el resultado en un json
+    });
+  } catch{
+    handleHttpError(res, 'ERROR_LISTAR_SUELOS_DESACTIVADOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+
+}
+module.exports = { ctrGetBosques, ctrGetBosquesDesactivados,ctrGetSuelos,ctrGetSuelosDesactivados};//TODO: Exportamos las funciones del controlador
