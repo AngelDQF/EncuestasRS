@@ -30,7 +30,6 @@ async function getEjesDesactivados() {//TODO: Función para obtener todos los us
 
   } catch (error) {
     console.log(error);
-    throw error;
   }
 }
 /**
@@ -121,7 +120,6 @@ async function putEjeNombre(id, eje) {//TODO: Creamos la función que se encarga
     }
   } catch (error) {//TODO: Si hay un error
     console.log(error);//TODO: Mostramos el error
-    throw error;//TODO: Retornamos el error
   }
 
 }
@@ -161,7 +159,6 @@ async function verificarEje(eje) {//TODO: Creamos la función que se encargará 
   }
   catch (error) {
     console.log(error);
-    throw error;
   }
 }
 /**
@@ -178,7 +175,6 @@ async function verificarEjeID(id) {//TODO: Creamos la función que se encargará
   }
   catch (error) {
     console.log(error);
-    throw error;
   }
 }
 

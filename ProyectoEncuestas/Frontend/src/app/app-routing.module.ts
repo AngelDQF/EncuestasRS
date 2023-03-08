@@ -28,6 +28,11 @@ import { BasicosComponent } from './servicios/basicos/basicos.component';
 import { BasicosDesactivadosComponent } from './servicios/basicos/basicos-desactivados.component';
 import { LocalesComponent } from './servicios/locales/locales.component';
 import { LocalesDesactivadosComponent } from './servicios/locales/locales-desactivados.component';
+import { FinanciamientosComponent } from './financiamientos/financiamientos.component';
+import { TiposFinanciamientosComponent } from './financiamientos/tipos/tipos-financiamientos.component';
+import { TiposFinanciamientosDesactivadosComponent } from './financiamientos/tipos/tipos-financiamientos-desactivados.component';
+import { FuentesFinanciamientosDesactivadasComponent } from './financiamientos/fuentes/fuentes-financiamientos-desactivadas.component';
+import { FuentesFinanciamientosComponent } from './financiamientos/fuentes/fuentes-financiamientos.component';
 const routes: Routes = [
   { path: '', component: IndexComponent },
   {
@@ -110,6 +115,23 @@ const routes: Routes = [
             path: 'suelos', children: [
               { path: '', component: TipoSueloComponent },
               { path: 'desactivados', component: TipoSueloDesactivadosComponent }
+            ]
+          },
+        ]
+      },
+      {
+        path: 'financiamientos', children: [
+          { path: '', component: FinanciamientosComponent },
+          {
+            path: 'tipos', children: [
+              { path: '', component: TiposFinanciamientosComponent },
+              { path: 'desactivados', component: TiposFinanciamientosDesactivadosComponent }
+            ]
+          },
+          {
+            path: 'fuentes', children: [
+              { path: '', component:  FuentesFinanciamientosComponent},
+              { path: 'desactivados', component: FuentesFinanciamientosDesactivadasComponent }
             ]
           },
         ]

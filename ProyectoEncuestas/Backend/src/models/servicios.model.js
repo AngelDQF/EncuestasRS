@@ -5,8 +5,13 @@ async function getServiciosLocales() {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Locales_Listar");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
-    return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexión
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Servicios Locales Agregados"
+    }
+     pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -17,8 +22,13 @@ async function getServiciosLocalesDesactivadas() {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Locales_Listar_Desactivados");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
-    return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexión
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Servicios Locales Desactivados"
+    }
+     pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -29,7 +39,12 @@ async function getServiciosBasicos() {//TODO: Función para obtener todos los us
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Basicos_Listar");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
-    return result.recordset;//TODO: Retornamos los datos
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Servicios Basicos Agregados"
+    }
     pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
@@ -41,8 +56,13 @@ async function getServiciosBasicosDesactivados() {//TODO: Función para obtener 
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Basicos_Listar_Desactivados");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
-    return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexiónsss
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Servicios Basicos Desactivados"
+    }
+        pool.close();//TODO: Cerramos la conexiónsss
 
   } catch (error) {
     console.log(error);

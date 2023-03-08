@@ -9,6 +9,6 @@ const model = {//TODO: Exportamos todos los modelos hijos
   organizacionesModel:require('./organizaciones'),//TODO: Exportamos el modelo de Organizaciones
   serviciosModel:require('./servicios.model'),//TODO: Exportamos el modelo de Servicios
   naturalesModel:require('./naturales.model'),//TODO: Exportamos el modelo de Naturales
-
+  financiamientosModel:require('./financiamientos.model'),//TODO: Exportamos el modelo de Financiamientos
 };
 module.exports = model;//TODO: Exportamos el modelo padre

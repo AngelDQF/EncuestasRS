@@ -9,7 +9,7 @@ import { Natural, NaturalesResponse, RecursosService } from './../../services/re
 export class TipoSueloComponent {
   suelos: Natural[] = [];
   constructor(private bosquesModel: RecursosService) {
-    this.bosquesModel.getBosques().subscribe((data: NaturalesResponse) => {
+    this.bosquesModel.getSuelos().subscribe((data: NaturalesResponse) => {
       this.suelos = data.results;
     })
   }

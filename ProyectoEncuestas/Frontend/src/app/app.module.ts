@@ -40,6 +40,12 @@ import { BosquesComponent } from './recursos/bosques/bosques.component';
 import { BosquesDesactivadosComponent } from './recursos/bosques/bosques-desactivados.component';
 import { TipoSueloComponent } from './recursos/tipo-suelo/tipo-suelo.component';
 import { TipoSueloDesactivadosComponent } from './recursos/tipo-suelo/tipo-suelo-desactivados.component';
+import { FinanciamientosComponent } from './financiamientos/financiamientos.component';
+import { FinanciamientosService } from './services/financiamientos.service';
+import { TiposFinanciamientosDesactivadosComponent } from './financiamientos/tipos/tipos-financiamientos-desactivados.component';
+import { TiposFinanciamientosComponent } from './financiamientos/tipos/tipos-financiamientos.component';
+import { FuentesFinanciamientosComponent } from './financiamientos/fuentes/fuentes-financiamientos.component';
+import { FuentesFinanciamientosDesactivadasComponent } from './financiamientos/fuentes/fuentes-financiamientos-desactivadas.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +81,11 @@ import { TipoSueloDesactivadosComponent } from './recursos/tipo-suelo/tipo-suelo
     BosquesDesactivadosComponent,
     TipoSueloComponent,
     TipoSueloDesactivadosComponent,
+    FinanciamientosComponent,
+    TiposFinanciamientosDesactivadosComponent,
+    TiposFinanciamientosComponent,
+    FuentesFinanciamientosComponent,
+    FuentesFinanciamientosDesactivadasComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +94,7 @@ import { TipoSueloDesactivadosComponent } from './recursos/tipo-suelo/tipo-suelo
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UsuariosService,OrganizacionesService,ServiciosService,JuntaService,RecursosService],
+  providers: [UsuariosService,OrganizacionesService,ServiciosService,JuntaService,RecursosService,FinanciamientosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

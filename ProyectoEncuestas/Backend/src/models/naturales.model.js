@@ -29,8 +29,12 @@ async function getSuelos() {//TODO: Funcion para obtener todos los tipos de suel
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Suelos_Listar");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
-    return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexión
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Tipos de Suelo Agregados"
+    }    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {//TODO: Si hay un error al ejecutar el codigo capturamos el error
     console.log(error);//TODO: Mostramos el error
@@ -41,11 +45,16 @@ async function getSuelosDesactivados() {//TODO: Funcion para obtener todos los t
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Suelos_Listar_Desactivados");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
-    return result.recordset;//TODO: Retornamos los datos
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Tipos de Suelo Desactivados"
+    } 
     pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {//TODO: Si hay un error al ejecutar el codigo capturamos el error
     console.log(error);//TODO: Mostramos el error
   }
 }
-module.exports = { getBosques, getBosquesDesactivados,getSuelos, getSuelosDesactivados };//TODO: Exportamos las Funciones
+module.exports = { getBosques, getBosquesDesactivados, getSuelos, getSuelosDesactivados };//TODO: Exportamos las Funciones

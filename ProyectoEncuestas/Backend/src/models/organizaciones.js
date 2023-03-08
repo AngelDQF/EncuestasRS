@@ -5,8 +5,13 @@ async function getOrganizaciones() {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Organizaciones_Listar");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
-    return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexión
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Organizaciones Agregadas"
+    }   
+     pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -17,8 +22,12 @@ async function getOrganizacionesDesactivadas() {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Organizaciones_Listar_Desactivados");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
-    return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexión
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Organizaciones Desactivados"
+    }    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -29,8 +38,12 @@ async function getTipoOrganizaciones() {//TODO: Función para obtener todos los 
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Tipos_Organizaciones_Listar");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
-    return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexión
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Tipos de Organizaciones Agregadas"
+    }    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -41,8 +54,12 @@ async function getTipoOrganizacionesDesactivadas() {//TODO: Función para obtene
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Tipos_Organizaciones_Listar_Desactivados");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
-    return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexiónsss
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Tipos de Organizaciones Desactivados"
+    }    pool.close();//TODO: Cerramos la conexiónsss
 
   } catch (error) {
     console.log(error);

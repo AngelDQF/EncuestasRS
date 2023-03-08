@@ -13,7 +13,7 @@ const ctrGetBosques = async (req, res) => {//TODO: Controlador para hacer get a 
 }
 const ctrGetBosquesDesactivados = async (req, res) => {//TODO: Funcion para hacer get a los Bosques Desactivados
   try {
-    naturalesModel.getSuelos().then(result => {//TODO: Ejecutamos la funcion getSuelos del modelo
+    naturalesModel.getBosquesDesactivados().then(result => {//TODO: Ejecutamos la funcion getSuelos del modelo
       res.json({results:result})//TODO: Mostramos el resultado en un json
     });
   } catch{
@@ -22,7 +22,7 @@ const ctrGetBosquesDesactivados = async (req, res) => {//TODO: Funcion para hace
 }
 const ctrGetSuelos = async (req, res) => {//TODO: Controlador para hacer get a los Tipos de Suelos
   try {
-    naturalesModel.getSuelosDesactivados().then(result => {//TODO: Ejecutamos la funcion getSuelosDesactivados del modelo
+    naturalesModel.getSuelos().then(result => {//TODO: Ejecutamos la funcion getSuelosDesactivados del modelo
       res.json({results:result})//TODO: Mostramos el resultado en un json
     });
   } catch{
@@ -32,7 +32,7 @@ const ctrGetSuelos = async (req, res) => {//TODO: Controlador para hacer get a l
 }
 const ctrGetSuelosDesactivados = async (req, res) => {//TODO: Funcion para hacer get a los Tipos de Suelos Desactivados
   try {
-    SUELOSModel.getSUELOSDesactivados().then(result => {//TODO: Ejecutamos la funcion getSUELOS del modelo
+    naturalesModel.getSuelosDesactivados().then(result => {//TODO: Ejecutamos la funcion getSUELOS del modelo
       res.json({results:result})//TODO: Mostramos el resultado en un json
     });
   } catch{

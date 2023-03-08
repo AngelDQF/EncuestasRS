@@ -12,7 +12,7 @@ export class RecursosService {
     return this.http.get<NaturalesResponse>('http://localhost:8080/redsolidaria/naturales/bosques/desactivados')
   }
   getSuelos() {
-    return this.http.get<NaturalesResponse>('http://localhost:8080/redsolidaria/suelos/bosques')
+    return this.http.get<NaturalesResponse>('http://localhost:8080/redsolidaria/naturales/suelos')
   }
   getSuelosDesactivados() {
     return this.http.get<NaturalesResponse>('http://localhost:8080/redsolidaria/naturales/suelos/desactivados')

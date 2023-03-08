@@ -117,3 +117,20 @@ as
 	FROM     dbo.tbl_Suelos
 	where estado_Suelo=0
 go
+--------------------------------------------------------------------------------------------------------------------------------------
+--Creacion Vistas Financiamientos
+--Creacion Vista Listar Tipos de Financiamientos
+CREATE VIEW [dbo].[vew_Financiamientos_Listar_Tipos]
+as
+	SELECT id_Tipo_Financiamiento AS id, financiamiento AS tipo, estado_Tipo_Financiamiento AS estado
+	FROM     dbo.tbl_Tipos_Financiamiento
+	where estado_Tipo_Financiamiento=1
+go
+--Creacion Vista Listar Tipos de Financiamientos
+CREATE VIEW [dbo].[vew_Financiamientos_Listar_Tipos]
+as
+	SELECT id_Tipo_Financiamiento AS id, financiamiento AS tipo, estado_Tipo_Financiamiento AS estado
+	FROM     dbo.tbl_Tipos_Financiamiento
+	where estado_Tipo_Financiamiento=1
+go
+
