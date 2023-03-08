@@ -149,3 +149,67 @@ as
 go
 --------------------------------------------------------------------------------------------------------------------------------------
 --Creacion Vistas Requerimientos de Inversión
+-----------------------------------------------------------------------------------
+--Creacion Vistas Mercados
+--Creacion Vista Listar Mercados
+CREATE VIEW [dbo].[vew_Mercados_Listar]
+as
+	SELECT id_Mercado AS id, descripcion_Mercado AS mercado, estado_Mercado AS estado
+	FROM     dbo.tbl_Mercados
+	where estado_Mercado=1
+go
+--Creacion Vista Listar Mercados Desactivados
+CREATE VIEW [dbo].[vew_Mercados_Listar_Desactivados]
+as
+	SELECT id_Mercado AS id, descripcion_Mercado AS mercado, estado_Mercado AS estado
+	FROM     dbo.tbl_Mercados
+	where estado_Mercado=0
+go
+-----------------------------------------------------------------------------------
+--Creacion Vistas Usos Tierra
+--Creacion Vista Usos Tierra Listar
+CREATE VIEW [dbo].[vew_Tierras_Usos_Listar]
+as
+	SELECT id_Uso_Tierra AS id, uso_Tierra AS uso, estado_Uso_Tierra AS estado
+	FROM     dbo.tbl_Usos_Tierra
+	where estado_Uso_Tierra=1
+go
+--Creacion Vista Usos Tierra Listar Desactivados
+CREATE VIEW [dbo].[vew_Tierras_Usos_Listar_Desactivados]
+as
+	SELECT id_Uso_Tierra AS id, uso_Tierra AS uso, estado_Uso_Tierra AS estado
+	FROM     dbo.tbl_Usos_Tierra
+	where estado_Uso_Tierra=0
+go
+-----------------------------------------------------------------------------------
+--Creacion Vistas Estructuras
+--Creacion Vista Estructuras Listar
+CREATE VIEW [dbo].[vew_Estructuras_Listar]
+as
+	SELECT id_Estructura AS id, estructura, estado_Estructura AS estado
+	FROM     dbo.tbl_Estructuras
+	where estado_Estructura=1
+go
+--Creacion Vista Estructuras Listar Desactivados
+CREATE VIEW [dbo].[vew_Estructuras_Listar_Desactivados]
+as
+	SELECT id_Estructura AS id, estructura, estado_Estructura AS estado
+	FROM     dbo.tbl_Estructuras
+	where estado_Estructura=0
+go
+-----------------------------------------------------------------------------------
+--Creacion Vistas Tenencia Tierra
+--Creacion Vista Tenencia Tierra Listar
+CREATE VIEW [dbo].[vew_Tierras_Tenencia_Listar]
+as
+	SELECT id_Tenencia AS id, descripcion_Tenencia AS tenencia, estado_Tenencia_Tierra AS estado
+	FROM     dbo.tbl_Tenencia_Tierra
+	where estado_Tenencia_Tierra=1
+go
+--Creacion Vista Tenencia Tierra Listar Desactivados
+CREATE VIEW [dbo].[vew_Tierras_Tenencia_Listar_Desactivados]
+as
+	SELECT id_Tenencia AS id, descripcion_Tenencia AS tenencia, estado_Tenencia_Tierra AS estado
+	FROM     dbo.tbl_Tenencia_Tierra
+	where estado_Tenencia_Tierra=0
+go

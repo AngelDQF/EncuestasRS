@@ -282,7 +282,8 @@ References tbl_Encuestas(id_Encuesta),
 --Creación Tabla Usos de la Tierra
 Create Table tbl_Usos_Tierra(
 id_Uso_Tierra INT Primary Key Identity(1,1),
-uso_Tierra nvarchar(50) not null
+uso_Tierra nvarchar(50) not null,
+estado_Uso_Tierra bit not null
 );
 --Creacion Tabla Detalle Usos Tierra
 Create Table tbl_Detalle_Usos_Tierra(

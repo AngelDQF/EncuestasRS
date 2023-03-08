@@ -10,5 +10,6 @@ const model = {//TODO: Exportamos todos los modelos hijos
   serviciosModel:require('./servicios.model'),//TODO: Exportamos el modelo de Servicios
   naturalesModel:require('./naturales.model'),//TODO: Exportamos el modelo de Naturales
   financiamientosModel:require('./financiamientos.model'),//TODO: Exportamos el modelo de Financiamientos
+  requerimientosModel:require('./requerimientos.model'),//TODO: Exportamos el modelo de Requerimientos
 };
 module.exports = model;//TODO: Exportamos el modelo padre
