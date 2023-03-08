@@ -1,3 +1,4 @@
+import { RecursosService } from './services/recursos.service';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,6 +35,13 @@ import { LocalesDesactivadosComponent } from './servicios/locales/locales-desact
 import { BasicosComponent } from './servicios/basicos/basicos.component';
 import { BasicosDesactivadosComponent } from './servicios/basicos/basicos-desactivados.component';
 import { ServiciosService } from './services/servicios.service';
+import { RecursosComponent } from './recursos/recursos.component';
+import { RiosComponent } from './recursos/rios/rios.component';
+import { RiosDesactivadosComponent } from './recursos/rios/rios-desactivados.component';
+import { BosquesComponent } from './recursos/bosques/bosques.component';
+import { BosquesDesactivadosComponent } from './recursos/bosques/bosques-desactivados.component';
+import { TipoSueloComponent } from './recursos/tipo-suelo/tipo-suelo.component';
+import { TipoSueloDesactivadosComponent } from './recursos/tipo-suelo/tipo-suelo-desactivados.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +72,13 @@ import { ServiciosService } from './services/servicios.service';
     LocalesDesactivadosComponent,
     BasicosComponent,
     BasicosDesactivadosComponent,
+    RecursosComponent,
+    RiosComponent,
+    RiosDesactivadosComponent,
+    BosquesComponent,
+    BosquesDesactivadosComponent,
+    TipoSueloComponent,
+    TipoSueloDesactivadosComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +87,7 @@ import { ServiciosService } from './services/servicios.service';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UsuariosService,OrganizacionesService,ServiciosService,JuntaService],
+  providers: [UsuariosService,OrganizacionesService,ServiciosService,JuntaService,RecursosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

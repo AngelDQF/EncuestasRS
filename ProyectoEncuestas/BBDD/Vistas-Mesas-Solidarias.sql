@@ -85,4 +85,20 @@ as
                   dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
 	where estado_Organizacion=0
 go
+--------------------------------------------------------------------------------------------------------------------------------------
+--Creacion Vistas Recursos Naturales
+--Creacion Vista Listar Tipos de Bosques
+CREATE VIEW [dbo].[vew_Bosques_Listar]
+as
+	SELECT id_Tipo_Bosque AS id, tipo_Bosque AS tipo, estado_Tipo_Bosque AS estado
+	FROM     dbo.tbl_Tipos_Bosque
+	where estado_Tipo_Bosque=1
+go
+--Creacion Vista Listar Tipos de Bosques Desactivados
 
+CREATE VIEW [dbo].[vew_Bosques_Listar_Desactivados]
+as
+	SELECT id_Tipo_Bosque AS id, tipo_Bosque AS tipo, estado_Tipo_Bosque AS estado
+	FROM     dbo.tbl_Tipos_Bosque
+	where estado_Tipo_Bosque=0
+go

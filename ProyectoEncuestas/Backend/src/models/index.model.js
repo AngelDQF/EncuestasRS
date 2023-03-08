@@ -8,6 +8,7 @@ const model = {//TODO: Exportamos todos los modelos hijos
   cargoModel:require('./cargos.model'),//TODO: Exportamos el modelo de Cargos
   organizacionesModel:require('./organizaciones'),//TODO: Exportamos el modelo de Organizaciones
   serviciosModel:require('./servicios.model'),//TODO: Exportamos el modelo de Servicios
+  naturalesModel:require('./naturales.model'),//TODO: Exportamos el modelo de Naturales
 
 };
 module.exports = model;//TODO: Exportamos el modelo padre
