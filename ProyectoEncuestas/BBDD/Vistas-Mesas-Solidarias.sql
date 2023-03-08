@@ -102,3 +102,18 @@ as
 	FROM     dbo.tbl_Tipos_Bosque
 	where estado_Tipo_Bosque=0
 go
+--Creacion Vista Listar Tipos de Suelos
+CREATE VIEW [dbo].[vew_Suelos_Listar]
+as
+	SELECT id_Suelo AS id, descripcion_Suelo AS tipo, estado_Suelo AS estado
+	FROM     dbo.tbl_Suelos
+	where estado_Suelo=1
+go
+--Creacion Vista Listar Tipos de Rios Desactivados
+
+CREATE VIEW [dbo].[vew_Suelos_Listar_Desactivados]
+as
+	SELECT id_Suelo AS id, descripcion_Suelo AS tipo, estado_Suelo AS estado
+	FROM     dbo.tbl_Suelos
+	where estado_Suelo=0
+go
