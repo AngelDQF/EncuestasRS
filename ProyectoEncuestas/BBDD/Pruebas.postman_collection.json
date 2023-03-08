@@ -595,6 +595,400 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Suelos",
+			"item": [
+				{
+					"name": "Listar Tipos Suelos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/naturales/suelos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"naturales",
+								"suelos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Tipos Suelos Desactivados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/naturales/suelos/desactivados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"naturales",
+								"suelos",
+								"desactivados"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bosques",
+			"item": [
+				{
+					"name": "Listar Tipos Bosques",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/naturales/bosques",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"naturales",
+								"bosques"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Tipos Bosques Desactivados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/naturales/bosques/desactivados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"naturales",
+								"bosques",
+								"desactivados"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Financiamientos",
+			"item": [
+				{
+					"name": "Tipos de Financiamiento",
+					"item": [
+						{
+							"name": "Listar Tipos Financiamientos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/financiamientos/tipos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"financiamientos",
+										"tipos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Tipos Financiamientos Desactivados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/financiamientos/tipos/desactivados",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"financiamientos",
+										"tipos",
+										"desactivados"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fuentes de Financiamiento",
+					"item": [
+						{
+							"name": "Listar Fuentes Financiamientos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/financiamientos/fuentes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"financiamientos",
+										"fuentes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Fuentes Financiamientos Desactivados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/financiamientos/fuentes/desactivados",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"financiamientos",
+										"fuentes",
+										"desactivados"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Requerimientos",
+			"item": [
+				{
+					"name": "Tierras",
+					"item": [
+						{
+							"name": "Listar Usos Tierra",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/requerimientos/tierras/usos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"requerimientos",
+										"tierras",
+										"usos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Usos Tierra Desactivados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/requerimientos/tierras/usos/desactivados",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"requerimientos",
+										"tierras",
+										"usos",
+										"desactivados"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Tenencia Tierra",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/requerimientos/tierras/tenencia/desactivados",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"requerimientos",
+										"tierras",
+										"tenencia",
+										"desactivados"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Tenencia Tierra Desactivados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/requerimientos/tierras/tenencia/desactivados",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"requerimientos",
+										"tierras",
+										"tenencia",
+										"desactivados"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Mercados",
+					"item": [
+						{
+							"name": "Listar Mercados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/requerimientos/mercados",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"requerimientos",
+										"mercados"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Mercados Desactivados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/requerimientos/mercados/desactivados",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"requerimientos",
+										"mercados",
+										"desactivados"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Estructuras",
+					"item": [
+						{
+							"name": "Listar Estructuras",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/requerimientos/estructuras",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"requerimientos",
+										"estructuras"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Estructuras Desactivados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/redsolidaria/requerimientos/estructuras/desactivados",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"redsolidaria",
+										"requerimientos",
+										"estructuras",
+										"desactivados"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		}
 	]
 }
