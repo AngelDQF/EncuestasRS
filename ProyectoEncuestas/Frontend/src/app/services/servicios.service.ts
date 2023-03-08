@@ -1,21 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {puerto} from '../shared/utils'
 
 @Injectable()
 export class ServiciosService {
 
   constructor(private http:HttpClient) { }
   getSerBasicos() {
-    return this.http.get<ServiciosResponse>('http://localhost:8080/redsolidaria/servicios/locales')
+    return this.http.get<ServiciosResponse>('http://'+puerto+'/redsolidaria/servicios/locales')
   }
   getSerBasicosDesactivados() {
-    return this.http.get<ServiciosResponse>('http://localhost:8080/redsolidaria/servicios/locales/desactivados')
+    return this.http.get<ServiciosResponse>('http://'+puerto+'/redsolidaria/servicios/locales/desactivados')
   }
   getSerLocales() {
-    return this.http.get<ServiciosResponse>('http://localhost:8080/redsolidaria/servicios/basicos')
+    return this.http.get<ServiciosResponse>('http://'+puerto+'/redsolidaria/servicios/basicos')
   }
   getSerLocalesDesactivados() {
-    return this.http.get<ServiciosResponse>('http://localhost:8080/redsolidaria/servicios/basicos/desactivados')
+    return this.http.get<ServiciosResponse>('http://'+puerto+'/redsolidaria/servicios/basicos/desactivados')
   }
 }
 

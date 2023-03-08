@@ -1,18 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {puerto} from '../shared/utils'
+
 @Injectable()
 export class UsuariosService {
 
   constructor(private http:HttpClient) { }
 
   getUsuarios(){
-    return this.http.get<UsuariosResponse>('http://localhost:8080/redsolidaria/usuarios')
+    return this.http.get<UsuariosResponse>('http://'+puerto+'/redsolidaria/usuarios')
   }
   getUsuariosDesactivados(){
-    return this.http.get<UsuariosDesactivadosResponse>('http://localhost:8080/redsolidaria/usuarios/des')
+    return this.http.get<UsuariosDesactivadosResponse>('http://'+puerto+'/redsolidaria/usuarios/des')
   }
   getUsuariosTipos() {
-    return this.http.get<UsuariosTiposResponse>('http://localhost:8080/redsolidaria/usuarios/tipos')
+    return this.http.get<UsuariosTiposResponse>('http://'+puerto+'/redsolidaria/usuarios/tipos')
   }
 }
 export interface UsuariosResponse {

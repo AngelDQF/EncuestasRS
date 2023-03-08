@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Estructura, EstructurasResponse, RequerimientosService } from 'src/app/services/requerimientos.service';
 
 @Component({
   selector: 'app-estructuras-desactivadas',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['../requerimientos.component.css','../../app.component.css']
 })
 export class EstructurasDesactivadasComponent {
-
+  estructuras: Estructura[] = [];
+  constructor(private financiamientoModel: RequerimientosService) {
+    this.financiamientoModel.getEstructurasDesactivados().subscribe((data: EstructurasResponse) => {
+      this.estructuras = data.results;
+    })
+  }
 }

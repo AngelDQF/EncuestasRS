@@ -1,1 +1,58 @@
-<p>usos-tierras works!</p>
+<div class="contenido bordeContenido">
+  <div class="headerListar">
+    <div class="row mb-2 align-items-center ">
+      <div class="col-12 d-flex padT align-items-center">
+        <div class=" col-2">
+          <a routerLink="../../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
+        </div>
+        <h1 class="text-center col-10 titulo">Usos de la Tierra</h1>
+      </div>
+      <div class="col-xl-3 col-xxl-2 col-lg-6 col-md-6">
+        <a routerLink="agregar" class="btn btnEditar form-control"><i class="bi bi-person-plus-fill"></i>Nuevo Uso de la Tierra</a>
+      </div>
+
+      <div class="col-xl-4 col-xxl-3 col-lg-6 col-md-6 pt-lg-0 pt-md-0 pt-sm-2 pt-2">
+        <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-person-x-fill"></i>Usos de la <br>  Tierra Desactivados</a>
+      </div>
+      <div
+        class="col-xl-5 col-xxl-7 col-lg-12 col-md-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+        <div class="input-group mt-2 mb-2 inpBuscar">
+          <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Uso de la Tierra">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tabla">
+    <table class="table">
+      <thead class="table-dark align-middle">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Opciones</th>
+          <th scope="col">Usos Tierra</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="body" *ngFor="let uso of usos" class="align-middle text-center">
+          <th routerLink=":id" scope="row" class="text-center"><strong>{{uso.id}}</strong></th>
+          <td>
+            <div class=" d-grid mt-1 pb-1">
+              <a class="form-control btn btnEditar">Editar</a>
+            </div>
+            <div class=" d-grid pb-1">
+              <a class="form-control btn btnGuardar">Asignar</a>
+            </div>
+            <div class=" d-grid mb-1">
+              <a class="form-control btn btnEliminar">Desactivar</a>
+            </div>
+          </td>
+          <td>{{uso.uso}}</td>
+          <td class="text-info fw-bold">{{uso.estado}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
