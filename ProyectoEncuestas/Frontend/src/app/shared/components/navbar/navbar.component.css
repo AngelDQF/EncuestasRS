@@ -36,6 +36,7 @@ h2 {
 }
 a{
   text-decoration: none;
+  cursor:pointer;
 }
 a i {
   text-decoration: none;
