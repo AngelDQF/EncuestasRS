@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Estructura, EstructurasResponse, RequerimientosService } from 'src/app/services/requerimientos.service';
+import { Estructura, EstructurasResponse, RequerimientosService } from '@serv/requerimientos.service';
 
 @Component({
   selector: 'app-estructuras',

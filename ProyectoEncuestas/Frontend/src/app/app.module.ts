@@ -16,7 +16,6 @@ import { OrganizacionesService } from './services/organizaciones.service';
 import { ServiciosService } from './services/servicios.service';
 import { FinanciamientosService } from './services/financiamientos.service';
 import { RequerimientosService } from './services/requerimientos.service';
-import {SharedModule} from '@shared/shared.module'
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +31,6 @@ import {SharedModule} from '@shared/shared.module'
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    SharedModule
   ],
   providers: [UsuariosService,OrganizacionesService,ServiciosService,JuntaService,RecursosService,FinanciamientosService,RequerimientosService],
   bootstrap: [AppComponent]

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Servicio, ServiciosResponse, ServiciosService } from 'src/app/services/servicios.service';
+import { Servicio, ServiciosResponse, ServiciosService } from '@serv/servicios.service';
 
 @Component({
   selector: 'app-locales-desactivados',
   templateUrl: './locales-desactivados.component.html',
-  styleUrls: ['../../card.css','../../../../../app.component.css']
+  styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class LocalesDesactivadosComponent {
   servicios: Servicio[] = [];

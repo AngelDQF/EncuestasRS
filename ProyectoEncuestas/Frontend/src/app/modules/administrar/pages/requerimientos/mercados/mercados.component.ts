@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Mercado, MercadosResponse, RequerimientosService } from 'src/app/services/requerimientos.service';
+import { Mercado, MercadosResponse, RequerimientosService } from '@serv/requerimientos.service';
 
 @Component({
   selector: 'app-mercados',

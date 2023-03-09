@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Natural, NaturalesResponse, RecursosService }  from 'src/app/services/recursos.service';
+import { Natural, NaturalesResponse, RecursosService }  from '@serv/recursos.service';
 
 
 @Component({
   selector: 'app-bosques-desactivados',
   templateUrl: './bosques-desactivados.component.html',
-  styleUrls: ['../../card.css','../../../../../app.component.css']
+  styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class BosquesDesactivadosComponent {
   bosques: Natural[] = [];

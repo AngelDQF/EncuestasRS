@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FinanciamientosService, TipoFinancimiento, TiposFinancimientoResponse } from 'src/app/services/financiamientos.service';
+import { FinanciamientosService, TipoFinancimiento, TiposFinancimientoResponse } from '@serv/financiamientos.service';
 
 @Component({
   selector: 'app-tipos-financiamientos',
   templateUrl: './tipos-financiamientos.component.html',
-  styleUrls: ['../../card.css','../../../../../app.component.css']
+  styleUrls: ['../../../../card.css','../../../../../app.component.css']
 
 })
 export class TiposFinanciamientosComponent {

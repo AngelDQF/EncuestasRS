@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RequerimientosService, UsoTierra,UsosTierraResponse } from 'src/app/services/requerimientos.service';
+import { RequerimientosService, UsoTierra,UsosTierraResponse } from '@serv/requerimientos.service';
 
 @Component({
   selector: 'app-usos-tierras-desactivados',

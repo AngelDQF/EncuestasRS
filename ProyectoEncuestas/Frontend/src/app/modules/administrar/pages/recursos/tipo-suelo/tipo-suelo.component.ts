@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Natural, NaturalesResponse, RecursosService } from 'src/app/services/recursos.service';
+import { Natural, NaturalesResponse, RecursosService } from '@serv/recursos.service';
 
 @Component({
   selector: 'app-tipo-suelo',
   templateUrl: './tipo-suelo.component.html',
-  styleUrls: ['../../card.css','../../../../../app.component.css']
+  styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class TipoSueloComponent {
   suelos: Natural[] = [];

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RequerimientosService, TenenciaTierra, TenenciaTierrasResponse } from 'src/app/services/requerimientos.service';
+import { RequerimientosService, TenenciaTierra, TenenciaTierrasResponse } from '@serv/requerimientos.service';
 
 @Component({
   selector: 'app-tenencia-tierras',

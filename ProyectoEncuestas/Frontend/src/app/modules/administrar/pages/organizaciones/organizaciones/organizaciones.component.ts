@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Organizacion, OrganizacionesResponse, OrganizacionesService } from 'src/app/services/organizaciones.service';
+import { Organizacion, OrganizacionesResponse, OrganizacionesService } from '@serv/organizaciones.service';
 
 @Component({
   selector: 'app-organizaciones',
   templateUrl: './organizaciones.component.html',
-  styleUrls: ['../../../../../app.component.css','../../card.css']
+  styleUrls: ['../../../../../app.component.css','../../../../card.css']
 })
 export class OrganizacionesComponent {
   orgs: Organizacion[] = [];
