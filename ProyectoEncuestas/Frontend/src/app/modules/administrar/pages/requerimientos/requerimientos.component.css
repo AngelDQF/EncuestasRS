@@ -60,19 +60,19 @@ a {
   border-radius: 15px;
 }
 #a1:hover {
-  background: url(@img/assets/img/fondo.png), chocolate;
+  background: url(src/assets/img/fondo.png), chocolate;
   background-size: cover;
 }
 #a2:hover {
-  background: url(@img/assets/img/fondo.png), darkcyan;
+  background: url(src/assets/img/fondo.png), darkcyan;
   background-size: cover;
 }
 #a3:hover {
-  background: url(@img/assets/img/fondo.png), #117e63;
+  background: url(src/assets/img/fondo.png), #117e63;
   background-size: cover;
 }
 #a4:hover {
-  background: url(@img/fondo.png), #b0a314;
+  background: url(src/assets/img/fondo.png), #b0a314;
   background-size: cover;
 }
 /*Media Querys*/
