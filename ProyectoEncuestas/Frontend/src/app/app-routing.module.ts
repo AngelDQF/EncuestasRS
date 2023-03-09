@@ -19,9 +19,9 @@ const routes: Routes = [
     // children: [{ path: 'agregar', component: FormularioComponent }, { path: ':id', component: FormularioComponent },],
   },
   {
-    path: 'administrar',loadChildren:()=>import('./modules/administrar/administrar.module').then(m=>m.AdministrarModule)
+    path: 'administrar',loadChildren:()=>import('@modules/administrar/administrar.module').then(m=>m.AdministrarModule)
   },
-  { path: 'login', component: LoginComponent },
+  { path: 'auth', component: LoginComponent },
   { path: 'encuestas', component: EncuestasComponent },
 
   { path: '**', component: ErrorComponent },
