@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EncuestasComponent } from './encuestas/encuestas.component';
-import { LoginComponent } from './login/login.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { ListarComponent } from './listar_usuarios/listar_usuarios.component';
-import { UsuariosDeactivadosComponent } from './listar_usuarios/usuarios_desactivados';
+import { ListarComponent } from '@modules/usuarios/listar_usuarios/listar_usuarios.component';
+import { UsuariosDeactivadosComponent } from '@modules/usuarios/listar_usuarios/usuarios_desactivados';
 import { ErrorComponent } from '@shared/components/error/error.component';
 import { HomeComponent } from '@modules/home/home/home.component';
+import { LoginComponent } from '@modules/auth/login/login.component';
+import { EncuestasComponent } from '@modules/ecuestas/encuestas/encuestas.component';
 const routes: Routes = [
   { path: '', component: HomeComponent,
   loadChildren:()=>import('@modules/home/home.module').then(m=>m.HomeModule) },

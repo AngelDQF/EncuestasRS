@@ -48,7 +48,9 @@ a{
   background-color: #fff;
   border: 1px solid;
   color: var(--btn1);
-
+}
+.btnEditar,.btnEliminar,.btnGuardar{
+  cursor: pointer;
 }
 .inpBuscar label{
   background-color: var(--color1);

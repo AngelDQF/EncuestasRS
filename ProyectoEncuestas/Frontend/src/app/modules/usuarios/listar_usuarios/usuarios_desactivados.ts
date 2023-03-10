@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UsuarioDesactivado, UsuariosDesactivadosResponse, UsuariosService } from '../services/usuarios.service';
+import { UsuarioDesactivado, UsuariosDesactivadosResponse, UsuariosService } from '@serv/usuarios.service';
 
 @Component({
   selector: 'app-usuarios-desactivados',
   templateUrl: './usuarios_desactivados.html',
-  styleUrls: ['./listar_usuarios.component.css','../app.component.css']
+  styleUrls: ['./listar_usuarios.component.css','../../../app.component.css']
 })
 export class UsuariosDeactivadosComponent {
   desactivados: UsuarioDesactivado[] = [];

@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdministrarComponent } from './pages/administrar/administrar.component'
 
 const routes: Routes = [
-  {path:'',component:AdministrarComponent},
+  { path: '', component: AdministrarComponent },
+  {
+    path: 'junta', loadChildren: () => import('@modules/junta/junta.module').then(m => m.JuntaModule)
+  }
 
 ];
 
