@@ -4,7 +4,7 @@ import { Eje, EjesResponse, JuntaService } from '@serv/junta.service';
 @Component({
   selector: 'app-ejes',
   templateUrl: './ejes.component.html',
-  styleUrls: ['../../../card.css','../../../../app.component.css']
+  styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class EjesComponent {
   ejes: Eje[] = [];

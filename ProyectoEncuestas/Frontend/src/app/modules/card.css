@@ -1,7 +1,6 @@
 .tarjetaBoton {
   margin: 0px;
   height: 500px;
-  cursor: pointer;
 }
 .padT {
   padding-left: 0px;
@@ -36,6 +35,7 @@
 }
 h2 {
   padding: 0px 20px;
+  cursor: pointer;
   font-size: 30px;
 }
 a {
@@ -45,7 +45,9 @@ a {
 .row {
   margin: 0px;
 }
-
+#a1,#a2{
+  cursor:pointer;
+}
 #a1 {
   background-color: #f18537;
   border-radius: 15px;

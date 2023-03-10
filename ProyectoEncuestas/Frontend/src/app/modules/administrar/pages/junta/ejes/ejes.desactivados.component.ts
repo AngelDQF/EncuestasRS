@@ -4,7 +4,7 @@ import { Eje, EjesResponse, JuntaService } from '@serv/junta.service';
 @Component({
   selector: 'app-ejes-desactivados',
   templateUrl: './ejes.desactivados.html',
-  styleUrls: ['../../../card.css', '../../../../app.component.css']
+  styleUrls: ['../../../../card.css', '../../../../../app.component.css']
 })
 export class EjesDesactivadosComponent {
   ejesDesactivados: Eje[] = [];

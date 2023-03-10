@@ -4,7 +4,7 @@ import { Cargo, CargosResponse, JuntaService } from '@serv/junta.service';
 @Component({
   selector: 'app-cargos',
   templateUrl: './cargos.component.html',
-  styleUrls: ['../../../card.css', '../../../../app.component.css']
+  styleUrls: ['../../../../card.css', '../../../../../app.component.css']
 })
 export class CargosComponent {
   cargos: Cargo[] = [];

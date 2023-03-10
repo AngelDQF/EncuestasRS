@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorComponent } from '@shared/components/error/error.component';
 import { HomeComponent } from '@modules/home/home/home.component';
-import { LoginComponent } from '@modules/auth/login/login.component';
-import { EncuestasComponent } from '@modules/ecuestas/encuestas/encuestas.component';
 const routes: Routes = [
   { path: '', component: HomeComponent,
   loadChildren:()=>import('@modules/home/home.module').then(m=>m.HomeModule) },

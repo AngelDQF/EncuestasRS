@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {  Router } from '@angular/router';
 import { OrganizacionesService, TiposOrganizacion, TiposOrganizacionResponse } from '@serv/organizaciones.service';
 
 @Component({
@@ -8,9 +9,12 @@ import { OrganizacionesService, TiposOrganizacion, TiposOrganizacionResponse } f
 })
 export class OrganizacionesTiposComponent {
   orgs: TiposOrganizacion[] = [];
-  constructor(private orgModel:OrganizacionesService) {
+  constructor(private orgModel:OrganizacionesService,private router:Router) {
     this.orgModel.getTiposOrganizacion().subscribe((data: TiposOrganizacionResponse)=>{
       this.orgs = data.results;
       })
+  }
+  goTo($event:any):void{
+    this.router.navigate(['../'])
   }
 }
