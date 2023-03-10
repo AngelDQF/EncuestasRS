@@ -4,7 +4,7 @@ import { ListarUsuariosComponent } from './pages/listar-usuarios/listar-usuarios
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 const routes: Routes = [
-  {path:'user',component:UsuariosComponent}
+  {path:'',component:UsuariosComponent},
 ];
 
 @NgModule({
