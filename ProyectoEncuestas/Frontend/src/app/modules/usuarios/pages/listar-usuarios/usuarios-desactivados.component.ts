@@ -3,8 +3,8 @@ import { UsuarioDesactivado, UsuariosDesactivadosResponse, UsuariosService } fro
 
 @Component({
   selector: 'app-usuarios-desactivados',
-  templateUrl: './usuarios_desactivados.html',
-  styleUrls: ['./listar_usuarios.component.css','../../../app.component.css']
+  templateUrl: './usuarios-desactivados.html',
+  styleUrls: ['./listar-usuarios.component.css','../../../../app.component.css']
 })
 export class UsuariosDeactivadosComponent {
   desactivados: UsuarioDesactivado[] = [];

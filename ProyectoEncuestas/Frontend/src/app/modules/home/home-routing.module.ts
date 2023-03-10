@@ -4,7 +4,9 @@ import { IndexComponent } from '@shared/components/index/index.component';
 
 const routes: Routes = [
   {path:'',component:IndexComponent},
-  {path:'administrar',loadChildren:()=>import('@modules/administrar/administrar.module').then(m=>m.AdministrarModule)}
+  {path:'administrar',loadChildren:()=>import('@modules/administrar/administrar.module').then(m=>m.AdministrarModule)},
+  {path:'usuarios',loadChildren:()=>import('@modules/usuarios/usuarios.module').then(m=>m.UsuariosModule)},
+
 ];
 
 @NgModule({

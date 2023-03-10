@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { UsuariosService, UsuariosTiposResponse, UsuarioTipo } from '../services/usuarios.service';
-
+import { UsuariosService, UsuariosTiposResponse, UsuarioTipo } from '@serv/usuarios.service';
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css','../app.component.css']
+  styleUrls: ['./usuarios.component.css','../../../../app.component.css']
 })
 export class UsuariosComponent {
   usuariosTipos: UsuarioTipo[] = [];

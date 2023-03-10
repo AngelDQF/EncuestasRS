@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./encuestas.component.css', '../../../app.component.css']
 })
 export class EncuestasComponent {
-
+  title:string='Encuestas';
 }
