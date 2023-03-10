@@ -14,7 +14,4 @@ export class OrganizacionesTiposComponent {
       this.orgs = data.results;
       })
   }
-  goTo($event:any):void{
-    this.router.navigate(['../'])
-  }
 }

@@ -10,6 +10,7 @@ import { OrganizacionesService } from '@serv/organizaciones.service';
 import { ServiciosService } from '@serv/servicios.service';
 import { FinanciamientosService } from '@serv/financiamientos.service';
 import { RequerimientosService } from '@serv/requerimientos.service';
+import { UsuariosService } from '@serv/usuarios.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,15 @@ import { RequerimientosService } from '@serv/requerimientos.service';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [OrganizacionesService,ServiciosService,JuntaService,RecursosService,FinanciamientosService,RequerimientosService],
+  providers: [
+    UsuariosService,
+    OrganizacionesService,
+    ServiciosService,
+    JuntaService,
+    RecursosService,
+    FinanciamientosService,
+    RequerimientosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

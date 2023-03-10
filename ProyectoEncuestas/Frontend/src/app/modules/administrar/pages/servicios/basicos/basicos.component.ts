@@ -4,7 +4,7 @@ import { Servicio, ServiciosResponse, ServiciosService } from 'src/app/services/
 @Component({
   selector: 'app-basicos',
   templateUrl: './basicos.component.html',
-  styleUrls: ['../../card.css','../../../../../app.component.css']
+  styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class BasicosComponent {
   servicios: Servicio[] = [];

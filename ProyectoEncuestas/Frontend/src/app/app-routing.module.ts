@@ -4,20 +4,6 @@ import { HomeComponent } from '@modules/home/home/home.component';
 const routes: Routes = [
   { path: '', component: HomeComponent,
   loadChildren:()=>import('@modules/home/home.module').then(m=>m.HomeModule) },
-  // {
-  //   path: 'usuarios',
-  //   loadChildren:()=>import('@modules/usuarios/usuarios.module').then(m=>m.UsuariosModule)
-  //   children: [
-  //     { path: '', component: ListarComponent },
-  //     { path: 'agregar', component: UsuariosComponent },
-  //     { path: 'desactivados', component: UsuariosDeactivadosComponent }
-  //   ],
-  //   children: [{ path: 'agregar', component: FormularioComponent }, { path: ':id', component: FormularioComponent },],
-  // },
-  // { path: 'auth', component: LoginComponent },
-  // { path: 'encuestas', component: EncuestasComponent },
-
-  // { path: '**', component: ErrorComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
