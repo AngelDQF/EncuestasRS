@@ -17,10 +17,10 @@ const routes: Routes = [
   //   ],
   //   children: [{ path: 'agregar', component: FormularioComponent }, { path: ':id', component: FormularioComponent },],
   // },
-  { path: 'auth', component: LoginComponent },
-  { path: 'encuestas', component: EncuestasComponent },
+  // { path: 'auth', component: LoginComponent },
+  // { path: 'encuestas', component: EncuestasComponent },
 
-  { path: '**', component: ErrorComponent },
+  // { path: '**', component: ErrorComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
