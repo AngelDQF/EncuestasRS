@@ -11,6 +11,7 @@
 }
 body {
   background: url(assets/img/fondo.png),
-    -webkit-gradient(linear, right top, left top, from(var(--color1)), to(var(--color2)));
+  -webkit-gradient(linear, right top, left top, from(var(--color1)), to(var(--color2)));
   background-position: center center;
+  height: 100vh;
 }

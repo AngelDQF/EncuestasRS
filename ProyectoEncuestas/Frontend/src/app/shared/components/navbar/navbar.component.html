@@ -1,4 +1,33 @@
-<nav class="nav-background bordeNavbar ">
+<div class="cuerpo">
+  <div id="sidebar-container">
+    <a routerLink="/" class="logo d-block text-center">
+      <img id="imgLogo" src="assets/img/logo.png" alt="Logo">
+    </a>
+    <input type="checkbox" id="check">
+    <label for="check" class="chekBtn"><i class="bi bi-list lead fw-bold" style="color:#fff;"></i></label>
+    <div class="menu">
+      <a class="d-block p-3" routerLink="usuarios"><i class="bi bi-people-fill mr-2 lead"
+          style="color:purple;"></i>Usuarios</a>
+      <a class="d-block p-3" routerLink="encuestas"><i class="bi bi-clipboard2-check-fill mr-2 lead"
+          style="color:darkgreen;"></i>Encuestas</a>
+      <a class="d-block p-3" routerLink="dashboard"><i class="bi bi-columns-gap mr-2 lead"
+          style="color:chocolate;"></i>Dashboard</a>
+      <a class="d-block p-3" routerLink="administrar"><i class="bi bi-gear-fill mr-2 lead"
+          style="color:darkred;"></i>Administrar</a>
+      <a class="d-block p-3" routerLink="exportar"><i class="bi bi-clipboard2-data-fill mr-2 lead"
+          style="color:darkblue;"></i>Exportar</a>
+      <a class="d-block p-3" routerLink="tuto"><i class="bi bi-collection-play-fill mr-2 lead"
+          style="color:red;"></i>Tutoriales</a>
+      <a class=" btnEliminar pt-3 pb-3 form-control align-items-end">Cerrar Sesión</a>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- <nav class="nav-background bordeNavbar ">
   <a class="contenedorImagen backgroundImg" routerLink="/">
     <img clas="imagen" src="assets/img/logo.png" class="d-inline-block align-content-center" alt="Logo">
   </a>
@@ -11,9 +40,6 @@
         <h2><i class="bi bi-people-fill navIcono" style="color:purple;"></i>Usuarios</h2>
       </a>
       <a class="nav-enlace" routerLink="/login">
-        <h2><i class="bi bi-graph-up navIcono"></i>Login</h2>
-      </a>
-      <a class="nav-enlace" routerLink="/login">
         <h2><i class="bi bi-columns-gap navIcono" style="color:chocolate;"></i>Dashboard</h2>
       </a>
       <a class="nav-enlace" routerLink="/encuestas">
@@ -22,9 +48,9 @@
       <a class="nav-enlace" routerLink="/administrar">
         <h2><i class="bi bi-gear-fill navIcono" style="color:darkred;"></i>Administrar</h2>
       </a>
-      <button class="form-control btnEliminar cerrar mt-2"> Cerrar Sesión </button>
+      <button class="form-control btnEliminar cerrar mt-2 lead"> Cerrar Sesión </button>
 
     </div>
   </div>
 
-</nav>
+</nav> -->

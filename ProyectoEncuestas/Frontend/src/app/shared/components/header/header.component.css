@@ -9,17 +9,12 @@
   background-color: #fff;
   transition: all 0.2s ease;
 }
-/*Pantallas xs*/
-@media screen and (max-width: 575px) {
-  .imgHeader img{
-    width: 60px;
-  }
-}
+
 /*Pantallas sm*/
 @media screen and (max-width: 767px) {
-
-
-
+  .imgHeader img{
+    width: 70px;
+  }
 }
 /*Pantallas md*/
 @media screen and (max-width: 991px) {
@@ -31,7 +26,4 @@
   .imgHeader{
     padding: 0px 5px;
   }
-}
-@media screen and (max-width: 1200px) {
-
 }

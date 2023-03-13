@@ -1,9 +1,13 @@
 .borde {
   height: 100%;
+  width: 100%;
+}
+a{
+  text-decoration: none;
 }
 .borde a {
   text-align: center;
-  font-size: 80px;
+  font-size: 60px;
   font-weight: bold;
   border-radius: 40px;
   height: 100%;
@@ -24,7 +28,7 @@
 .borde a:active{
   border-color: #dc511a;
   background-color:#dc511a;
-  font-size: 100px;
+  font-size: 80px;
 }
 
 /*Pantallas sm*/

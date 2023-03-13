@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'administrar', loadChildren: () => import('@modules/administrar/administrar.module').then(m => m.AdministrarModule) },
   { path: 'encuestas', loadChildren: () => import('@modules/ecuestas/ecuestas.module').then(m => m.EcuestasModule) },
   { path: '**', component: ErrorComponent }
-
 ];
 
 @NgModule({

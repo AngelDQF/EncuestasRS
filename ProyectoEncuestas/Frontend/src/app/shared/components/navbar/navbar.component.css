@@ -1,105 +1,122 @@
-.nav-enlace {
-  display: flex;
-  border-bottom: 1px solid #ffffff1a;
-  padding-left: 10px;
-}
-h2 {
-  color: #000;
-  font-size: 15px;
-  margin: 0px;
-  align-self: center;
-}
-.backgroundImg {
-  background-color: var(--color1);
-  padding: 10px, 10px;
-  border: 10px solid var(--color1);
-  border-radius: 30px;
-}
-.backgroundImg img{
-  width: 100px;
-  margin: 0px;
-}
-.backgroundImg:hover {
-  background-color: #56ebffea;
-  border: 10px solid #56ebffea;
-
-}
-.cerrar{
-  padding: 10px 0px;
-}
-.nav-background {
-  background-color: #fff;
+.cuerpo {
+  display: grid;
+  overflow: hidden;
   height: 100%;
-}
-.nav-enlace:hover {
-  background-color: #56ebffea;
-}
-a{
-  text-decoration: none;
-  cursor:pointer;
-}
-a i {
-  text-decoration: none;
-  font-size: 20px;
-}
-nav {
-  display: block;
-}
-nav a {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.bottonNav{
-  background: var(--color1);
-  border: 2px solid #fff;
-  display: none;
-}
-.bordeNavbar {
+  font-weight: bold;
+  background-color: #fff;
   border-radius: 40px;
 }
-.navIcono{
-  font-size: 1.2rem;
-  margin-right: 20px;
-  margin-left: 10px;
-  align-self: center;
-  padding-bottom:0px;
-  font-weight: bold;
+.btnEliminar {
+  padding: 5px;
+}
+.cuerpo a {
+  color: #000;
+}
+.logo {
+  cursor: pointer;
+  background-color: var(--color1);
+}
+#sidebar-container .logo {
+  padding: 0.875rem 1.25rem;
+}
+#sidebar-container button {
+  display: flex;
+  align-items: flex-end;
+}
+#sidebar-container .menu {
+  width: 100%;
+  align-items: center;
+}
+
+i {
+  margin-right: 10px !important;
+}
+a:hover,
+.logo:hover {
+  background-color: #56ebffea;
+}
+#imgLogo {
+  width: 100px;
+}
+.chekBtn i {
+  font-size: 30px;
+  color: #000;
+  cursor: pointer;
+}
+.chekBtn {
+  float: right;
+  display: none;
+  margin: 0px;
+  padding: 0px 10px 0px 0px;
+  height: 100%;
+  align-items: center;
+}
+#check {
+  display: none;
+}
+.btnEliminar{
+  text-align: center;
+  font-weight: bold !important;
+  border-color: var(--color2) !important;
+}
+.btnEliminar:hover{
+  color:#fff !important;
+}
+/*Pantallas xs*/
+@media screen and (min-width: 0px) and (max-width: 991px){
+  #sidebar-container .menu {
+    background-color: var(--color1);
+    margin-right: 5px;
+    float: right;
+    text-align: center;
+    height: 100vh;
+    top: 80px;
+    position: fixed !important;
+    align-items: center;
+    left: -100%;
+    transition: 0.5s;
+    padding: absolute !important;
+  }
+  .cuerpo {
+    padding: absolute !important;
+    display: block;
+    box-sizing: border-box;
+    height: 80px;
+    font-weight: bold;
+    background-color: var(--color1);
+    border-radius: 0px;
+    padding: 0px;
+  }
+  .cuerpo a {
+    color: #fff;
+    font-size: 20px;
+    border-bottom: 1px solid #ffffff1a;
+  }
+  .logo {
+    position: absolute;
+    height: 80px;
+    padding: 18px 20px 10px 20px !important;
+  }
+  #imgLogo {
+    width: 60px;
+  }
+  .btnEliminar {
+    font-size: 15px !important;
+  }
+  .chekBtn {
+    display: block !important;
+    align-items: center !important;
+    height: 100%;
+    padding: 20px 10px !important;
+  }
+  #check:checked ~ .menu {
+    left: 0;
+  }
 }
 
 /*Pantallas sm*/
-@media screen and (max-width:767px) {
-  a h2{
-    font-size: 10px;
-  }
-  a i {
-    font-size: 10px;
-  }
-  .backgroundImg {
-    padding: 0px, 10px !important;
-  }
-  .backgroundImg img{
-    width: 50px;
-  }
-}
-/*Pantallas md*/
-@media screen and (max-width:991px) {
-  nav {
-    flex-direction: column;
-    display: flex;
-  }
-  *{
-    margin: 0px;
-    padding: 0px;
-  }
-  .bottonNav{
-    background: var(--color1);
-    border: 2px solid #fff;
-    display:inline-block;
-  }
-  .backgroundImg {
-    border-radius: 0px;
-  }
-  .bordeNavbar {
-    border-radius: 0px;
+@media screen and (min-width: 575px) and (max-width: 767px) {
+  #imgLogo {
+    width: 60px;
   }
 }

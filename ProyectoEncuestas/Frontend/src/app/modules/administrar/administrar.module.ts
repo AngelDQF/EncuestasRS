@@ -1,3 +1,4 @@
+import { JuntaService } from './../../services/junta.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +9,6 @@ import { OrganizacionComponent } from './pages/organizaciones/organizacion.compo
 import { RecursosComponent } from './pages/recursos/recursos.component';
 import { RequerimientosComponent } from './pages/requerimientos/requerimientos.component';
 import { ServiciosComponent } from './pages/servicios/servicios.component';
-import { OrganizacionesService } from '@serv/organizaciones.service';
 import { OrganizacionesTiposComponent } from './pages/organizaciones/organizaciones-tipos/organizaciones-tipos.component';
 import { OrganizacionesTiposDesactivadosComponent } from './pages/organizaciones/organizaciones-tipos/organizaciones-tipos-desactivados.component';
 import { OrganizacionesComponent } from './pages/organizaciones/organizaciones/organizaciones.component';
@@ -82,7 +82,7 @@ import { TenenciaTierrasDesactivadasComponent } from './pages/requerimientos/tie
     CommonModule,
     AdministrarRoutingModule
   ],
-  providers:[
+  providers:[ JuntaService
   ]
 })
 export class AdministrarModule { }
