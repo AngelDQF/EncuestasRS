@@ -1,0 +1,15 @@
+
+.contForms {
+  padding: 0px 15px 15px 15px;
+    height: calc(100vh - 200px);
+}
+@media screen and (max-width: 767px) {
+  .contForms{
+    height: calc(100vh - 160px);
+  }
+}
+@media screen and (min-width: 991px) {
+  .contForms{
+    height: calc(100vh - 160px);
+  }
+}

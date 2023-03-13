@@ -1,14 +1,40 @@
 .login-container {
-  max-width: 400px;
+  width: 1000px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 600px;
+  background-color: #00000095;
+  align-items: center;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 4px solid #fff;
+  border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-
+a {
+  color: var(--color1);
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 5px;
+  user-select: none;
+}
+.imgContainer {
+  height: 100%;
+}
+.imgLogo {
+  width: 300px;
+  user-select: none;
+  pointer-events: none;
+}
+.cont {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
 h2 {
   text-align: center;
+  font-size: 40px;
+  color: #fff;
+  user-select: none;
 }
 
 .form-group {
@@ -16,8 +42,12 @@ h2 {
 }
 
 label {
+  font-size: 20px;
   display: block;
+  color: #fff;
   margin-bottom: 5px;
+  font-weight: bold;
+  user-select: none;
 }
 
 input[type="text"],
@@ -28,78 +58,54 @@ input[type="password"] {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
 button[type="submit"] {
-  background-color: #1abc9c;
+  background-color: var(--color1);
   color: #fff;
   border: none;
+  font-weight: bold;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
   transition: 0.5s;
 }
 
 button[type="submit"]:hover {
   background-color: #fff;
-  color: #1abc9c;
+  color: var(--color1);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/*
-.login-container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+/*Pantallas xs*/
+@media screen and (max-width: 575px) {
+  .login-container {
+    height: 100vh;
+    border-radius: 0px;
+    display: block;
+    align-items: center !important;
+  }
+  .imgContainer {
+    height: 150px;
+  }
+  .imgLogo {
+    width: 150px;
+  }
+  h2{
+    padding-top: 10px;
+    font-size: 20px;
+  }
+  label{
+    font-size: 15px;
+  }
+  a{
+    font-size: 15px;
+  }
 }
-
-h2 {
-  text-align: center;
+/*Pantallas sm*/
+@media screen and (max-width: 767px) {
 }
-
-.form-group {
-  margin-bottom: 20px;
+/*Pantallas md*/
+@media screen and (max-width: 991px) {
 }
-
-label {
-  display: block;
-  margin-bottom: 5px;
+/*Pantallas lg*/
+@media screen and (max-width: 1200px) {
 }
-
-input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button[type="submit"] {
-  background-color: #1abc9c;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.5s;
-}
-
-button[type="submit"]:hover {
-  background-color: #fff;
-  color: #1abc9c;
-}*/
