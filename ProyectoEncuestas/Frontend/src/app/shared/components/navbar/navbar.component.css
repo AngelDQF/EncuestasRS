@@ -24,6 +24,7 @@
   align-items: flex-end;
 }
 #sidebar-container .menu {
+  z-index: 999;
   width: 100%;
   align-items: center;
 }
@@ -65,7 +66,7 @@ a:hover,
   color:#fff !important;
 }
 /*Pantallas xs*/
-@media screen and (min-width: 0px) and (max-width: 991px){
+@media screen and (max-width: 991px){
   #sidebar-container .menu{
     background-color: var(--color1);
     margin-right: 5px;
@@ -115,12 +116,5 @@ a:hover,
   }
   #check:checked ~ .menu {
     left: 0;
-  }
-}
-
-/*Pantallas sm*/
-@media screen and (min-width: 575px) and (max-width: 767px) {
-  #imgLogo {
-    width: 60px;
   }
 }

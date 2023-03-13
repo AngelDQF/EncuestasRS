@@ -5,17 +5,17 @@
     </div>
     <div class="col-12 col-md-6">
       <h2>Inicio de Sesión</h2>
-      <form (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="sendLogin()" [formGroup]="formLogin">
         <div class="form-group">
           <label for="username">Username:</label>
-          <input type="text" id="username" name="username" [(ngModel)]="username" required>
+          <input formControlName="email" type="text" id="username" name="username">
         </div>
         <div class="form-group">
           <label for="password">Password:</label>
-          <input type="password" id="password" name="password" [(ngModel)]="password" required>
+          <input formControlName="password" type="password" id="password" name="password">
           <a routerLink="recuperar">¿Olvido su contraseña?</a>
         </div>
-        <button type="submit" class="btn btn-primary form-control">Login</button>
+        <button [disabled]="formLogin.invalid" type="submit" class="btn btn-primary form-control">Acceder</button>
       </form>
     </div>
   </div>

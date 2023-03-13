@@ -8,10 +8,17 @@
   --btn1: #006c05;
   --btn2: #1e90ff;
   --btn3: #d43e2f;
+  --font: Verdana, Geneva, Tahoma, sans-serif;
 }
 body {
   background: url(assets/img/fondo.png),
   -webkit-gradient(linear, right top, left top, from(var(--color1)), to(var(--color2)));
   background-position: center center;
   height: 100vh;
+}
+button, label{
+  font-family: var(--font) !important;
+}
+button:disabled{
+  opacity: .5;
 }

@@ -1,13 +1,40 @@
-<div class=" contForms bordeContenido ">
+<div class=" contEncuesta ">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 ">
       <h1 class="titulo">{{title}}</h1>
     </div>
-    <form class="form">
-      <div class="encuesta  text-center">
-        <h2>Información General</h2>
-
-      </div>
-    </form>
+    <div class="encuesta  text-center">
+      <form [formGroup]="formEncuestas">
+        <div class="general col-12">
+          <h2 class="col-12">Información General</h2>
+          <div class="col-12 checkGroup">
+            <div class="col-3 divCheck">
+              <label class="" for="inputGroupSelect01">Departamento</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option *ngFor="let dep of departamentos"></option>
+              </select>
+            </div>
+            <div class=" col-3 divCheck">
+              <label class="" for="inputGroupSelect01">Municipio</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option *ngFor="let dep of departamentos"></option>
+              </select>
+            </div>
+            <div class=" col-3 divCheck">
+              <label class="" for="inputGroupSelect01">Aldea</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option *ngFor="let dep of departamentos"></option>
+              </select>
+            </div>
+            <div class=" col-3 divCheck">
+              <label class="" for="inputGroupSelect01">Caserio</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option *ngFor="let dep of departamentos"></option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

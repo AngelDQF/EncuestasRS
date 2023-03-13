@@ -1,51 +1,80 @@
+.contEncuesta {
+  background-color: #fff;
+  border-radius: 40px;
+  height: 100vh;
+}
+.checkGroup {
+}
+.divCheck {
+  padding: auto 5px;
+  margin: auto 5px;
+}
+.row{
+  --bs-gutter-x: 0px;
+}
+.divTitulo{
+  height: 100px;
+}
+.bordeContenido {
+  border: none;
+}
+select {
+  background-color: #a9a9a92a;
+}
 .encuesta{
-}
-.encuesta h2{
-  font-size: 20px;
-  padding: 5px 0px;
-  border-radius: 10px;
-  background-color:rgba(169, 169, 169, 0.37);
-}
 
-label{
-  font-weight: 500;
+}
+.encuesta h2 {
+  font-weight: bold;
+  font-size: 20px;
+  border-top: 1px solid #666464;
+  border-bottom: 1px solid #666464;
+  padding: 5px 0px;
+  background-color: #a9a9a95e;
+}
+h1 {
+  margin-top: 10px;
+}
+label {
+  font-weight: 600;
   font-size: 15px;
 }
-input:hover{
+input:hover {
   border: solid 2px;
   border-color: var(--color1);
 }
-.icono{
+.icono {
   font-size: 150px;
   color: var(--color1);
 }
-button{
+button {
   margin-right: 10px;
 }
-.alineado{
+.alineado {
   padding-right: 5px;
-  text-align:right;
+  text-align: right;
 }
-.mar{
+.mar {
   margin-left: 10px;
 }
 /*Pantallas xs*/
 
 /*Pantallas sm*/
-@media screen and (max-width:767px) {
-  .iconoForm{
+@media screen and (max-width: 767px) {
+  .iconoForm {
     font-size: 10px;
   }
-  label{
+  label {
     font-size: 10px;
   }
-  select,input{
+  select,
+  input {
     font-size: 10px;
   }
 }
 /*Pantallas md*/
-@media screen and (max-width:991px) {
-  .icono{
+@media screen and (max-width: 991px) {
+  .icono {
     font-size: 100px;
   }
 }
