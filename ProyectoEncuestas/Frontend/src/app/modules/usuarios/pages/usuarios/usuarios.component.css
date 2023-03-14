@@ -26,7 +26,9 @@ button{
 .mar{
   margin-left: 10px;
 }
-/*Pantallas xs*/
+.radio label{
+  cursor: pointer;
+}
 
 /*Pantallas sm*/
 @media screen and (max-width:767px) {
