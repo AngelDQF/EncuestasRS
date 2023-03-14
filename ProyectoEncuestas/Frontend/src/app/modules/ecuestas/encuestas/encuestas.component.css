@@ -90,6 +90,14 @@
 .conTabla span {
   width: 100%;
 }
+.rnSuelo label {
+  background-color: #5d5d5d2f;
+  border-radius: 0px;
+}
+.rnSuelo select {
+  background-color: #08fbff13;
+  border-radius: 0px;
+}
 span {
   background-color: #5d5d5d2f;
 }
@@ -113,6 +121,10 @@ input.ng-valid.ng-touched {
   border: 2px solid rgb(4, 255, 79) !important;
 }
 @media screen and (max-width: 767px) {
+  .conTabla select,
+  .conTabla input {
+    font-size: 12px !important;
+  }
   .encuesta h2 {
     font-size: 15px !important;
   }
