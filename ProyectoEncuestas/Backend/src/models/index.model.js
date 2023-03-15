@@ -11,5 +11,6 @@ const model = {//TODO: Exportamos todos los modelos hijos
   naturalesModel:require('./naturales.model'),//TODO: Exportamos el modelo de Naturales
   financiamientosModel:require('./financiamientos.model'),//TODO: Exportamos el modelo de Financiamientos
   requerimientosModel:require('./requerimientos.model'),//TODO: Exportamos el modelo de Requerimientos
+  encuestasModel:require('./encuestas.model'),//TODO:Exportamos el modelo de Encuestas
 };
 module.exports = model;//TODO: Exportamos el modelo padre

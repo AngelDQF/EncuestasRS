@@ -5,7 +5,7 @@ import { Departamento, EncuestasService, UserDepartamentosResponse } from '@serv
 @Component({
   selector: 'app-encuestas',
   templateUrl: './encuestas.component.html',
-  styleUrls: ['./encuestas.component.css', '../../../app.component.css']
+  styleUrls: ['./encuestas.component.css', '../../../../app.component.css']
 })
 export class EncuestasComponent implements OnInit {
   title:string="Encuestas"

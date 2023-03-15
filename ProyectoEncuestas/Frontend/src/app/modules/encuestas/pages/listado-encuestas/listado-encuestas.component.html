@@ -1,0 +1,74 @@
+<div class="contenido bordeContenido">
+  <div class="headerListar">
+    <div class="row mb-2 align-items-center ">
+      <div class="col-12 d-flex padT align-items-center">
+        <div class=" col-2 align-items-center">
+          <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
+        </div>
+        <h1 class="col-10 text-center titulo ">Encuestas</h1>
+      </div>
+      <div
+        class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+        <div class="input-group mt-2 mb-2 inpBuscar">
+          <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Encuesta">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tabla">
+    <table class="table">
+      <thead class="table-dark align-middle">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Departamento</th>
+          <th scope="col">Municipio</th>
+          <th scope="col">Aldea</th>
+          <th scope="col">Caserio</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">&nbsp;Hombres&nbsp;</th>
+          <th scope="col">&nbsp;Mujeres&nbsp;</th>
+          <th scope="col">&nbsp;Total&nbsp;</th>
+          <th scope="col">Organización</th>
+          <th scope="col">¿Existen Ríos?</th>
+          <th scope="col">Cantidad de Ríos</th>
+          <th scope="col">¿Existen Bosques?</th>
+          <th scope="col">Tipo de Bosque</th>
+          <th scope="col">Tipo de Suelo</th>
+          <th scope="col">Tenencia de la Tierra</th>
+          <th scope="col">Mercado</th>
+          <th scope="col">Nivel Tecnológico</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Aplicada por</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr id="body" *ngFor="let encuesta of encuestas" class="align-middle text-center">
+          <th routerLink=":id" scope="row" class="text-center"><strong>{{encuesta.id}}</strong></th>
+          <td>{{encuesta.departamento}}</td>
+          <td>{{encuesta.municipio}}</td>
+          <td>{{encuesta.aldea}}</td>
+          <td>{{encuesta.caserio}}</td>
+          <td>{{encuesta.address}}</td>
+          <td>{{encuesta.total_Hombres}}</td>
+          <td>{{encuesta.total_Mujeres}}</td>
+          <td>{{encuesta.total_Asistencia}}</td>
+          <td>{{encuesta.org}}</td>
+          <td>{{encuesta.rios}}</td>
+          <td>{{encuesta.cant_rio}}</td>
+          <td>{{encuesta.bosque}}</td>
+          <td>{{encuesta.tipo_bosque}}</td>
+          <td>{{encuesta.suelo}}</td>
+          <td>{{encuesta.tenencia}}</td>
+          <td>{{encuesta.mercado}}</td>
+          <td>{{encuesta.nivel_tec}}</td>
+          <td>{{encuesta.fecha}}</td>
+          <td>{{encuesta.usuario}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'usuarios', loadChildren: () => import('@modules/usuarios/usuarios.module').then(m => m.UsuariosModule) },
 
   { path: 'administrar', loadChildren: () => import('@modules/administrar/administrar.module').then(m => m.AdministrarModule) },
-  { path: 'encuestas', loadChildren: () => import('@modules/ecuestas/ecuestas.module').then(m => m.EcuestasModule) },
+  { path: 'encuestas', loadChildren: () => import('@modules/encuestas/encuestas.module').then(m => m.EncuestasModule) },
   { path: '**', component: ErrorComponent }
 ];
 

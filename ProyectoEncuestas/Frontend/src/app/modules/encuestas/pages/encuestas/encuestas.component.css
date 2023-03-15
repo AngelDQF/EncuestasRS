@@ -152,6 +152,10 @@ input.ng-valid.ng-touched {
     font-size: 12px !important;
     text-align: center;
   }
+  .rnSuelo label,.rnSuelo select  {
+    font-size: 12px;
+  }
+
 }
 /*Pantallas md*/
 @media screen and (max-width: 991px) {
@@ -163,12 +167,12 @@ input.ng-valid.ng-touched {
     font-size: 15px;
   }
   .encuesta h3 {
+    font-size: 13px;
+  }
+  .selects label,.rnSuelo label  {
     font-size: 12px;
   }
-  .selects label {
-    font-size: 14px;
-  }
-  .selects select {
+  .selects select,.rnSuelo select {
     font-size: 10px;
   }
   .input-group input {

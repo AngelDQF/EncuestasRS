@@ -251,9 +251,29 @@ begin
 	where estado_Servicio=0 and dbo.tbl_Servicios.id_Tipo_Servicio=2
 	order by id_Servicio
 end
-
-
-
+--Creacion Procedimientos Almacenados para la tabla de Encuesta
+Create procedure prc_Encuestas_Listar
+as
+begin
+	SELECT dbo.tbl_Encuestas.id_Encuesta AS id, dbo.tbl_Departamentos.departamento, dbo.tbl_Municipios.municipio, dbo.tbl_Aldeas.aldea, dbo.tbl_Caserios.caserio, dbo.tbl_Encuestas.direccion_Sede AS address, dbo.tbl_Encuestas.total_Hombres, 
+					  dbo.tbl_Encuestas.total_Mujeres, dbo.tbl_Encuestas.total_Asistencia, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Encuestas.existencia_Rio AS rios, dbo.tbl_Encuestas.cantidad_Rio AS cant_rio, 
+					  dbo.tbl_Encuestas.existencia_Bosque AS bosque, dbo.tbl_Tipos_Bosque.tipo_Bosque AS tipo_bosque, dbo.tbl_Suelos.descripcion_Suelo AS suelo, dbo.tbl_Tenencia_Tierra.descripcion_Tenencia AS tenencia, 
+					  dbo.tbl_Mercados.descripcion_Mercado AS mercado, dbo.tbl_Tecnologico_General.nivel AS nivel_tec,convert(nvarchar(10),dbo.tbl_Encuestas.fecha_Encuesta,23)  AS fecha, dbo.tbl_Usuarios.nombre_Usuario AS usuario
+	FROM     dbo.tbl_Encuestas INNER JOIN
+					  dbo.tbl_Aldeas ON dbo.tbl_Encuestas.id_Aldea = dbo.tbl_Aldeas.id_Aldea INNER JOIN
+					  dbo.tbl_Departamentos ON dbo.tbl_Encuestas.id_Departamento = dbo.tbl_Departamentos.id_Departamento INNER JOIN
+					  dbo.tbl_Mercados ON dbo.tbl_Encuestas.id_Mercado = dbo.tbl_Mercados.id_Mercado INNER JOIN
+					  dbo.tbl_Municipios ON dbo.tbl_Encuestas.id_Municipio = dbo.tbl_Municipios.id_Municipio AND dbo.tbl_Aldeas.id_Municipio = dbo.tbl_Municipios.id_Municipio AND 
+					  dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento INNER JOIN
+					  dbo.tbl_Caserios ON dbo.tbl_Encuestas.id_Caserio = dbo.tbl_Caserios.id_Caserio AND dbo.tbl_Aldeas.id_Aldea = dbo.tbl_Caserios.id_Aldea INNER JOIN
+					  dbo.tbl_Organizaciones ON dbo.tbl_Encuestas.id_Organizacion = dbo.tbl_Organizaciones.id_Organizacion INNER JOIN
+					  dbo.tbl_Tipos_Bosque ON dbo.tbl_Encuestas.id_Tipo_Bosque = dbo.tbl_Tipos_Bosque.id_Tipo_Bosque INNER JOIN
+					  dbo.tbl_Suelos ON dbo.tbl_Encuestas.id_Suelo = dbo.tbl_Suelos.id_Suelo INNER JOIN
+					  dbo.tbl_Tenencia_Tierra ON dbo.tbl_Encuestas.id_Tenencia = dbo.tbl_Tenencia_Tierra.id_Tenencia INNER JOIN
+					  dbo.tbl_Tecnologico_General ON dbo.tbl_Encuestas.id_Tecno = dbo.tbl_Tecnologico_General.id_Tecno INNER JOIN
+					  dbo.tbl_Usuarios ON dbo.tbl_Encuestas.id_Usuario = dbo.tbl_Usuarios.id_Usuario
+	order by dbo.tbl_Encuestas.fecha_Encuesta
+end
 
 
 
