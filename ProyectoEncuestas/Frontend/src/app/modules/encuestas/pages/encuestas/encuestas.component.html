@@ -58,21 +58,23 @@
                 <div class="col-xl-4 col-lg-6 col-md-12 p-0">
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="txtTotalHombres">Hombres</span>
-                    <input formControlName="totalHombres" type="number" class="form-control"
-                      aria-label="Sizing example input" aria-describedby="txtTotalHombres" name="txtTotalHombres">
+                    <input (ngModelChange)="totalChange($event)" [(ngModel)]="hombres" formControlName="totalHombres"
+                      type="text" class="form-control" aria-label="Sizing example input"
+                      aria-describedby="txtTotalHombres" name="txtTotalHombres">
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-12 p-0">
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mujeres</span>
-                    <input formControlName="totalMujeres" type="number" class="form-control"
-                      aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    <input (ngModelChange)="totalChange($event)" [(ngModel)]="mujeres" formControlName="totalMujeres"
+                      type="text" class="form-control" aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default">
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-12 col-md-12 p-0">
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Total</span>
-                    <input formControlName="totalAsistencia" type="number" class="form-control"
+                    <input [(ngModel)]="total" formControlName="totalAsistencia" type="text" class="form-control"
                       aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly>
                   </div>
                 </div>
@@ -161,6 +163,25 @@
                   <option value="1">One</option>
                 </select>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" id="Recursos">
+          <div class="col-12 mb-2">
+            <h2>Organizaciones Sociales Productivas</h2>
+          </div>
+          <div class="selects col-12 row align-items-center">
+            <div class="col-md-3 col-sm-12 col-12">
+              <label class="" for="dep">Seleccione una Organización</label>
+              <select class="form-select" id="dep">
+                <option *ngFor="let dep of departamentos"></option>
+              </select>
+            </div>
+            <div class="col-md-3 col-sm-12 col-12 mt-2 mt-lg-0">
+              <a class="btn btnGuardar form-control">Agregar</a>
+            </div>
+            <div class="col-12 col-md-6 mt-2 mt-lg-0">
+              <textarea class="form-control" id="ubicacion" rows="2"></textarea>
             </div>
           </div>
         </div>
