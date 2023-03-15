@@ -1,21 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {puerto} from '@shared/utils'
+import {environment} from '@shared/environments/environment'
 
 @Injectable()
 export class JuntaService {
   constructor(private http: HttpClient) { }
   getEjes() {
-    return this.http.get<EjesResponse>('http://'+puerto+'/redsolidaria/ejes')
+    return this.http.get<EjesResponse>('http://'+environment.puerto+'/redsolidaria/ejes')
   }
   getEjesDesactivados() {
-    return this.http.get<EjesResponse>('http://'+puerto+'/redsolidaria/ejes/desactivados')
+    return this.http.get<EjesResponse>('http://'+environment.puerto+'/redsolidaria/ejes/desactivados')
   }
   getCargos() {
-    return this.http.get<CargosResponse>('http://'+puerto+'/redsolidaria/cargos')
+    return this.http.get<CargosResponse>('http://'+environment.puerto+'/redsolidaria/cargos')
   }
   getCargosDesactivados() {
-    return this.http.get<CargosResponse>('http://'+puerto+'/redsolidaria/cargos/desactivados')
+    return this.http.get<CargosResponse>('http://'+environment.puerto+'/redsolidaria/cargos/desactivados')
   }
 }
 export interface EjesResponse {

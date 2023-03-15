@@ -1,22 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {puerto} from '@shared/utils'
+import {environment} from '@shared/environments/environment'
 
 @Injectable()
 export class OrganizacionesService {
 
   constructor(private http:HttpClient) { }
   getTiposOrganizacion() {
-    return this.http.get<TiposOrganizacionResponse>('http://'+puerto+'/redsolidaria/organizaciones/tipos')
+    return this.http.get<TiposOrganizacionResponse>('http://'+environment.puerto+'/redsolidaria/organizaciones/tipos')
   }
   getTiposOrganizacionDesactivados() {
-    return this.http.get<TiposOrganizacionResponse>('http://'+puerto+'/redsolidaria/organizaciones/tipos/desactivados')
+    return this.http.get<TiposOrganizacionResponse>('http://'+environment.puerto+'/redsolidaria/organizaciones/tipos/desactivados')
   }
   getOrganizaciones() {
-    return this.http.get<OrganizacionesResponse>('http://'+puerto+'/redsolidaria/organizaciones')
+    return this.http.get<OrganizacionesResponse>('http://'+environment.puerto+'/redsolidaria/organizaciones')
   }
   getOrganizacionesDesactivados() {
-    return this.http.get<OrganizacionesResponse>('http://'+puerto+'/redsolidaria/organizaciones/desactivados')
+    return this.http.get<OrganizacionesResponse>('http://'+environment.puerto+'/redsolidaria/organizaciones/desactivados')
   }
 }
 

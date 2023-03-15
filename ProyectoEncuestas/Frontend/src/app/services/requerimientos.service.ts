@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {puerto} from '@shared/utils'
+import {environment} from '@shared/environments/environment'
 @Injectable()
 export class RequerimientosService {
 
   constructor(private http: HttpClient) { }
   getMercados() {
-    return this.http.get<MercadosResponse>('http://'+puerto+'/redsolidaria/requerimientos/mercados')
+    return this.http.get<MercadosResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/mercados')
   }
   getMercadosDesactivados() {
-    return this.http.get<MercadosResponse>('http://'+puerto+'/redsolidaria/requerimientos/mercados/desactivados')
+    return this.http.get<MercadosResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/mercados/desactivados')
   }
 
   getUsosTierra() {
-    return this.http.get<UsosTierraResponse>('http://'+puerto+'/redsolidaria/requerimientos/tierras/usos')
+    return this.http.get<UsosTierraResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/tierras/usos')
   }
   getUsosTierraDesactivados() {
-    return this.http.get<UsosTierraResponse>('http://'+puerto+'/redsolidaria/requerimientos/tierras/usos/desactivados')
+    return this.http.get<UsosTierraResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/tierras/usos/desactivados')
   }
   getTenenciaTierras() {
-    return this.http.get<TenenciaTierrasResponse>('http://'+puerto+'/redsolidaria/requerimientos/tierras/tenencia')
+    return this.http.get<TenenciaTierrasResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/tierras/tenencia')
   }
   getTenenciaTierrasDesactivados() {
-    return this.http.get<TenenciaTierrasResponse>('http://'+puerto+'/redsolidaria/requerimientos/tierras/tenencia/desactivados')
+    return this.http.get<TenenciaTierrasResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/tierras/tenencia/desactivados')
   }
   getEstructuras() {
-    return this.http.get<EstructurasResponse>('http://'+puerto+'/redsolidaria/requerimientos/estructuras')
+    return this.http.get<EstructurasResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/estructuras')
   }
   getEstructurasDesactivados() {
-    return this.http.get<EstructurasResponse>('http://'+puerto+'/redsolidaria/requerimientos/estructuras/desactivados')
+    return this.http.get<EstructurasResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/estructuras/desactivados')
   }
 }
 export interface MercadosResponse {

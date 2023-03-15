@@ -28,6 +28,6 @@ import { UsuariosService } from '@serv/usuarios.service';
     FinanciamientosService,
     RequerimientosService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

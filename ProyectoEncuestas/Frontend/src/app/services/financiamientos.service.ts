@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {puerto} from '@shared/utils'
+import {environment} from '@shared/environments/environment'
 
 @Injectable()
 export class FinanciamientosService {
   constructor(private http: HttpClient) { }
   getTiposFinanciamiento() {
-    return this.http.get<TiposFinancimientoResponse>('http://'+puerto+'/redsolidaria/financiamientos/tipos')
+    return this.http.get<TiposFinancimientoResponse>('http://'+environment.puerto+'/redsolidaria/financiamientos/tipos')
   }
   getTiposFinanciamientoDesactivados() {
-    return this.http.get<TiposFinancimientoResponse>('http://'+puerto+'/redsolidaria/financiamientos/tipos/desactivados')
+    return this.http.get<TiposFinancimientoResponse>('http://'+environment.puerto+'/redsolidaria/financiamientos/tipos/desactivados')
   }
   getFuentesFinanciamiento() {
-    return this.http.get<FuentesFinancimientoResponse>('http://'+puerto+'/redsolidaria/financiamientos/fuentes')
+    return this.http.get<FuentesFinancimientoResponse>('http://'+environment.puerto+'/redsolidaria/financiamientos/fuentes')
   }
   getFuentesFinanciamientoDesactivados() {
-    return this.http.get<FuentesFinancimientoResponse>('http://'+puerto+'/redsolidaria/financiamientos/fuentes/desactivados')
+    return this.http.get<FuentesFinancimientoResponse>('http://'+environment.puerto+'/redsolidaria/financiamientos/fuentes/desactivados')
   }
 }
 export interface TiposFinancimientoResponse {
