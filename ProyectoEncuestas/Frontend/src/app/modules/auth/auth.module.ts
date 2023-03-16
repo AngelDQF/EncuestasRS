@@ -11,10 +11,10 @@ import { AuthService } from '@serv/auth.service';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    FormsModule, 
+    ReactiveFormsModule,
   ],
-  providers:[
+  providers: [
     AuthService
   ]
 })
