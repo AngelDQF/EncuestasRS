@@ -1,36 +1,48 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {environment} from '@shared/environments/environment'
+import { environment } from '@shared/environments/environment'
+import { map, Observable } from 'rxjs';
+import { CargosInterface } from '@models/administrar/junta/cargos.interface';
+import { EjesInterface } from '@models/administrar/junta/ejes.interface';
 
 @Injectable()
 export class JuntaService {
+  private URL = environment.api;
   constructor(private http: HttpClient) { }
-  getEjes() {
-    return this.http.get<EjesResponse>('http://'+environment.puerto+'/redsolidaria/ejes')
+
+  getCargos(): Observable<any> {
+    return this.http.get(`${this.URL}/cargos`)
+      .pipe(
+        map(({results}: any) => {
+          return results;
+        })
+      )
   }
-  getEjesDesactivados() {
-    return this.http.get<EjesResponse>('http://'+environment.puerto+'/redsolidaria/ejes/desactivados')
+  getCargo(id:number) {
+    return this.http.get<CargosInterface>(`${this.URL}/cargos/${id}`)
   }
-  getCargos() {
-    return this.http.get<CargosResponse>('http://'+environment.puerto+'/redsolidaria/cargos')
+  getCargosDesactivados(): Observable<any> {
+    return this.http.get(`${this.URL}/cargos/desactivados`)
+      .pipe(
+        map((dataRaw: any) => {
+          return dataRaw.results;
+        })
+      )
   }
-  getCargosDesactivados() {
-    return this.http.get<CargosResponse>('http://'+environment.puerto+'/redsolidaria/cargos/desactivados')
+  getEjes(): Observable<any> {
+    return this.http.get(`${this.URL}/ejes`)
+      .pipe(
+        map((dataRaw: any) => {
+          return dataRaw.results;
+        })
+      )
   }
-}
-export interface EjesResponse {
-  results: Eje[];
-}
-export interface Eje {
-  id: number
-  eje: string
-  estado: boolean
-}
-export interface CargosResponse {
-  results: Cargo[];
-}
-export interface Cargo {
-  id: number
-  cargo: string
-  estado: boolean
+  getEjesDesactivados(): Observable<any> {
+    return this.http.get(`${this.URL}/ejes/desactivados`)
+      .pipe(
+        map((dataRaw: any) => {
+          return dataRaw.results;
+        })
+      )
+  }
 }

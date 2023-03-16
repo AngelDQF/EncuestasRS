@@ -6,6 +6,7 @@ import { FuentesFinanciamientosDesactivadasComponent } from './pages/financiamie
 import { FuentesFinanciamientosComponent } from './pages/financiamiento/fuentes/fuentes-financiamientos.component';
 import { TiposFinanciamientosDesactivadosComponent } from './pages/financiamiento/tipos/tipos-financiamientos-desactivados.component';
 import { TiposFinanciamientosComponent } from './pages/financiamiento/tipos/tipos-financiamientos.component';
+import { CargoGetComponent } from './pages/junta/cargos/cargo-get.component';
 import { CargosDesactivadosComponent } from './pages/junta/cargos/cargos-desactivados.component';
 import { CargosComponent } from './pages/junta/cargos/cargos.component';
 import { EjesComponent } from './pages/junta/ejes/ejes.component';
@@ -20,6 +21,8 @@ import { BosquesDesactivadosComponent } from './pages/recursos/bosques/bosques-d
 import { BosquesComponent } from './pages/recursos/bosques/bosques.component';
 import { RecursosComponent } from './pages/recursos/recursos.component';
 import { TipoSueloComponent } from './pages/recursos/tipo-suelo/tipo-suelo.component';
+import { EstructurasDesactivadasComponent } from './pages/requerimientos/estructuras/estructuras-desactivadas.component';
+import { EstructurasComponent } from './pages/requerimientos/estructuras/estructuras.component';
 import { MercadosDesactivadosComponent } from './pages/requerimientos/mercados/mercados-desactivados.component';
 import { MercadosComponent } from './pages/requerimientos/mercados/mercados.component';
 import { RequerimientosComponent } from './pages/requerimientos/requerimientos.component';
@@ -32,6 +35,7 @@ import { BasicosComponent } from './pages/servicios/basicos/basicos.component';
 import { LocalesDesactivadosComponent } from './pages/servicios/locales/locales-desactivados.component';
 import { LocalesComponent } from './pages/servicios/locales/locales.component';
 import { ServiciosComponent } from './pages/servicios/servicios.component';
+import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component';
 
 const routes: Routes = [
   { path: '', component: AdministrarComponent },
@@ -41,7 +45,9 @@ const routes: Routes = [
       {
         path: 'cargos', children: [
           { path: '', component: CargosComponent },
-          { path: 'desactivados', component: CargosDesactivadosComponent }
+          { path: 'desactivados', component: CargosDesactivadosComponent },
+          { path: 'get', component: CargoGetComponent },
+
         ]
       },
       {
@@ -133,6 +139,12 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'estructuras', children: [
+          { path: '', component: EstructurasComponent },
+          { path: 'desactivados', component: EstructurasDesactivadasComponent }
+        ]
+      },
+      {
         path: 'tierras', children: [
           {
             path: 'usos', children: [
@@ -149,6 +161,35 @@ const routes: Routes = [
         ]
       }
 
+    ]
+  },
+  {
+    path: 'ubicaciones', children: [
+      { path: '', component: UbicacionesComponent },
+      {
+        path: 'departamentos', children: [
+          { path: '', component: MercadosComponent },
+          { path: 'desactivados', component: MercadosDesactivadosComponent }
+        ]
+      },
+      {
+        path: 'municipios', children: [
+          { path: '', component: EstructurasComponent },
+          { path: 'desactivados', component: EstructurasDesactivadasComponent }
+        ]
+      },
+      {
+        path: 'aldeas', children: [
+          { path: '', component: EstructurasComponent },
+          { path: 'desactivados', component: EstructurasDesactivadasComponent }
+        ]
+      },
+      {
+        path: 'caserios', children: [
+          { path: '', component: EstructurasComponent },
+          { path: 'desactivados', component: EstructurasDesactivadasComponent }
+        ]
+      },
     ]
   },
 ];

@@ -12,7 +12,7 @@ async function getUsuarios() {//TODO: Función para obtener todos los usuarios
 
   } catch (error) {
     console.log(error);
-    throw error;
+    
   }
 }
 async function getUsuariosDesactivados() {//TODO: Función para obtener todos los usuarios
@@ -37,7 +37,7 @@ async function getUsuariosTipos(){
 
   } catch (error) {
     console.log(error);
-    throw error;
+    
 
   }
 }
@@ -58,7 +58,6 @@ async function getUsuario(dni) {
   }
   catch (error) {
     console.log(error);
-    throw error;
   }
 };
 /**
@@ -82,7 +81,6 @@ async function postUsuario(nombre, telefono, dni, correo, contra, estado, tipo, 
       return result;
   } catch (error) {
     console.log(error);
-    throw error;
   }
 };
 
@@ -94,7 +92,6 @@ async function verificarDNI(dni) {//TODO: Función para verificar si el DNI ya e
   }
   catch (error) {
     console.log(error);//TODO: Mostramos el error
-    throw error;//TODO: Retornamos el error
   }
 }
 async function verificarEmail(email) {//TODO: Función para verificar si el DNI ya existe
@@ -105,7 +102,6 @@ async function verificarEmail(email) {//TODO: Función para verificar si el DNI 
   }
   catch (error) {
     console.log(error);//TODO: Mostramos el error
-    throw error;//TODO: Retornamos el error
   }
 }
 async function login(email,contra) {//TODO: Función para verificar si el DNI ya existe
@@ -116,7 +112,6 @@ async function login(email,contra) {//TODO: Función para verificar si el DNI ya
   }
   catch (error) {
     console.log(error);//TODO: Mostramos el error
-    throw error;//TODO: Retornamos el error
   }
 }
 module.exports = { getUsuariosDesactivados,getUsuarios, getUsuario, postUsuario, verificarEmail,verificarDNI ,login,getUsuariosTipos};//TODO: Exportamos las funciones que hemos creado

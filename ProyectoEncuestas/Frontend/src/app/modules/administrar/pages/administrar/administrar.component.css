@@ -2,11 +2,14 @@
   border: 30 solid white;
   padding: 30px;
   background-color: #fff;
+  height: calc(100vh - 156px);
 }
 
 .imgPadre {
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
   justify-content: center;
+  height: 100%;
 }
 .imgPadre div {
   margin: 0px;
@@ -93,7 +96,6 @@ a {
 /**/
 /*------------Media Querys------------*/
 @media screen and (max-width: 575px) {
-
   .administrar {
     height: 100vh;
   }
@@ -109,14 +111,17 @@ a {
   h2 {
     font-size: 20px !important;
   }
-  .tarjetas div{
+  .tarjetas div {
     padding: 0px 5px;
   }
   .imgCard {
-    display:inline-flex;
+    display: inline-flex;
     margin: 5px 0px;
     width: 100%;
     border-radius: 10px;
+  }
+  .imgPadre{
+    height: 0px !important;
   }
   .imgPadre div {
     display: none;

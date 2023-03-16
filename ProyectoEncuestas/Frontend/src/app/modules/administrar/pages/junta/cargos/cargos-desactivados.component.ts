@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { Cargo, CargosResponse, JuntaService } from '@serv/junta.service';
-
+import { EjesInterface } from '@models/administrar/junta/ejes.interface';
+import { JuntaService } from '@serv/junta.service';
 @Component({
   selector: 'app-cargos-desactivados',
   templateUrl: './cargos-desactivados.component.html',
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class CargosDesactivadosComponent {
-  cargosDesactivados: Cargo[] = [];
+  cargosDesactivados:any;
   constructor(private cargosModel:JuntaService) {
-    this.cargosModel.getCargosDesactivados().subscribe((data: CargosResponse)=>{
-      this.cargosDesactivados = data.results;
+    this.cargosModel.getCargosDesactivados().subscribe((data: EjesInterface[])=>{
+      this.cargosDesactivados = data;
       })
   }
 }

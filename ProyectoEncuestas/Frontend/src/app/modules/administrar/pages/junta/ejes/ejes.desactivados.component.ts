@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Eje, EjesResponse, JuntaService } from '@serv/junta.service';
+import { JuntaService } from '@serv/junta.service';
+import { EjesInterface } from '@models/administrar/junta/ejes.interface';
 
 @Component({
   selector: 'app-ejes-desactivados',
@@ -7,10 +8,10 @@ import { Eje, EjesResponse, JuntaService } from '@serv/junta.service';
   styleUrls: ['../../../../card.css', '../../../../../app.component.css']
 })
 export class EjesDesactivadosComponent {
-  ejesDesactivados: Eje[] = [];
+  ejesDesactivados: Array<EjesInterface>;
   constructor(private ejesModel: JuntaService) {
-    this.ejesModel.getEjesDesactivados().subscribe((data: EjesResponse) => {
-      this.ejesDesactivados = data.results;
+    this.ejesModel.getEjesDesactivados().subscribe((data: EjesInterface[]) => {
+      this.ejesDesactivados = data;
     })
   }
 }

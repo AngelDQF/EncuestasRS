@@ -213,3 +213,40 @@ as
 	FROM     dbo.tbl_Tenencia_Tierra
 	where estado_Tenencia_Tierra=0
 go
+--------------------------------------------------------------------------------------------------------------------------------------
+--Creacion Vistas Ubicaciones
+-----------------------------------------------------------------------------------
+--Creacion Vista Listar Deparatamentos
+CREATE VIEW [dbo].[vew_Departamentos_Listar] 
+as
+SELECT id_Departamento AS id_dep, departamento AS dep
+FROM     dbo.tbl_Departamentos
+go
+--Creacion Vista Listar Municipios
+CREATE VIEW [dbo].[vew_Municipios_Listar] 
+as
+SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun
+FROM     dbo.tbl_Departamentos INNER JOIN
+                  dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento
+go
+--Creacion Vista Listar Aldeas
+CREATE VIEW [dbo].[vew_Aldeas_Listar]
+as
+SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun, dbo.tbl_Aldeas.id_Aldea AS id_aldea, 
+                  dbo.tbl_Aldeas.aldea
+FROM     dbo.tbl_Departamentos INNER JOIN
+                  dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento INNER JOIN
+                  dbo.tbl_Aldeas ON dbo.tbl_Municipios.id_Municipio = dbo.tbl_Aldeas.id_Municipio
+go
+--Creacion Vista Listar Caserios
+CREATE VIEW [dbo].[vew_Caserios_Listar]
+as
+	SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun, dbo.tbl_Aldeas.id_Aldea AS id_aldea, 
+					  dbo.tbl_Aldeas.aldea, dbo.tbl_Caserios.id_Caserio AS id_caserio, dbo.tbl_Caserios.caserio
+	FROM     dbo.tbl_Departamentos INNER JOIN
+					  dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento INNER JOIN
+					  dbo.tbl_Aldeas ON dbo.tbl_Municipios.id_Municipio = dbo.tbl_Aldeas.id_Municipio INNER JOIN
+					  dbo.tbl_Caserios ON dbo.tbl_Aldeas.id_Aldea = dbo.tbl_Caserios.id_Aldea
+go
+
+--------------------------------------------------------------------------------------------------------------------------------------

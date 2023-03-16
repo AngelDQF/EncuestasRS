@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { Eje, EjesResponse, JuntaService } from '@serv/junta.service';
-
+import { JuntaService } from '@serv/junta.service';
+import { EjesInterface } from '@models/administrar/junta/ejes.interface';
 @Component({
   selector: 'app-ejes',
   templateUrl: './ejes.component.html',
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class EjesComponent {
-  ejes: Eje[] = [];
+  ejes:Array<EjesInterface>=[];
   constructor(private ejesModel:JuntaService) {
-    this.ejesModel.getEjes().subscribe((data: EjesResponse)=>{
-      this.ejes = data.results;
+    this.ejesModel.getEjes().subscribe((data: EjesInterface[])=>{
+      this.ejes = data;
       })
   }
 }

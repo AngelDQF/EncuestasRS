@@ -12,7 +12,8 @@
       </div>
 
       <div class="col-xl-4 col-xxl-3 col-lg-6 col-md-6 pt-lg-0 pt-md-0 pt-sm-2 pt-2">
-        <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-person-x-fill"></i>Cargos Desactivados</a>
+        <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-person-x-fill"></i>Cargos
+          Desactivados</a>
       </div>
       <div
         class="col-xl-5 col-xxl-7 col-lg-12 col-md-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
@@ -39,13 +40,10 @@
           <th routerLink=":id" scope="row" class="text-center"><strong>{{cargo.id}}</strong></th>
           <td>
             <div class=" d-grid mt-1 pb-1">
-              <a class="form-control btn btnEditar">Editar</a>
-            </div>
-            <div class=" d-grid pb-1">
-              <a class="form-control btn btnGuardar">Asignar</a>
+              <a routerLink="get" class="form-control btn btnEditar ">Editar</a>
             </div>
             <div class=" d-grid mb-1">
-              <a class="form-control btn btnEliminar">Desactivar</a>
+              <a data-toggle="modal" data-target="#modelId" class="form-control btn btnEliminar">Desactivar</a>
             </div>
           </td>
           <td>{{cargo.cargo}}</td>

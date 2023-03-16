@@ -2,16 +2,19 @@
   background-color: #fff;
   border-radius: 40px;
   padding: 30px;
-  height: cal(100vh - 130px);
+  height: calc(100vh - 156px);
 }
 .padForm {
   padding: 0px 15px;
 }
 .slideEncuesta {
-  height: cal(100vh - 130px);
-  /* overflow: scroll; */
+  height: 100%;
+  overflow-x:none;
 }
-
+.slideEncuesta.encuesta {
+  height: calc(100% - 50px);
+  overflow-x:hidden; overflow-y:scroll;
+}
 .encuesta h2 {
   font-size: 22px;
   background-color: #52535430;

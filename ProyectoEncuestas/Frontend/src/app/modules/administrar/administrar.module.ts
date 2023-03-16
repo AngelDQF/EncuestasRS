@@ -38,6 +38,12 @@ import { EstructurasComponent } from './pages/requerimientos/estructuras/estruct
 import { EstructurasDesactivadasComponent } from './pages/requerimientos/estructuras/estructuras-desactivadas.component';
 import { TenenciaTierrasComponent } from './pages/requerimientos/tierras/tenencia-tierras/tenencia-tierras.component';
 import { TenenciaTierrasDesactivadasComponent } from './pages/requerimientos/tierras/tenencia-tierras/tenencia-tierras-desactivadas.component';
+import { CargoGetComponent } from './pages/junta/cargos/cargo-get.component';
+import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component';
+import { DepartamentosComponent } from './pages/ubicaciones/departamentos/departamentos.component';
+import { MunicipiosComponent } from './pages/ubicaciones/municipios/municipios.component';
+import { AldeasComponent } from './pages/ubicaciones/aldeas/aldeas.component';
+import { CaseriosComponent } from './pages/ubicaciones/caserios/caserios.component';
 
 
 @NgModule({
@@ -76,7 +82,13 @@ import { TenenciaTierrasDesactivadasComponent } from './pages/requerimientos/tie
     OrganizacionesTiposComponent,
     OrganizacionesTiposDesactivadosComponent,
     OrganizacionesComponent,
-    OrganizacionesDesactivadosComponent
+    OrganizacionesDesactivadosComponent,
+    CargoGetComponent,
+    UbicacionesComponent,
+    DepartamentosComponent,
+    MunicipiosComponent,
+    AldeasComponent,
+    CaseriosComponent
   ],
   imports: [
     CommonModule,

@@ -20,6 +20,20 @@ async function getCargos() {//TODO: Función para obtener todos los usuarios
     console.log(error);
   }
 }
+async function getCargo(id) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    const result = await pool.request().query(`Exec prc_Cargos_Buscar ${id}`);
+    if(result.recordset.length!==0){
+      return await result.recordset
+    }else{
+      return "Cargo no encontrado"
+    }
+  }
+  catch (error) {
+    console.log(error);
+  }
+};
 async function getCargosDesactivados() {//TODO: Función para obtener todos los usuarios
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -37,4 +51,4 @@ async function getCargosDesactivados() {//TODO: Función para obtener todos los 
     console.log(error);
   }
 }
-module.exports = { getCargos, getCargosDesactivados };//TODO: Exportamos las funcionessss
+module.exports = { getCargos,getCargo, getCargosDesactivados };//TODO: Exportamos las funcionessss

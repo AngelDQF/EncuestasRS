@@ -274,7 +274,16 @@ begin
 					  dbo.tbl_Usuarios ON dbo.tbl_Encuestas.id_Usuario = dbo.tbl_Usuarios.id_Usuario
 	order by dbo.tbl_Encuestas.fecha_Encuesta
 end
-
+--Procedimientos Almacenados para el Modulo de Junta Directiva
+--Procedimientos Almacenados para los Cargos
+--Procedimiento Almacenado para Buscar un cargo por su id
+create procedure prc_Cargos_Buscar
+@id int
+as begin
+	SELECT id_Cargo AS id, descripcion_Cargo AS cargo, estado_Cargo AS estado
+		FROM     dbo.tbl_Cargos
+	where id_Cargo=@id
+end
 
 
 

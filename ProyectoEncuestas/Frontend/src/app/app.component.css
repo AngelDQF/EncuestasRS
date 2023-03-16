@@ -1,11 +1,6 @@
 .contenido {
   padding: 30px;
-  background-color: #fff;
-  height: 680px;
-  font-family: "Gill Sans Extrabold", Helvetica, sans-serif;
-}
-.contForms {
-  padding: 30px;
+  height: calc(100vh - 156px);
   background-color: #fff;
   font-family: "Verdana", Geneva, Tahoma, sans-serif;
 }
@@ -132,7 +127,7 @@ a {
   text-align: center;
 }
 .tabla {
-  height: 500px !important;
+  height: calc(80%) !important;
   overflow: scroll;
 }
 .headerListar {
@@ -246,10 +241,10 @@ a {
   }
 }
 @media screen and (max-width: 1200px) {
-  .contenido {
-    height: 750px;
+  .contenido{
+    height: 100vh;
   }
   .tabla {
-    height: 75%;
+    height: 100%;
   }
 }
