@@ -6,77 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "01 Aldeas",
-			"item": [
-				{
-					"name": "Listar Aldeas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/redsolidaria/aldeas",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"redsolidaria",
-								"aldeas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listar Aldea",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/redsolidaria/aldeas/La",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"redsolidaria",
-								"aldeas",
-								"La"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "03 Departamentos",
-			"item": [
-				{
-					"name": "New Request",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/redsolidaria/departamentos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"redsolidaria",
-								"departamentos"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "03 Cargos",
 			"item": [
 				{
@@ -101,9 +30,21 @@
 				},
 				{
 					"name": "Listar Cargos Desactivados",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8080/redsolidaria/cargos/desactivados",
 							"protocol": "http",
@@ -115,6 +56,27 @@
 								"redsolidaria",
 								"cargos",
 								"desactivados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Cargo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/cargos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"cargos",
+								"2"
 							]
 						}
 					},
@@ -987,6 +949,120 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "Encuestas",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ubicaciones",
+			"item": [
+				{
+					"name": "Listar Departamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/departamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"departamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Municipios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/municipios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"municipios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Aldeas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/aldeas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"aldeas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Caserios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/caserios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"caserios"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

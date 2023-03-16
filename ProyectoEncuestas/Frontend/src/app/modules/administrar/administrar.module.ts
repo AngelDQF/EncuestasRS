@@ -39,11 +39,11 @@ import { EstructurasDesactivadasComponent } from './pages/requerimientos/estruct
 import { TenenciaTierrasComponent } from './pages/requerimientos/tierras/tenencia-tierras/tenencia-tierras.component';
 import { TenenciaTierrasDesactivadasComponent } from './pages/requerimientos/tierras/tenencia-tierras/tenencia-tierras-desactivadas.component';
 import { CargoGetComponent } from './pages/junta/cargos/cargo-get.component';
-import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component';
 import { DepartamentosComponent } from './pages/ubicaciones/departamentos/departamentos.component';
 import { MunicipiosComponent } from './pages/ubicaciones/municipios/municipios.component';
 import { AldeasComponent } from './pages/ubicaciones/aldeas/aldeas.component';
 import { CaseriosComponent } from './pages/ubicaciones/caserios/caserios.component';
+import { UbicacionesService } from '@serv/ubicaciones.service';
 
 
 @NgModule({
@@ -84,7 +84,6 @@ import { CaseriosComponent } from './pages/ubicaciones/caserios/caserios.compone
     OrganizacionesComponent,
     OrganizacionesDesactivadosComponent,
     CargoGetComponent,
-    UbicacionesComponent,
     DepartamentosComponent,
     MunicipiosComponent,
     AldeasComponent,
@@ -94,7 +93,7 @@ import { CaseriosComponent } from './pages/ubicaciones/caserios/caserios.compone
     CommonModule,
     AdministrarRoutingModule
   ],
-  providers:[ JuntaService
+  providers:[ JuntaService,UbicacionesService
   ]
 })
 export class AdministrarModule { }

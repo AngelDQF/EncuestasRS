@@ -35,6 +35,10 @@ import { BasicosComponent } from './pages/servicios/basicos/basicos.component';
 import { LocalesDesactivadosComponent } from './pages/servicios/locales/locales-desactivados.component';
 import { LocalesComponent } from './pages/servicios/locales/locales.component';
 import { ServiciosComponent } from './pages/servicios/servicios.component';
+import { AldeasComponent } from './pages/ubicaciones/aldeas/aldeas.component';
+import { CaseriosComponent } from './pages/ubicaciones/caserios/caserios.component';
+import { DepartamentosComponent } from './pages/ubicaciones/departamentos/departamentos.component';
+import { MunicipiosComponent } from './pages/ubicaciones/municipios/municipios.component';
 import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component';
 
 const routes: Routes = [
@@ -168,26 +172,22 @@ const routes: Routes = [
       { path: '', component: UbicacionesComponent },
       {
         path: 'departamentos', children: [
-          { path: '', component: MercadosComponent },
-          { path: 'desactivados', component: MercadosDesactivadosComponent }
+          { path: '', component: DepartamentosComponent },
         ]
       },
       {
         path: 'municipios', children: [
-          { path: '', component: EstructurasComponent },
-          { path: 'desactivados', component: EstructurasDesactivadasComponent }
+          { path: '', component: MunicipiosComponent },
         ]
       },
       {
         path: 'aldeas', children: [
-          { path: '', component: EstructurasComponent },
-          { path: 'desactivados', component: EstructurasDesactivadasComponent }
+          { path: '', component: AldeasComponent },
         ]
       },
       {
         path: 'caserios', children: [
-          { path: '', component: EstructurasComponent },
-          { path: 'desactivados', component: EstructurasDesactivadasComponent }
+          { path: '', component: CaseriosComponent },
         ]
       },
     ]
