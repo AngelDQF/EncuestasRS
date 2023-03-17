@@ -44,6 +44,7 @@ import { MunicipiosComponent } from './pages/ubicaciones/municipios/municipios.c
 import { AldeasComponent } from './pages/ubicaciones/aldeas/aldeas.component';
 import { CaseriosComponent } from './pages/ubicaciones/caserios/caserios.component';
 import { UbicacionesService } from '@serv/ubicaciones.service';
+import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
     OrganizacionesDesactivadosComponent,
     CargoGetComponent,
     DepartamentosComponent,
+    UbicacionesComponent,
     MunicipiosComponent,
     AldeasComponent,
     CaseriosComponent

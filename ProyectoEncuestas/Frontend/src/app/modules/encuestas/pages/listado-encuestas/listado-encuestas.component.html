@@ -24,7 +24,7 @@
           <th scope="col">ID</th>
           <th scope="col">Departamento</th>
           <th scope="col">Municipio</th>
-          <th scope="col">Aldea</th>
+          <th scope="col" >Aldea</th>
           <th scope="col">Caserio</th>
           <th scope="col">Dirección</th>
           <th scope="col">&nbsp;Hombres&nbsp;</th>
@@ -45,7 +45,7 @@
 
       </thead>
       <tbody>
-        <tr id="body" *ngFor="let encuesta of encuestas" class="align-middle text-center">
+        <tr id="body" *ngFor="let encuesta of encuestas" class="align-middle text-center widthColumna">
           <th routerLink=":id" scope="row" class="text-center"><strong>{{encuesta.id}}</strong></th>
           <td>{{encuesta.departamento}}</td>
           <td>{{encuesta.municipio}}</td>
@@ -65,8 +65,7 @@
           <td>{{encuesta.mercado}}</td>
           <td>{{encuesta.nivel_tec}}</td>
           <td>{{encuesta.fecha}}</td>
-          <td>{{encuesta.usuario}}</td>
-
+          <td style="min-width: 250px;">{{encuesta.usuario}}</td>
         </tr>
       </tbody>
     </table>

@@ -11,6 +11,7 @@
 }
 .cuerpo a {
   color: #000;
+  user-select: none;
 }
 .logo {
   cursor: pointer;

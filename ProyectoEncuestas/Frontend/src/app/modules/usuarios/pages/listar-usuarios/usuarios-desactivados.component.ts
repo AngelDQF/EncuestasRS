@@ -7,6 +7,7 @@ import { UsuarioDesactivado, UsuariosDesactivadosResponse, UsuariosService } fro
   styleUrls: ['./listar-usuarios.component.css','../../../../app.component.css']
 })
 export class UsuariosDeactivadosComponent {
+  search='';
   desactivados: UsuarioDesactivado[] = [];
   constructor(private usuariosModel:UsuariosService) {
     this.usuariosModel.getUsuariosDesactivados().subscribe((data: UsuariosDesactivadosResponse)=>{

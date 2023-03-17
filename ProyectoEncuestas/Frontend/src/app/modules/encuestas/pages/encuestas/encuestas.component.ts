@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DepartamentosInterface } from '@models/ubicaciones/departamentos.interface';
 import { Departamento, EncuestasService, UserDepartamentosResponse } from '@serv/encuestas.service';
+import { UbicacionesService } from '@serv/ubicaciones.service';
 
 @Component({
   selector: 'app-encuestas',
@@ -11,6 +13,7 @@ export class EncuestasComponent implements OnInit {
   mujeres: string = '0';
   hombres: string = '0';
   total: string='0';
+  departamentos:any;
   totalChange(result: number):void {
     result = parseInt(this.mujeres) + parseInt(this.hombres);
     console.log(result)
@@ -19,10 +22,10 @@ export class EncuestasComponent implements OnInit {
 
   title: string = "Encuestas"
   formEncuestas: FormGroup = new FormGroup({});
-  departamentos: Departamento[] = [];
-  constructor(private encuestasModel: EncuestasService) {
-    this.encuestasModel.getDepartamentosUser().subscribe((data: UserDepartamentosResponse) => {
-      this.departamentos = data.results;
+  constructor(private encuestasModel: EncuestasService, private ubicacionModel:UbicacionesService) {
+
+    this.ubicacionModel.getDepartamentos().subscribe((response:DepartamentosInterface)=>{
+      this.departamentos=response;
     })
   }
   ngOnInit(): void {
@@ -39,6 +42,5 @@ export class EncuestasComponent implements OnInit {
         ])
       }
     )
-
   }
 }

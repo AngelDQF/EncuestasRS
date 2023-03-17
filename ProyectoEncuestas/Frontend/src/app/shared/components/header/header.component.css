@@ -10,7 +10,9 @@
   background-color: #fff;
   transition: all 0.2s ease;
 }
-
+img{
+  user-select: none;
+}
 /*Pantallas sm*/
 @media screen and (max-width: 767px) {
   .imgHeader img{

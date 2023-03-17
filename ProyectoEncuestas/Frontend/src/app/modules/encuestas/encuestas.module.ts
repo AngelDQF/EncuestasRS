@@ -7,6 +7,7 @@ import { EncuestasService } from '@serv/encuestas.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListadoEncuestasComponent } from './pages/listado-encuestas/listado-encuestas.component';
 import { IndexEncuestasComponent } from './pages/index-encuestas.component';
+import { UbicacionesService } from '@serv/ubicaciones.service';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { IndexEncuestasComponent } from './pages/index-encuestas.component';
     ReactiveFormsModule
   ],
   providers:[
-    EncuestasService
+    EncuestasService,
+    UbicacionesService
   ]
 })
 export class EncuestasModule { }

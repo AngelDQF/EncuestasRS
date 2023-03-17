@@ -1,1 +1,46 @@
-<p>aldeas works!</p>
+<div class="contenido bordeContenido">
+  <div class="headerListar">
+    <div class="row mb-2 align-items-center ">
+      <div class="col-12 d-flex padT align-items-center">
+        <div class=" col-2">
+          <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
+        </div>
+        <h1 class="text-center col-10 titulo">Municipios de Honduras</h1>
+      </div>
+      <div
+        class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+        <div class="input-group mt-2 mb-2 inpBuscar">
+          <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Municipio">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tabla">
+    <table class="table">
+      <thead class="table-dark align-middle">
+        <tr>
+          <th scope="col">ID aldeaerio</th>
+          <th scope="col">Aldea</th>
+          <th scope="col">Municipio</th>
+          <th scope="col">Departamento</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="body" *ngFor="let aldea of aldeas" class="align-middle text-center">
+          <th scope="row" class="text-center"><strong>{{aldea.id_aldea}}</strong></th>
+          <td>{{aldea.aldea}}</td>
+          <td>{{aldea.mun}}</td>
+          <td>{{aldea.dep}}</td>
+          <td>
+            <div class=" d-grid mt-1 pb-1">
+              <a routerLink="get" class="form-control btn btnGuardar ">Ver</a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

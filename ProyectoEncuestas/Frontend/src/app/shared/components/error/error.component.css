@@ -4,6 +4,7 @@
 }
 a{
   text-decoration: none;
+  user-select: none;
 }
 .borde a {
   text-align: center;

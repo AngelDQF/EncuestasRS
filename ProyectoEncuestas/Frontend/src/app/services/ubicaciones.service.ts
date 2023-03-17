@@ -24,4 +24,20 @@ export class UbicacionesService {
         })
       )
   }
+  getAldeas(): Observable<any> {
+    return this.http.get(`${this.URL}/ubicaciones/aldeas`)
+      .pipe(
+        map(({results}: any) => {
+          return results;
+        })
+      )
+  }
+  getCaserios(): Observable<any> {
+    return this.http.get(`${this.URL}/ubicaciones/caserios`)
+      .pipe(
+        map(({results}: any) => {
+          return results;
+        })
+      )
+  }
 }

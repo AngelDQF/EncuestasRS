@@ -162,19 +162,12 @@ a {
   .titulo p {
     font-size: 30px;
   }
-  .tabla {
-    height: 100%;
-  }
   .contenido {
     height: 100%;
     width: 100%;
     margin: 0px;
   }
-  .contForms {
-    width: 100%;
-    margin: 0px;
-    font-size: 10px;
-  }
+
 }
 /*Pantallas sm*/
 @media screen and (max-width: 767px) {
@@ -184,7 +177,6 @@ a {
   .row {
     --bs-gutter-x: 0px;
   }
-
   .titulo p {
     font-size: 40px;
   }
@@ -202,7 +194,7 @@ a {
     font-size: 10px;
   }
   .tabla {
-    height: 60%;
+    height: 75% !important;
   }
 }
 /*Pantallas md*/
@@ -241,9 +233,6 @@ a {
   }
 }
 @media screen and (max-width: 1200px) {
-  .contenido{
-    height: 100vh;
-  }
   .tabla {
     height: 100%;
   }

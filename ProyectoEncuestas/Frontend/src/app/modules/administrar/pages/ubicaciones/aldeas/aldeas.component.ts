@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UbicacionesService } from '@serv/ubicaciones.service';
 
 @Component({
   selector: 'app-aldeas',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['../ubicaciones.component.css','../../../../../app.component.css']
 })
 export class AldeasComponent {
-
+  aldeas:any;
+  constructor(private ubicacionesModel:UbicacionesService){
+    this.ubicacionesModel.getAldeas().subscribe((response: AldeasComponent[]) => {
+      this.aldeas = response;
+    });
+  }
 }

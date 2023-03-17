@@ -1,7 +1,13 @@
 
-.contForms {
+.index {
   padding: 0px 15px 15px 15px;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 156px);
+}
+.altura{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
 @media screen and (max-width: 767px) {
   .contForms{
