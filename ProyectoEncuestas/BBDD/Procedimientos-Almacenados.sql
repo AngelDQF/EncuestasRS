@@ -284,7 +284,15 @@ as begin
 		FROM     dbo.tbl_Cargos
 	where id_Cargo=@id
 end
-
+--Procedimientos Almacenados para las Ubicaciones
+--Buscar Municipios de un Departamento
+create procedure prc_Departamentos_Buscar_Municipios
+@id int
+as begin
+	select id_Municipio as id_mun,id_Departamento as id_dep, municipio as mun
+	from tbl_Municipios
+	where id_Departamento=@id
+end
 
 
 
