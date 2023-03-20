@@ -97,13 +97,16 @@ a {
 /*------------Media Querys------------*/
 @media screen and (max-width: 575px) {
   .administrar {
-    height: 100vh;
+    height: 100%;
   }
 }
 /*Pantallas sm*/
 @media screen and (max-width: 767px) {
   h2 {
     font-size: 15px !important;
+  }
+  .administrar {
+    height: 100%;
   }
 }
 /*Pantallas md*/

@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "21bbf72e-b420-45e3-b785-54e7d58efb13",
+		"_postman_id": "53fe89bb-289f-477e-b6e7-0a0bdadf0446",
 		"name": "Pruebas",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20138045"
 	},
 	"item": [
 		{
@@ -135,7 +136,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"David Leiva\",\r\n    \"telefono\":\"9750-7470\",\r\n    \"dni\":\"0702199218833\",\r\n    \"correo\":\"dleiva@gmail.com\",\r\n    \"contra\":\"admin777\",\r\n    \"estado\":1,\r\n    \"tipo\":\"2\",\r\n    \"sexo\":\"Hombre\"\r\n}",
+							"raw": "{\r\n    \"nombre\":\"David Leiva\",\r\n    \"telefono\":\"9750-7470\",\r\n    \"dni\":\"111223949429539392\",\r\n    \"correo\":\"davidadqf@gmail.com\",\r\n    \"contra\":\"admin777\",\r\n    \"estado\":1,\r\n    \"tipo\":\"2\",\r\n    \"sexo\":\"Hombre\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -143,7 +144,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/redsolidaria/auth/usuario",
+							"raw": "http://localhost:8080/redsolidaria/usuarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -151,8 +152,7 @@
 							"port": "8080",
 							"path": [
 								"redsolidaria",
-								"auth",
-								"usuario"
+								"usuarios"
 							]
 						}
 					},
@@ -163,6 +163,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"davidadqf@gmail.com\",\r\n    \"password\":\"admin777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8080/redsolidaria/auth/login",
 							"protocol": "http",
@@ -1059,6 +1068,44 @@
 								"redsolidaria",
 								"ubicaciones",
 								"caserios"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "loguear",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"davidadqf@gmail.com\",\r\n    \"password\":\"admin777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"auth",
+								"login"
 							]
 						}
 					},

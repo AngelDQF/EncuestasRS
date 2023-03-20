@@ -27,7 +27,7 @@ create procedure prc_Usuarios_Crear
 @telefono nvarchar (25),
 @dni nvarchar(50),
 @correo nvarchar(100),
-@contra nvarchar(50),
+@contra nvarchar(60),
 @estado int,
 @tipo int,
 @sexo nvarchar(30)
@@ -293,8 +293,15 @@ as begin
 	from tbl_Municipios
 	where id_Departamento=@id
 end
-
-
+--Creacion de Procedimientos Almacenados para el Modulo de Autentificación Login
+--Procedimiento almacenado para verificar si existe un usuario por medio del email
+create procedure prc_Auth_Login_Email
+@email nvarchar(100)
+as begin
+	select id_Usuario as id, contrasenia_Usuario as [password],id_Tipo_Usuario as tipo
+	from tbl_Usuarios
+	where correo_Usuario=@email and id_Estado_Usuario=1
+end
 
 
 --Reiniciar id en 1

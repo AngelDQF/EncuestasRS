@@ -1,42 +1,39 @@
-const { usuariosModel } = require('../models/index.model');//TODO: Importamos las funciones de los modelos de usuarios
+const { authModel } = require('../models/index.model');//TODO: Importamos las funciones de los modelos de usuarios
 const { handleHttpError } = require('../utils/handleError');//TODO: Importamos el metodo handleHttpError
-const variable = 'USUARIO';//TODO: Variable para el manejo de errores
-const { encrypt, compare } = require('../utils/handleBcrypt');//TODO: Importamos las funciones de encriptación y comparación de contraseñas
-const { tokenSign } = require('../utils/handlejwt');//TODO: Importamos las funciones para firmar y verificar el token
-const ctrPostUsuario = async (req, res) => {//TODO: Creamos la función que se encargará de crear un usuario
+const { compare } = require('../utils/handleBcrypt');
+const { tokenSign } = require('../utils/handlejwt');
+
+/**
+ * TODO: Este Controlador se encargará de manejar las peticiones de login
+ * @param {*} req 
+ * @param {*} res 
+ */
+const ctrLogin = async (req, res) => {//TODO: Creamos la función que se encargará de crear un usuario
   try {
-    const { nombre, telefono, dni, correo, contra, estado, tipo, sexo } = req.body;//TODO: Extraemos los datos del body
+    const { email, password } = req.body;//TODO: Extraemos los datos del body
     //console.log(req.params.dni)
-    const consulta = await usuariosModel.verificarDNI(dni);
-    const consulta2 = await usuariosModel.verificarEmail(correo);
-    if (consulta) {
-      if (consulta2) {
-        const eContra = await encrypt(contra);//TODO: Encriptamos la contraseña
-        const consulta = await usuariosModel.postUsuario(nombre, telefono, dni, correo, eContra, estado, tipo, sexo);//TODO: Llamamos a la función del modelo para crear un usuario
-        const data = {
-          token: await tokenSign(consulta),
-          user: consulta
-        }
-        res.send({ data });
-      } else {
-        res.json({ mensaje: "Ya existe un usuario con ese correo" })
-      }
+    const consulta = await authModel.login(email);
+    if (consulta.recordset.length === 0) {
+      handleHttpError(res, 'USUARIO_NO_EXISTE', 404);
+      return
     }
-    else {
-      res.json({ mensaje: "Ya existe un usuario con esa DNI" })
+    const hashPassword = consulta.recordset[0].password;
+    const passwordPlain = (password);
+    const check = await compare(passwordPlain, hashPassword);
+    if (!check) {
+      handleHttpError(res, 'CONTRASEÑA_INCORRECTA', 404);
+      return
     }
+    consulta.recordset[0].password = undefined;
+
+    const data = {
+      token: await tokenSign(consulta.recordset[0]),
+      user: consulta.recordset[0]
+    }
+    res.send({ data })
   } catch (error) {
-    handleHttpError(res, `ERROR_CREAR_${variable}`);
+    handleHttpError(res, `ERROR_CREAR_${error}`);
     console.log(error);
   }
 };
-const ctrLogin = async (req, res) => {//TODO: Creamos la función que se encargará de crear un usuario
-  try {
-
-
-  } catch (error) {
-    handleHttpError(res, `ERROR_LOGEO_${variable}`);
-
-  }
-}
-module.exports = { ctrPostUsuario, ctrLogin };//TODO: Exportamos las funciones
+module.exports = { ctrLogin };//TODO: Exportamos las funciones

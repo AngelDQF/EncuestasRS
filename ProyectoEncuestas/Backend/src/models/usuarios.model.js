@@ -37,8 +37,6 @@ async function getUsuariosTipos(){
 
   } catch (error) {
     console.log(error);
-    
-
   }
 }
 /**
@@ -104,14 +102,5 @@ async function verificarEmail(email) {//TODO: Función para verificar si el DNI 
     console.log(error);//TODO: Mostramos el error
   }
 }
-async function login(email,contra) {//TODO: Función para verificar si el DNI ya existe
-  try {
-    await pool.connect()//TODO: Conectamos a la base de datos
-    const result = await pool.request().query(`Exec prc_Usuarios_Login '${email}' '${contra}'`);//TODO: Ejecutamos la consulta
-    return result.recordset.length === 0;//TODO: Retornamos el resultado
-  }
-  catch (error) {
-    console.log(error);//TODO: Mostramos el error
-  }
-}
-module.exports = { getUsuariosDesactivados,getUsuarios, getUsuario, postUsuario, verificarEmail,verificarDNI ,login,getUsuariosTipos};//TODO: Exportamos las funciones que hemos creado
+
+module.exports = { getUsuariosDesactivados,getUsuarios, getUsuario, postUsuario, verificarEmail,verificarDNI ,getUsuariosTipos};//TODO: Exportamos las funciones que hemos creado

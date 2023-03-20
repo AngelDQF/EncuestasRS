@@ -6,7 +6,7 @@ const validatorCreateUsuario = [
   check('telefono').exists().isString(),
   check('dni').exists().isString().isLength({ min: 1, max: 25 }).withMessage("El dato no debe estar vacio"),
   check('correo').exists().isEmail().isLength({ min: 1, max: 100 }).withMessage("El dato no debe estar vacio"),
-  check('contra').exists().isString().isLength({ min: 8, max: 50 }).withMessage("La contraseña debe contener al menos 8 caracteres"),
+  check('contra').exists().isString().isLength({ min: 8, max: 60 }).withMessage("La contraseña debe contener al menos 8 caracteres"),
   check('estado').exists().isNumeric().withMessage("El dato debe ser numerico"),
   check('tipo').exists().isNumeric().withMessage("El dato debe ser numerico"),
   check('sexo').exists().isString().isLength({ min: 1, max: 30 }).withMessage("El dato no debe estar vacio"),
@@ -14,11 +14,4 @@ const validatorCreateUsuario = [
     return validationResults(req, res, next);
   }
 ];
-const validatorLogin = [
-  check('correo').exists().isEmail().isLength({ min: 1, max: 100 }).withMessage("El dato no debe estar vacio"),
-  check('contra').exists().isString().isLength({ min: 8, max: 50 }).withMessage("La contraseña debe contener al menos 8 caracteres"),
-  (req, res, next) => {
-    return validationResults(req, res, next);
-  }
-];
-module.exports={validatorCreateUsuario,validatorLogin}
+module.exports={validatorCreateUsuario}

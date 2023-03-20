@@ -1,5 +1,6 @@
 //TODO: Archivo que exporta todos los modelos de la base de datos
 const model = {//TODO: Exportamos todos los modelos hijos
+  authModel:require('./auth.model'),//TODO: Exportamos el modelo de autenticación
   usuariosModel: require('./usuarios.model'),//TODO: Exportamos el modelo de usuarios
   ejesModel: require('./ejes.model'),//TODO: Exportamos el modelo de ejes
   cargoModel:require('./cargos.model'),//TODO: Exportamos el modelo de Cargos

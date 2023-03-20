@@ -162,15 +162,14 @@ a {
   .titulo p {
     font-size: 30px;
   }
-  .contenido {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-  }
+
 
 }
 /*Pantallas sm*/
 @media screen and (max-width: 767px) {
+  .contenido{
+    height: 100vh;
+  }
   .pad {
     padding: 0px 0px;
   }
@@ -196,9 +195,12 @@ a {
   .tabla {
     height: 75% !important;
   }
+  .bordeContenido {
+    border-radius: 0px;
+  }
 }
 /*Pantallas md*/
-@media screen and (max-width: 991px) {
+@media screen and (min-width: 768px) and (max-width: 991px) {
   .pad {
     padding: 0px 0px;
   }
@@ -217,9 +219,6 @@ a {
   .contenido {
     padding: 0px 15px 15px 15px;
   }
-  .contForms {
-    padding: 0px 15px 15px 15px;
-  }
   .tabla {
     padding-top: 5px;
     height: 75%;
@@ -236,4 +235,5 @@ a {
   .tabla {
     height: 100%;
   }
+
 }

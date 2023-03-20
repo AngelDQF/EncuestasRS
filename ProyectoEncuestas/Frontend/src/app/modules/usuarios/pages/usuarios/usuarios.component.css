@@ -1,6 +1,10 @@
 .titulo{
   padding: 0px;
 }
+.slideForm{
+  height: calc(100vh - 270px);
+  overflow: scroll;
+}
 label{
   font-weight: 500;
   font-size: 15px;
@@ -36,6 +40,7 @@ button{
 }
 /*Pantallas sm*/
 @media screen and (max-width:767px) {
+
   .iconoForm{
     font-size: 10px;
   }
@@ -45,10 +50,16 @@ button{
   select,input{
     font-size: 10px;
   }
+
 }
+
 /*Pantallas md*/
 @media screen and (max-width:991px) {
   .icono{
     font-size: 100px;
+  }
+  .slideForm{
+    height: 90%;
+    overflow: none !important;
   }
 }
