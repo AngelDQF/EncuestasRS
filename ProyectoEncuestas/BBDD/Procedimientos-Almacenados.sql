@@ -21,7 +21,7 @@ end
 ---------Procedimientos Almacenados para la Tabla de Departamentos---------
 --Procedimiento Almacenado para Listar todos los departamentos
 
-/*Creación Proceso Almacenado para Crear un Usuario*/
+--Creación Proceso Almacenado para Crear un Usuario
 create procedure prc_Usuarios_Crear
 @nombre nvarchar(50),
 @telefono nvarchar (25),
@@ -59,6 +59,17 @@ Begin
                   dbo.tbl_Estados_Usuario ON dbo.tbl_Usuarios.id_Estado_Usuario = dbo.tbl_Estados_Usuario.id_Estado_Usuario
 	where dbo.tbl_Usuarios.dni_Usuario LIKE '%'+@dni+'%'
 End
+--Procedimineto Almacenado para buscar un usuario por su ID
+Create Procedure prc_Usuarios_Buscar_ID
+	@id int as begin
+	SELECT dbo.tbl_Usuarios.id_Usuario AS id, dbo.tbl_Usuarios.nombre_Usuario AS name, dbo.tbl_Usuarios.telefono_Usuario AS tel, dbo.tbl_Usuarios.dni_Usuario AS dni, dbo.tbl_Usuarios.correo_Usuario AS email, 
+					  dbo.tbl_Usuarios.contrasenia_Usuario AS password,convert(nvarchar(10),dbo.tbl_Usuarios.create_At,23) AS creacion, convert(nvarchar(10),dbo.tbl_Usuarios.update_At,23) AS cambio, dbo.tbl_Estados_Usuario.estado_Usuario AS estado, dbo.tbl_Tipos_Usuario.descripcion_Tipo AS tipo, 
+					  dbo.tbl_Usuarios.sexo
+	FROM     dbo.tbl_Estados_Usuario INNER JOIN
+					  dbo.tbl_Usuarios ON dbo.tbl_Estados_Usuario.id_Estado_Usuario = dbo.tbl_Usuarios.id_Estado_Usuario INNER JOIN
+					  dbo.tbl_Tipos_Usuario ON dbo.tbl_Usuarios.id_Tipo_Usuario = dbo.tbl_Tipos_Usuario.id_Tipo_Usuario
+	where dbo.tbl_Usuarios.id_Usuario=@id
+end
 --Procedimiento Almacenado para buscar la existencia de un correo
 create procedure prc_Usuarios_Buscar_Email 
 @email nvarchar(100)
@@ -67,17 +78,6 @@ Begin
 	SELECT id_Usuario,nombre_Usuario,correo_Usuario
 	FROM     dbo.tbl_Usuarios
 	where correo_Usuario=@email
-
-End
---Creación Proceso Almacenado para Logear un Usuario
-create procedure prc_Usuarios_Login
-@email nvarchar(100),
-@contra nvarchar(50)
-As
-Begin
-	SELECT correo_Usuario,contrasenia_Usuario
-	FROM     dbo.tbl_Usuarios
-	where correo_Usuario=@email and contrasenia_Usuario=@contra
 
 End
 --Creacion proceso almacenado para actualizar un usuario
@@ -305,4 +305,4 @@ end
 
 
 --Reiniciar id en 1
---DBCC CHECKIDENT ([tbl_Usuarios]  , RESEED, 0);
+--DBCC CHECKIDENT ( [tbl_Tipos_Usuario] , RESEED, 0);

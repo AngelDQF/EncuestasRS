@@ -10,8 +10,20 @@ const { tokenSign } = require('../utils/handlejwt');//TODO: Importamos las funci
  */
 const ctrGetUsuarios = async (req, res) => {//TODO: Creamos la función que se encargará de obtener los usuarios
   try {
+    const {user}=req;
     usuariosModel.getUsuarios().then(result => {//TODO: Llamamos a la función del modelo para obtener los usuarios
-      res.json({results:result});//TODO: Mostramos el resultado en un json
+      res.json({results:result,user:user});//TODO: Mostramos el resultado en un json
+    });
+  } catch (error) {
+    handleHttpError(res, 'ERROR_LISTAR_USUARIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    console.log(error);
+  }
+};
+const ctrGetUsuarioByID = async (req, res) => {//TODO: Creamos la función que se encargará de obtener los usuarios
+  try {
+    const {id}=req.body
+    usuariosModel.getUsuarioID(id).then(result => {//TODO: Llamamos a la función del modelo para obtener los usuarios
+      res.json(result);//TODO: Mostramos el resultado en un json
     });
   } catch (error) {
     handleHttpError(res, 'ERROR_LISTAR_USUARIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -69,4 +81,4 @@ const ctrPostUsuario = async (req, res) => {//TODO: Creamos la función que se e
     console.log(error);
   }
 };
-module.exports = { ctrGetUsuariosDesactivados,ctrGetUsuarios,ctrGetUsuariosTipos,ctrPostUsuario};//TODO: Exportamos las funcionessss
+module.exports = { ctrGetUsuariosDesactivados,ctrGetUsuarios,ctrGetUsuariosTipos,ctrPostUsuario,ctrGetUsuarioByID};//TODO: Exportamos las funcionessss

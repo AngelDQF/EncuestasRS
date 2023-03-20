@@ -15,6 +15,20 @@ async function getUsuarios() {//TODO: Función para obtener todos los usuarios
     
   }
 }
+async function getUsuarioID(id) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    const result = await pool.request().query(`Exec prc_Usuarios_Buscar_ID '${id}'`);
+    if(result.recordset.length!==0){
+      return await result.recordset
+    }else{
+      return "Usuario no encontrado"
+    }
+  }
+  catch (error) {
+    console.log(error);
+  }
+};
 async function getUsuariosDesactivados() {//TODO: Función para obtener todos los usuarios
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -103,4 +117,4 @@ async function verificarEmail(email) {//TODO: Función para verificar si el DNI 
   }
 }
 
-module.exports = { getUsuariosDesactivados,getUsuarios, getUsuario, postUsuario, verificarEmail,verificarDNI ,getUsuariosTipos};//TODO: Exportamos las funciones que hemos creado
+module.exports = { getUsuariosDesactivados,getUsuarios, getUsuario, postUsuario, verificarEmail,verificarDNI ,getUsuariosTipos,getUsuarioID};//TODO: Exportamos las funciones que hemos creado

@@ -4,13 +4,14 @@ import { Usuario, UsuariosResponse, UsuariosService } from '@serv/usuarios.servi
 @Component({
   selector: 'app-listar',
   templateUrl: './listar-usuarios.component.html',
-  styleUrls: ['./listar-usuarios.component.css','../../../../app.component.css']
+  styleUrls: ['./listar-usuarios.component.css', '../../../../app.component.css']
 })
 export class ListarUsuariosComponent {
   usuarios: Usuario[] = [];
-  constructor(private usuariosModel:UsuariosService) {
-    this.usuariosModel.getUsuarios().subscribe((data: UsuariosResponse)=>{
+  constructor(private usuariosModel: UsuariosService) {
+    this.usuariosModel.getUsuarios().subscribe((data: UsuariosResponse) => {
       this.usuarios = data.results;
-      })
+    })
+
   }
 }

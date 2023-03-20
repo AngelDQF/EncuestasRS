@@ -1,20 +1,21 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {environment} from '@shared/environments/environment'
+import { environment } from '@shared/environments/environment'
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class UsuariosService {
+  private URL = environment.api;
+  constructor(private http: HttpClient) { }
 
-  constructor(private http:HttpClient) { }
-
-  getUsuarios(){
-    return this.http.get<UsuariosResponse>('http://'+environment.puerto+'/redsolidaria/usuarios')
+  getUsuarios(): Observable<any> {
+    return this.http.get(`${this.URL}/usuarios`)
   }
-  getUsuariosDesactivados(){
-    return this.http.get<UsuariosDesactivadosResponse>('http://'+environment.puerto+'/redsolidaria/usuarios/des')
+  getUsuariosDesactivados() {
+    return this.http.get<UsuariosDesactivadosResponse>('http://' + environment.puerto + '/redsolidaria/usuarios/des')
   }
   getUsuariosTipos() {
-    return this.http.get<UsuariosTiposResponse>('http://'+environment.puerto+'/redsolidaria/usuarios/tipos')
+    return this.http.get<UsuariosTiposResponse>('http://' + environment.puerto + '/redsolidaria/usuarios/tipos')
   }
 }
 export interface UsuariosResponse {
