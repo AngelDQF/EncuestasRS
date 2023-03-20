@@ -27,7 +27,8 @@
       "@shared/*": ["src/app/shared/*"],
       "@serv/*":["src/app/services/*"],
       "@env/*":["src/app/shared/environments/*"],
-      "@models/*":["src/app/models/*"],
+      "@models/*":["src/app/core/models/*"],
+      "@guards/*":["src/app/core/guards/*"],
 
     }
   },

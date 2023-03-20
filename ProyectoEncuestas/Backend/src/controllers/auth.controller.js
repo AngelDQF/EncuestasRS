@@ -27,10 +27,10 @@ const ctrLogin = async (req, res) => {//TODO: Creamos la función que se encarga
     consulta.recordset[0].password = undefined;
 
     const data = {
-      user: consulta.recordset[0],
+      data: consulta.recordset[0],
       token: await tokenSign(consulta.recordset[0])
     }
-    res.send({ data })
+    res.send( {data} )
   } catch (error) {
     handleHttpError(res, `ERROR_CREAR_${error}`);
     console.log(error);

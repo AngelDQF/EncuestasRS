@@ -17,6 +17,10 @@ a {
   margin-bottom: 5px;
   user-select: none;
 }
+.error{
+  color:#f80000;
+  font-weight: bold;
+}
 .imgContainer {
   height: 100%;
 }

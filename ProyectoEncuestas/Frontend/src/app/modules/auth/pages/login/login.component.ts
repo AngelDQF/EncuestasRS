@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@serv/auth.service';
-import { LoginInterface } from '@models/auth/login.interface';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  errorSesion: boolean;
   formLogin = new FormGroup({
     email: new FormControl('', [
       Validators.required,
@@ -19,14 +21,24 @@ export class LoginComponent implements OnInit {
     ])
   });
 
-  constructor(private modelAuth: AuthService) { }
-  ngOnInit(): void { }
-  
+  constructor(private modelAuth: AuthService,private cookie:CookieService, private router:Router) { }
+  ngOnInit(): void {
+    this.errorSesion = false
+  }
+
   onLogin() {
-    const {email, password}= this.formLogin.value;
+    const { email, password } = this.formLogin.value;
     this.modelAuth.sendCredentials(email, password).subscribe(
-      responseOK => {
-        console.log(responseOK);
+      responseOk => {//TODO: Aqui se entrara si todo se cumple
+        this.errorSesion = false;
+        const {data,token}=responseOk.data
+        this.cookie.set('token',token,4,'/');
+        console.log('Sesión Iniciada Correctamente'	);
+        this.router.navigate(['/'])
+      },
+      err => {//TODO: Aqui entraran los errores
+        this.errorSesion = true
+        console.log('Usuario o Contraseña Invalidos');
       }
     );
   }

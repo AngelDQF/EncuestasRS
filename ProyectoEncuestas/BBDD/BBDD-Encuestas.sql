@@ -242,7 +242,7 @@ estado_Servicio bit not null,
 constraint fk_Tipo_Servicio foreign key (id_Tipo_Servicio)
 References tbl_Tipo_Servicios(id_Tipo_Servicio)
 );
---Creación Tabla Servicios B�sicos
+--Creación Tabla Servicios Basicos
 Create Table tbl_Servicios_Basicos(
 id_Servicio_Basico INT Primary Key Identity(1,1),
 id_Encuesta INT Not Null,

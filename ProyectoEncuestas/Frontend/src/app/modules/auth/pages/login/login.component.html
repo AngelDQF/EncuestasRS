@@ -15,6 +15,7 @@
           <input formControlName="password" type="password" id="password" name="password">
           <a routerLink="recuperar">¿Olvido su contraseña?</a>
         </div>
+        <div *ngIf="errorSesion" class="error">Usuario o contraseña Invalidos</div>
         <button [disabled]="formLogin.invalid" type="submit" class="btn btn-primary form-control">Acceder</button>
       </form>
     </div>

@@ -10,6 +10,7 @@ import { ServiciosService } from '@serv/servicios.service';
 import { FinanciamientosService } from '@serv/financiamientos.service';
 import { RequerimientosService } from '@serv/requerimientos.service';
 import { UsuariosService } from '@serv/usuarios.service';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { UsuariosService } from '@serv/usuarios.service';
     JuntaService,
     RecursosService,
     FinanciamientosService,
-    RequerimientosService
+    RequerimientosService,
+    CookieService
   ],
   bootstrap: [AppComponent],
 })
