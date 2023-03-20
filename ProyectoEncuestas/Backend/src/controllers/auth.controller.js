@@ -27,8 +27,8 @@ const ctrLogin = async (req, res) => {//TODO: Creamos la función que se encarga
     consulta.recordset[0].password = undefined;
 
     const data = {
-      token: await tokenSign(consulta.recordset[0]),
-      user: consulta.recordset[0]
+      user: consulta.recordset[0],
+      token: await tokenSign(consulta.recordset[0])
     }
     res.send({ data })
   } catch (error) {

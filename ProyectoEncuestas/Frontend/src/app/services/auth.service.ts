@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginInterface } from '@models/auth/login.interface';
 import { LoginResponseInterface } from '@models/auth/login.response';
-import {environment} from '@env/environment';
+import { environment } from '@env/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +15,11 @@ export class AuthService {
    */
   constructor(private http: HttpClient) { }
 
-  loginByEmail(form:LoginInterface):Observable<LoginResponseInterface>{
-    return this.http.post<LoginResponseInterface>(`${this.URL}/auth/login`,form)
+  sendCredentials(email: any, password: any): Observable<any> {
+    const body = {
+      email, 
+      password
+    };
+    return this.http.post(`${this.URL}/auth/login`, body);
   }
 }

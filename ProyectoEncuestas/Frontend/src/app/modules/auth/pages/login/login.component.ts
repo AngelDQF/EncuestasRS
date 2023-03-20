@@ -22,9 +22,12 @@ export class LoginComponent implements OnInit {
   constructor(private modelAuth: AuthService) { }
   ngOnInit(): void { }
   
-  onLogin(form: LoginInterface) {
-    this.modelAuth.loginByEmail(form).subscribe(data=>{
-      console.log(data);
-    })
+  onLogin() {
+    const {email, password}= this.formLogin.value;
+    this.modelAuth.sendCredentials(email, password).subscribe(
+      responseOK => {
+        console.log(responseOK);
+      }
+    );
   }
 }

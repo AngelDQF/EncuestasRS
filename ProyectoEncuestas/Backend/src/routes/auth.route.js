@@ -3,6 +3,6 @@ const router = express.Router();//TODO: Creamos una instancia de Router para pod
 const { validatorLogin } = require('../validators/auth.validator.js')//TODO: Importamos los validadores de auth.js
 const { ctrLogin } = require("../controllers/auth.controller");//TODO: Exportamos las funciones del controlador de Usuarios para las rutas
 
-router.get('/login', validatorLogin, ctrLogin);//TODO: Creamos rutas para loguearnos
+router.post('/login', validatorLogin, ctrLogin);//TODO: Creamos rutas para loguearnos
 
 module.exports = router;//TODO: Exportamos las rutas que hemos creado
