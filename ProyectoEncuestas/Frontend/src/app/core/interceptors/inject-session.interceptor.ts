@@ -16,14 +16,15 @@ export class InjectSessionInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     try {
       const token = this.cookie.get('token');
+      console.log(token);
       let newRequest = request
       newRequest = request.clone({
         setHeaders: {
-          authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`
         }
       }
       )
-      return next.handle(request);
+      return next.handle(newRequest);
     } catch (error) {
       console.log("INJECTION_ERROR:", error)
       return next.handle(request);

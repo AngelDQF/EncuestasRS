@@ -8,6 +8,7 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 })
 export class CaseriosComponent {
   caserios:any;
+  public page!:number;
   constructor(private ubicacionesModel:UbicacionesService){
     this.ubicacionesModel.getCaserios().subscribe((response: CaseriosComponent[]) => {
       this.caserios = response;

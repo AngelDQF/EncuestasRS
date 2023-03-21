@@ -29,7 +29,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="body" *ngFor="let cas of caserios" class="align-middle text-center">
+        <tr id="body" *ngFor="let cas of caserios | paginate: { itemsPerPage: 5, currentPage: page }" class="align-middle text-center">
           <th scope="row" class="text-center"><strong>{{cas.id_caserio}}</strong></th>
           <td>{{cas.caserio}}</td>
           <td>{{cas.mun}}</td>
@@ -42,5 +42,11 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="row">
+    <div class="col-12 align-items-center justify-content-center d-flex botones">
+      <pagination-controls (pageChange)="page=$event" previousLabel="Anterior"
+        nextLabel="Siguiente"></pagination-controls>
+    </div>
   </div>
 </div>

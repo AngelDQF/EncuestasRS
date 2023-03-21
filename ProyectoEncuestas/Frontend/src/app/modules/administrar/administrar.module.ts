@@ -1,3 +1,4 @@
+import { NgxPaginationModule } from 'ngx-pagination';
 import { JuntaService } from './../../services/junta.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -93,7 +94,8 @@ import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component'
   ],
   imports: [
     CommonModule,
-    AdministrarRoutingModule
+    AdministrarRoutingModule,
+    NgxPaginationModule
   ],
   providers:[ JuntaService,UbicacionesService
   ]

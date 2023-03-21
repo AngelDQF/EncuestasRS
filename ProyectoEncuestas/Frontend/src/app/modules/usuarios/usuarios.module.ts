@@ -1,3 +1,4 @@
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     UsuariosRoutingModule,
     SharedModule,
+    NgxPaginationModule
   ],
   providers:[
   ]

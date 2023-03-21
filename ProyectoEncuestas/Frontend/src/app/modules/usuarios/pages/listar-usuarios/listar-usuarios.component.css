@@ -10,7 +10,12 @@
   padding-left: 5px;
   padding-right: 0px;
 }
-
+.botones{
+  height: 100%;
+}
+.botones a, .botones span, .botones li{
+  color:aqua;
+}
 /*Pantallas lg*/
 @media screen and (max-width: 1200px) {
   #a1,

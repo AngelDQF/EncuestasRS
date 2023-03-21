@@ -127,7 +127,7 @@ a {
   text-align: center;
 }
 .tabla {
-  height: calc(80%) !important;
+  height: calc(70%) !important;
   overflow: scroll;
 }
 .headerListar {

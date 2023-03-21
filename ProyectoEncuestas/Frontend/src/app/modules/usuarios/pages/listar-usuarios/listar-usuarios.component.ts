@@ -8,6 +8,7 @@ import { Usuario, UsuariosResponse, UsuariosService } from '@serv/usuarios.servi
 })
 export class ListarUsuariosComponent {
   usuarios: Usuario[] = [];
+  public page!:number;
   constructor(private usuariosModel: UsuariosService) {
     this.usuariosModel.getUsuarios().subscribe((data: UsuariosResponse) => {
       this.usuarios = data.results;

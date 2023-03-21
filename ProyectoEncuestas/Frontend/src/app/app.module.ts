@@ -12,6 +12,7 @@ import { RequerimientosService } from '@serv/requerimientos.service';
 import { UsuariosService } from '@serv/usuarios.service';
 import { CookieService } from 'ngx-cookie-service';
 import { InjectSessionInterceptor } from './core/interceptors/inject-session.interceptor';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { InjectSessionInterceptor } from './core/interceptors/inject-session.int
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxPaginationModule,
     HttpClientModule,
   ],
   providers: [
