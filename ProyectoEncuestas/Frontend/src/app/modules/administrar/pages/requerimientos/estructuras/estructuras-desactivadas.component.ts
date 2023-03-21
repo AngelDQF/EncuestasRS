@@ -7,6 +7,7 @@ import { Estructura, EstructurasResponse, RequerimientosService } from '@serv/re
   styleUrls: ['../requerimientos.component.css','../../../../../app.component.css']
 })
 export class EstructurasDesactivadasComponent {
+  page:any;
   estructuras: Estructura[] = [];
   constructor(private financiamientoModel: RequerimientosService) {
     this.financiamientoModel.getEstructurasDesactivados().subscribe((data: EstructurasResponse) => {

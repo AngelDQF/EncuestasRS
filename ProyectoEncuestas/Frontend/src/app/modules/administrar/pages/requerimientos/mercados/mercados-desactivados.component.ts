@@ -7,6 +7,7 @@ import { Mercado, MercadosResponse, RequerimientosService } from '@serv/requerim
   styleUrls: ['../requerimientos.component.css','../../../../../app.component.css']
 })
 export class MercadosDesactivadosComponent {
+  page:any;
   mercados: Mercado[] = [];
   constructor(private financiamientoModel: RequerimientosService) {
     this.financiamientoModel.getMercadosDesactivados().subscribe((data: MercadosResponse) => {

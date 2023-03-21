@@ -7,6 +7,7 @@ import { EjesInterface } from '@models/administrar/junta/ejes.interface';
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class EjesComponent {
+  page:any;
   ejes:Array<EjesInterface>=[];
   constructor(private ejesModel:JuntaService) {
     this.ejesModel.getEjes().subscribe((data: EjesInterface[])=>{

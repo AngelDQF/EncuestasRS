@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       responseOk => {//TODO: Aqui se entrara si todo se cumple
         this.errorSesion = false;
         const {data,token}=responseOk.data
-        this.cookie.set('token',token,4,'/');
+        this.cookie.set('token',token,1,'/');
         console.log('Sesión Iniciada Correctamente'	);
         this.router.navigate(['/'])
       },

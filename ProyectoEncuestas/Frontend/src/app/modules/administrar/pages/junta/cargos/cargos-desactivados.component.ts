@@ -7,6 +7,7 @@ import { JuntaService } from '@serv/junta.service';
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class CargosDesactivadosComponent {
+  page:any;
   cargosDesactivados:any;
   constructor(private cargosModel:JuntaService) {
     this.cargosModel.getCargosDesactivados().subscribe((data: EjesInterface[])=>{

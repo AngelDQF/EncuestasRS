@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class BosquesComponent {
+  page:any;
   bosques: Natural[] = [];
   constructor(private bosquesModel: RecursosService) {
     this.bosquesModel.getBosques().subscribe((data: NaturalesResponse) => {

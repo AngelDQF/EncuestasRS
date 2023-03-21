@@ -11,6 +11,7 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 export class MunicipiosComponent {
   municipios:any;
   departamentos:any;
+  page:any;
   constructor(private ubicacionesModel: UbicacionesService) {
     this.ubicacionesModel.getDepartamentos().subscribe((result:DepartamentosInterface[])=>{
       this.departamentos=result

@@ -7,6 +7,7 @@ import { Servicio, ServiciosResponse, ServiciosService } from '@serv/servicios.s
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class LocalesDesactivadosComponent {
+  page:any;
   servicios: Servicio[] = [];
   constructor(private serModel: ServiciosService) {
     this.serModel.getSerBasicosDesactivados().subscribe((data: ServiciosResponse) => {

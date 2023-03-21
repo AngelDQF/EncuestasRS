@@ -20,6 +20,7 @@ import { OrganizacionesComponent } from './pages/organizaciones/organizaciones/o
 import { BosquesDesactivadosComponent } from './pages/recursos/bosques/bosques-desactivados.component';
 import { BosquesComponent } from './pages/recursos/bosques/bosques.component';
 import { RecursosComponent } from './pages/recursos/recursos.component';
+import { TipoSueloDesactivadosComponent } from './pages/recursos/tipo-suelo/tipo-suelo-desactivados.component';
 import { TipoSueloComponent } from './pages/recursos/tipo-suelo/tipo-suelo.component';
 import { EstructurasDesactivadasComponent } from './pages/requerimientos/estructuras/estructuras-desactivadas.component';
 import { EstructurasComponent } from './pages/requerimientos/estructuras/estructuras.component';
@@ -109,7 +110,7 @@ const routes: Routes = [
       {
         path: 'suelos', children: [
           { path: '', component: TipoSueloComponent },
-          { path: 'desactivados', component: TiposFinanciamientosDesactivadosComponent }
+          { path: 'desactivados', component: TipoSueloDesactivadosComponent }
         ]
       }
 

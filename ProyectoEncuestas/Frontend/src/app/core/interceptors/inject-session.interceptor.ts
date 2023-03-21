@@ -16,7 +16,6 @@ export class InjectSessionInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     try {
       const token = this.cookie.get('token');
-      console.log(token);
       let newRequest = request
       newRequest = request.clone({
         setHeaders: {

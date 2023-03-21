@@ -7,6 +7,7 @@ import { RequerimientosService, TenenciaTierra, TenenciaTierrasResponse } from '
   styleUrls: ['../../requerimientos.component.css','../../../../../../app.component.css']
 })
 export class TenenciaTierrasComponent {
+  page:any;
   tenencias: TenenciaTierra[] = [];
   constructor(private tenenciasTierraModel: RequerimientosService) {
     this.tenenciasTierraModel.getTenenciaTierras().subscribe((data: TenenciaTierrasResponse) => {

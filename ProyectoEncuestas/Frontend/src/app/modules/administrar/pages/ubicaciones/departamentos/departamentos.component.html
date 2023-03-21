@@ -7,17 +7,18 @@
         </div>
         <h1 class="text-center col-10 titulo">Departamentos de Honduras</h1>
       </div>
-      <div
-        class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+      <div class="col-12 text-bold text-center btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Departamento">
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Departamento"
+              [(ngModel)]="buscarDepartamento" (ngModelChange)="callSearch($event)">
           </label>
         </div>
+        <p class="col-12">resultado:{{buscarDepartamento}}</p>
       </div>
     </div>
   </div>
-  <div class="tabla">
+  <div class="tabla table-responsive">
     <table class="table">
       <thead class="table-dark align-middle">
         <tr>
@@ -27,16 +28,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="body" *ngFor="let dep of departamentos" class="align-middle text-center">
-          <th routerLink=":id" scope="row" class="text-center"><strong>{{dep.id_dep}}</strong></th>
+        <tr id="body" *ngFor="let dep of departamentos | paginate: { itemsPerPage: 4, currentPage: page }" class="align-middle text-center">
+          <th scope="row" class="text-center"><strong>{{dep.id_dep}}</strong></th>
           <td>
             <div class=" d-grid mt-1 pb-1">
-              <a routerLink="get" class="form-control btn btnGuardar ">Ver</a>
+              <a class="form-control btn btnGuardar " >Ver</a>
             </div>
           </td>
           <td>{{dep.dep}}</td>
         </tr>
       </tbody>
     </table>
+    <div class="row">
+      <div class="col-12 align-items-center justify-content-center d-flex botones">
+        <pagination-controls (pageChange)="page=$event" previousLabel="Anterior"
+          nextLabel="Siguiente"></pagination-controls>
+      </div>
+    </div>
   </div>
 </div>

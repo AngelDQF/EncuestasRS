@@ -8,6 +8,7 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 })
 export class AldeasComponent {
   aldeas:any;
+  page:any;
   constructor(private ubicacionesModel:UbicacionesService){
     this.ubicacionesModel.getAldeas().subscribe((response: AldeasComponent[]) => {
       this.aldeas = response;

@@ -7,6 +7,7 @@ import { FinanciamientosService, FuenteFinancimiento, FuentesFinancimientoRespon
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class FuentesFinanciamientosComponent {
+  page:any;
   financiamientos: FuenteFinancimiento[] = [];
   constructor(private financiamientoModel: FinanciamientosService) {
     this.financiamientoModel.getFuentesFinanciamiento().subscribe((data: FuentesFinancimientoResponse) => {

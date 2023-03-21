@@ -12,25 +12,31 @@
           <div class="selects col-12 row">
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <label class="" for="dep">Departamento</label>
-              <select class="form-select" id="dep">
+              <select class="form-select">
+                <option value="0" selected>
+                  <p>Seleccione un Departamento</p>
+                </option>
                 <option *ngFor="let dep of departamentos">{{dep.id_dep}}. {{dep.dep}}</option>
               </select>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <label class="" for="dep">Municipio</label>
-              <select class="form-select" id="dep">
+              <select class="form-select">
+                <option selected>Seleccione un Municipio</option>
                 <option *ngFor="let dep of departamentos"></option>
               </select>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <label class="" for="dep">Aldea</label>
-              <select class="form-select" id="dep">
+              <select class="form-select">
+                <option selected>Seleccione una Aldea</option>
                 <option *ngFor="let dep of departamentos"></option>
               </select>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <label class="" for="dep">Caserio</label>
-              <select class="form-select" id="dep">
+              <select class="form-select">
+                <option selected>Seleccione un Caserio</option>
                 <option *ngFor="let dep of departamentos"></option>
               </select>
             </div>
@@ -44,7 +50,7 @@
               <h3 class="pb-0 mb-0">Seleccione la Organización que Realiza la Reunión</h3>
             </div>
             <div class="col-12">
-              <select class="form-select" style="background-color: #009eb618;" id="dep">
+              <select class="form-select" style="background-color: #009eb618;">
                 <option *ngFor="let dep of departamentos"></option>
               </select>
             </div>
@@ -58,23 +64,23 @@
                 <div class="col-xl-4 col-lg-6 col-md-12 p-0">
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="txtTotalHombres">Hombres</span>
-                    <input (ngModelChange)="totalChange($event)" [(ngModel)]="hombres" formControlName="totalHombres"
-                      type="text" class="form-control" aria-label="Sizing example input"
+                    <input [(ngModel)]="hombres" formControlName="totalHombres"
+                      type="number" class="form-control" aria-label="Sizing example input"
                       aria-describedby="txtTotalHombres" name="txtTotalHombres">
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-12 p-0">
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mujeres</span>
-                    <input (ngModelChange)="totalChange($event)" [(ngModel)]="mujeres" formControlName="totalMujeres"
-                      type="text" class="form-control" aria-label="Sizing example input"
+                    <input [(ngModel)]="mujeres" formControlName="totalMujeres"
+                      type="number" class="form-control" aria-label="Sizing example input"
                       aria-describedby="inputGroup-sizing-default">
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-12 col-md-12 p-0">
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Total</span>
-                    <input [(ngModel)]="total" formControlName="totalAsistencia" type="text" class="form-control"
+                    <input [(ngModel)]="total" formControlName="totalAsistencia" type="number" class="form-control"
                       aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly>
                   </div>
                 </div>
@@ -173,7 +179,7 @@
           <div class="selects col-12 row align-items-center">
             <div class="col-md-3 col-sm-12 col-12">
               <label class="" for="dep">Seleccione una Organización</label>
-              <select class="form-select" id="dep">
+              <select class="form-select">
                 <option *ngFor="let dep of departamentos"></option>
               </select>
             </div>

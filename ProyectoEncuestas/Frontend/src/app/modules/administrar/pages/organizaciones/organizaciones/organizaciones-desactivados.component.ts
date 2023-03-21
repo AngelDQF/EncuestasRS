@@ -7,6 +7,7 @@ import { Organizacion, OrganizacionesResponse, OrganizacionesService, } from '@s
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class OrganizacionesDesactivadosComponent {
+  page:any;
   orgsDes: Organizacion[] = [];
   constructor(private orgModel:OrganizacionesService) {
     this.orgModel.getOrganizacionesDesactivados().subscribe((data: OrganizacionesResponse)=>{

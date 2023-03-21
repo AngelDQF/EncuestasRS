@@ -7,6 +7,7 @@ import { RequerimientosService, UsoTierra,UsosTierraResponse } from '@serv/reque
   styleUrls: ['../../requerimientos.component.css','../../../../../../app.component.css']
 })
 export class UsosTierrasComponent {
+  page:any;
   usos: UsoTierra[] = [];
   constructor(private usosTierraModel: RequerimientosService) {
     this.usosTierraModel.getUsosTierra().subscribe((data: UsosTierraResponse) => {

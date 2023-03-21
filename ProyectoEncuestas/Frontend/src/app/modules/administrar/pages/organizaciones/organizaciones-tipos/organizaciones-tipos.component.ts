@@ -8,6 +8,7 @@ import { OrganizacionesService, TiposOrganizacion, TiposOrganizacionResponse } f
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class OrganizacionesTiposComponent {
+  page:any;
   orgs: TiposOrganizacion[] = [];
   constructor(private orgModel:OrganizacionesService,private router:Router) {
     this.orgModel.getTiposOrganizacion().subscribe((data: TiposOrganizacionResponse)=>{

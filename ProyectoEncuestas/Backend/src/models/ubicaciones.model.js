@@ -17,6 +17,23 @@ async function getDepartamentos(){
     console.log(error);
   }
 }
+async function getDepartamentoByName(dep){
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query(`Exec prc_Departamentos_Buscar '${dep}'`);//TODO: Ejecutamos la consulta
+    //console.log(result.recordset);
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Departamentos Agregados"
+    }
+     pool.close();//TODO: Cerramos la conexión
+
+  } catch (error) {
+    console.log(error);
+  }
+}
 async function getMunicipios(){
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -68,4 +85,4 @@ async function getCaserios(){
     console.log(error);
   }
 }
-module.exports={getDepartamentos,getMunicipios,getAldeas,getCaserios};//TODO: Exportamos las funciones
+module.exports={getDepartamentos,getMunicipios,getAldeas,getCaserios,getDepartamentoByName};//TODO: Exportamos las funciones

@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <div class="tabla">
+  <div class="tabla table-responsive">
     <table class="table">
       <thead class="table-dark align-middle">
         <tr>
@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="body" *ngFor="let tenencia of tenencias" class="align-middle text-center">
+        <tr id="body" *ngFor="let tenencia of tenencias | paginate: { itemsPerPage: 3, currentPage: page }" class="align-middle text-center">
           <th routerLink=":id" scope="row" class="text-center"><strong>{{tenencia.id}}</strong></th>
           <td>
             <div class=" d-grid mt-1 pb-1">
@@ -50,6 +50,12 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="row">
+    <div class="col-12 align-items-center justify-content-center d-flex botones">
+      <pagination-controls (pageChange)="page=$event" previousLabel="Anterior"
+        nextLabel="Siguiente"></pagination-controls>
+    </div>
   </div>
 </div>
 

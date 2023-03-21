@@ -7,6 +7,7 @@ import { Servicio, ServiciosResponse, ServiciosService } from '@serv/servicios.s
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class LocalesComponent {
+  page:any;
   servicios: Servicio[] = [];
   constructor(private serModel: ServiciosService) {
     this.serModel.getSerLocales().subscribe((data: ServiciosResponse) => {

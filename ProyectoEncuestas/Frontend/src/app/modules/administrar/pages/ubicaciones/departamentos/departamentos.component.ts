@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DepartamentosInterface } from '@models/ubicaciones/departamentos.interface';
 import { UbicacionesService } from '@serv/ubicaciones.service';
 
@@ -7,11 +7,22 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
   templateUrl: './departamentos.component.html',
   styleUrls: ['../ubicaciones.component.css','../../../../../app.component.css']
 })
-export class DepartamentosComponent {
+export class DepartamentosComponent implements OnInit{
+  buscarDepartamento:string="";
   departamentos:any;
+   page:any;
   constructor(private ubicacionesModel: UbicacionesService) {
+
+  }
+  ngOnInit(): void {
     this.ubicacionesModel.getDepartamentos().subscribe((response: DepartamentosInterface[]) => {
       this.departamentos = response;
+      console.log(this.departamentos)
     })
+  }
+  callSearch(term:string):void{
+      this.ubicacionesModel.getSearchDepartamentos$(this.buscarDepartamento).subscribe((response: DepartamentosInterface[]) => {
+        this.departamentos = response;
+      })
   }
 }

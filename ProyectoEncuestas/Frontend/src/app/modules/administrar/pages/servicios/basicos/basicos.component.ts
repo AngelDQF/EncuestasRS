@@ -7,6 +7,7 @@ import { Servicio, ServiciosResponse, ServiciosService } from 'src/app/services/
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class BasicosComponent {
+  page:any;
   servicios: Servicio[] = [];
   constructor(private serModel: ServiciosService) {
     this.serModel.getSerBasicos().subscribe((data: ServiciosResponse) => {

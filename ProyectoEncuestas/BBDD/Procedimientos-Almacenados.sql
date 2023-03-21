@@ -134,6 +134,19 @@ as begin
 	where id_Cargo=@id
 end
 --Procedimientos Almacenados para las Ubicaciones
+--Procedimiento Alamacenado para buscar un departamento por el nombre
+create procedure prc_Departamentos_Buscar
+@dep nvarchar(17)
+as begin
+	if @dep is null
+		SELECT id_Departamento AS id_dep, departamento AS dep
+		FROM     dbo.tbl_Departamentos
+		where departamento like '%%'
+	else
+		SELECT id_Departamento AS id_dep, departamento AS dep
+		FROM     dbo.tbl_Departamentos
+		where departamento like '%'+@dep+'%'
+end
 --Buscar Municipios de un Departamento
 create procedure prc_Departamentos_Buscar_Municipios
 @id int

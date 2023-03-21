@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-  <div class="tabla">
+  <div class="tabla table-responsive">
     <table class="table">
       <thead class="table-dark align-middle">
         <tr>
@@ -29,7 +29,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="body" *ngFor="let aldea of aldeas" class="align-middle text-center">
+        <tr id="body" *ngFor="let aldea of aldeas | paginate: { itemsPerPage: 4, currentPage: page }" class="align-middle text-center">
           <th scope="row" class="text-center"><strong>{{aldea.id_aldea}}</strong></th>
           <td>{{aldea.aldea}}</td>
           <td>{{aldea.mun}}</td>
@@ -40,7 +40,13 @@
             </div>
           </td>
         </tr>
-      </tbody>
+      </tbody>+
     </table>
+  </div>
+  <div class="row">
+    <div class="col-12 align-items-center justify-content-center d-flex botones">
+      <pagination-controls (pageChange)="page=$event" previousLabel="Anterior"
+        nextLabel="Siguiente"></pagination-controls>
+    </div>
   </div>
 </div>

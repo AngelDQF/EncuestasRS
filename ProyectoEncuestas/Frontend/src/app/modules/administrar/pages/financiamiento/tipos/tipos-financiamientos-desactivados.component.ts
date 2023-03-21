@@ -7,6 +7,7 @@ import { FinanciamientosService, TipoFinancimiento, TiposFinancimientoResponse }
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class TiposFinanciamientosDesactivadosComponent {
+  page:any;
   financiamientos: TipoFinancimiento[] = [];
   constructor(private financiamientoModel: FinanciamientosService) {
     this.financiamientoModel.getTiposFinanciamientoDesactivados().subscribe((data: TiposFinancimientoResponse) => {

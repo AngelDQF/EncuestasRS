@@ -7,6 +7,7 @@ import { EjesInterface } from '@models/administrar/junta/ejes.interface';
   styleUrls: ['../../../../card.css', '../../../../../app.component.css']
 })
 export class CargosComponent implements OnInit {
+  page:any;
   cargos:any;
   constructor(private cargosModel: JuntaService) {
     this.cargosModel.getCargos().subscribe((response: EjesInterface[]) => {

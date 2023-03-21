@@ -8,6 +8,7 @@ import { Natural, NaturalesResponse, RecursosService }  from '@serv/recursos.ser
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class BosquesDesactivadosComponent {
+  page:any;
   bosques: Natural[] = [];
   constructor(private bosquesModel: RecursosService) {
     this.bosquesModel.getBosquesDesactivados().subscribe((data: NaturalesResponse) => {

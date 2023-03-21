@@ -9,7 +9,6 @@ const checkTipo = (tipo) => (req, res, next) => {
   try {
     const {user}=req;
     const tipoByUser=user[0].tipo;
-    console.log(tipoByUser);
     const checkValueTipo=tipo.some((tipoSingle)=>
       tipoByUser.includes(tipoSingle)
     );

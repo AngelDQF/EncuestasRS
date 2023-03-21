@@ -46,6 +46,10 @@
   margin-top: 10px;
   display: flex;
 }
+.selectedSelect p{
+  font-weight: 100 !important;
+  color: aliceblue !important;
+}
 .selects div {
   padding: 0px 15px;
 }

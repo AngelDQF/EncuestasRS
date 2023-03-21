@@ -7,6 +7,7 @@ import { FinanciamientosService, FuenteFinancimiento, FuentesFinancimientoRespon
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class FuentesFinanciamientosDesactivadasComponent {
+  page:any;
   financiamientos: FuenteFinancimiento[] = [];
   constructor(private financiamientoModel: FinanciamientosService) {
     this.financiamientoModel.getFuentesFinanciamientoDesactivados().subscribe((data: FuentesFinancimientoResponse) => {

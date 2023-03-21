@@ -8,6 +8,7 @@ import { FinanciamientosService, TipoFinancimiento, TiposFinancimientoResponse }
 
 })
 export class TiposFinanciamientosComponent {
+  page:any;
   financiamientos: TipoFinancimiento[] = [];
   constructor(private financiamientoModel: FinanciamientosService) {
     this.financiamientoModel.getTiposFinanciamientoDesactivados().subscribe((data: TiposFinancimientoResponse) => {

@@ -7,6 +7,7 @@ import { Natural, NaturalesResponse, RecursosService } from '@serv/recursos.serv
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class TipoSueloComponent {
+  page:any;
   suelos: Natural[] = [];
   constructor(private bosquesModel: RecursosService) {
     this.bosquesModel.getSuelos().subscribe((data: NaturalesResponse) => {

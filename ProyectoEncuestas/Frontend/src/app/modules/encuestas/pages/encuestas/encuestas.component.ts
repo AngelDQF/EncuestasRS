@@ -10,22 +10,17 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
   styleUrls: ['./encuestas.component.css', '../../../../app.component.css']
 })
 export class EncuestasComponent implements OnInit {
-  mujeres: string = '0';
-  hombres: string = '0';
-  total: string='0';
-  departamentos:any;
-  totalChange(result: number):void {
-    result = parseInt(this.mujeres) + parseInt(this.hombres);
-    console.log(result)
-    this.total = result.toString();
-  }
-
+  mujeres: number = 0;
+  hombres: number = 0;
+  total: number = this.mujeres + this.hombres;
+  departamentos: any;
+  selectDep: string;
   title: string = "Encuestas"
   formEncuestas: FormGroup = new FormGroup({});
-  constructor(private encuestasModel: EncuestasService, private ubicacionModel:UbicacionesService) {
+  constructor(private encuestasModel: EncuestasService, private ubicacionModel: UbicacionesService) {
 
-    this.ubicacionModel.getDepartamentos().subscribe((response:DepartamentosInterface)=>{
-      this.departamentos=response;
+    this.ubicacionModel.getDepartamentos().subscribe((response: DepartamentosInterface) => {
+      this.departamentos = response;
     })
   }
   ngOnInit(): void {
