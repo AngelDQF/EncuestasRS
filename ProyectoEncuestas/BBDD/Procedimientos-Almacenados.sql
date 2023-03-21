@@ -144,7 +144,7 @@ as begin
 end
 --Procedimiento Almacenado para Buscar Municipio
 create procedure prc_Municipios_Buscar
-@municipio nvarchar(70)
+@municipio nvarchar(50)
 as begin
 	SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun
 	FROM     dbo.tbl_Departamentos INNER JOIN
@@ -153,12 +153,14 @@ as begin
 end
 --Procedimiento Almacenado para Buscar Aldea
 create procedure prc_Aldeas_Buscar
-@municipio nvarchar(70)
+@aldea nvarchar(50)
 as begin
-	SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun
+	SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun, dbo.tbl_Aldeas.id_Aldea AS id_aldea, 
+					  dbo.tbl_Aldeas.aldea
 	FROM     dbo.tbl_Departamentos INNER JOIN
-                  dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento
-	where municipio like '%'+@municipio+'%'
+    dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento INNER JOIN
+    dbo.tbl_Aldeas ON dbo.tbl_Municipios.id_Municipio = dbo.tbl_Aldeas.id_Municipio
+	where aldea like '%'+@aldea+'%'
 end
 --Procedimiento Almacenado para Buscar Caserios
 create procedure prc_Caserios_Buscar

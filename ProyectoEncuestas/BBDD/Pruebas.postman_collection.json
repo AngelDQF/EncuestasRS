@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "620b22bd-55e7-4328-8163-3619c28c7ec3",
+		"_postman_id": "1bbe26fa-7b40-40f2-8543-bc14be47172f",
 		"name": "Pruebas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1050,6 +1050,47 @@
 					"response": []
 				},
 				{
+					"name": "Listar Departamentos por Nombre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NDI0MjcwLCJleHAiOjE2Nzk0MzE0NzB9.gSr8BLQX6UFJDTPWjr0uWD1JrYaqTMg6_o6AuBpjSfE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dep\":\"EL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/departamentos/buscar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"departamentos",
+								"buscar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Listar Municipios",
 					"request": {
 						"method": "GET",
@@ -1107,6 +1148,129 @@
 								"redsolidaria",
 								"ubicaciones",
 								"caserios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Caserios Buscar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NDI0MjcwLCJleHAiOjE2Nzk0MzE0NzB9.gSr8BLQX6UFJDTPWjr0uWD1JrYaqTMg6_o6AuBpjSfE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caserio\":\"Las Palmas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/caserios/buscar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"caserios",
+								"buscar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Municipios Buscar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NDMxNTg3LCJleHAiOjE2Nzk0Mzg3ODd9.6AvuC7phSNN73RfL89G2LOEVsYx1gPJWB3H49LPwh9Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mun\":\"EL P\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/municipios/buscar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"municipios",
+								"buscar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Aldeas Buscar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NDMxNTg3LCJleHAiOjE2Nzk0Mzg3ODd9.6AvuC7phSNN73RfL89G2LOEVsYx1gPJWB3H49LPwh9Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"aldea\":\"EL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/aldeas/buscar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"aldeas",
+								"buscar"
 							]
 						}
 					},
