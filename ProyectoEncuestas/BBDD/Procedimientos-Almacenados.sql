@@ -138,14 +138,39 @@ end
 create procedure prc_Departamentos_Buscar
 @dep nvarchar(17)
 as begin
-	if @dep is null
-		SELECT id_Departamento AS id_dep, departamento AS dep
-		FROM     dbo.tbl_Departamentos
-		where departamento like '%%'
-	else
 		SELECT id_Departamento AS id_dep, departamento AS dep
 		FROM     dbo.tbl_Departamentos
 		where departamento like '%'+@dep+'%'
+end
+--Procedimiento Almacenado para Buscar Municipio
+create procedure prc_Municipios_Buscar
+@municipio nvarchar(70)
+as begin
+	SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun
+	FROM     dbo.tbl_Departamentos INNER JOIN
+                  dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento
+	where municipio like '%'+@municipio+'%'
+end
+--Procedimiento Almacenado para Buscar Aldea
+create procedure prc_Aldeas_Buscar
+@municipio nvarchar(70)
+as begin
+	SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun
+	FROM     dbo.tbl_Departamentos INNER JOIN
+                  dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento
+	where municipio like '%'+@municipio+'%'
+end
+--Procedimiento Almacenado para Buscar Caserios
+create procedure prc_Caserios_Buscar
+@caserio nvarchar(70)
+as begin
+	SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun, dbo.tbl_Aldeas.id_Aldea AS id_aldea, 
+					  dbo.tbl_Aldeas.aldea, dbo.tbl_Caserios.id_Caserio AS id_caserio, dbo.tbl_Caserios.caserio
+	FROM     dbo.tbl_Departamentos INNER JOIN
+					  dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento INNER JOIN
+					  dbo.tbl_Aldeas ON dbo.tbl_Municipios.id_Municipio = dbo.tbl_Aldeas.id_Municipio INNER JOIN
+					  dbo.tbl_Caserios ON dbo.tbl_Aldeas.id_Aldea = dbo.tbl_Caserios.id_Aldea
+	where caserio like '%'+@caserio+'%'
 end
 --Buscar Municipios de un Departamento
 create procedure prc_Departamentos_Buscar_Municipios

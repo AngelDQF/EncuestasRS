@@ -2,16 +2,21 @@
   <div class="headerListar">
     <div class="row mb-2 align-items-center ">
       <div class="col-12 d-flex padT align-items-center">
-        <div class=" col-2">
+        <div class=" col-2 align-items-center">
           <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
         </div>
-        <h1 class="text-center col-10 titulo">Caserios de Honduras</h1>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Caserios de Honduras</h1>
+        </div>
+        <div class="col-2 align-items-end text-end">
+          <a (click)="refresh()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+        </div>
       </div>
-      <div
-        class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+      <div class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Caserio">
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Caserio"
+              [(ngModel)]="buscarCaserio" (ngModelChange)="callSearch($event)">
           </label>
         </div>
       </div>
@@ -29,7 +34,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="body" *ngFor="let cas of caserios | paginate: { itemsPerPage: 5, currentPage: page }" class="align-middle text-center">
+        <tr id="body" *ngFor="let cas of caserios | paginate: { itemsPerPage: 5, currentPage: page }"
+          class="align-middle text-center">
           <th scope="row" class="text-center"><strong>{{cas.id_caserio}}</strong></th>
           <td>{{cas.caserio}}</td>
           <td>{{cas.mun}}</td>

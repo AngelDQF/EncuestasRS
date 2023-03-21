@@ -168,6 +168,7 @@ a {
 @media screen and (max-width: 767px) {
   .contenido{
     height: 100vh;
+    padding:15px;
   }
   .pad {
     padding: 0px 0px;
@@ -177,6 +178,10 @@ a {
   }
   .titulo p {
     font-size: 40px;
+  }
+  .titulo{
+    margin: 0px;
+    font-size: 20px !important;
   }
   .btnGuardar,
   .btnEliminar,
@@ -192,7 +197,7 @@ a {
     font-size: 10px;
   }
   .tabla {
-    height: 75% !important;
+    height: 60% !important;
   }
   .bordeContenido {
     border-radius: 0px;

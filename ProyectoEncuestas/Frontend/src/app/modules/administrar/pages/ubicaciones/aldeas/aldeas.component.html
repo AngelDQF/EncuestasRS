@@ -5,13 +5,18 @@
         <div class=" col-2">
           <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
         </div>
-        <h1 class="text-center col-10 titulo">Municipios de Honduras</h1>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Aldeas de Honduras</h1>
+        </div>
+        <div class="col-2 align-items-end text-end">
+          <a (click)="refresh()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+        </div>
       </div>
       <div
         class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Municipio">
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Municipio" [(ngModel)]="buscarAldea" (ngModelChange)="callSearch($event)">
           </label>
         </div>
       </div>

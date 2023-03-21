@@ -1,6 +1,6 @@
 .tarjetaBoton {
   margin: 0px;
-  height: 250px;
+  height: 200px;
 }
 .padT {
   padding-left: 0px;
@@ -12,12 +12,25 @@
   font-weight: bold;
   border-radius: 100%;
   padding: 5px;
+  cursor:pointer;
+}
+.iconoRefrescar i {
+  color: var(--btn2);
+  border: 1px solid var(--btn2);
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 5px;
+  cursor:pointer;
 }
 .iconoRegresar i:hover {
   color: white;
   background-color: var(--btn3);
 }
-
+.iconoRefrescar i:hover {
+  color: white;
+  background-color: var(--btn2);
+}
 .titulo {
   padding-bottom: 10px;
 }
@@ -39,6 +52,7 @@ h2 {
 }
 a {
   transition: 0.6s;
+  cursor: pointer;
 }
 .row {
   margin: 0px;
@@ -52,11 +66,11 @@ a {
   border-radius: 15px;
 }
 #a3 {
-  background-color:#1abf96;
+  background-color: #1abf96;
   border-radius: 15px;
 }
 #a4 {
-  background-color:#f5e31e;
+  background-color: #f5e31e;
   border-radius: 15px;
 }
 #a1:hover {
@@ -79,7 +93,7 @@ a {
 
 /*Pantallas sm*/
 @media screen and (max-width: 767px) {
-  .tarjetaBoton  {
+  .tarjetaBoton {
     height: 100% !important;
   }
   h2 {
@@ -88,11 +102,13 @@ a {
   .hijo {
     height: 100px;
   }
-  .iconoRegresar i {
+  .iconoRegresar i,
+  .iconoRefrescar i {
     font-size: 10px;
   }
-  a{
-    margin-top: 5px;
+
+  .titulo {
+    height: 100%;
   }
 }
 /*Pantallas md*/
@@ -100,12 +116,17 @@ a {
   h2 {
     font-size: 20px;
   }
-  .iconoRegresar i {
+  .iconoRegresar i,
+  .iconoRefrescar i {
     font-size: 10px;
   }
 }
+/*Pantallas lg*/
 @media screen and (min-width: 992px) and (max-width: 1200px) {
   h2 {
     font-size: 15px;
+  }
+  .tarjetaBoton {
+    height: 150px !important;
   }
 }

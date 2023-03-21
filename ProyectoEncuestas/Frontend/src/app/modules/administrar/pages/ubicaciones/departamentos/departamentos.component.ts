@@ -5,7 +5,7 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 @Component({
   selector: 'app-departamentos',
   templateUrl: './departamentos.component.html',
-  styleUrls: ['../ubicaciones.component.css','../../../../../app.component.css']
+  styleUrls: ['../../../../cardLarge.css','../../../../../app.component.css']
 })
 export class DepartamentosComponent implements OnInit{
   buscarDepartamento:string="";
@@ -15,14 +15,18 @@ export class DepartamentosComponent implements OnInit{
 
   }
   ngOnInit(): void {
+    this. refresh();
+  }
+  callSearch():void{
+      this.ubicacionesModel.getSearchDepartamentos$(this.buscarDepartamento).subscribe((response: DepartamentosInterface[]) => {
+        this.departamentos = response;
+      })
+  }
+  refresh(){
     this.ubicacionesModel.getDepartamentos().subscribe((response: DepartamentosInterface[]) => {
       this.departamentos = response;
       console.log(this.departamentos)
     })
-  }
-  callSearch(term:string):void{
-      this.ubicacionesModel.getSearchDepartamentos$(this.buscarDepartamento).subscribe((response: DepartamentosInterface[]) => {
-        this.departamentos = response;
-      })
+    this.buscarDepartamento="";
   }
 }

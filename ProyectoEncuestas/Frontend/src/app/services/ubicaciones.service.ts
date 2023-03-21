@@ -37,6 +37,19 @@ export class UbicacionesService {
         })
       )
   }
+  getSearchMunicipios$(term:string):Observable<any>{
+    const body=[
+      {"mun":term}
+    ]
+    console.log(body[0])
+    console.log(term)
+    return this.http.post(`${this.URL}/ubicaciones/municipios/buscar`,body[0])
+    .pipe(
+      map(({results}: any) => {
+        return results;
+      })
+    )
+  }
   getAldeas(): Observable<any> {
     return this.http.get(`${this.URL}/ubicaciones/aldeas`)
       .pipe(
@@ -44,6 +57,19 @@ export class UbicacionesService {
           return results;
         })
       )
+  }
+  getSearchAldeas$(term:string):Observable<any>{
+    const body=[
+      {"aldea":term}
+    ]
+    console.log(body[0])
+    console.log(term)
+    return this.http.post(`${this.URL}/ubicaciones/aldeas/buscar`,body[0])
+    .pipe(
+      map(({results}: any) => {
+        return results;
+      })
+    )
   }
   getCaserios(): Observable<any> {
     return this.http.get(`${this.URL}/ubicaciones/caserios`)
@@ -55,7 +81,7 @@ export class UbicacionesService {
   }
   getSearchCaserios$(term:string):Observable<any>{
     const body=[
-      {"dep":term}
+      {"caserio":term}
     ]
     console.log(body[0])
     console.log(term)

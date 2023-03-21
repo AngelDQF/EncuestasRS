@@ -5,16 +5,20 @@
         <div class=" col-2">
           <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
         </div>
-        <h1 class="text-center col-10 titulo">Departamentos de Honduras</h1>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Departamentos de Honduras</h1>
+        </div>
+        <div class="col-2 align-items-end text-end">
+          <a (click)="refresh()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+        </div>
       </div>
       <div class="col-12 text-bold text-center btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
             <input name="bus" type="text" class="form-control btn" placeholder="Buscar Departamento"
-              [(ngModel)]="buscarDepartamento" (ngModelChange)="callSearch($event)">
+              [(ngModel)]="buscarDepartamento" (ngModelChange)="callSearch()">
           </label>
         </div>
-        <p class="col-12">resultado:{{buscarDepartamento}}</p>
       </div>
     </div>
   </div>
@@ -28,11 +32,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="body" *ngFor="let dep of departamentos | paginate: { itemsPerPage: 4, currentPage: page }" class="align-middle text-center">
+        <tr id="body" *ngFor="let dep of departamentos | paginate: { itemsPerPage: 4, currentPage: page }"
+          class="align-middle text-center">
           <th scope="row" class="text-center"><strong>{{dep.id_dep}}</strong></th>
           <td>
             <div class=" d-grid mt-1 pb-1">
-              <a class="form-control btn btnGuardar " >Ver</a>
+              <a class="form-control btn btnGuardar ">Ver</a>
             </div>
           </td>
           <td>{{dep.dep}}</td>

@@ -33,6 +33,16 @@ const ctrGetMunicipios = async (req, res) => {
     handleHttpError(res, 'ERROR_LISTAR_MUNICIPIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
+const ctrGetMunicipio = async (req, res) => {
+  try {
+    const {mun}=req.body;
+    ubicacionesModel.getMunicipiosByName(mun).then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_MUNICIPIO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
 const ctrGetAldeas = async (req, res) => {
   try {
     ubicacionesModel.getAldeas().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
@@ -40,6 +50,16 @@ const ctrGetAldeas = async (req, res) => {
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_ALDEAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
+const ctrGetAldea = async (req, res) => {
+  try {
+    const {aldea}=req.body;
+    ubicacionesModel.getAldeasByName(aldea).then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_CASERIO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
 const ctrGetCaserios = async (req, res) => {
@@ -51,4 +71,14 @@ const ctrGetCaserios = async (req, res) => {
     handleHttpError(res, 'ERROR_LISTAR_CASERIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-module.exports = { ctrGetDepartamentos,ctrGetDepartamento ,ctrGetMunicipios,ctrGetAldeas,ctrGetCaserios}
+const ctrGetCaserio = async (req, res) => {
+  try {
+    const {caserio}=req.body;
+    ubicacionesModel.getCaserioByName(caserio).then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_CASERIO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
+module.exports = { ctrGetDepartamentos,ctrGetDepartamento ,ctrGetMunicipios,ctrGetAldea,ctrGetAldeas,ctrGetCaserio,ctrGetCaserios,ctrGetMunicipio}
