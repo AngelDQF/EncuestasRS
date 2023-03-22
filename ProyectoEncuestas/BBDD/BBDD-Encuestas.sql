@@ -62,6 +62,7 @@ estado_Tipo_Organizacion bit not null
 Create Table tbl_Organizaciones(
 id_Organizacion INT Primary Key Identity(1,1),
 id_Tipo_Organizacion INT Not Null,
+social_productiva bit,
 descripcion_Organizacion nvarchar(70) Not Null,
 estado_Organizacion bit not null,
 Constraint fk_Tipos_Organizacion Foreign Key (id_Tipo_Organizacion)

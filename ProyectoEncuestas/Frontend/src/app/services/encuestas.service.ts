@@ -17,8 +17,58 @@ export class EncuestasService {
     const body = [
       { id }
     ];
-    console.log(body[0]);
     return this.http.post(`${this.URL}/encuestas/departamentos`, body[0]).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getMunicipiosUser$(id: number,dep:string): Observable<any> {
+    const body = [
+      { id,dep }
+    ];
+    return this.http.post(`${this.URL}/encuestas/municipios`, body[0]).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getAldeasUser$(id:string): Observable<any> {
+    const body = [
+      { id }
+    ];
+    return this.http.post(`${this.URL}/encuestas/aldeas`, body[0]).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getCaseriosUser$(id:string): Observable<any> {
+    const body = [
+      { id }
+    ];
+    return this.http.post(`${this.URL}/encuestas/caserios`, body[0]).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getOrganizacion$():Observable<any> {
+    return this.http.get(`${this.URL}/encuestas/org`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getSuelos$():Observable<any> {
+    return this.http.get(`${this.URL}/encuestas/suelos`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getOrganizacionesSociales$():Observable<any> {
+    return this.http.get(`${this.URL}/encuestas/sociales`).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -30,6 +80,16 @@ export class EncuestasService {
         return results;
       }
       ))
+  }
+  getPosition(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resp => {
+        resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
+      },
+        err => {
+          reject(err);
+        });
+    });
   }
 }
 export interface UserDepartamentosResponse {

@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "0748b043-2003-4aaa-9f75-f7452ebb8d5f",
+		"_postman_id": "1bbe26fa-7b40-40f2-8543-bc14be47172f",
 		"name": "Pruebas",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "20138045"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -154,7 +153,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidGlwbyI6MiwiaWF0IjoxNjc5Mzc2NTMxLCJleHAiOjE2NzkzODM3MzF9.Xe1vgnRNnXXShpGGCXizPgSl4SIdC4xrs7V7gmzEI78",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidGlwbyI6MiwiaWF0IjoxNjc5MzQ0MTA4LCJleHAiOjE2NzkzNTEzMDh9.-OrmWhvLE_Dg7jnDGRiU9lkkKqYbEdYf7nGxhD5iTBs",
 									"type": "string"
 								}
 							]
@@ -163,7 +162,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Angel David Quintanilla Ferrufino\",\r\n    \"telefono\":\"9750-7470\",\r\n    \"dni\":\"0704200300056\",\r\n    \"correo\":\"angeldavidquintanilla7@gmail.com\",\r\n    \"contra\":\"admin777\",\r\n    \"estado\":1,\r\n    \"tipo\":\"2\",\r\n    \"sexo\":\"Hombre\"\r\n}",
+							"raw": "{\r\n    \"nombre\":\"Angel David Quintanilla Ferrufino\",\r\n    \"telefono\":\"9750-7470\",\r\n    \"dni\":\"0704200300059\",\r\n    \"correo\":\"angeldavidquintanilla@gmail.com\",\r\n    \"contra\":\"admin777\",\r\n    \"estado\":1,\r\n    \"tipo\":\"2\",\r\n    \"sexo\":\"Hombre\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -524,6 +523,16 @@
 				{
 					"name": "Listar Tipos Organizaciones",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTAwOTc4LCJleHAiOjE2Nzk1MDgxNzh9.iSjNl1AsMp6XQYT8zGkKx1BzgXGnYrrgc1VNcLRlrs0",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -567,6 +576,16 @@
 				{
 					"name": "Listar Organizaciones",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTAwOTc4LCJleHAiOjE2Nzk1MDgxNzh9.iSjNl1AsMp6XQYT8zGkKx1BzgXGnYrrgc1VNcLRlrs0",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1005,35 +1024,14 @@
 			"name": "Encuestas",
 			"item": [
 				{
-					"name": "ListarEncuentas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/redsolidaria/encuestas/listar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"redsolidaria",
-								"encuestas",
-								"listar"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listar Departamentos Usuario",
+					"name": "Listar Departamentos",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidGlwbyI6MiwiaWF0IjoxNjc5NDU3OTczLCJleHAiOjE2Nzk0NjUxNzN9.7VPz1Auso4cprdW5oRAtee9xkZrrxxpQgjyt7VP7RDU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTE4MDgzLCJleHAiOjE2Nzk1MjUyODN9.-M_KSyh_IWf3E3-2J1q5ellJimSQjckapYojNEp4Js8",
 									"type": "string"
 								}
 							]
@@ -1042,7 +1040,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\":3\r\n}",
+							"raw": "{\r\n    \"id\":1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1060,6 +1058,239 @@
 								"redsolidaria",
 								"encuestas",
 								"departamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Organizaciones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTAwOTc4LCJleHAiOjE2Nzk1MDgxNzh9.iSjNl1AsMp6XQYT8zGkKx1BzgXGnYrrgc1VNcLRlrs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas/org",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas",
+								"org"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Organizaciones Sociales",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTAwOTc4LCJleHAiOjE2Nzk1MDgxNzh9.iSjNl1AsMp6XQYT8zGkKx1BzgXGnYrrgc1VNcLRlrs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas/sociales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas",
+								"sociales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarSuelos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTA2MDU3LCJleHAiOjE2Nzk1MTMyNTd9.TCNs-WfRU2t0ePgIVGxgGQnqGNioB-MwD1nERaDGn1M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas/suelos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas",
+								"suelos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Encuestas Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Municipios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTE4MDgzLCJleHAiOjE2Nzk1MjUyODN9.-M_KSyh_IWf3E3-2J1q5ellJimSQjckapYojNEp4Js8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"dep\":\"07\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas/municipios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas",
+								"municipios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Aldeas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTE4MDgzLCJleHAiOjE2Nzk1MjUyODN9.-M_KSyh_IWf3E3-2J1q5ellJimSQjckapYojNEp4Js8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"0704\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas/aldeas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas",
+								"aldeas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Caserios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTE4MDgzLCJleHAiOjE2Nzk1MjUyODN9.-M_KSyh_IWf3E3-2J1q5ellJimSQjckapYojNEp4Js8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"070401\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas/caserios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas",
+								"caserios"
 							]
 						}
 					},
@@ -1086,6 +1317,47 @@
 								"redsolidaria",
 								"ubicaciones",
 								"departamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Departamentos por Nombre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NDI0MjcwLCJleHAiOjE2Nzk0MzE0NzB9.gSr8BLQX6UFJDTPWjr0uWD1JrYaqTMg6_o6AuBpjSfE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dep\":\"EL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/departamentos/buscar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"departamentos",
+								"buscar"
 							]
 						}
 					},
@@ -1149,6 +1421,129 @@
 								"redsolidaria",
 								"ubicaciones",
 								"caserios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Caserios Buscar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NDI0MjcwLCJleHAiOjE2Nzk0MzE0NzB9.gSr8BLQX6UFJDTPWjr0uWD1JrYaqTMg6_o6AuBpjSfE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caserio\":\"Las Palmas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/caserios/buscar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"caserios",
+								"buscar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Municipios Buscar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NDMxNTg3LCJleHAiOjE2Nzk0Mzg3ODd9.6AvuC7phSNN73RfL89G2LOEVsYx1gPJWB3H49LPwh9Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mun\":\"EL P\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/municipios/buscar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"municipios",
+								"buscar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Aldeas Buscar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NDMxNTg3LCJleHAiOjE2Nzk0Mzg3ODd9.6AvuC7phSNN73RfL89G2LOEVsYx1gPJWB3H49LPwh9Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"aldea\":\"EL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/ubicaciones/aldeas/buscar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"ubicaciones",
+								"aldeas",
+								"buscar"
 							]
 						}
 					},

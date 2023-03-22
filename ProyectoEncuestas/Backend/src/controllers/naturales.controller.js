@@ -28,7 +28,6 @@ const ctrGetSuelos = async (req, res) => {//TODO: Controlador para hacer get a l
   } catch{
     handleHttpError(res, 'ERROR_LISTAR_SUELOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
-
 }
 const ctrGetSuelosDesactivados = async (req, res) => {//TODO: Funcion para hacer get a los Tipos de Suelos Desactivados
   try {

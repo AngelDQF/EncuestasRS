@@ -12,14 +12,6 @@
   font-weight: bold;
   border-radius: 100%;
   padding: 5px;
-}
-.iconoRegresar i {
-  color: var(--btn3);
-  border: 1px solid var(--btn3);
-  font-size: 25px;
-  font-weight: bold;
-  border-radius: 100%;
-  padding: 5px;
   cursor:pointer;
 }
 .iconoRefrescar i {

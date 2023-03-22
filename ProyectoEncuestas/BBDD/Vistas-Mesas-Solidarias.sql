@@ -72,7 +72,7 @@ go
 --Creación Vista Listar Organizaciones
 CREATE VIEW [dbo].[vew_Organizaciones_Listar]
 as
-	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo, dbo.tbl_Organizaciones.estado_Organizacion AS estado
+	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo,dbo.tbl_Organizaciones.social_Productiva AS social, dbo.tbl_Organizaciones.estado_Organizacion AS estado
 	FROM     dbo.tbl_Organizaciones INNER JOIN
                   dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
 	where estado_Organizacion=1
@@ -80,7 +80,7 @@ go
 --Creación Vista Listar Organizaciones Desactivadas
 CREATE VIEW [dbo].[vew_Organizaciones_Listar_Desactivados]
 as
-	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo, dbo.tbl_Organizaciones.estado_Organizacion AS estado
+	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo,dbo.tbl_Organizaciones.social_Productiva AS social, dbo.tbl_Organizaciones.estado_Organizacion AS estado
 	FROM     dbo.tbl_Organizaciones INNER JOIN
                   dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
 	where estado_Organizacion=0
@@ -250,3 +250,20 @@ as
 go
 
 --------------------------------------------------------------------------------------------------------------------------------------
+--Vistas para modulo de Encuestas
+--Vista para organizacion que organiza la reunion
+CREATE VIEW [dbo].[vew_Encuestas_Organizacion]
+as
+	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo,dbo.tbl_Organizaciones.social_Productiva AS social, dbo.tbl_Organizaciones.estado_Organizacion AS estado
+	FROM     dbo.tbl_Organizaciones INNER JOIN
+                  dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
+	where dbo.tbl_Organizaciones.estado_Organizacion=1 and dbo.tbl_Organizaciones.id_Tipo_Organizacion=2
+go
+--Vista para organizacion que organizaciones Sociales
+CREATE VIEW [dbo].[vew_Encuestas_Organizaciones_Sociales]
+as
+	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo,dbo.tbl_Organizaciones.social_Productiva AS social, dbo.tbl_Organizaciones.estado_Organizacion AS estado
+	FROM     dbo.tbl_Organizaciones INNER JOIN
+                  dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
+	where dbo.tbl_Organizaciones.estado_Organizacion=1 and dbo.tbl_Organizaciones.social_Productiva=1
+go

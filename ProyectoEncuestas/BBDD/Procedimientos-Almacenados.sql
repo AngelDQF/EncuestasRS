@@ -128,7 +128,7 @@ Create procedure prc_Encuestas_Departamentos
 @id int
 as
 begin
-	SELECT dbo.tbl_Asignacion_Usuario.id_Usuario as id, dbo.tbl_Departamentos.id_Departamento id_dep, dbo.tbl_Departamentos.departamento as dep
+	SELECT Distinct dbo.tbl_Asignacion_Usuario.id_Usuario as id, dbo.tbl_Departamentos.id_Departamento id_dep, dbo.tbl_Departamentos.departamento as dep
 	FROM     dbo.tbl_Asignacion_Usuario INNER JOIN
 					  dbo.tbl_Municipios ON dbo.tbl_Asignacion_Usuario.id_Municipio = dbo.tbl_Municipios.id_Municipio INNER JOIN
 					  dbo.tbl_Departamentos ON dbo.tbl_Municipios.id_Departamento = dbo.tbl_Departamentos.id_Departamento
@@ -145,8 +145,26 @@ begin
 	FROM     dbo.tbl_Departamentos INNER JOIN
 					  dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento INNER JOIN
 					  dbo.tbl_Asignacion_Usuario ON dbo.tbl_Municipios.id_Municipio = dbo.tbl_Asignacion_Usuario.id_Municipio
-	where id_Usuario=@id and dbo.tbl_Departamentos.id_Departamento=@dep
+	where dbo.tbl_Asignacion_Usuario.id_Usuario=@id and dbo.tbl_Departamentos.id_Departamento=@dep
 end
+--Procedimiento Almacenado para obtener las Aldeas Asignados al usuario
+create procedure prc_Encuestas_Aldeas
+@id nvarchar(10)
+as begin
+	SELECT id_Aldea AS id, id_Municipio AS id_mun, aldea
+	FROM     dbo.tbl_Aldeas
+	where id_Municipio=@id
+end
+--Procedimiento Almacenado para obtener las Aldeas Asignados al usuario
+create procedure prc_Encuestas_Caserios
+@id nvarchar(10)
+as begin
+	SELECT id_Caserio AS id, id_Aldea AS id_aldea, caserio
+	FROM dbo.tbl_Caserios
+	where id_Aldea=@id
+end
+--Procedimiento para organizaciones sociales productivas
+--Procedimiento para Organizaciones Estatales
 
 
 

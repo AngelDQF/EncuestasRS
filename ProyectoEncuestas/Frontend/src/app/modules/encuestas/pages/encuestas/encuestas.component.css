@@ -4,6 +4,44 @@
   padding: 30px;
   height: calc(100vh - 156px);
 }
+.iconoRegresar i {
+  color: var(--btn3);
+  border: 1px solid var(--btn3);
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 5px;
+  cursor:pointer;
+}
+.btnGuardar{
+  height: 100% !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+.btnHeight{
+  align-items: center !important;
+  height: 100% !important;
+  padding: 0px !important;
+}
+.iconoRefrescar i {
+  color: var(--btn2);
+  border: 1px solid var(--btn2);
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 5px;
+  cursor:pointer;
+}
+.iconoRegresar i:hover {
+  color: white;
+  background-color: var(--btn3);
+}
+.iconoRefrescar i:hover {
+  color: white;
+  background-color: var(--btn2);
+}
+
+
 .padForm {
   padding: 0px 15px;
 }

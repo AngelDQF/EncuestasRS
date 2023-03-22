@@ -1,4 +1,4 @@
-export interface DepartamentosUsers{
+export interface DepartamentosUsersInterface{
   id: number;
   id_dep:string;
   dep:string;
