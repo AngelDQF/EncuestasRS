@@ -7,22 +7,29 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EncuestasService {
-  private readonly URL = environment.api;   
+  private readonly URL = environment.api;
 
   constructor(private http: HttpClient) { }
-  getEncuestas():Observable<any>  {
+  getEncuestas(): Observable<any> {
     return this.http.get(`${this.URL}/encuestas/listar`)
   }
-  getDepartamentosUser(id:number):Observable<any> {
-    const body=[
-      {id}
+  getDepartamentosUser$(id: number): Observable<any> {
+    const body = [
+      { id }
     ];
     console.log(body[0]);
-    return this.http.post(`${this.URL}/encuestas/departamentos`,body[0]).pipe(
-      map(({results}: any) => {
+    return this.http.post(`${this.URL}/encuestas/departamentos`, body[0]).pipe(
+      map(({ results }: any) => {
         return results;
       })
     )
+  }
+  getTiposBosques$(): Observable<any> {
+    return this.http.get(`${this.URL}/naturales/bosques`).pipe(
+      map(({ results }: any) => {
+        return results;
+      }
+      ))
   }
 }
 export interface UserDepartamentosResponse {

@@ -123,6 +123,33 @@ begin
 					  dbo.tbl_Usuarios ON dbo.tbl_Encuestas.id_Usuario = dbo.tbl_Usuarios.id_Usuario
 	order by dbo.tbl_Encuestas.fecha_Encuesta
 end
+--Procedimiento Almacenado para obtener los departamentos del usuario
+Create procedure prc_Encuestas_Departamentos
+@id int
+as
+begin
+	SELECT dbo.tbl_Asignacion_Usuario.id_Usuario as id, dbo.tbl_Departamentos.id_Departamento id_dep, dbo.tbl_Departamentos.departamento as dep
+	FROM     dbo.tbl_Asignacion_Usuario INNER JOIN
+					  dbo.tbl_Municipios ON dbo.tbl_Asignacion_Usuario.id_Municipio = dbo.tbl_Municipios.id_Municipio INNER JOIN
+					  dbo.tbl_Departamentos ON dbo.tbl_Municipios.id_Departamento = dbo.tbl_Departamentos.id_Departamento
+	where id_Usuario=@id
+end
+
+--Procedimiento Almacenado para obtener los Municipios Asignados al usuario
+Create procedure prc_Encuestas_Municipios
+@id int,
+@dep nvarchar(10)
+as
+begin
+	SELECT dbo.tbl_Asignacion_Usuario.id_Usuario AS id, dbo.tbl_Asignacion_Usuario.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun
+	FROM     dbo.tbl_Departamentos INNER JOIN
+					  dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento INNER JOIN
+					  dbo.tbl_Asignacion_Usuario ON dbo.tbl_Municipios.id_Municipio = dbo.tbl_Asignacion_Usuario.id_Municipio
+	where id_Usuario=@id and dbo.tbl_Departamentos.id_Departamento=@dep
+end
+
+
+
 --Procedimientos Almacenados para el Modulo de Junta Directiva
 --Procedimientos Almacenados para los Cargos
 --Procedimiento Almacenado para Buscar un cargo por su id
