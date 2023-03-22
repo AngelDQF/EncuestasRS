@@ -33,7 +33,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="body" *ngFor="let mun of municipios | paginate: { itemsPerPage: 4, currentPage: page }" class="align-middle text-center">
+        <tr id="body" *ngFor="let mun of municipios | paginate: { itemsPerPage: 3, currentPage: page }" class="align-middle text-center">
           <th routerLink=":id" scope="row" class="text-center"><strong>{{mun.id_mun}}</strong></th>
           <td>{{mun.mun}}</td>
           <td>{{mun.dep}}</td>

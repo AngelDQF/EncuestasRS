@@ -10,4 +10,16 @@ const ctrGetEncuestas = async (req, res) => {//TODO: Controlador para hacer get 
     handleHttpError(res, 'ERROR_LISTAR_TIPOS_FINANCIAMIENTOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-module.exports = { ctrGetEncuestas };//TODO: Exportamos las funciones del controlador
+const ctrGetDepartamentosUsuario = async (req, res) => {//TODO: Creamos la función que se encargará de obtener los usuarios
+  try {
+    const {id}=req.body
+    encuestasModel.getDepartamentosUsuario(id).then(result => {//TODO: Llamamos a la función del modelo para obtener los usuarios
+      res.json({results:result});//TODO: Mostramos el resultado en un json
+      console.log({results:result});
+    });
+  } catch (error) {
+    handleHttpError(res, 'ERROR_LISTAR_DEPARTAMENTOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    console.log(error);
+  }
+};
+module.exports = { ctrGetEncuestas,ctrGetDepartamentosUsuario };//TODO: Exportamos las funciones del controlador

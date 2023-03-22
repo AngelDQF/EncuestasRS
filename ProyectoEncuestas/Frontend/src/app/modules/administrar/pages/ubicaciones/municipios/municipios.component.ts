@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DepartamentosInterface } from '@models/ubicaciones/departamentos.interface';
 import { MunicipiosInterface } from '@models/ubicaciones/municipios.interface.ts';
+import { Component, OnInit } from '@angular/core';
 import { UbicacionesService } from '@serv/ubicaciones.service';
 
 @Component({
@@ -10,11 +9,9 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 })
 export class MunicipiosComponent implements OnInit{
   municipios:any;
-  departamentos:any;
-  buscarMunicipio:string;
-  page:any;
-  constructor(private ubicacionesModel: UbicacionesService) {
-  }
+  buscarMunicipio:any;
+  public page!:number;
+  constructor(private ubicacionesModel: UbicacionesService) {}
   ngOnInit(): void {
     this.refresh();
   }
@@ -24,7 +21,7 @@ export class MunicipiosComponent implements OnInit{
       })
   }
   refresh(){
-    this.ubicacionesModel.getMunicipios().subscribe((response: MunicipiosInterface[]) => {
+    this.ubicacionesModel.getMunicipios$().subscribe((response: MunicipiosInterface[]) => { 
       this.municipios = response;
     });
     this.buscarMunicipio="";
