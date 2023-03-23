@@ -94,7 +94,12 @@ export class EncuestasComponent implements OnInit {
     this.tiposSuelos();
   }
   obtenerCoordenadas(): void {
-    console.log(this.encuestaForm.get("selectDepartamentos"))
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.encuestaForm.patchValue({
+        txtLatitud: position.coords.latitude,
+        txtLongitud: position.coords.longitude
+      })
+    })
   }
   organizacionOrganizadora() {
     this.encuestasModel.getOrganizacion$().subscribe((response: OrganizacionesInterface[]) => {
@@ -200,4 +205,5 @@ export class EncuestasComponent implements OnInit {
   onSubmit(): void {
     alert("Hello");
   }
+
 }
