@@ -192,14 +192,14 @@
               <label class="" for="dep">Seleccione una Organización</label>
               <select class="form-select" formControlName="selectOrgSocial">
                 <option value="">Selectione</option>
-                <option *ngFor="let social of sociales" [value]="social.id">{{social.org}}</option>
+                <option *ngFor="let social of sociales" [value]="social.org">{{social.org}}</option>
               </select>
             </div>
             <div class="col-2 btnHeight">
-              <a class="btn btnGuardar "><div> Agregar</div></a>
+              <a class="btn btnGuardar " (click)="agregarOrg($event)"><div> Agregar</div></a>
             </div>
             <div class="col-12 mt-3">
-              <textarea class="form-control" id="ubicacion" rows="2" formControlName="txtOrgSociales"></textarea>
+              <textarea class="form-control" id="ubicacion" rows="2" formControlName="txtOrgSociales"><li>{{OrgArray}}</li></textarea>
             </div>
           </div>
         </div>

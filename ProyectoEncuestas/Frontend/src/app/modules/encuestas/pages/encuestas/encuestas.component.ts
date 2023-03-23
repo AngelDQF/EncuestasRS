@@ -26,6 +26,8 @@ export class EncuestasComponent implements OnInit {
   showMun: boolean;
   showAldea: boolean;
   showCaserio: boolean;
+  OrgArray:Array<any> = [""];
+  OrgSocialValue:any;
   //Declaracion de variables para guardar datos de los services
   sociales: any;
   departamentos: any;
@@ -76,6 +78,12 @@ export class EncuestasComponent implements OnInit {
     this.encuestaForm.patchValue({
       txtTotalAsistencia: totalHombres + totalMujeres
     });
+  }
+  agregarOrg(term:any){
+    this.OrgSocialValue = this.encuestaForm.get("selectOrgSocial")?.value;
+    this.OrgArray.push(this.OrgSocialValue);
+    this.encuestaForm.patchValue({
+      txtOrgSociales: this.OrgArray  });
   }
   datosIniciales() {
     this.tokenString = this.getDecodedAccessToken(this.token);
