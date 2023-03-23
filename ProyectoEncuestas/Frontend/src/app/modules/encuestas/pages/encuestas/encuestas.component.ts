@@ -70,6 +70,13 @@ export class EncuestasComponent implements OnInit {
       // txtOrgSociales: this.fb.array([""]),
     })
   }
+  sumaTotalAsistencia(){
+    const totalHombres = this.encuestaForm.get("txtTotalHombres")?.value;
+    const totalMujeres = this.encuestaForm.get("txtTotalMujeres")?.value;
+    this.encuestaForm.patchValue({
+      txtTotalAsistencia: totalHombres + totalMujeres
+    });
+  }
   datosIniciales() {
     this.tokenString = this.getDecodedAccessToken(this.token);
     this.ObtenerBosques();
@@ -130,6 +137,7 @@ export class EncuestasComponent implements OnInit {
     this.showMun = true;
     this.showAldea = true;
     this.showCaserio = true;
+    console.log(this.encuestaForm.get("selectDepartamentos")?.value);
   }
   municipiosChange(chan: any) {
     this.encuestaForm.patchValue({
@@ -151,6 +159,13 @@ export class EncuestasComponent implements OnInit {
   }
   caseriosChange(chan:any):void {
     this.showCaserio = false;
+  }
+  //Metodos para los txt change
+  mujeresChange(chan: any) {
+    this.sumaTotalAsistencia();
+  }
+  hombresChange(chan: any) {
+    this.sumaTotalAsistencia();
   }
   //Metodos para traer las ubicaciones de la Api
   MunicipiosUser(id: number, dep: string) {

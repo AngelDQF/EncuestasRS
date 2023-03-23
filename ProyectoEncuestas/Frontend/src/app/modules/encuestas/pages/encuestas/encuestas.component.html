@@ -75,7 +75,7 @@
                     <span class="input-group-text" id="txtTotalHombres">Hombres</span>
                     <input
                       type="number" class="form-control" aria-label="Sizing example input"
-                      aria-describedby="txtTotalHombres" name="txtTotalHombres" formControlName="txtTotalHombres">
+                      aria-describedby="txtTotalHombres" name="txtTotalHombres" formControlName="txtTotalHombres" (change)="hombresChange($event)" placeholder="0">
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-12 p-0">
@@ -83,14 +83,14 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">Mujeres</span>
                     <input
                       type="number" class="form-control" aria-label="Sizing example input"
-                      aria-describedby="inputGroup-sizing-default" formControlName="txtTotalMujeres">
+                      aria-describedby="inputGroup-sizing-default" formControlName="txtTotalMujeres" (change)="mujeresChange($event)" placeholder="0">
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-12 col-md-12 p-0">
                   <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Total</span>
                     <input  type="number" class="form-control"
-                      aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" formControlName="txtTotalAsistencia">
+                      aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" formControlName="txtTotalAsistencia" placeholder="0" readonly>
                   </div>
                 </div>
               </div>
