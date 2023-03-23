@@ -267,3 +267,15 @@ as
                   dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
 	where dbo.tbl_Organizaciones.estado_Organizacion=1 and dbo.tbl_Organizaciones.social_Productiva=1
 go
+--Vista para Estados
+CREATE VIEW [dbo].[vew_Encuestas_Estados]
+as
+	SELECT id_Estado AS id, descripcion_Estado AS estado
+	FROM     dbo.tbl_Estados
+go
+--Vista para el nivel tecnologico
+CREATE VIEW [dbo].[vew_Encuestas_Tecnologico]
+as
+	SELECT id_Tecno AS id, nivel
+	FROM     dbo.tbl_Tecnologico_General
+go

@@ -4,19 +4,30 @@ async function getServiciosLocales() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Locales_Listar");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
+    console.log(result.recordset.length)
+
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }
     else {
       return "No hay Servicios Locales Agregados"
     }
-     pool.close();//TODO: Cerramos la conexión
+    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
   }
 }
+async function putEstadoServicioLocal(id, est) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    await pool.request().query(`Exec prc_Servicio_Put_Estado ${id}, ${est}`);
+    return "Registro Actualizado"
+  }
+  catch (error) {
+    console.log(error);
+  }
+};
 async function getServiciosLocalesDesactivadas() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -28,7 +39,7 @@ async function getServiciosLocalesDesactivadas() {
     else {
       return "No hay Servicios Locales Desactivados"
     }
-     pool.close();//TODO: Cerramos la conexión
+    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -62,7 +73,7 @@ async function getServiciosBasicosDesactivados() {//TODO: Función para obtener 
     else {
       return "No hay Servicios Basicos Desactivados"
     }
-        pool.close();//TODO: Cerramos la conexiónsss
+    pool.close();//TODO: Cerramos la conexiónsss
 
   } catch (error) {
     console.log(error);
@@ -73,5 +84,5 @@ module.exports = {
   getServiciosLocales,
   getServiciosLocalesDesactivadas,
   getServiciosBasicos,
-  getServiciosBasicosDesactivados
+  getServiciosBasicosDesactivados, putEstadoServicioLocal
 };//TODO: Exportamos las Funciones

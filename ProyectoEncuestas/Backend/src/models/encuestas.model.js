@@ -123,4 +123,49 @@ async function getOrganizacionesSociales() {//TODO: Creamos la función que se e
     console.log(error);
   }
 }
-module.exports = { getEncuestas,getDepartamentosUsuario,getOrganizacion,getOrganizacionesSociales,getMunicipiosUsuario,getAldeasUsuario,getCaseriosUsuario };//TODO: Exportamos las funcionessss
+async function getEstructurasEncuestas() {//TODO: Función para obtener todos los usuarios
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query("SELECT * FROM vew_Estructuras_Listar");//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Estructuras Agregadas"
+    }
+    pool.close();//TODO: Cerramos la conexión
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function getEstadosEncuestas() {//TODO: Función para obtener todos los usuarios
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query("SELECT * FROM vew_Encuestas_Estados");//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Estados Agregadas"
+    }
+    pool.close();//TODO: Cerramos la conexión
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function getTecnologicoEncuestas() {//TODO: Función para obtener todos los usuarios
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query("SELECT * FROM vew_Encuestas_Tecnologico");//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Nivel Tecnologico Agregado"
+    }
+    pool.close();//TODO: Cerramos la conexión
+  } catch (error) {
+    console.log(error);
+  }
+}
+module.exports = { getEncuestas,getDepartamentosUsuario,getOrganizacion,getOrganizacionesSociales,getMunicipiosUsuario,getAldeasUsuario,getCaseriosUsuario ,getEstructurasEncuestas,getEstadosEncuestas,getTecnologicoEncuestas};//TODO: Exportamos las funcionessss

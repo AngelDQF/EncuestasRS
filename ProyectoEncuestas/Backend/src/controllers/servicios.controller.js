@@ -18,6 +18,16 @@ const ctrGetServiciosLocalesDesactivados = async (req, res) => {//TODO: Funcion 
     handleHttpError(res, 'ERROR_LISTAR_SERVICIOS_LOCALES_DESACTIVADAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
+const ctrPutServicioLocal=async(req,res)=>{
+  try {
+    const {id,est}=req.body;
+    serviciosModel.putEstadoServicioLocal(id,est).then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+      res.json({results:result})//TODO: Mostramos el resultado en un json
+    });
+  } catch{
+    handleHttpError(res, 'ERROR_ACTUALIZAR_SERVICIO_BASICO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
 const ctrGetServiciosBasicos = async (req, res) => {//TODO: Funcion para hacer get a los ejes
   try {
     serviciosModel.getServiciosBasicos().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
@@ -36,4 +46,4 @@ const ctrGetServiciosBasicosDesactivados = async (req, res) => {//TODO: Funcion 
     handleHttpError(res, 'ERROR_LISTAR_SERVICIOS_BASICOS_DESACTIVADOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-module.exports = { ctrGetServiciosLocales,  ctrGetServiciosLocalesDesactivados,  ctrGetServiciosBasicos,  ctrGetServiciosBasicosDesactivados};//TODO: Exportamos las funciones del controlador
+module.exports = { ctrGetServiciosLocales,  ctrGetServiciosLocalesDesactivados,  ctrGetServiciosBasicos,  ctrGetServiciosBasicosDesactivados,ctrPutServicioLocal};//TODO: Exportamos las funciones del controlador

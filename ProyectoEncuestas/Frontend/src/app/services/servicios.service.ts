@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {environment} from '@shared/environments/environment'
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ServiciosService {
+  private readonly URL = environment.api;
 
   constructor(private http:HttpClient) { }
   getSerBasicos() {
@@ -17,6 +19,12 @@ export class ServiciosService {
   }
   getSerLocalesDesactivados() {
     return this.http.get<ServiciosResponse>('http://'+environment.puerto+'/redsolidaria/servicios/basicos/desactivados')
+  }
+  putEstadoSerLocal$(id:number,est:string):Observable<any>{
+    const body = [
+      { id,est }
+    ];
+    return this.http.post(`${this.URL}/encuestas/aldeas`, body[0]);
   }
 }
 

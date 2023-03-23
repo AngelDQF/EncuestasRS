@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '@shared/environments/environment';
 import { map, Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EncuestasService {
   private readonly URL = environment.api;
 
@@ -53,6 +51,27 @@ export class EncuestasService {
       })
     )
   }
+  getEstructuras$(): Observable<any>  {
+    return this.http.get(`${this.URL}/encuestas/estructuras`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getEstados$(): Observable<any>  {
+    return this.http.get(`${this.URL}/encuestas/estados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getTecnologico$(): Observable<any>  {
+    return this.http.get(`${this.URL}/encuestas/nivel`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
   getOrganizacion$():Observable<any> {
     return this.http.get(`${this.URL}/encuestas/org`).pipe(
       map(({ results }: any) => {
@@ -80,16 +99,6 @@ export class EncuestasService {
         return results;
       }
       ))
-  }
-  getPosition(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resp => {
-        resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
-      },
-        err => {
-          reject(err);
-        });
-    });
   }
 }
 export interface UserDepartamentosResponse {

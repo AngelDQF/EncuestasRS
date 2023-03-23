@@ -30,29 +30,31 @@
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <label class="" for="dep">Municipio</label>
               <select class="form-select" formControlName="selectMunicipios" (change)="municipiosChange($event)">
-                <option *ngIf="showMun"  value="" selected>Seleccione un Municipio</option>
+                <option *ngIf="showMun" value="" selected>Seleccione un Municipio</option>
                 <option *ngFor="let mun of municipios" [value]="mun.id_mun">{{mun.id_mun}}. {{mun.mun}}</option>
               </select>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <label class="" for="dep">Aldea</label>
               <select class="form-select" formControlName="selectAldeas" (change)="aldeasChange($event)">
-                <option *ngIf="showAldea"  value="" selected>Seleccione una Aldea</option>
+                <option *ngIf="showAldea" value="" selected>Seleccione una Aldea</option>
                 <option *ngFor="let aldea of aldeas" [value]="aldea.id">{{aldea.id}}. {{aldea.aldea}}</option>
               </select>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <label class="" for="dep">Caserio</label>
               <select class="form-select" formControlName="selectCaserios" (change)="caseriosChange($event)">
-                <option *ngIf="showCaserio"  value="" selected>Seleccione un Caserio</option>
-                <option *ngFor="let caserio of caserios" [value]="caserio.id">{{caserio.id}}. {{caserio.caserio}}</option>
+                <option *ngIf="showCaserio" value="" selected>Seleccione un Caserio</option>
+                <option *ngFor="let caserio of caserios" [value]="caserio.id">{{caserio.id}}. {{caserio.caserio}}
+                </option>
               </select>
             </div>
             <div class="col-12">
               <h3 id="ubh3" class="mt-4 mb-0 align-items-center"><label for="ubicacion"
                   class="form-label m-0 ">Dirección
                   Detallada</label></h3>
-              <textarea class="form-control" id="ubicacion" rows="2" formControlName="txtDireccion" placeholder="Dirreccíon detallada del lugar donde se realiza la reunión"></textarea>
+              <textarea class="form-control" id="ubicacion" rows="2" formControlName="txtDireccion"
+                placeholder="Dirreccíon detallada del lugar donde se realiza la reunión"></textarea>
             </div>
             <div class="col-12 mt-3 mb-0 pb-0">
               <h3 class="pb-0 mb-0">Seleccione la Organización que Realiza la Reunión</h3>
@@ -63,6 +65,15 @@
                 <option *ngFor="let org of organizaciones" [value]="org.id">{{org.org}}</option>
               </select>
             </div>
+            <div class="col-12 mt-3 mb-0 pb-0">
+              <h3 class="pb-0 mb-0">Seleccione el Nivel Tecnológico</h3>
+            </div>
+            <div class="col-12">
+              <select class="form-select" style="background-color: #009eb618;" formControlName="selectNivel">
+                <option value="" selected>Seleccione el nivel</option>
+                <option *ngFor="let niv of niveles" [value]="niv.id">{{niv.nivel}}</option>
+              </select>
+            </div>
           </div>
           <div class="textbox col-12 row">
             <div class="col-12">
@@ -71,26 +82,27 @@
             <div class="padForm">
               <div class="col-12 row p-0">
                 <div class="col-xl-4 col-lg-6 col-md-12 p-0">
-                  <div class="input-group mb-3">
+                  <div class="input-group mb-3 d-block">
                     <span class="input-group-text" id="txtTotalHombres">Hombres</span>
-                    <input
-                      type="number" class="form-control" aria-label="Sizing example input"
-                      aria-describedby="txtTotalHombres" name="txtTotalHombres" formControlName="txtTotalHombres" (change)="hombresChange($event)" placeholder="0">
+                    <input type="number" class="form-control" aria-label="Sizing example input"
+                      aria-describedby="txtTotalHombres" name="txtTotalHombres" formControlName="txtTotalHombres"
+                      (change)="hombresChange($event)" placeholder="0">
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-12 p-0">
-                  <div class="input-group mb-3">
+                  <div class="input-group mb-3 d-block">
                     <span class="input-group-text" id="inputGroup-sizing-default">Mujeres</span>
-                    <input
-                      type="number" class="form-control" aria-label="Sizing example input"
-                      aria-describedby="inputGroup-sizing-default" formControlName="txtTotalMujeres" (change)="mujeresChange($event)" placeholder="0">
+                    <input type="number" class="form-control" aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default" formControlName="txtTotalMujeres"
+                      (change)="mujeresChange($event)" placeholder="0">
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-12 col-md-12 p-0">
-                  <div class="input-group mb-3">
+                  <div class="input-group mb-3 d-block">
                     <span class="input-group-text" id="inputGroup-sizing-default">Total</span>
-                    <input  type="number" class="form-control"
-                      aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" formControlName="txtTotalAsistencia" placeholder="0" readonly>
+                    <input type="number" class="form-control" aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default" formControlName="txtTotalAsistencia" placeholder="0"
+                      readonly>
                   </div>
                 </div>
               </div>
@@ -101,19 +113,20 @@
             <div class="padForm mb-3">
               <div class="col-12 row d-flex align-items-center">
                 <div class="col-xl-4 col-lg-4 col-md-12 p-0">
-                  <button type="button" class="btnGuardar form-control" (click)="obtenerCoordenadas()" >Obtener Coordenadas</button>
+                  <button type="button" class="btnGuardar form-control mb-2 mb-lg-0"
+                    (click)="obtenerCoordenadas()">Obtener Coordenadas</button>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-12 p-0">
-                  <div class="input-group ">
+                  <div class="input-group d-block">
                     <span class="input-group-text" id="inputGroup-sizing-default">Latitud</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
+                    <input readonly type="text" class="form-control mb-2 mb-lg-0" aria-label="Sizing example input"
                       aria-describedby="inputGroup-sizing-default" formControlName="txtLatitud">
                   </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-12 p-0">
-                  <div class="input-group ">
+                  <div class="input-group d-block">
                     <span class="input-group-text" id="inputGroup-sizing-default">Longitud</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
+                    <input readonly type="text" class="form-control" aria-label="Sizing example input"
                       aria-describedby="inputGroup-sizing-default" formControlName="txtLongitud">
                   </div>
                 </div>
@@ -132,16 +145,17 @@
                 <div class="col-6 m-0 p-0">
                   <div class="input-group mb-0 p-0 m-0">
                     <span class="input-group-text" for="inputGroupSelect01">¿Hay Ríos?</span>
-                    <select class="form-select" id="inputGroupSelect01" formControlName="selectRios">
-                      <option value="1" selected>No</option>
-                      <option value="2">Si</option>
+                    <select class="form-select" id="inputGroupSelect01" formControlName="selectRios"
+                      (change)="riosChange($event)">
+                      <option value=1 selected>No</option>
+                      <option value=2>Si</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-6 m-0 p-0 textbox">
                   <div class="input-group mb-3 p-0 m-0">
                     <span class="input-group-text" id="basic-addon1">Cantidad</span>
-                    <input  type="number" class="form-control" aria-label="Username" aria-describedby="basic-addon1" formControlName="txtCantidadRios">
+                    <input type="number" class="form-control" formControlName="txtCantidadRios" placeholder="0">
                   </div>
                 </div>
               </div>
@@ -152,9 +166,10 @@
                 <div class="col-6 m-0 p-0">
                   <div class="input-group p-0 m-0">
                     <span class="input-group-text" for="inputGroupSelect01">¿Hay Bosques?</span>
-                    <select class="form-select" id="inputGroupSelect01" formControlName="selectBosques">
-                      <option value="1">No</option>
-                      <option value="2">Si</option>
+                    <select class="form-select" id="inputGroupSelect01" formControlName="selectBosques"
+                      (change)="bosquesChanges($event)">
+                      <option value=1>No</option>
+                      <option value=2>Si</option>
                     </select>
                   </div>
                 </div>
@@ -162,7 +177,7 @@
                   <div class="input-group p-0 m-0">
                     <span class="input-group-text" for="inputGroupSelect01">Tipo de Bosque</span>
                     <select class="form-select" id="inputGroupSelect01" formControlName="selectTipoBosque">
-                      <option value="1" selected>Seleccione</option>
+                      <option value="" selected>Seleccione</option>
                       <option *ngFor="let bosque of bosques" value={{bosque.id}}>{{bosque.tipo}}</option>
                     </select>
                   </div>
@@ -173,9 +188,9 @@
               <h3 class="m-0">Suelos</h3>
             </div>
             <div class="col-12 rnSuelo">
-              <div class=" input-group mb-3 p-0">
-                <label class="input-group-text" for="inputGroupSelect01">Seleccione el Tipo de Suelo</label>
-                <select class="form-select text-center" id="inputGroupSelect01" formControlName="selectTiposSuelos">
+              <div class="col-12 input-group mb-3 p-0 d-flex">
+                <select class="col-12 col-md-9 form-select text-center" id="inputGroupSelect01"
+                  formControlName="selectTiposSuelos">
                   <option value="">Seleccione Un tipo de Suelo</option>
                   <option *ngFor="let suelo of suelos" [value]="suelo.id">{{suelo.tipo}}</option>
                 </select>
@@ -188,18 +203,58 @@
             <h2>Organizaciones Sociales Productivas</h2>
           </div>
           <div class="selects col-12 row align-items-center">
-            <div class="col-10">
+            <div class="col-12 col-md-10">
               <label class="" for="dep">Seleccione una Organización</label>
               <select class="form-select" formControlName="selectOrgSocial">
                 <option value="">Selectione</option>
                 <option *ngFor="let social of sociales" [value]="social.org">{{social.org}}</option>
               </select>
             </div>
-            <div class="col-2 btnHeight">
-              <a class="btn btnGuardar " (click)="agregarOrg($event)"><div> Agregar</div></a>
+            <div class="col-12 col-md-2 btnHeight mt-2 mt-md-0">
+              <a class="btn btnEditar" (click)="agregarOrg($event)">
+                <div>Agregar</div>
+              </a>
             </div>
             <div class="col-12 mt-3">
-              <textarea class="form-control" id="ubicacion" rows="2" formControlName="txtOrgSociales"><li>{{OrgArray}}</li></textarea>
+              <textarea class="form-control" id="ubicacion" rows="2"
+                formControlName="txtOrgSociales">{{OrgArray}}</textarea>
+            </div>
+          </div>
+          <div class="col-12 mt-4" id="Recursos">
+            <div class="col-12 mb-2">
+              <h2>Requerimientos de Inversión Social</h2>
+            </div>
+            <div class="col-12 d-lg-flex d-block selects">
+              <div class="col-12 col-md-4 m-0 p-0">
+                <div class="input-group p-0 m-0 d-block">
+                  <span class="input-group-text" for="inputGroupSelect01">Estructura</span>
+                  <select class="form-select form-control" id="inputGroupSelect01" formControlName="selectEstructuras">
+                    <option value="">Seleccione</option>
+                    <option *ngFor="let est of estructuras">{{est.estructura}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12 col-md-2 m-0 p-0 ">
+                <div class="input-group p-0 m-0 d-block">
+                  <span class="input-group-text" for="inputGroupSelect01">Estado</span>
+                  <select class="form-select form-control" id="inputGroupSelect01" formControlName="selectEstado">
+                    <option value="">Seleccione</option>
+                    <option *ngFor="let est of estados">{{est.estado}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4 col-12 m-0 p-0 textbox">
+                <div class="input-group mb-3 p-0 d-block">
+                  <span class="input-group-text" id="basic-addon1">Observacion</span>
+                  <input type="text" class="form-control" formControlName="txtObservacionEstructura"
+                    placeholder="Observación">
+                </div>
+              </div>
+              <div class="col-12 col-md-2 btnHeight2 mt-2 mt-md-0">
+                <a class="btn btnEditar">
+                  <div>Agregar</div>
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -80,6 +80,18 @@ begin
 	where estado_Servicio=0 and dbo.tbl_Servicios.id_Tipo_Servicio=1
 	order by id_Servicio
 end
+
+--Creación Procedimiento Almacenado para Cambiar el estado de un  Servicio Local
+create procedure prc_Servicio_Put_Estado
+@id int,
+@est bit
+as
+begin
+UPDATE [dbo].[tbl_Servicios]
+   SET [estado_Servicio] = @est
+ WHERE [id_Servicio]=@id
+end
+
 --Creación Procedimiento Almacenado para Listar Servicios Basicos
 create procedure prc_Servicios_Basicos_Listar
 as

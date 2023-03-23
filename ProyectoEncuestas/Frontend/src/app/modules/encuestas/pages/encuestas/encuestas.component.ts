@@ -10,6 +10,9 @@ import { SuelosInterface } from '@models/administrar/recursos/suelos.interface';
 import { MunicipiosUserInterface } from '@models/encuesta/municipios-users.interface';
 import { AldeasUserInterface } from '@models/encuesta/aldeas-users.interface';
 import { CaseriosUserInterface } from '@models/encuesta/caserios-users.interface';
+import { EstructuraUsers } from '@models/encuesta/estructuras-users-interface';
+import { EstadosInterface } from '@models/encuesta/estados-encuestas.interface';
+import { TecnologicoInterface } from '@models/encuesta/tecnologico-encuestas.interface';
 
 @Component({
   selector: 'app-encuestas',
@@ -26,8 +29,8 @@ export class EncuestasComponent implements OnInit {
   showMun: boolean;
   showAldea: boolean;
   showCaserio: boolean;
-  OrgArray:Array<any> = [""];
-  OrgSocialValue:any;
+  OrgArray: Array<any> = [""];
+  OrgSocialValue: any;
   //Declaracion de variables para guardar datos de los services
   sociales: any;
   departamentos: any;
@@ -37,8 +40,12 @@ export class EncuestasComponent implements OnInit {
   bosques: any;
   organizaciones: any;
   suelos: any;
+  estructuras:any;
+  estados:any;
+  niveles:any;
   //Declaracion del constructor
   constructor(private encuestasModel: EncuestasService, private cookieToken: CookieService, private fb: FormBuilder) { }
+
   ngOnInit(): void {
     this.activarShows();
     this.encuestaForm = this.initForm();
@@ -69,29 +76,40 @@ export class EncuestasComponent implements OnInit {
       selectTiposSuelos: ["",],
       selectOrgSocial: ["",],
       txtOrgSociales: [""],
+      selectEstructuras:[""],
+      selectEstado:[""],
+      txtObservacionEstructura:[""],
+      selectNivel:[""],
       // txtOrgSociales: this.fb.array([""]),
     })
   }
-  sumaTotalAsistencia(){
+  datosIniciales() {
+    this.tokenString = this.getDecodedAccessToken(this.token);
+    this.DepartamentosUser(this.tokenString.id);
+    this.organizacionOrganizadora();
+    this.organizacionesSociales();
+    this.tiposSuelos();
+    this.ObtenerEstados();
+    this.nivelTecnologico();
+    this.ObtenerEstructuras();
+    this.encuestaForm.get("txtCantidadRios")?.disable();
+    this.encuestaForm.get("selectTipoBosque")?.disable();
+  }
+  sumaTotalAsistencia() {
     const totalHombres = this.encuestaForm.get("txtTotalHombres")?.value;
     const totalMujeres = this.encuestaForm.get("txtTotalMujeres")?.value;
     this.encuestaForm.patchValue({
       txtTotalAsistencia: totalHombres + totalMujeres
     });
   }
-  agregarOrg(term:any){
+  agregarOrg(term: any) {
     this.OrgSocialValue = this.encuestaForm.get("selectOrgSocial")?.value;
     this.OrgArray.push(this.OrgSocialValue);
+    const AsString = (this.OrgArray.filter((i) => i !== "")).toString();
+    const vistaOrg = AsString.replace(/,/g, `\n`);
     this.encuestaForm.patchValue({
-      txtOrgSociales: this.OrgArray  });
-  }
-  datosIniciales() {
-    this.tokenString = this.getDecodedAccessToken(this.token);
-    this.ObtenerBosques();
-    this.DepartamentosUser(this.tokenString.id);
-    this.organizacionOrganizadora();
-    this.organizacionesSociales();
-    this.tiposSuelos();
+      txtOrgSociales: vistaOrg
+    });
   }
   obtenerCoordenadas(): void {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -111,6 +129,11 @@ export class EncuestasComponent implements OnInit {
       this.suelos = response;
     })
   }
+  nivelTecnologico() {
+    this.encuestasModel.getTecnologico$().subscribe((response: TecnologicoInterface[]) => {
+      this.niveles = response;
+    })
+  }
   organizacionesSociales() {
     this.encuestasModel.getOrganizacionesSociales$().subscribe((response: OrganizacionesInterface[]) => {
       this.sociales = response;
@@ -120,7 +143,6 @@ export class EncuestasComponent implements OnInit {
     this.activarShows();
     this.encuestaForm = this.initForm();
   }
-
   DepartamentosUser(tok: any): void {
     this.encuestasModel.getDepartamentosUser$(tok).subscribe((response: DepartamentosUsersInterface[]) => {
       this.departamentos = response;
@@ -129,6 +151,16 @@ export class EncuestasComponent implements OnInit {
   ObtenerBosques(): void {
     this.encuestasModel.getTiposBosques$().subscribe((response: BosquesInterface[]) => {
       this.bosques = response;
+    })
+  }
+  ObtenerEstructuras(): void {
+    this.encuestasModel.getEstructuras$().subscribe((response: EstructuraUsers[]) => {
+      this.estructuras = response;
+    })
+  }
+  ObtenerEstados(): void {
+    this.encuestasModel.getEstados$().subscribe((response: EstadosInterface[]) => {
+      this.estados = response;
     })
   }
   getDecodedAccessToken(tok: string): any {
@@ -170,7 +202,7 @@ export class EncuestasComponent implements OnInit {
     this.showAldea = false;
     this.showCaserio = true;
   }
-  caseriosChange(chan:any):void {
+  caseriosChange(chan: any): void {
     this.showCaserio = false;
   }
   //Metodos para los txt change
@@ -196,11 +228,34 @@ export class EncuestasComponent implements OnInit {
       this.caserios = response;
     })
   }
-  activarShows(){
-    this.showDep=true;
-    this.showMun=true;
-    this.showAldea=true;
-    this.showCaserio=true;
+  activarShows() {
+    this.showDep = true;
+    this.showMun = true;
+    this.showAldea = true;
+    this.showCaserio = true;
+  }
+  riosChange(term: any) {
+    const opcion = term.target.value;
+    if (opcion == 1) {
+      this.encuestaForm.patchValue({
+        txtCantidadRios: [0]
+      })
+      this.encuestaForm.get("txtCantidadRios")?.disable();
+    } else {
+      this.encuestaForm.get("txtCantidadRios")?.enable();
+    }
+  }
+  bosquesChanges(term: any) {
+    const opcion = term.target.value;
+    if (opcion == 1) {
+      this.encuestaForm.patchValue({
+        selectTipoBosque: [""]
+      })
+      this.encuestaForm.get("selectTipoBosque")?.disable();
+    } else {
+      this.ObtenerBosques();
+      this.encuestaForm.get("selectTipoBosque")?.enable();
+    }
   }
   onSubmit(): void {
     alert("Hello");

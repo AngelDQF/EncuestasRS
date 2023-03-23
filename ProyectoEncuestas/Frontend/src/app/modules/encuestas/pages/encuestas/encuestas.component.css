@@ -13,6 +13,16 @@
   padding: 5px;
   cursor:pointer;
 }
+textarea{
+  font-size: 15px;
+}
+.input-group select, .input-group input, .input-group span{
+  width: 100% !important;
+  border-radius: 0px;
+}
+.input-group input,.input-group select{
+  height: 35px !important;
+}
 .btnGuardar{
   height: 100% !important;
   align-items: center !important;
@@ -22,6 +32,15 @@
   align-items: center !important;
   height: 100% !important;
   padding: 0px !important;
+}
+.btnHeight2{
+  align-self: center !important;
+  height: 100% !important;
+  padding: 0px !important;
+}
+.botonAgregarNuevo{
+  height: 70px !important;
+  width: 100% !important;
 }
 .iconoRefrescar i {
   color: var(--btn2);
@@ -204,6 +223,10 @@ input.ng-valid.ng-touched {
 }
 /*Pantallas md*/
 @media screen and (max-width: 991px) {
+  .botonAgregarNuevo{
+    height: 30px !important;
+    font-size: 10px;
+  }
   .contEncuesta {
     border-radius: 0px;
     padding: 10px;
@@ -213,6 +236,9 @@ input.ng-valid.ng-touched {
   }
   .encuesta h3 {
     font-size: 13px;
+  }
+  textarea{
+    font-size: 10px;
   }
   .selects label,.rnSuelo label  {
     font-size: 12px;

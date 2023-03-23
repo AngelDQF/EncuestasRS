@@ -85,4 +85,31 @@ const ctrGetSuelos = async (req, res) => {//TODO: Controlador para hacer get a l
     handleHttpError(res, 'ERROR_LISTAR_SUELOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-module.exports = { ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetOrganizacion, ctrGetSuelos, ctrGetOrganizacionesSociales, ctrGetMunicipiosUsuario, ctrGetAldeasUsuario, ctrGetCaseriosUsuario };//TODO: Exportamos las funciones del controlador
+const ctrGetEstructurasEncuestas = async (req, res) => {//TODO: Controlador para hacer get a los Fuentes de Financiamientos
+  try {
+    encuestasModel.getEstructurasEncuestas().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
+      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_ESTRUCTURAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
+const ctrGetEstadosEncuestas = async (req, res) => {//TODO: Controlador para hacer get a los Fuentes de Financiamientos
+  try {
+    encuestasModel.getEstadosEncuestas().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
+      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_ESTADOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
+const ctrGetTecnologicoEncuestas = async (req, res) => {//TODO: Controlador para hacer get a los Fuentes de Financiamientos
+  try {
+    encuestasModel.getTecnologicoEncuestas().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
+      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_NIVEL_TECNOLOGICO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
+module.exports = { ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetOrganizacion, ctrGetSuelos, ctrGetOrganizacionesSociales, ctrGetMunicipiosUsuario, ctrGetAldeasUsuario, ctrGetCaseriosUsuario,ctrGetEstructurasEncuestas,ctrGetEstadosEncuestas,ctrGetTecnologicoEncuestas};//TODO: Exportamos las funciones del controlador
