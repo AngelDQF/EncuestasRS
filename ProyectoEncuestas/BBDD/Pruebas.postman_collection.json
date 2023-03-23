@@ -432,6 +432,16 @@
 				{
 					"name": "Listar Servicios Locales",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTk1NTgzLCJleHAiOjE2Nzk2MDI3ODN9.PeWYuETA7t_i3zbzXF9SMzIw2JLkQTp02dTDqpOyyAU",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -510,6 +520,46 @@
 								"servicios",
 								"basicos",
 								"desactivados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Servicio Local",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTk1NTgzLCJleHAiOjE2Nzk2MDI3ODN9.PeWYuETA7t_i3zbzXF9SMzIw2JLkQTp02dTDqpOyyAU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"est\":0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/servicios/locales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"servicios",
+								"locales"
 							]
 						}
 					},
@@ -1157,12 +1207,22 @@
 					"response": []
 				},
 				{
-					"name": "Listar Encuestas Copy",
+					"name": "Listar Estructuras",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTk1NTgzLCJleHAiOjE2Nzk2MDI3ODN9.PeWYuETA7t_i3zbzXF9SMzIw2JLkQTp02dTDqpOyyAU",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/redsolidaria/encuestas",
+							"raw": "http://localhost:8080/redsolidaria/encuestas/estructuras",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1170,7 +1230,8 @@
 							"port": "8080",
 							"path": [
 								"redsolidaria",
-								"encuestas"
+								"encuestas",
+								"estructuras"
 							]
 						}
 					},
@@ -1291,6 +1352,99 @@
 								"redsolidaria",
 								"encuestas",
 								"caserios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarSuelos Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTA2MDU3LCJleHAiOjE2Nzk1MTMyNTd9.TCNs-WfRU2t0ePgIVGxgGQnqGNioB-MwD1nERaDGn1M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas/suelos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas",
+								"suelos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Nivel Tecnologico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTk1NTgzLCJleHAiOjE2Nzk2MDI3ODN9.PeWYuETA7t_i3zbzXF9SMzIw2JLkQTp02dTDqpOyyAU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas/nivel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas",
+								"nivel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Estados",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjc5NTk1NTgzLCJleHAiOjE2Nzk2MDI3ODN9.PeWYuETA7t_i3zbzXF9SMzIw2JLkQTp02dTDqpOyyAU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/encuestas/estados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"encuestas",
+								"estados"
 							]
 						}
 					},
