@@ -47,6 +47,7 @@ import { CaseriosComponent } from './pages/ubicaciones/caserios/caserios.compone
 import { UbicacionesService } from '@serv/ubicaciones.service';
 import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -92,14 +93,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MunicipiosComponent,
     AldeasComponent,
     CaseriosComponent,
-
   ],
   imports: [
     CommonModule,
     AdministrarRoutingModule,
     NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers:[ JuntaService,UbicacionesService
   ]

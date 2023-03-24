@@ -32,7 +32,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="body" *ngFor="let dep of departamentos | paginate: { itemsPerPage: 4, currentPage: page }"
+        <tr id="body" *ngFor="let dep of departamentos | paginate: { itemsPerPage: 4, currentPage: page } "
           class="align-middle text-center">
           <th scope="row" class="text-center"><strong>{{dep.id_dep}}</strong></th>
           <td>

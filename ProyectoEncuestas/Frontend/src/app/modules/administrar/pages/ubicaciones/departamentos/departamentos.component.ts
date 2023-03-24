@@ -9,7 +9,7 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 })
 export class DepartamentosComponent implements OnInit{
   buscarDepartamento:string="";
-  departamentos:any;
+  departamentos:DepartamentosInterface[];
    page:any;
   constructor(private ubicacionesModel: UbicacionesService) {
 
@@ -20,6 +20,9 @@ export class DepartamentosComponent implements OnInit{
   callSearch():void{
       this.ubicacionesModel.getSearchDepartamentos$(this.buscarDepartamento).subscribe((response: DepartamentosInterface[]) => {
         this.departamentos = response;
+      },
+      (error)=>{
+        alert(error);
       })
   }
   refresh(){

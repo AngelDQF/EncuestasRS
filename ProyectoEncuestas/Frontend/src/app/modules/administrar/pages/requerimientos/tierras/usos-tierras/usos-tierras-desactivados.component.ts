@@ -4,7 +4,7 @@ import { RequerimientosService, UsoTierra, UsosTierraResponse } from '@serv/requ
 @Component({
   selector: 'app-usos-tierras-desactivados',
   templateUrl: './usos-tierras-desactivados.component.html',
-  styleUrls: ['../../requerimientos.component.css', '../../../../../../app.component.css']
+  styleUrls: ['../../../../../cardLarge.css', '../../../../../../app.component.css']
 })
 export class UsosTierrasDesactivadosComponent {
   page: any;

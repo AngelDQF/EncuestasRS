@@ -4,7 +4,7 @@ import { RequerimientosService, UsoTierra,UsosTierraResponse } from '@serv/reque
 @Component({
   selector: 'app-usos-tierras',
   templateUrl: './usos-tierras.component.html',
-  styleUrls: ['../../requerimientos.component.css','../../../../../../app.component.css']
+  styleUrls: ['../../../../../cardLarge.css','../../../../../../app.component.css']
 })
 export class UsosTierrasComponent {
   page:any;

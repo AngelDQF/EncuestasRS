@@ -6,20 +6,20 @@
     <input type="checkbox" id="check">
     <label for="check" class="chekBtn"><i class="bi bi-list lead fw-bold" style="color:#fff;"></i></label>
     <div class="menu">
-      <a class="d-block p-3" routerLink="usuarios"><i class="bi bi-people-fill mr-2 lead"
+      <a *ngIf="aprobacion" class="d-block p-3" routerLink="usuarios"><i class="bi bi-people-fill mr-2 lead"
           style="color:purple;"></i>Usuarios</a>
       <a class="d-block p-3" routerLink="encuestas"><i class="bi bi-clipboard2-check-fill mr-2 lead"
           style="color:darkgreen;"></i>Encuestas</a>
-      <a class="d-block p-3" routerLink="dashboard"><i class="bi bi-columns-gap mr-2 lead"
+      <a  *ngIf="aprobacion" class="d-block p-3" routerLink="dashboard"><i class="bi bi-columns-gap mr-2 lead"
           style="color:chocolate;"></i>Dashboard</a>
-      <a class="d-block p-3" routerLink="administrar"><i class="bi bi-gear-fill mr-2 lead"
+      <a *ngIf="aprobacion" class="d-block p-3" routerLink="administrar"><i class="bi bi-gear-fill mr-2 lead"
           style="color:darkred;"></i>Administrar</a>
-      <a class="d-block p-3" routerLink="exportar"><i class="bi bi-clipboard2-data-fill mr-2 lead"
+      <a *ngIf="aprobacion" class="d-block p-3" routerLink="exportar"><i class="bi bi-clipboard2-data-fill mr-2 lead"
           style="color:darkblue;"></i>Exportar</a>
       <a class="d-block p-3" routerLink="tuto"><i class="bi bi-collection-play-fill mr-2 lead"
           style="color:red;"></i>Tutoriales</a>
       <div>
-        <a class=" btnEliminar pt-3 pb-3 form-control">Cerrar Sesión</a>
+        <a [routerLink]="inicio" (click)="cerrarSesion($event)" class=" btnEliminar pt-3 pb-3 form-control">Cerrar Sesión</a>
       </div>
     </div>
   </div>

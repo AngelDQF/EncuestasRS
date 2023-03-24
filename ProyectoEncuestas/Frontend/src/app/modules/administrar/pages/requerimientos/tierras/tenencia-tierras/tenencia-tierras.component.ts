@@ -4,7 +4,7 @@ import { RequerimientosService, TenenciaTierra, TenenciaTierrasResponse } from '
 @Component({
   selector: 'app-tenencia-tierras',
   templateUrl: './tenencia-tierras.component.html',
-  styleUrls: ['../../requerimientos.component.css','../../../../../../app.component.css']
+  styleUrls: ['../../../../../cardLarge.css','../../../../../../app.component.css']
 })
 export class TenenciaTierrasComponent {
   page:any;

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-bosques',
   templateUrl: './bosques.component.html',
-  styleUrls: ['../../../../card.css','../../../../../app.component.css']
+  styleUrls: ['../../../../card.css','../../../../../app.component.css'],
 })
 export class BosquesComponent {
   page:any;

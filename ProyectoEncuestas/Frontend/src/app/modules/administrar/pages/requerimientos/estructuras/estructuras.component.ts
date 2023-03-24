@@ -4,7 +4,7 @@ import { Estructura, EstructurasResponse, RequerimientosService } from '@serv/re
 @Component({
   selector: 'app-estructuras',
   templateUrl: './estructuras.component.html',
-  styleUrls: ['../requerimientos.component.css','../../../../../app.component.css']
+  styleUrls: ['../../../../cardLarge.css','../../../../../app.component.css']
 })
 export class EstructurasComponent {
   page:any;
