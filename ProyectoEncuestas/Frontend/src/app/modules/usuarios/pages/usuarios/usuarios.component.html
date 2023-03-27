@@ -1,4 +1,87 @@
-<div class="contenido formContenido bordeContenido ">
+<div class="contenido bordeContenido">
+  <div class="row">
+    <h1 class="col-12 titulo">Agregar Nuevo Usuario</h1>
+
+    <form [formGroup]="usersForm" class="col-12">
+      <div class="card p-0 col-12">
+        <div class="card-header text-center fw-bold bg-dark bg-gradient text-light">
+          <h3>Datos del Usuario</h3>
+        </div>
+        <div class="row">
+
+          <div class="col-6 p-0">
+            <div class="input-group pe-2">
+              <span class="input-group-text">Nombre</span>
+              <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+          <div class="col-6 p-0">
+            <div class="input-group ps-2">
+              <span class="input-group-text">Apellido</span>
+              <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+          <div class="col-6 p-0">
+            <div class="input-group pe-2">
+              <span class="input-group-text">Teléfono</span>
+              <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+          <div class="col-6 p-0">
+            <div class="input-group ps-2">
+              <span class="input-group-text">Identidad</span>
+              <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+          <div class="col-6 p-0">
+            <div class="input-group pe-2">
+              <span class="input-group-text">Correo</span>
+              <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+          <div class="col-6 p-0">
+            <div class="input-group ps-2">
+              <span class="input-group-text">Contraseña</span>
+              <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+          <div class="col-6 p-0">
+            <div class="input-group pe-2">
+              <label class="input-group-text" for="inputGroupSelect01">Estado</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option value="2" selected>Activo</option>
+                <option value="3">Inactivo</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6 p-0">
+            <div class="input-group ps-2">
+              <label class="input-group-text" for="inputGroupSelect01">Sexo</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option selected>Seleccione</option>
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- <div class="contenido formContenido bordeContenido ">
   <div class="row">
     <div class="col-12 pt-2 text-center">
       <h1 class="titulo">Agregar Usuario</h1>
@@ -53,4 +136,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

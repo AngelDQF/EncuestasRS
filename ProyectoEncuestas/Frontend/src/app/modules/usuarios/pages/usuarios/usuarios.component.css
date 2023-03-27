@@ -1,65 +1,24 @@
-.titulo{
-  padding: 0px;
-}
-.slideForm{
-  height: calc(100vh - 270px);
-  overflow: scroll;
-}
-label{
-  font-weight: 500;
-  font-size: 15px;
-}
-input:hover{
-  border: solid 2px;
-  border-color: var(--color1);
-}
-.icono{
-  font-size: 150px;
-  color: var(--color1);
-}
-#sexoLabel{
-  padding-right: 10px;
-}
-button{
-  margin-right: 10px;
-}
-.alineado{
-  padding-right: 5px;
-  text-align:right;
-}
-.mar{
-  margin-left: 10px;
-}
-.radio label{
-  cursor: pointer;
-}
 .row{
+  margin: 0px !important;
+}
+h3{
+  font-size: 20px !important;
   margin: 0px;
-  padding: 0px;
-  height: 100%;
 }
-/*Pantallas sm*/
-@media screen and (max-width:767px) {
-
-  .iconoForm{
-    font-size: 10px;
-  }
-  label{
-    font-size: 10px;
-  }
-  select,input{
-    font-size: 10px;
-  }
-
+.card{
+  border:none !important;
 }
-
-/*Pantallas md*/
-@media screen and (max-width:991px) {
-  .icono{
-    font-size: 100px;
-  }
-  .slideForm{
-    height: 90%;
-    overflow: none !important;
-  }
+.input-group-text{
+  background-color:#088ff630 !important;
+  border-radius: 0px !important;
+  width: 100px !important;
+  text-align: center !important;
+  display:inline !important;
+}
+.input-group{
+  border-radius: 0px !important;
+  margin-top: 5px;
+}
+.form-control{
+  border-radius: 0px !important;
 }
