@@ -49,7 +49,6 @@ export class JuntaService {
     let body={
       eje,estado
     }
-    console.log(body)
     return this.http.post(`${this.URL}/ejes`,body)
   }
 }

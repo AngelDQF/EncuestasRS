@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JuntaService } from '@serv/junta.service';
-
 @Component({
   selector: 'app-modal-ejes',
   templateUrl: './modal-ejes.component.html',

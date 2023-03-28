@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
   }
   ngOnInit(): void {
     this.tokenString = (this.getDecodedAccessToken(this.token)).tipo;
-    console.log(this.tokenString);
     this.validacion(this.tokenString);
   }
   validacion(tokenResponse: any): void {
