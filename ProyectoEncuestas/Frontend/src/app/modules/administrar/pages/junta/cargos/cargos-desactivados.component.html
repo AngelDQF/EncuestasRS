@@ -1,11 +1,16 @@
 <div class="contenido bordeContenido">
   <div class="headerListar pt-3">
     <div class="mb-2 align-items-center row">
-      <div class="col-12 d-flex padT align-items-center">
-        <div class=" col-lg-2 col-xl-2">
+      <div class="col-12 d-flex p-0 align-items-center">
+        <div class=" col-2 align-items-center">
           <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
         </div>
-        <h1 class="col-10 text-center titulo ">Cargos Desactivados</h1>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Cargos Desactivados Junta Directiva</h1>
+        </div>
+        <div class="col-2 align-items-end text-end">
+          <a (click)="refresh()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+        </div>
       </div>
       <div class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">

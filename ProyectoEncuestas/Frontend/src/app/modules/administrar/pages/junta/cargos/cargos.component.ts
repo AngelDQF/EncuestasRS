@@ -9,10 +9,17 @@ import { EjesInterface } from '@models/administrar/junta/ejes.interface';
 export class CargosComponent implements OnInit {
   page:any;
   cargos:any;
-  constructor(private cargosModel: JuntaService) {
+  constructor(private cargosModel: JuntaService) {}
+
+  ngOnInit(): void {
+    this.obtenerCargos();
+  }
+  refresh(){
+    this.obtenerCargos();
+  }
+  obtenerCargos(){
     this.cargosModel.getCargos().subscribe((response: EjesInterface[]) => {
       this.cargos = response;
     })
   }
-  ngOnInit(): void {}
 }

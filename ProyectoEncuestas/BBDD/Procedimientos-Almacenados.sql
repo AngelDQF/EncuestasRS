@@ -259,7 +259,8 @@ as begin
 	where correo_Usuario=@email and id_Estado_Usuario=1
 end
 ----------------------------------------------------------------------------------------------------------------------------------------------
---Creacion de Procedimientos Almacenados para el Modulo de Ejes
+--Creacion de Procedimientos Almacenados para el Modulo de Junta Directiva
+--Procedimiento Almacenado para Crear un Eje
 create procedure prc_Ejes_Agregar
 @eje nvarchar(250),
 @estado bit
@@ -269,5 +270,32 @@ as begin
 			   ,[estado_Eje])
      VALUES (@eje,@estado)           
 end
+--Procedimiento Almacenado para Buscar un Eje
+create procedure prc_Ejes_Buscar_Eje
+@eje nvarchar(250)
+as begin
+	select id_Eje
+	from tbl_Ejes
+	where descripcion_Eje=@eje
+end
+--Procedimiento Almacenado para Crear un Cargo
+create procedure prc_Cargos_Agregar
+@cargo nvarchar(30),
+@estado bit
+as begin
+	INSERT INTO [dbo].[tbl_Cargos]
+           ([descripcion_Cargo]
+           ,[estado_Cargo])
+    VALUES (@cargo,@estado)
+end
+--Procedimiento Almacenado para Buscar un Cargo
+create procedure prc_Cargos_Verificcar_Cargo
+@cargo nvarchar(30)
+as begin
+	select id_Cargo as id
+	from tbl_Cargos
+	where descripcion_Cargo=@cargo
+end
+
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Tipos_Usuario] , RESEED, 0);

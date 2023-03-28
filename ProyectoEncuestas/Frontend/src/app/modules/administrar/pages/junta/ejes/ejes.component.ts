@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { JuntaService } from '@serv/junta.service';
 import { EjesInterface } from '@models/administrar/junta/ejes.interface';
 @Component({
@@ -13,9 +13,12 @@ export class EjesComponent implements OnInit{
   ngOnInit(): void {
     this.obtenerEjes();
   }
-  @Output() obtenerEjes(){
+   obtenerEjes(){
     this.ejesModel.getEjes().subscribe((data: EjesInterface[])=>{
       this.ejes = data;
       })
+  }
+  refresh(){
+    this.obtenerEjes();
   }
 }

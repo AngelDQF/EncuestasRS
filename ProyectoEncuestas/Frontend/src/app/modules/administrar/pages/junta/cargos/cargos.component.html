@@ -1,18 +1,24 @@
 <div class="contenido bordeContenido">
   <div class="headerListar">
     <div class="row mb-2 align-items-center ">
-      <div class="col-12 d-flex padT align-items-center">
-        <div class=" col-2">
+      <div class="col-12 d-flex p-0 align-items-center">
+        <div class=" col-2 align-items-center">
           <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
         </div>
-        <h1 class="text-center col-10 titulo">Cargos Junta Directica</h1>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Cargos Junta Directiva</h1>
+        </div>
+        <div class="col-2 align-items-end text-end">
+          <a (click)="refresh()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+        </div>
       </div>
       <div class="col-xl-3 col-xxl-2 col-lg-6 col-md-6">
-        <a routerLink="agregar" class="btn btnEditar form-control"><i class="bi bi-person-plus-fill"></i>Nuevo Cargo</a>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#cargosModal" class="btn btnEditar form-control"><i class="bi bi-clipboard-data"></i>Nuevo Cargo</button>
+        <app-modal-cargos></app-modal-cargos>
       </div>
 
       <div class="col-xl-4 col-xxl-3 col-lg-6 col-md-6 pt-lg-0 pt-md-0 pt-sm-2 pt-2">
-        <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-person-x-fill"></i>Cargos
+        <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-clipboard-x"></i>Cargos
           Desactivados</a>
       </div>
       <div

@@ -59,7 +59,12 @@ textarea{
   color: white;
   background-color: var(--btn2);
 }
-
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
+  border: 2px solid red !important;
+}
+input.ng-valid.ng-touched, select.ng-valid.ng-touched, textarea.ng-valid.ng-touched{
+  border: 2px solid rgb(4, 255, 79) !important;
+}
 
 .padForm {
   padding: 0px 15px;

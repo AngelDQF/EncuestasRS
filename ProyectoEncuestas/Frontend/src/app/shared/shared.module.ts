@@ -5,17 +5,14 @@ import { IndexComponent } from './components/index/index.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModalExitoComponent } from './components/modals/modal-exito/modal-exito.component';
-import { ModalEjesComponent } from './components/modals/modal-ejes/modal-ejes.component';
 import { JuntaService } from '@serv/junta.service';
-
+import * as components from './components/index'
 @NgModule({
   declarations: [
     NavbarComponent,
     IndexComponent,
     HeaderComponent,
-    ModalExitoComponent,
-    ModalEjesComponent,
+    ...components.components
   ],
   imports: [
     CommonModule,
@@ -25,11 +22,7 @@ import { JuntaService } from '@serv/junta.service';
     FormsModule
   ],
   exports:[
-    NavbarComponent,
-    IndexComponent,
-    ModalExitoComponent,
-    ModalEjesComponent,
-    HeaderComponent,
+    ...components.components
   ],
   providers:[
     JuntaService

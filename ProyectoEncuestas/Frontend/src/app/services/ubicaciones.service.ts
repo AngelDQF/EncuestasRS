@@ -21,8 +21,6 @@ export class UbicacionesService {
     const body = [
       { "dep": term }
     ]
-    console.log(body[0])
-    console.log(term)
     return this.http.post(`${this.URL}/ubicaciones/departamentos/buscar`, body[0])
       .pipe(
         map(({ results }: any) => {
@@ -42,8 +40,6 @@ export class UbicacionesService {
     const body = [
       { "mun": term }
     ]
-    console.log(body[0])
-    console.log(term)
     return this.http.post(`${this.URL}/ubicaciones/municipios/buscar`, body[0])
       .pipe(
         map(({ results }: any) => {
@@ -63,8 +59,6 @@ export class UbicacionesService {
     const body = [
       { "aldea": term }
     ]
-    console.log(body[0])
-    console.log(term)
     return this.http.post(`${this.URL}/ubicaciones/aldeas/buscar`, body[0])
       .pipe(
         map(({ results }: any) => {
@@ -84,8 +78,6 @@ export class UbicacionesService {
     const body = [
       { "caserio": term }
     ]
-    console.log(body[0])
-    console.log(term)
     return this.http.post(`${this.URL}/ubicaciones/caserios/buscar`, body[0])
       .pipe(
         map(({ results }: any) => {

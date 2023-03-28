@@ -1,17 +1,17 @@
 <div class="contEncuesta">
-  <div class="row slideEncuesta">
-    <div class="col-12 d-flex">
+  <div class="row slideEncuesta ps-0">
+    <div class="col-12 d-flex p-0">
       <div class="btnRegresar col-2">
-        <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
+        <a routerLink="../" class="text-start iconoRegresar btn ps-0"><i class="bi bi-arrow-left"></i></a>
       </div>
       <div class="col-8 align-items-center text-center">
         <h1 class="text-center  titulo">{{title}}</h1>
       </div>
-      <div class="col-2 align-items-end text-end">
-        <a (click)="limpiarForm()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+      <div class="col-2 align-items-end text-end pe-0">
+        <a (click)="limpiarForm()" class="iconoRefrescar btn pe-0"><i class="bi bi-arrow-clockwise"></i></a>
       </div>
     </div>
-    <div class="encuesta text-center slideEncuesta mt-2">
+    <div class="encuesta text-center slideEncuesta mt-2 ps-0">
       <form class="col-12" (ngSubmit)="onSubmit()" [formGroup]="encuestaForm">
         <div class="col-12" id="General">
           <div class="col-12">
@@ -260,7 +260,7 @@
         </div>
         <div class="mt-5 mb-2 d-flex">
           <button routerLink="../" class="btn form-control btnEliminar mx-1" type="button">Cancelar</button>
-          <button class="btn form-control btnGuardar mx-1" type="submit">Enviar</button>
+          <button [disabled]="encuestaForm.invalid" class="btn form-control btnGuardar mx-1" type="submit">Enviar</button>
         </div>
       </form>
     </div>

@@ -30,4 +30,22 @@ const ctrGetCargosDesactivados = async (req, res) => {//TODO: Funcion para hacer
   }
 
 }
-module.exports = { ctrGetCargos,ctrGetCargosDesactivados,ctrGetCargoById };//TODO: Exportamos las funciones del controlador
+const ctrPostCargo = async (req, res) => {//TODO: Funcion para hacer post a un eje
+  try {//TODO: Intentamos ejecutar el codigo
+
+    const { cargo, estado } = req.body;//TODO: Extraemos los datos del body
+    const resultado = await cargoModel.postCargos(cargo, estado);//TODO: Llamamos a la función del modelo para crear un usuario
+    if (resultado == true) {
+      res.json({ info: "Cargo Agregado", estado: resultado });//TODO: Mostramos el resultado en un json
+    } else if (resultado == false) {
+      res.json({ info: "Ya Existe un Cargo con ese nombre", estado: resultado });//TODO: Mostramos el resultado en un json
+    } else {
+      res.json({
+        error: "Ha Ocurrido un error"
+      })
+    }
+  } catch {
+    handleHttpError(res, 'ERROR_POST_CARGO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
+module.exports = { ctrGetCargos,ctrGetCargosDesactivados,ctrGetCargoById,ctrPostCargo };//TODO: Exportamos las funciones del controlador

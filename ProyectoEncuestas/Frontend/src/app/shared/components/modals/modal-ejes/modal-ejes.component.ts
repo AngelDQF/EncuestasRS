@@ -24,7 +24,7 @@ export class ModalEjesComponent implements OnInit{
     this.initFormEjes();
   }
   onSubmit(){
-    this.ejesModel.postEje(this.ejesForm.value.txtEje,this.ejesForm.value.selectEstado).subscribe();
+    this.ejesModel.postEje$(this.ejesForm.value.txtEje,this.ejesForm.value.selectEstado).subscribe();
     this.initFormEjes();
   }
 }

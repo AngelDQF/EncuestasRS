@@ -6,7 +6,6 @@ import { FuentesFinanciamientosDesactivadasComponent } from './pages/financiamie
 import { FuentesFinanciamientosComponent } from './pages/financiamiento/fuentes/fuentes-financiamientos.component';
 import { TiposFinanciamientosDesactivadosComponent } from './pages/financiamiento/tipos/tipos-financiamientos-desactivados.component';
 import { TiposFinanciamientosComponent } from './pages/financiamiento/tipos/tipos-financiamientos.component';
-import { CargoGetComponent } from './pages/junta/cargos/cargo-get.component';
 import { CargosDesactivadosComponent } from './pages/junta/cargos/cargos-desactivados.component';
 import { CargosComponent } from './pages/junta/cargos/cargos.component';
 import { EjesComponent } from './pages/junta/ejes/ejes.component';
@@ -51,8 +50,6 @@ const routes: Routes = [
         path: 'cargos', children: [
           { path: '', component: CargosComponent },
           { path: 'desactivados', component: CargosDesactivadosComponent },
-          { path: 'get', component: CargoGetComponent },
-
         ]
       },
       {

@@ -39,7 +39,6 @@ import { EstructurasComponent } from './pages/requerimientos/estructuras/estruct
 import { EstructurasDesactivadasComponent } from './pages/requerimientos/estructuras/estructuras-desactivadas.component';
 import { TenenciaTierrasComponent } from './pages/requerimientos/tierras/tenencia-tierras/tenencia-tierras.component';
 import { TenenciaTierrasDesactivadasComponent } from './pages/requerimientos/tierras/tenencia-tierras/tenencia-tierras-desactivadas.component';
-import { CargoGetComponent } from './pages/junta/cargos/cargo-get.component';
 import { DepartamentosComponent } from './pages/ubicaciones/departamentos/departamentos.component';
 import { MunicipiosComponent } from './pages/ubicaciones/municipios/municipios.component';
 import { AldeasComponent } from './pages/ubicaciones/aldeas/aldeas.component';
@@ -87,7 +86,6 @@ import { SharedModule } from '@shared/shared.module';
     OrganizacionesTiposDesactivadosComponent,
     OrganizacionesComponent,
     OrganizacionesDesactivadosComponent,
-    CargoGetComponent,
     DepartamentosComponent,
     UbicacionesComponent,
     MunicipiosComponent,

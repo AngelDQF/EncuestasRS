@@ -1,19 +1,24 @@
 <div class="contenido bordeContenido">
   <div class="headerListar">
     <div class="row mb-2 align-items-center ">
-      <div class="col-12 d-flex padT align-items-center">
-        <div class=" col-lg-2 col-xl-2 align-items-center">
+      <div class="col-12 d-flex p-0 align-items-center">
+        <div class=" col-2 align-items-center">
           <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
         </div>
-        <h1 class="col-10 text-center titulo ">Ejes Red Solidaria</h1>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Ejes Red Solidaria</h1>
+        </div>
+        <div class="col-2 align-items-end text-end">
+          <a (click)="refresh()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+        </div>
       </div>
       <div class="col-xl-3 col-xxl-2 col-lg-6 col-md-6">
-        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btnEditar form-control"><i class="bi bi-person-plus-fill"></i>Nuevo Eje</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btnEditar form-control"><i class="bi bi-diagram-3-fill"></i>Nuevo Eje</button>
         <app-modal-ejes></app-modal-ejes>
       </div>
 
       <div  class="col-xl-4 col-xxl-3 col-lg-6 col-md-6 pt-lg-0 pt-md-0 pt-sm-2 pt-2">
-        <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-person-x-fill"></i>Ejes
+        <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-diagram-3-fill"></i>Ejes
           Desactivados</a>
       </div>
       <div

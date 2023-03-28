@@ -1,7 +1,7 @@
 const express = require("express"); //TODO: Importamos express para poder usar el metodo de Router
 const router = express.Router();//TODO: Creamos una instancia de Router para poder crear rutas
 const { ctrGetEjes, ctrGetEjesDesactivados,ctrPostEje, ctrGetEje, ctrPutEje, ctrPutEjeEstado } = require('../controllers/ejes.controller');
-const { validatorCreateEje, validatorGetEje, validatorUpdateEje, validatorUpdateEjeEstado } = require('../validators/ejes');//TODO: Importamos el ValidatorCreateEje
+const { validatorCreateEje, validatorGetEje, validatorUpdateEje, validatorUpdateEjeEstado } = require('../validators/ejes.validator');//TODO: Importamos el ValidatorCreateEje
 const {authMiddleware}=require("../middleware/session")
 const { checkTipo } = require("../middleware/role");
 

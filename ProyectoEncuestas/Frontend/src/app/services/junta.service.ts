@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@shared/environments/environment'
 import { map, Observable } from 'rxjs';
-import { CargosInterface } from '@models/administrar/junta/cargos.interface';
-import { EjesInterface } from '@models/administrar/junta/ejes.interface';
 
 @Injectable()
 export class JuntaService {
@@ -18,9 +16,7 @@ export class JuntaService {
         })
       )
   }
-  getCargo(id: number) {
-    return this.http.get<CargosInterface>(`${this.URL}/cargos/${id}`)
-  }
+
   getCargosDesactivados(): Observable<any> {
     return this.http.get(`${this.URL}/cargos/desactivados`)
       .pipe(
@@ -45,10 +41,18 @@ export class JuntaService {
         })
       )
   }
-  postEje(eje:string,estado:string):Observable<any>{
-    let body={
-      eje,estado
+  postEje$(eje: string, estado: string): Observable<any> {
+    let body = {
+      eje,
+      estado
     }
-    return this.http.post(`${this.URL}/ejes`,body)
+    return this.http.post(`${this.URL}/ejes`, body)
+  }
+  postCargo$(cargo: string, estado: string): Observable<any> {
+    let body = {
+      cargo,
+      estado
+    }
+    return this.http.post(`${this.URL}/cargos`, body);
   }
 }
