@@ -177,9 +177,19 @@ as begin
 end
 --Procedimiento para organizaciones sociales productivas
 --Procedimiento para Organizaciones Estatales
-
-
-
+--Procedimiento para Asignacion de municipios a usuarios
+create procedure prc_Usuarios_Asignar_Municipios_Listar
+@dep as nvarchar(10),
+@user as int
+as begin
+	SELECT mun.id_Departamento as id_dep, mun.id_Municipio AS id, mun.municipio AS mun
+	FROM     dbo.tbl_Municipios mun where  mun.id_Departamento=@dep
+	EXCEPT  
+	SELECT M.id_Departamento as id_dep, A.id_Municipio AS id,M.municipio AS mun
+	FROM     dbo.tbl_Asignacion_Usuario A INNER JOIN
+                  dbo.tbl_Municipios M ON A.id_Municipio =M.id_Municipio
+	where A.id_Usuario=@user
+end
 --Procedimientos Almacenados para el Modulo de Junta Directiva
 --Procedimientos Almacenados para los Cargos
 --Procedimiento Almacenado para Buscar un cargo por su id
@@ -187,7 +197,7 @@ create procedure prc_Cargos_Buscar
 @id int
 as begin
 	SELECT id_Cargo AS id, descripcion_Cargo AS cargo, estado_Cargo AS estado
-		FROM     dbo.tbl_Cargos
+	FROM     dbo.tbl_Cargos
 	where id_Cargo=@id
 end
 --Procedimientos Almacenados para las Ubicaciones
@@ -248,7 +258,16 @@ as begin
 	from tbl_Usuarios
 	where correo_Usuario=@email and id_Estado_Usuario=1
 end
-
-
+----------------------------------------------------------------------------------------------------------------------------------------------
+--Creacion de Procedimientos Almacenados para el Modulo de Ejes
+create procedure prc_Ejes_Agregar
+@eje nvarchar(250),
+@estado bit
+as begin
+	INSERT INTO [dbo].[tbl_Ejes]
+			   ([descripcion_Eje]
+			   ,[estado_Eje])
+     VALUES (@eje,@estado)           
+end
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Tipos_Usuario] , RESEED, 0);

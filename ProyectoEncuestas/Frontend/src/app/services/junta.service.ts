@@ -13,12 +13,12 @@ export class JuntaService {
   getCargos(): Observable<any> {
     return this.http.get(`${this.URL}/cargos`)
       .pipe(
-        map(({results}: any) => {
+        map(({ results }: any) => {
           return results;
         })
       )
   }
-  getCargo(id:number) {
+  getCargo(id: number) {
     return this.http.get<CargosInterface>(`${this.URL}/cargos/${id}`)
   }
   getCargosDesactivados(): Observable<any> {
@@ -44,5 +44,12 @@ export class JuntaService {
           return dataRaw.results;
         })
       )
+  }
+  postEje(eje:string,estado:string):Observable<any>{
+    let body={
+      eje,estado
+    }
+    console.log(body)
+    return this.http.post(`${this.URL}/ejes`,body)
   }
 }

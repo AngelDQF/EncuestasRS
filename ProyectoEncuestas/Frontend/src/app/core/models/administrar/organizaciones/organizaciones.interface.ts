@@ -1,5 +1,5 @@
 export interface OrganizacionesInterface{
-  id:number;
+  id?:number;
   org:string;
   tipo:string;
   social:boolean;

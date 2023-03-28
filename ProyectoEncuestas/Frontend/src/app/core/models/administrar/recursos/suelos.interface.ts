@@ -1,5 +1,5 @@
 export interface SuelosInterface{
-  id:number;
+  id?:number;
   tipo:string;
   estado:boolean;
 }

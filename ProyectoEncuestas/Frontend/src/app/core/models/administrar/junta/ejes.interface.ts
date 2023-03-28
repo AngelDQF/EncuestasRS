@@ -1,6 +1,6 @@
 
 export interface EjesInterface {
-  id: number
+  id?: number
   eje: string
   estado: boolean
 }

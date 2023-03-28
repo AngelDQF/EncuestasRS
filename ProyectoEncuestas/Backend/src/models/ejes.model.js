@@ -83,12 +83,11 @@ async function postEjes(eje, estado) {//TODO: Creamos la función que se encarga
     const consulta = await verificarEje(eje);//TODO: Verificamos si el eje existe
     if (consulta) {//TODO: Si el eje no existe
       await pool.connect()//TODO: Conectamos a la base de datos
-      await pool.request().query(`Exec prc_Ejes_Crear '${eje}', '${estado}'`);//TODO: Ejecutamos la consulta
+      await pool.request().query(`Exec prc_Ejes_Agregar '${eje}', '${estado}'`);//TODO: Ejecutamos la consulta
       pool.close();//TODO: Cerramos la conexión
-      const result = await getEje(eje);//TODO: Obtenemos el eje creado
-      return await result;//TODO: Retornamos el eje creado
+      return true;//TODO: Retornamos el eje creado
     } else {//TODO: Si el eje existe
-      return "Ya existe un eje con ese nombre";//TODO: Retornamos un mensaje
+      return false;//TODO: Retornamos un mensaje
     }
   } catch (error) {//TODO: Si hay un error
     console.log(error);// TODO: Mostramos el error
@@ -178,4 +177,4 @@ async function verificarEjeID(id) {//TODO: Creamos la función que se encargará
   }
 }
 
-module.exports = { getEjes,getEjesDesactivados, getEje, postEjes, verificarEje, putEjeNombre, putEjeEstado };//TODO: Exportamos las funcionessss
+module.exports = { getEjes, getEjesDesactivados, getEje, postEjes, verificarEje, putEjeNombre, putEjeEstado };//TODO: Exportamos las funcionessss

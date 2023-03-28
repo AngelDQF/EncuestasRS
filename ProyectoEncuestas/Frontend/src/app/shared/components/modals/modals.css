@@ -1,0 +1,15 @@
+h1{
+  color:var(--color1);
+  font-size: 25px !important;
+  font-weight: bold;
+}
+input,select{
+  background-color: aliceblue !important;
+}
+span{
+  background-color:rgba(0, 243, 252, 0.226);
+  font-size: 20px;
+text-align: center;
+justify-content: center;
+  width: 90px;
+}

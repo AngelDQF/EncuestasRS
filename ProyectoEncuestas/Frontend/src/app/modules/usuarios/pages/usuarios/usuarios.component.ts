@@ -21,15 +21,15 @@ export class UsuariosComponent implements OnInit {
   }
   initForm() {
     this.usersForm=this.fb.group({
-      txtNombre: ['', Validators.required],
-      txtApellido: ['', Validators.required],
-      txtTelefono: ['', Validators.required],
-      txtDni: ['', Validators.required],
-      txtEmail: ['', Validators.required],
-      txtContra: ['', Validators.required],
-      selectEstado: ['1', Validators.required],
-      selectTipo: ['', Validators.required],
-      selectSexo: ['', Validators.required],
+      txtNombre: ['', [Validators.required]],
+      txtApellido: ['', [Validators.required]],
+      txtTelefono: ['', [Validators.required,Validators.minLength(8)]],
+      txtDni: ['', [Validators.required,Validators.minLength(13)]],
+      txtEmail: ['', [Validators.required,Validators.email]],
+      txtContra: ['', [Validators.required,Validators.minLength(8),Validators.maxLength(60)]],
+      selectEstado: ['1', [Validators.required,Validators]],
+      selectTipo: ['', [Validators.required,Validators.nullValidator]],
+      selectSexo: ['', [Validators.required]],
     })
   }
   onSubmit(){

@@ -1,6 +1,6 @@
 
 export interface CargosInterface {
-  id: number
+  id?: number
   cargo: string
   estado: boolean
 }
