@@ -12,22 +12,39 @@ export class UsuariosComponent implements OnInit {
 
 
   usuariosTipos: UsuarioTipo[] = [];
-  constructor(private usuariosTiposModel: UsuariosService, private fb: FormBuilder) { }
+  constructor(private usuariosModel: UsuariosService, private fb: FormBuilder) { }
   ngOnInit(): void {
-    this.usuariosTiposModel.getUsuariosTipos().subscribe((data: UsuariosTiposResponse) => {
+    this.usuariosModel.getUsuariosTipos().subscribe((data: UsuariosTiposResponse) => {
       this.usuariosTipos = data.results;
     })
+    this.initForm();
   }
   initForm() {
     this.usersForm=this.fb.group({
-      nombre: ['', Validators.required],
-      telefono: ['', Validators.required],
-      dni: ['', Validators.required],
-      email: ['', Validators.required],
-      contra: ['', Validators.required],
-      estado: ['', Validators.required],
-      tipo: ['', Validators.required],
-      sexo: ['', Validators.required],
+      txtNombre: ['', Validators.required],
+      txtApellido: ['', Validators.required],
+      txtTelefono: ['', Validators.required],
+      txtDni: ['', Validators.required],
+      txtEmail: ['', Validators.required],
+      txtContra: ['', Validators.required],
+      selectEstado: ['1', Validators.required],
+      selectTipo: ['', Validators.required],
+      selectSexo: ['', Validators.required],
+    })
+  }
+  onSubmit(){
+    let body={
+      nombre: (`${this.usersForm.value.txtNombre} ${this.usersForm.value.txtApellido}`),
+      telefono: this.usersForm.value.txtTelefono,
+      dni: this.usersForm.value.txtDni,
+      correo: this.usersForm.value.txtEmail,
+      contra: this.usersForm.value.txtContra,
+      estado: this.usersForm.value.selectEstado,
+      tipo: this.usersForm.value.selectTipo,
+      sexo: this.usersForm.value.selectSexo,
+    }
+    this.usuariosModel.postUsuarios(body).subscribe((data: any) => {
+      console.log(data);
     })
   }
 }

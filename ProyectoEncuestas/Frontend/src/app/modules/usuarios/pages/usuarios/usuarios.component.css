@@ -1,24 +1,47 @@
-.row{
+.row {
   margin: 0px !important;
 }
-h3{
+h3 {
   font-size: 20px !important;
   margin: 0px;
 }
-.card{
-  border:none !important;
+.card {
+  border: none !important;
+  height: calc(100vh - 350px) !important;
+  overflow-y: scroll !important;
 }
-.input-group-text{
-  background-color:#088ff630 !important;
+.input-group-text {
+  background-color: #fff !important;
   border-radius: 0px !important;
-  width: 100px !important;
+  width: 110px !important;
   text-align: center !important;
-  display:inline !important;
+  display: inline !important;
+  padding: 0px !important;
 }
-.input-group{
+.sel{
+  width: 140px !important;
+}
+.input-group {
   border-radius: 0px !important;
   margin-top: 5px;
 }
-.form-control{
+.form-control,
+.form-select {
   border-radius: 0px !important;
+  background-color: aliceblue !important;
+  text-align: center !important;
+}
+.btnEliminar, .btnGuardar {
+  height: 100%;
+  font-size: 20px !important;
+}
+.btnEditar{
+  height: 35px;
+}
+i{
+  font-size: 30px !important;
+  color: var(--color1);
+}
+input{
+  text-align: center;
 }

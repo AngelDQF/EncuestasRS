@@ -2,75 +2,114 @@
   <div class="row">
     <h1 class="col-12 titulo">Agregar Nuevo Usuario</h1>
 
-    <form [formGroup]="usersForm" class="col-12">
+    <form [formGroup]="usersForm" class="col-12" (ngSubmit)="onSubmit()">
       <div class="card p-0 col-12">
         <div class="card-header text-center fw-bold bg-dark bg-gradient text-light">
           <h3>Datos del Usuario</h3>
         </div>
         <div class="row">
-
-          <div class="col-6 p-0">
+          <div class="col-6 p-0 mt-1">
             <div class="input-group pe-2">
-              <span class="input-group-text">Nombre</span>
-              <input type="text" class="form-control" aria-label="Sizing example input"
+              <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+              <input formControlName="txtNombre" type="text" class="form-control" aria-label="Sizing example input" placeholder="Nombre"
                 aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
-          <div class="col-6 p-0">
+          <div class="col-6 p-0 mt-1">
             <div class="input-group ps-2">
-              <span class="input-group-text">Apellido</span>
-              <input type="text" class="form-control" aria-label="Sizing example input"
+              <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+              <input formControlName="txtApellido" type="text" class="form-control" aria-label="Sizing example input" placeholder="Apellido"
                 aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
-          <div class="col-6 p-0">
+          <div class="col-6 p-0 mt-1">
             <div class="input-group pe-2">
-              <span class="input-group-text">Teléfono</span>
-              <input type="text" class="form-control" aria-label="Sizing example input"
+              <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+              <input formControlName="txtTelefono" type="text" class="form-control" aria-label="Sizing example input" placeholder="Teléfono"
                 aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
-          <div class="col-6 p-0">
+          <div class="col-6 p-0 mt-1">
             <div class="input-group ps-2">
-              <span class="input-group-text">Identidad</span>
-              <input type="text" class="form-control" aria-label="Sizing example input"
+              <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
+              <input formControlName="txtDni" type="text" class="form-control" aria-label="Sizing example input" placeholder="Identidad"
                 aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
-          <div class="col-6 p-0">
+          <div class="col-6 p-0 mt-1">
             <div class="input-group pe-2">
-              <span class="input-group-text">Correo</span>
-              <input type="text" class="form-control" aria-label="Sizing example input"
+              <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+              <input formControlName="txtEmail" type="text" class="form-control" aria-label="Sizing example input" placeholder="Correo"
                 aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
-          <div class="col-6 p-0">
+          <div class="col-6 p-0 mt-1">
             <div class="input-group ps-2">
-              <span class="input-group-text">Contraseña</span>
-              <input type="text" class="form-control" aria-label="Sizing example input"
+              <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+              <input formControlName="txtContra" type="text" class="form-control" aria-label="Sizing example input" placeholder="Ingrese la Contraseña"
                 aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
-          <div class="col-6 p-0">
+          <div class="col-6 p-0 mt-1">
             <div class="input-group pe-2">
-              <label class="input-group-text" for="inputGroupSelect01">Estado</label>
-              <select class="form-select" id="inputGroupSelect01">
-                <option value="2" selected>Activo</option>
-                <option value="3">Inactivo</option>
+              <label class="input-group-text" for="inputGroupSelect01"><i class="bi bi-person-fill-gear"></i></label>
+              <select formControlName="selectTipo" class="form-select" id="inputGroupSelect01">
+                <option value="" selected>Tipo de Usuario</option>
+                <option value="1" >Activo</option>
+                <option value="2">Inactivo</option>
               </select>
             </div>
           </div>
-          <div class="col-6 p-0">
+          <div class="col-6 p-0 mt-1">
             <div class="input-group ps-2">
-              <label class="input-group-text" for="inputGroupSelect01">Sexo</label>
-              <select class="form-select" id="inputGroupSelect01">
-                <option selected>Seleccione</option>
+              <label class="input-group-text" for="inputGroupSelect01"><i class="bi bi-person-badge-fill"></i></label>
+              <select formControlName="selectSexo" class="form-select" id="inputGroupSelect01">
+                <option value="" selected>Sexo</option>
                 <option value="Hombre">Hombre</option>
                 <option value="Mujer">Mujer</option>
               </select>
             </div>
           </div>
         </div>
+        <!-- <div class="card-header text-center fw-bold bg-dark bg-gradient text-light mt-2">
+          <h3>Asignar Municipios</h3>
+        </div>
+        <div class="col-12 row">
+          <div class="col-6">
+            <div class="col-12 p-0 mt-1">
+              <div class="input-group ps-2">
+                <label class="input-group-text sel" for="inputGroupSelect01">Departamento</label>
+                <select formControlName="selectSexo" class="form-select" id="inputGroupSelect01">
+                  <option value="" selected>Seleccione</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 p-0 mt-1">
+              <div class="input-group ps-2">
+                <label class="input-group-text sel" for="inputGroupSelect01">Municipio</label>
+                <select formControlName="selectSexo" class="form-select" id="inputGroupSelect01">
+                  <option value="" selected>Seleccione</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                </select>
+              </div>
+            </div>
+            <button class="col-12 btn btnEditar mt-1">Agregar</button>
+          </div>
+          <div class="col-6 row">
+            <div class="col-12 text-center">
+              <span for="exampleFormControlTextarea1" class="form-label">Municipios Agregados</span>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <hr>
+      <div class="col-12 row">
+        <button routerLink="../" class="col-6 btn btnEliminar">Cancelar</button>
+        <button class="col-6 btn btnGuardar" type="submit">Guardar</button>
       </div>
     </form>
   </div>

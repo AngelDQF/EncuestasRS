@@ -17,6 +17,9 @@ export class UsuariosService {
   getUsuariosTipos() {
     return this.http.get<UsuariosTiposResponse>('http://' + environment.puerto + '/redsolidaria/usuarios/tipos')
   }
+  postUsuarios(body: any) {
+    return this.http.post(`${this.URL}/usuarios`, body);
+  }
 }
 export interface UsuariosResponse {
   results: Usuario[];
