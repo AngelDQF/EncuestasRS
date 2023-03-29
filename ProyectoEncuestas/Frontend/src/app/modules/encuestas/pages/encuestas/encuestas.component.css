@@ -212,6 +212,10 @@ input.ng-valid.ng-touched {
   .input-group {
     padding: 0px;
   }
+  .iconoRegresar i,
+  .iconoRefrescar i {
+    font-size: 10px;
+  }
   .input-group input {
     background-color: #03dff806;
     text-align: center;
@@ -230,6 +234,10 @@ input.ng-valid.ng-touched {
 }
 /*Pantallas md*/
 @media screen and (max-width: 991px) {
+  .iconoRegresar i,
+  .iconoRefrescar i {
+    font-size: 10px;
+  }
   .botonAgregarNuevo{
     height: 30px !important;
     font-size: 10px;

@@ -4,8 +4,8 @@
       <div class="btnRegresar col-2">
         <a routerLink="../" class="text-start iconoRegresar btn ps-0"><i class="bi bi-arrow-left"></i></a>
       </div>
-      <div class="col-8 align-items-center text-center">
-        <h1 class="text-center  titulo">{{title}}</h1>
+      <div class="col-8 align-items-center text-center d-flex">
+        <h1 class="text-center col-12 titulo">{{title}}</h1>
       </div>
       <div class="col-2 align-items-end text-end pe-0">
         <a (click)="limpiarForm()" class="iconoRefrescar btn pe-0"><i class="bi bi-arrow-clockwise"></i></a>
@@ -20,7 +20,8 @@
           <div class="selects col-12 row">
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <label class="" for="dep">Departamento</label>
-              <select class="form-select" formControlName="selectDepartamentos" (change)="departamentosChange($event)">
+              <select class="form-select js-example-basic-single" formControlName="selectDepartamentos"
+                (change)="departamentosChange($event)">
                 <option *ngIf="showDep" value="" selected>
                   <p>Seleccione un Departamento</p>
                 </option>
@@ -191,7 +192,7 @@
               <div class="col-12 input-group mb-3 p-0 d-flex">
                 <select class="col-12 col-md-9 form-select text-center" id="inputGroupSelect01"
                   formControlName="selectTiposSuelos">
-                  <option value="">Seleccione Un tipo de Suelo</option>
+                  <option value="">Seleccione un tipo de Suelo</option>
                   <option *ngFor="let suelo of suelos" [value]="suelo.id">{{suelo.tipo}}</option>
                 </select>
               </div>
@@ -260,7 +261,8 @@
         </div>
         <div class="mt-5 mb-2 d-flex">
           <button routerLink="../" class="btn form-control btnEliminar mx-1" type="button">Cancelar</button>
-          <button [disabled]="encuestaForm.invalid" class="btn form-control btnGuardar mx-1" type="submit">Enviar</button>
+          <button [disabled]="encuestaForm.invalid" class="btn form-control btnGuardar mx-1"
+            type="submit">Enviar</button>
         </div>
       </form>
     </div>

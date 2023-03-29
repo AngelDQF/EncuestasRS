@@ -182,8 +182,8 @@ export class EncuestasComponent implements OnInit {
     this.showMun = true;
     this.showAldea = true;
     this.showCaserio = true;
-    console.log(this.encuestaForm.get("selectDepartamentos")?.value);
   }
+  
   municipiosChange(chan: any) {
     this.encuestaForm.patchValue({
       selectAldeas: ["",],
