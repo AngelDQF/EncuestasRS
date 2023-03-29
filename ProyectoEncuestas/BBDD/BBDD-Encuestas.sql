@@ -1,8 +1,8 @@
 --Script Creación de Base de Datos y Tablas para proyecto Encuestas
 --Creación Base de Datos 'Encuestas'
 CREATE DATABASE bd_MesasSolidarias;
-use bd_MesasSolidarias
-
+use bd_MesasSolidarias 
+ 
 --Creacion de las Tablas
 --Creación Tabla Departamentos 
 
