@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class UsuariosComponent implements OnInit {
   usersForm: FormGroup;
 
-
   usuariosTipos: UsuarioTipo[] = [];
   constructor(private usuariosModel: UsuariosService, private fb: FormBuilder) { }
   ngOnInit(): void {
@@ -21,7 +20,7 @@ export class UsuariosComponent implements OnInit {
   }
   initForm() {
     this.usersForm=this.fb.group({
-      txtNombre: ['', [Validators.required]],
+      txtNombre: ['asdas', [Validators.required]],
       txtApellido: ['', [Validators.required]],
       txtTelefono: ['', [Validators.required,Validators.minLength(8)]],
       txtDni: ['', [Validators.required,Validators.minLength(13)]],
@@ -46,5 +45,8 @@ export class UsuariosComponent implements OnInit {
     this.usuariosModel.postUsuarios(body).subscribe((data: any) => {
       console.log(data);
     })
+  }
+  refresh(){
+    this.initForm();
   }
 }

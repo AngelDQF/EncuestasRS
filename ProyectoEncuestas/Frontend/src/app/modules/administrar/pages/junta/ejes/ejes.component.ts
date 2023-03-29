@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { JuntaService } from '@serv/junta.service';
 import { EjesInterface } from '@models/administrar/junta/ejes.interface';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-ejes',
   templateUrl: './ejes.component.html',
@@ -9,7 +10,7 @@ import { EjesInterface } from '@models/administrar/junta/ejes.interface';
 export class EjesComponent implements OnInit{
   page:any;
   ejes:Array<EjesInterface>=[];
-  constructor(private ejesModel:JuntaService) {}
+  constructor(private ejesModel:JuntaService, private router:Router) {}
   ngOnInit(): void {
     this.obtenerEjes();
   }
@@ -20,5 +21,8 @@ export class EjesComponent implements OnInit{
   }
   refresh(){
     this.obtenerEjes();
+  }
+  btnEditar(id:number){
+
   }
 }

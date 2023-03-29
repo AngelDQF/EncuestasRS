@@ -8,6 +8,7 @@ import { UsuariosDeactivadosComponent } from './pages/listar-usuarios/usuarios-d
 import { SharedModule } from '@shared/shared.module';
 import { SearchPipe } from 'src/app/pipes/search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsuariosService } from '@serv/usuarios.service';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgxPaginationModule
   ],
   providers:[
+    UsuariosService
   ]
 })
 export class UsuariosModule { }

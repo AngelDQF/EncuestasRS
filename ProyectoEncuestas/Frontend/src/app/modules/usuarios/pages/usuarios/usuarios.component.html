@@ -1,6 +1,18 @@
 <div class="contenido bordeContenido">
   <div class="row">
-    <h1 class="col-12 titulo">Agregar Nuevo Usuario</h1>
+    <div class="col-12 d-flex p-0 align-items-center">
+      <div class=" col-2 align-items-center">
+        <a routerLink="../" class="text-start btn">
+          <i class="bi bi-arrow-left"></i>
+        </a>
+      </div>
+      <div class="col-8 align-items-center text-center">
+        <h1 class="text-center  titulo">Cargos Desactivados Junta Directiva</h1>
+      </div>
+      <div class="col-2 align-items-end text-end">
+        <a (click)="refresh()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+      </div>
+    </div>
 
     <form [formGroup]="usersForm" class="col-12" (ngSubmit)="onSubmit()">
       <div class="card p-0 col-12">
@@ -11,43 +23,43 @@
           <div class="col-6 p-0 mt-1">
             <div class="input-group pe-2">
               <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-              <input formControlName="txtNombre" type="text" class="form-control" aria-label="Sizing example input" placeholder="Nombre"
-                aria-describedby="inputGroup-sizing-default">
+              <input formControlName="txtNombre" type="text" class="form-control" aria-label="Sizing example input"
+                placeholder="Nombre" aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
           <div class="col-6 p-0 mt-1">
             <div class="input-group ps-2">
               <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-              <input formControlName="txtApellido" type="text" class="form-control" aria-label="Sizing example input" placeholder="Apellido"
-                aria-describedby="inputGroup-sizing-default">
+              <input formControlName="txtApellido" type="text" class="form-control" aria-label="Sizing example input"
+                placeholder="Apellido" aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
           <div class="col-6 p-0 mt-1">
             <div class="input-group pe-2">
               <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-              <input formControlName="txtTelefono" type="text" class="form-control" aria-label="Sizing example input" placeholder="Teléfono"
-                aria-describedby="inputGroup-sizing-default">
+              <input formControlName="txtTelefono" type="text" class="form-control" aria-label="Sizing example input"
+                placeholder="Teléfono" aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
           <div class="col-6 p-0 mt-1">
             <div class="input-group ps-2">
               <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
-              <input formControlName="txtDni" type="text" class="form-control" aria-label="Sizing example input" placeholder="Identidad"
-                aria-describedby="inputGroup-sizing-default">
+              <input formControlName="txtDni" type="text" class="form-control" aria-label="Sizing example input"
+                placeholder="Identidad" aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
           <div class="col-6 p-0 mt-1">
             <div class="input-group pe-2">
               <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-              <input formControlName="txtEmail" type="text" class="form-control" aria-label="Sizing example input" placeholder="Correo"
-                aria-describedby="inputGroup-sizing-default">
+              <input formControlName="txtEmail" type="email" class="form-control" aria-label="Sizing example input"
+                placeholder="Correo" aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
           <div class="col-6 p-0 mt-1">
             <div class="input-group ps-2">
               <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
-              <input formControlName="txtContra" type="text" class="form-control" aria-label="Sizing example input" placeholder="Ingrese la Contraseña"
-                aria-describedby="inputGroup-sizing-default">
+              <input formControlName="txtContra" type="password" class="form-control" aria-label="Sizing example input"
+                placeholder="Ingrese la Contraseña" aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
           <div class="col-6 p-0 mt-1">
@@ -55,7 +67,7 @@
               <label class="input-group-text" for="inputGroupSelect01"><i class="bi bi-person-fill-gear"></i></label>
               <select formControlName="selectTipo" class="form-select" id="inputGroupSelect01">
                 <option value="" selected>Tipo de Usuario</option>
-                <option value="1" >Activo</option>
+                <option value="1">Activo</option>
                 <option value="2">Inactivo</option>
               </select>
             </div>

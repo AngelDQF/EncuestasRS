@@ -21,6 +21,9 @@ h3 {
 .sel{
   width: 140px !important;
 }
+.iconoRegresar i{
+  color:var(--color1) !important;
+}
 .input-group {
   border-radius: 0px !important;
   margin-top: 5px;

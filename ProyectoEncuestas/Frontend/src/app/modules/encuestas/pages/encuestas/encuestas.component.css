@@ -103,7 +103,9 @@ input.ng-valid.ng-touched, select.ng-valid.ng-touched, textarea.ng-valid.ng-touc
   margin: 0px;
 }
 /*Estilos del segmento de los select*/
-
+.row {
+  --bs-gutter-x: 0px !important;
+}
 .selects {
   margin-top: 10px;
   display: flex;
