@@ -9,14 +9,13 @@ import { ListadoEncuestasComponent } from './pages/listado-encuestas/listado-enc
 import { IndexEncuestasComponent } from './pages/index-encuestas.component';
 import { UbicacionesService } from '@serv/ubicaciones.service';
 
-
 @NgModule({
   declarations: [EncuestasComponent, ListadoEncuestasComponent, IndexEncuestasComponent],
   imports: [
     CommonModule,
     EncuestasRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers:[
     EncuestasService,
