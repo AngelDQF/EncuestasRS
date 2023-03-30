@@ -11,21 +11,24 @@ import { RouterLink } from '@angular/router';
 export class NavbarComponent implements OnInit {
   token = this.cookieToken.get('token');
   tokenString: any;
-  aprobacion: boolean;
-  inicio: any;
+  aprobacion: boolean = false;
+  inicio: any = null;
+  si: number = 0;
   constructor(private cookieToken: CookieService) {
-    this.inicio = null;
   }
   ngOnInit(): void {
     this.tokenString = (this.getDecodedAccessToken(this.token)).tipo;
     this.validacion(this.tokenString);
   }
   validacion(tokenResponse: any): void {
-    if (tokenResponse == 1) {
-      this.aprobacion = false;
-    } else if (tokenResponse == 2) {
-      this.aprobacion = true;
-    }
+    do {
+      if (tokenResponse == 1) {
+        this.aprobacion = false;
+      } else if (tokenResponse == 2) {
+        this.aprobacion = true;
+        this.si = 1;
+      }
+    } while (this.si == 0)
   }
   getDecodedAccessToken(tok: string): any {
     try {
@@ -38,9 +41,11 @@ export class NavbarComponent implements OnInit {
     let result = confirm("¿Está seguro que desea salir?");
     if (result) {
       this.cookieToken.delete('token');
-      this.inicio="/auth"
-    }else{
-      this.inicio=null;
+      this.si = 0;
+      this.aprobacion = false;
+      this.inicio = "/auth"
+    } else {
+      this.inicio = null;
     }
   }
 }

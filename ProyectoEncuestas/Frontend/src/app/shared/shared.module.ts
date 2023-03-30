@@ -6,13 +6,15 @@ import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JuntaService } from '@serv/junta.service';
-import * as components from './components/index'
+import * as components from './components/index';
+import { DetalleOrgComponent } from './components/modals/encuestas/detalle-org/detalle-org.component'
 @NgModule({
   declarations: [
     NavbarComponent,
     IndexComponent,
     HeaderComponent,
-    ...components.components
+    ...components.components,
+    DetalleOrgComponent
   ],
   imports: [
     CommonModule,

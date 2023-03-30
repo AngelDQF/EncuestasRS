@@ -1,0 +1,28 @@
+.row{
+  --bs-gutter-x: 0px !important;
+  height: 85%;
+}
+form{
+  height: 90%;
+  overflow-y: scroll;
+}
+i{
+  color:red;
+  font-size: 20px;
+}
+input[type="checkbox"]{
+  font-size: 20px;
+}
+a{
+  padding: 0px;
+}
+td{
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: 100%;
+}
+p{
+  font-size: 20px;
+  margin: 0px;
+}

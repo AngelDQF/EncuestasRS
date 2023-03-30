@@ -9,6 +9,8 @@ import { SharedModule } from '@shared/shared.module';
 import { SearchPipe } from 'src/app/pipes/search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuariosService } from '@serv/usuarios.service';
+import { AsignacionesComponent } from './pages/asignaciones/asignaciones.component';
+import { EncuestasService } from '@serv/encuestas.service';
 
 
 @NgModule({
@@ -17,6 +19,7 @@ import { UsuariosService } from '@serv/usuarios.service';
     ListarUsuariosComponent,
     SearchPipe,
     UsuariosDeactivadosComponent,
+    AsignacionesComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +31,7 @@ import { UsuariosService } from '@serv/usuarios.service';
     NgxPaginationModule
   ],
   providers:[
-    UsuariosService
+    UsuariosService,EncuestasService
   ]
 })
 export class UsuariosModule { }

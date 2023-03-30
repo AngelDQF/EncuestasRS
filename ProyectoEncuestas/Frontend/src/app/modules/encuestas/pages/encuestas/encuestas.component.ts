@@ -80,6 +80,7 @@ export class EncuestasComponent implements OnInit {
       selectEstado:["",[Validators.required]],
       txtObservacionEstructura:["",],
       selectNivel:["",[Validators.required]],
+      orgs:[[],[Validators.required]],
       // txtOrgSociales: this.fb.array([""]),
     })
   }
@@ -183,7 +184,7 @@ export class EncuestasComponent implements OnInit {
     this.showAldea = true;
     this.showCaserio = true;
   }
-  
+
   municipiosChange(chan: any) {
     this.encuestaForm.patchValue({
       selectAldeas: ["",],

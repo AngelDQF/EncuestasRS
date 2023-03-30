@@ -43,7 +43,7 @@
               </select>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
-              <label class="" for="dep">Caserio</label>
+              <label class="" for="dep">Caserio Sede</label>
               <select class="form-select" formControlName="selectCaserios" (change)="caseriosChange($event)">
                 <option *ngIf="showCaserio" value="" selected>Seleccione un Caserio</option>
                 <option *ngFor="let caserio of caserios" [value]="caserio.id">{{caserio.id}}. {{caserio.caserio}}
@@ -204,21 +204,28 @@
             <h2>Organizaciones Sociales Productivas</h2>
           </div>
           <div class="selects col-12 row align-items-center">
-            <div class="col-12 col-md-10">
-              <label class="" for="dep">Seleccione una Organización</label>
-              <select class="form-select" formControlName="selectOrgSocial">
-                <option value="">Selectione</option>
-                <option *ngFor="let social of sociales" [value]="social.org">{{social.org}}</option>
-              </select>
-            </div>
-            <div class="col-12 col-md-2 btnHeight mt-2 mt-md-0">
-              <a class="btn btnEditar" (click)="agregarOrg($event)">
-                <div>Agregar</div>
-              </a>
-            </div>
-            <div class="col-12 mt-3">
-              <textarea class="form-control" id="ubicacion" rows="2"
-                formControlName="txtOrgSociales">{{OrgArray}}</textarea>
+            <div class="col-12 d-flex text-center row">
+              <div class="col-4 text-center">
+                  <select class="form-select mb-2" formControlName="selectOrgSocial">
+                    <option value="">Seleccione una Organización</option>
+                    <option *ngFor="let social of sociales" [value]="social.org">{{social.org}}</option>
+                  </select>
+                  <a class="btn btnEditar" (click)="agregarOrg($event)">
+                    Agregar
+                  </a>
+              </div>
+              <div class="tabla table-responsive col-8">
+                <table class="table">
+                  <thead class="table-dark align-middle">
+                    <tr>
+                      <th scope="col">Organización</th>
+                      <th scope="col">Legalizada</th>
+                      <th scope="col">Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
             </div>
           </div>
           <div class="col-12 mt-4" id="Recursos">

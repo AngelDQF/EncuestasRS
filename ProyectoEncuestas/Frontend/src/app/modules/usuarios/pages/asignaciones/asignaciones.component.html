@@ -1,0 +1,90 @@
+<div class="contenido bordeContenido">
+  <div class="row d-flex">
+    <form [formGroup]="formOrgs" class="col-12 row">
+      <div class="col-4 d-flex text-center p-2 row">
+        <div class=" text-center">
+          <select class="form-select mb-2" formControlName="selectOrgSocial">
+            <option value="">Seleccione una Organización</option>
+            <option *ngFor="let social of sociales" [value]="social.org">{{social.org}}</option>
+          </select>
+          <button class="btn btnEditar" (click)="agregarOrg()">
+            Agregar
+          </button>
+        </div>
+      </div>
+      <div class="tabla table-responsive col-8 p-2">
+        <table class="table">
+          <thead class="table-dark align-middle">
+            <tr>
+              <th scope="col">Organización</th>
+              <th scope="col">Legalizada</th>
+              <th scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody formArrayName="orgsSocial">
+              <tr>
+                <td>
+                  <p>as</p>
+                </td>
+                <td>
+                  <p> <input type="checkbox"></p>
+                </td>
+                <td>
+                  <a class="btn"><i class="bi bi-trash3-fill"></i></a>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- <div class="row d-flex">
+    <div class="col-12 d-flex p-0 align-items-center">
+      <div class=" col-2 align-items-center">
+        <a routerLink="../" class="text-start btn iconoRegresar">
+          <i class="bi bi-arrow-left"></i>
+        </a>
+      </div>
+      <div class="col-8 align-items-center text-center">
+        <h1 class="text-center  titulo">Asignaciones Usuarios</h1>
+      </div>
+      <div class="col-2 align-items-end text-end">
+        <a class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+      </div>
+    </div>
+    <div class="col-8 text-center mt-5">
+      <button class="btn btn-success" type="button" (click)="addOrg()">Agregar</button>
+    </div>
+    <br><br><br><br>
+    <form [formGroup]="formParent" class="d-flex col-12">
+      <div class="col-12 row d-flex text-center mt-2" formArrayName="orgs">
+        <div class="col-12 d-flex mt-2" *ngFor="let skill of getCtrl('orgs',formParent)?.controls;index as formChild">
+          <div class="col-12" [formGroupName]="formChild">
+            <div class="form-field">
+              <input type="text" placeholder="id" formControlName="id">
+            </div>
+            <div class="form-field">
+              <input type="text" placeholder="encuesta" formControlName="encuesta">
+            </div>
+            <div class="form-field">
+              <input type="text" placeholder="org" formControlName="org">
+            </div>
+            <div class="form-field">
+              <input type="text" placeholder="legalizado" formControlName="legalizado">
+            </div>
+            <div class="col-12 mt-2">
+              <button class="btn btn-danger" (click)="removeValidation(formChild,'id')">Remover</button>
+              <button class="btn btn-info text-light" (click)="removeValidation(formChild,'id')">Agregar</button>
+              <button class="btn btn-primary text-light" (click)="addNew()">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="col-4">
+      {{formParent}}
+    </div>
+  </div> -->
