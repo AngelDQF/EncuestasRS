@@ -8,6 +8,9 @@ import { Encuesta, EncuestasResponse, EncuestasService,  } from '@serv/encuestas
 export class ListadoEncuestasComponent {
   encuestas: Encuesta[] = [];
   constructor(private encuestasModel:EncuestasService) {
+    this.refresh();
+  }
+  refresh(){
     this.encuestasModel.getEncuestas().subscribe((data: EncuestasResponse)=>{
       this.encuestas = data.results;
       })

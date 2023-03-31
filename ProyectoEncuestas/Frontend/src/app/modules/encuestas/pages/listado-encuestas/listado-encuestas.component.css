@@ -1,3 +1,6 @@
 .widthColumna td{
   min-width: 150px;
 }
+.row{
+  --bs-gutter-x: 0px !important;
+}
