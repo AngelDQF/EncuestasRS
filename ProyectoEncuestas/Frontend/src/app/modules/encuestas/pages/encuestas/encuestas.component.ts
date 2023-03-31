@@ -23,6 +23,8 @@ export class EncuestasComponent implements OnInit {
   encuestaForm: FormGroup;
   token = this.cookieToken.get('token');
   tokenString: any;
+  btnNewSocial:any;
+  socialArray: any[] = [];
   title: string = "Encuestas"
   //Variables para los ngIf
   showDep: boolean;
@@ -31,6 +33,7 @@ export class EncuestasComponent implements OnInit {
   showCaserio: boolean;
   OrgArray: Array<any> = [""];
   OrgSocialValue: any;
+  legalCheck:boolean=true;
   //Declaracion de variables para guardar datos de los services
   sociales: any;
   departamentos: any;
@@ -40,9 +43,10 @@ export class EncuestasComponent implements OnInit {
   bosques: any;
   organizaciones: any;
   suelos: any;
-  estructuras:any;
-  estados:any;
-  niveles:any;
+  estructuras: any;
+  estados: any;
+  niveles: any;
+  idSocial:number=0;
   //Declaracion del constructor
   constructor(private encuestasModel: EncuestasService, private cookieToken: CookieService, private fb: FormBuilder) { }
 
@@ -50,37 +54,39 @@ export class EncuestasComponent implements OnInit {
     this.activarShows();
     this.encuestaForm = this.initForm();
     this.datosIniciales();
+    this.socialArray = [];
   }
   initForm(): FormGroup {
     return this.fb.group({
-      selectDepartamentos: ["",[Validators.required]],
-      selectMunicipios: ["",[Validators.required]],
-      selectAldeas: ["",[Validators.required]],
-      selectCaserios: ["",[Validators.required]],
+      selectDepartamentos: ["", [Validators.required]],
+      selectMunicipios: ["", [Validators.required]],
+      selectAldeas: ["", [Validators.required]],
+      selectCaserios: ["", [Validators.required]],
       txtDireccion: ["",
         [
           Validators.required,
           Validators.maxLength(250)
         ]
       ],
-      selectOrganizacion: ["",[Validators.required]],
-      txtTotalHombres: ["",[Validators.required]],
-      txtTotalMujeres: ["",[Validators.required]],
-      txtTotalAsistencia: ["",[Validators.required]],
-      txtLatitud: ["",[Validators.required]],
-      txtLongitud: ["",[Validators.required]],
-      selectRios: [1,[Validators.required]],
-      txtCantidadRios: ["",[Validators.required]],
-      selectBosques: [1,[Validators.required]],
-      selectTipoBosque: ["",[Validators.required]],
-      selectTiposSuelos: ["",[Validators.required]],
-      selectOrgSocial: ["",[Validators.required]],
-      txtOrgSociales: ["",[Validators.required]],
-      selectEstructuras:["",[Validators.required]],
-      selectEstado:["",[Validators.required]],
-      txtObservacionEstructura:["",],
-      selectNivel:["",[Validators.required]],
-      orgs:[[],[Validators.required]],
+      selectOrganizacion: ["", [Validators.required]],
+      txtTotalHombres: ["", [Validators.required]],
+      txtTotalMujeres: ["", [Validators.required]],
+      txtTotalAsistencia: ["", [Validators.required]],
+      txtLatitud: ["", [Validators.required]],
+      txtLongitud: ["", [Validators.required]],
+      selectRios: [1, [Validators.required]],
+      txtCantidadRios: ["", [Validators.required]],
+      selectBosques: [1, [Validators.required]],
+      selectTipoBosque: ["", [Validators.required]],
+      selectTiposSuelos: ["", [Validators.required]],
+      selectOrgSocial: ["", [Validators.required]],
+      checkLegal:["",[Validators.required]],
+      txtOrgSociales: ["", [Validators.required]],
+      selectEstructuras: ["", [Validators.required]],
+      selectEstado: ["", [Validators.required]],
+      txtObservacionEstructura: ["",],
+      selectNivel: ["", [Validators.required]],
+      // orgs: [[], [Validators.required]],
       // txtOrgSociales: this.fb.array([""]),
     })
   }
@@ -95,6 +101,7 @@ export class EncuestasComponent implements OnInit {
     this.ObtenerEstructuras();
     this.encuestaForm.get("txtCantidadRios")?.disable();
     this.encuestaForm.get("selectTipoBosque")?.disable();
+    this.encuestaForm.get("checkLegal")?.disable();
   }
   sumaTotalAsistencia() {
     const totalHombres = this.encuestaForm.get("txtTotalHombres")?.value;
@@ -104,13 +111,15 @@ export class EncuestasComponent implements OnInit {
     });
   }
   agregarOrg(term: any) {
-    this.OrgSocialValue = this.encuestaForm.get("selectOrgSocial")?.value;
-    this.OrgArray.push(this.OrgSocialValue);
-    const AsString = (this.OrgArray.filter((i) => i !== "")).toString();
-    const vistaOrg = AsString.replace(/,/g, `\n`);
+    this.socialArray.push({id:(this.idSocial=+this.idSocial),org:this.encuestaForm.value.selectOrgSocial,legal:this.encuestaForm.value.checkLegal});
+    console.log(this.socialArray)
     this.encuestaForm.patchValue({
-      txtOrgSociales: vistaOrg
-    });
+      checkLegal:[""],
+    })
+  }
+  eliminarSocial(index:any){
+    this.socialArray.splice(index);
+    console.log(this.socialArray)
   }
   obtenerCoordenadas(): void {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -143,6 +152,7 @@ export class EncuestasComponent implements OnInit {
   limpiarForm() {
     this.activarShows();
     this.encuestaForm = this.initForm();
+    this.datosIniciales();
   }
   DepartamentosUser(tok: any): void {
     this.encuestasModel.getDepartamentosUser$(tok).subscribe((response: DepartamentosUsersInterface[]) => {
@@ -261,5 +271,16 @@ export class EncuestasComponent implements OnInit {
   onSubmit(): void {
     alert("Hello");
   }
+  orgSocialChange(term:any){
+    const opcion = term.target.value;
+    if (opcion != "") {
 
+      this.encuestaForm.get("checkLegal")?.enable();
+    } else {
+      this.encuestaForm.patchValue({
+        checkLegal:["",[Validators.required]]
+      })
+      this.encuestaForm.get("checkLegal")?.disable();
+    }
+  }
 }

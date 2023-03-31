@@ -13,7 +13,7 @@
         <a (click)="refresh()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
       </div>
     </div>
-    <form [formGroup]="usersForm" class="col-12" (ngSubmit)="onSubmit()">
+    <form [formGroup]="usersForm" class="col-12">
       <div class="card p-0 col-12">
         <div class="card-header text-center fw-bold bg-dark bg-gradient text-light">
           <h3>Datos del Usuario</h3>
@@ -66,8 +66,7 @@
               <label class="input-group-text" for="inputGroupSelect01"><i class="bi bi-person-fill-gear"></i></label>
               <select formControlName="selectTipo" class="form-select" id="inputGroupSelect01">
                 <option value="" selected>Tipo de Usuario</option>
-                <option value="1">Activo</option>
-                <option value="2">Inactivo</option>
+                <option *ngFor="let tipo of usuariosTipos" [value]="tipo.id">{{tipo.tipo}}</option>
               </select>
             </div>
           </div>
@@ -120,7 +119,7 @@
       <hr>
       <div class="col-12 row">
         <button routerLink="../" class="col-6 btn btnEliminar">Cancelar</button>
-        <button class="col-6 btn btnGuardar" type="submit">Guardar</button>
+        <button [disabled]="usersForm.invalid" class="col-6 btn btnGuardar" type="button" (click)="onSubmit()">Guardar</button>
       </div>
     </form>
   </div>

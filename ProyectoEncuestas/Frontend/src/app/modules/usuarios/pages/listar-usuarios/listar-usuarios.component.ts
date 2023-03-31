@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Usuario, UsuariosResponse, UsuariosService } from '@serv/usuarios.service';
+import { UsersInterface } from '@models/usuarios/users.interface';
+import { UsuariosService } from '@serv/usuarios.service';
 
 @Component({
   selector: 'app-listar',
@@ -7,12 +8,11 @@ import { Usuario, UsuariosResponse, UsuariosService } from '@serv/usuarios.servi
   styleUrls: ['./listar-usuarios.component.css', '../../../../app.component.css']
 })
 export class ListarUsuariosComponent {
-  usuarios: Usuario[] = [];
+  usuarios: Array<UsersInterface>=[] = [];
   public page!:number;
   constructor(private usuariosModel: UsuariosService) {
-    this.usuariosModel.getUsuarios().subscribe((data: UsuariosResponse) => {
-      this.usuarios = data.results;
+    this.usuariosModel.getUsuarios().subscribe((data:UsersInterface[]) => {
+      this.usuarios = data;
     })
-
   }
 }

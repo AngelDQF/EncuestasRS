@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuariosService, UsuariosTiposResponse, UsuarioTipo } from '@serv/usuarios.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuariosService } from '@serv/usuarios.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UsersInterface } from '@models/usuarios/users.interface';
 
 @Component({
   selector: 'app-usuarios',
@@ -8,25 +9,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./usuarios.component.css', '../../../../app.component.css']
 })
 export class UsuariosComponent implements OnInit {
-  usersForm: FormGroup;
+  public usersForm: any;
 
-  usuariosTipos: UsuarioTipo[] = [];
+  public usuariosTipos: Array<UsersInterface> = [];
   constructor(private usuariosModel: UsuariosService, private fb: FormBuilder) { }
   ngOnInit(): void {
-    this.usuariosModel.getUsuariosTipos().subscribe((data: UsuariosTiposResponse) => {
-      this.usuariosTipos = data.results;
+    this.usuariosModel.getUsuariosTipos().subscribe((data: UsersInterface[]) => {
+      this.usuariosTipos = data;
     });
     this.initForm();
   }
   initForm() {
     this.usersForm = this.fb.group({
-      txtNombre: ['asdas', [Validators.required]],
+      txtNombre: ['', [Validators.required]],
       txtApellido: ['', [Validators.required]],
       txtTelefono: ['', [Validators.required, Validators.minLength(8)]],
       txtDni: ['', [Validators.required, Validators.minLength(13)]],
       txtEmail: ['', [Validators.required, Validators.email]],
       txtContra: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(60)]],
-      selectEstado: ['1', [Validators.required, Validators]],
+      selectEstado: ['1', [Validators.required]],
       selectTipo: ['', [Validators.required, Validators.nullValidator]],
       selectSexo: ['', [Validators.required]],
     })
@@ -39,12 +40,11 @@ export class UsuariosComponent implements OnInit {
       correo: this.usersForm.value.txtEmail,
       contra: this.usersForm.value.txtContra,
       estado: this.usersForm.value.selectEstado,
-      tipo: this.usersForm.value.selectTipo,
+      tipo: parseInt(this.usersForm.value.selectTipo),
       sexo: this.usersForm.value.selectSexo,
     }
-    this.usuariosModel.postUsuarios(body).subscribe((data: any) => {
-      console.log(data);
-    })
+    console.log(body)
+    this.usuariosModel.postUsuarios(body).subscribe()
   }
   refresh() {
     this.initForm();

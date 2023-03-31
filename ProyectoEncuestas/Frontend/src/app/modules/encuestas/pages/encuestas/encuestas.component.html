@@ -205,16 +205,21 @@
           </div>
           <div class="selects col-12 row align-items-center">
             <div class="col-12 d-flex text-center row">
-              <div class="col-4 text-center">
-                  <select class="form-select mb-2" formControlName="selectOrgSocial">
-                    <option value="">Seleccione una Organización</option>
-                    <option *ngFor="let social of sociales" [value]="social.org">{{social.org}}</option>
-                  </select>
-                  <a class="btn btnEditar" (click)="agregarOrg($event)">
-                    Agregar
-                  </a>
+              <div class="col-12 col-md-4 align-items-start row">
+                <select class="form-select mb-2 col-12" formControlName="selectOrgSocial" (change)="orgSocialChange($event)">
+                  <option value="">Seleccione una Organización</option>
+                  <option *ngFor="let social of sociales" [value]="social.org">{{social.org}}</option>
+                </select>
+                <select class="form-select mb-2 col-12" formControlName="checkLegal">
+                  <option value="">¿Está Legalizada?</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <button type="button" class=" bg-success text-light" (click)="agregarOrg($event)">
+                  Agregar
+                </button>
               </div>
-              <div class="tabla table-responsive col-8">
+              <div class="tabla table-responsive col-12 col-md-8 mt-2 mt-md-0">
                 <table class="table">
                   <thead class="table-dark align-middle">
                     <tr>
@@ -223,7 +228,11 @@
                       <th scope="col">Opciones</th>
                     </tr>
                   </thead>
-                  <tbody></tbody>
+                  <tbody *ngFor="let a of socialArray; index as i">
+                    <td>{{a.org}}</td>
+                    <td>{{a.legal}}</td>
+                    <td><button class="btn" type="button" (click)="eliminarSocial(i)"><i class="bi bi-trash3-fill text-danger"></i></button></td>
+                  </tbody>
                 </table>
               </div>
             </div>

@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@shared/environments/environment'
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable()
 export class UsuariosService {
@@ -9,53 +9,27 @@ export class UsuariosService {
   constructor(private http: HttpClient) { }
 
   getUsuarios(): Observable<any> {
-    return this.http.get(`${this.URL}/usuarios`)
+    return this.http.get(`${this.URL}/usuarios`).pipe(
+      map((dataRaw: any) => {
+        return dataRaw.results;
+      })
+    )
   }
-  getUsuariosDesactivados() {
-    return this.http.get<UsuariosDesactivadosResponse>('http://' + environment.puerto + '/redsolidaria/usuarios/des')
+  getUsuariosDesactivados(): Observable<any> {
+    return this.http.get(`${this.URL}/usuarios/des`).pipe(
+      map((dataRaw: any) => {
+        return dataRaw.results;
+      })
+    )
   }
-  getUsuariosTipos() {
-    return this.http.get<UsuariosTiposResponse>('http://' + environment.puerto + '/redsolidaria/usuarios/tipos')
+  getUsuariosTipos(): Observable<any> {
+    return this.http.get(`${this.URL}/usuarios/tipos`).pipe(
+      map((dataRaw: any) => {
+        return dataRaw.results;
+      })
+    )
   }
-  postUsuarios(body: any) {
+  postUsuarios(body: any): Observable<any> {
     return this.http.post(`${this.URL}/usuarios`, body);
   }
-}
-export interface UsuariosResponse {
-  results: Usuario[];
-}
-export interface Usuario {
-  id: number
-  name: string
-  tel: string
-  dni: string
-  email: string
-  creacion: string
-  cambio: string
-  estado: string
-  tipo: string
-  sexo: string
-}
-export interface UsuariosDesactivadosResponse {
-  results: UsuarioDesactivado[];
-}
-export interface UsuarioDesactivado {
-  id: number
-  name: string
-  tel: string
-  dni: string
-  email: string
-  creado: string
-  cambio: string
-  tipo: string
-  sexo: string
-  estado: string
-}
-export interface UsuariosTiposResponse {
-  results: UsuarioTipo[];
-}
-export interface UsuarioTipo {
-  id: number
-  tipo: string
-  estado: boolean
 }

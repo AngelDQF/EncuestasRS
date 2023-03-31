@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { UsuarioDesactivado, UsuariosDesactivadosResponse, UsuariosService } from '@serv/usuarios.service';
+import { UsersInterface } from '@models/usuarios/users.interface';
+import { UsuariosService } from '@serv/usuarios.service';
 
 @Component({
   selector: 'app-usuarios-desactivados',
@@ -8,10 +9,10 @@ import { UsuarioDesactivado, UsuariosDesactivadosResponse, UsuariosService } fro
 })
 export class UsuariosDeactivadosComponent {
   search='';
-  desactivados: UsuarioDesactivado[] = [];
+  desactivados: Array<UsersInterface> = [];
   constructor(private usuariosModel:UsuariosService) {
-    this.usuariosModel.getUsuariosDesactivados().subscribe((data: UsuariosDesactivadosResponse)=>{
-      this.desactivados = data.results;
+    this.usuariosModel.getUsuariosDesactivados().subscribe((data: UsersInterface[])=>{
+      this.desactivados = data;
       })
   }
 }

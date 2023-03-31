@@ -98,6 +98,10 @@ input.ng-valid.ng-touched, select.ng-valid.ng-touched, textarea.ng-valid.ng-touc
   border-radius: 0px;
   border: 2px solid #088ff630;
 }
+p{
+  margin: 0px;
+  padding: 0px;
+}
 .row {
   padding: 0px;
   margin: 0px;
@@ -129,7 +133,7 @@ input.ng-valid.ng-touched, select.ng-valid.ng-touched, textarea.ng-valid.ng-touc
   background-color: #08fbff13;
 }
 .selects option {
-  font-size: 15px;
+  font-size: 15px !important;
 }
 /*Estilos del segmento de los texbox*/
 .textbox {
@@ -194,6 +198,9 @@ input.ng-valid.ng-touched {
 @media screen and (max-width: 767px) {
   .conTabla select,
   .conTabla input {
+    font-size: 12px ;
+  }
+  select{
     font-size: 12px !important;
   }
   .encuesta h2 {

@@ -7,7 +7,7 @@ h3 {
 }
 .card {
   border: none !important;
-  height: calc(100vh - 350px) !important;
+  height:90% !important;
   overflow-y: scroll !important;
 }
 .input-group-text {
