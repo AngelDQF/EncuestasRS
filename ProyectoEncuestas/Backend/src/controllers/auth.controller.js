@@ -2,7 +2,6 @@ const { authModel } = require('../models/index.model');//TODO: Importamos las fu
 const { handleHttpError } = require('../utils/handleError');//TODO: Importamos el metodo handleHttpError
 const { compare } = require('../utils/handleBcrypt');
 const { tokenSign } = require('../utils/handlejwt');
-
 /**
  * TODO: Este Controlador se encargará de manejar las peticiones de login
  * @param {*} req 
