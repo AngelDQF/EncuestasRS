@@ -1,3 +1,5 @@
+import { EncuestasService } from '@serv/encuestas.service';
+import { PruebasComponent } from './../pruebas/prueba/prueba.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,11 +9,15 @@ import { SharedModule } from '@shared/shared.module';
 @NgModule({
   declarations: [
     HomeComponent,
+    PruebasComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    SharedModule
+    SharedModule,
+  ],
+  providers: [
+    EncuestasService
   ]
 })
 export class HomeModule { }

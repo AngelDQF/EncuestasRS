@@ -1,0 +1,35 @@
+<div class="contenido bordeContenido">
+  <div class="">
+    <button (click)="addBoton()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Agregar
+    </button>
+  </div>
+  {{formPadre.value | json}}
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Organizacion Social Productiva</h1>
+        <button  type="button" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <select class="form-select mb-2" >
+          <option value="">Seleccione una Organización</option>
+          <option *ngFor="let social of sociales" [value]="social.org">{{social.org}}</option>
+        </select>
+        <select class="form-select mb-2">
+          <option value="">¿Está Legalizado?</option>
+          <option value="1">Si</option>
+          <option value="2">No</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancelar</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Guardar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
