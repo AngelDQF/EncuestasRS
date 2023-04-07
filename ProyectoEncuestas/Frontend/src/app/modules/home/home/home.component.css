@@ -1,0 +1,43 @@
+mat-sidenav-container {
+  height: 100vh;
+}
+mat-sidenav {
+  background: url(../../../../assets/img/fondo.png),
+    -webkit-gradient(linear, right top, left top, from(var(--color1)), to(#97f4ef));
+  background-position: center center;
+}
+span {
+  font-weight: bold;
+  margin-left: 20px;
+  color: #000;
+  user-select: none;
+  font-size: 15px;
+}
+i {
+  font-size: 25px;
+  user-select: none;
+}
+mat-list-item {
+  font-size: 15px;
+  height: 100%;
+  align-self: center;
+}
+mat-list-item:hover {
+  background-color: #fff;
+}
+mat-nav-list {
+  padding: 0px;
+  height: 100%;
+}
+.menu {
+  background-color: rgba(255, 255, 255, 0.56);
+}
+.botonCerrar {
+  background-color: var(--color2);
+}
+.botonCerrar span {
+  color: #fff !important;
+}
+.botonCerrar:hover {
+  background-color: var(--color2) !important;
+}

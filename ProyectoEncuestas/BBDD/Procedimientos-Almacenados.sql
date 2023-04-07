@@ -298,4 +298,4 @@ as begin
 end
 
 --Reiniciar id en 1
---DBCC CHECKIDENT ( [tbl_Ejes] , RESEED, 0);
+--DBCC CHECKIDENT (  [tbl_Tipos_Usuario], RESEED, 0);

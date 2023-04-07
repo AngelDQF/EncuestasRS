@@ -195,7 +195,7 @@ Constraint fk_UsuariosE Foreign Key (id_Usuario)
 References tbl_Usuarios(id_Usuario)
 );
 --Creación Tabla Financiamiento
-Create Table tbl_Financiamientos(
+Create Table tbl_Detalle_Financiamientos(
 id_Financiamiento INT Primary Key Identity(1,1),
 id_Encuesta INT Not Null,
 id_Tipo_Financiamiento INT Not Null,
@@ -209,7 +209,7 @@ Constraint fk_Fuente_FinanciamientoF Foreign Key (id_Fuente_Financiamiento)
 References tbl_Fuentes_Financiamiento(id_Fuente_Financiamiento)
 );
 --Creación Tabla Geo Ubicaciones
-Create Table tbl_Geo_Ubicaciones(
+Create Table tbl_Detalle_Geo_Ubicaciones(
 id_Geo_Ubicacion INT Primary Key Identity(1,1),
 id_Encuesta INT Not Null,
 longitud nvarchar(100) Not Null,
@@ -244,7 +244,7 @@ constraint fk_Tipo_Servicio foreign key (id_Tipo_Servicio)
 References tbl_Tipo_Servicios(id_Tipo_Servicio)
 );
 --Creación Tabla Servicios Basicos
-Create Table tbl_Servicios_Basicos(
+Create Table tbl_Detalle_Servicios_Basicos(
 id_Servicio_Basico INT Primary Key Identity(1,1),
 id_Encuesta INT Not Null,
 id_Servicio INT Not Null,
@@ -254,7 +254,7 @@ Constraint fk_Servicio Foreign Key (id_Servicio)
 References tbl_Servicios(id_Servicio),
 );
 --Creación Tabla Servicios Locales
-Create Table tbl_Servicios_Locales(
+Create Table tbl_Detalle_Servicios_Locales(
 id_Servicio_Local INT Primary Key Identity(1,1),
 id_Encuesta INT Not Null,
 id_Servicio INT Not Null,
@@ -264,7 +264,7 @@ Constraint fk_Servicio2 Foreign Key (id_Servicio)
 References tbl_Servicios(id_Servicio),
 );
 --Creación Tabla Exportaciones
-Create Table tbl_Exportaciones(
+Create Table tbl_Detalle_Exportaciones(
 id_Exportacion INT Primary Key Identity(1,1),
 id_Encuesta INT Not Null,
 descripcion_Exportacion nvarchar(150) Not Null,
@@ -272,7 +272,7 @@ Constraint fk_EncuestaEX Foreign Key (id_Encuesta)
 References tbl_Encuestas(id_Encuesta),
 );
 --Creación Tabla Importaciones
-Create Table tbl_Importaciones(
+Create Table tbl_Detalle_Importaciones(
 id_Importacion INT Primary Key Identity(1,1),
 id_Encuesta INT Not Null,
 descripcion_Importacion nvarchar(150) Not Null,
@@ -296,7 +296,7 @@ Constraint fk_usos Foreign Key (id_Uso_Tierra)
 References tbl_Usos_Tierra(id_Uso_Tierra),
 );
 --Creación Tabla Miembros de la Junta Directiva
-Create Table tbl_Junta_Directiva(
+Create Table tbl_Detalle_Junta_Directiva(
 id_Miembro_Junta INT Primary Key Identity(1,1),
 id_Encuesta INT Not Null,
 id_Cargo INT Not Null,
@@ -318,7 +318,7 @@ estructura nvarchar(150) not null,
 estado_Estructura bit not null
 );
 --Creación Tabla de Requerimientos de Inversión Social
-Create Table tbl_Requerimientos(
+Create Table tbl_Detalle_Requerimientos(
 id_Requerimiento INT Primary Key Identity(1,1),
 id_Encuesta INT Not Null,
 id_Estructura int Not Null,

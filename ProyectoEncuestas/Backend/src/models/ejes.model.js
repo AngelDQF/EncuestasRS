@@ -152,7 +152,7 @@ async function putEjeEstado(id, estado) {
 async function verificarEje(eje) {//TODO: Creamos la función que se encargará de verificar si un eje existe en base a su nombre
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    const result = await pool.request().query(`Exec prc_Ejes_Verificar_Eje '${eje}'`);
+    const result = await pool.request().query(`Exec prc_Ejes_Buscar_Eje '${eje}'`);
     pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }

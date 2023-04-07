@@ -13,6 +13,7 @@ import { UsuariosService } from '@serv/usuarios.service';
 import { CookieService } from 'ngx-cookie-service';
 import { InjectSessionInterceptor } from './core/interceptors/inject-session.interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppRoutingModule,
     NgxPaginationModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     UsuariosService,

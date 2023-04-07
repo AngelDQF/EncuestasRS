@@ -25,10 +25,10 @@ export class ModalCargosComponent implements OnInit {
     this.initFormCargos();
   }
   onSubmit() {
-    try{
-    this.cargosModel.postCargo$(this.cargosForm.value.txtCargo, this.cargosForm.value.selectEstado).subscribe();
-    this.initFormCargos();
-    }catch{
+    try {
+      this.cargosModel.postCargo$(this.cargosForm.value.txtCargo, this.cargosForm.value.selectEstado).subscribe();
+      this.initFormCargos();
+    } catch {
       alert("Error");
     }
   }

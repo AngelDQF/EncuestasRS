@@ -5,7 +5,7 @@
   font-family: "Verdana", Geneva, Tahoma, sans-serif;
 }
 .bordeContenido {
-  border-radius: 30px;
+  border-radius: 0px;
 }
 a {
   text-decoration: none;
@@ -37,7 +37,7 @@ a {
   width: 300px;
 }
 .pad {
-  padding: 10px 0px;
+  padding: 0px 0px;
   margin: 0px;
 }
 .btnEditar {

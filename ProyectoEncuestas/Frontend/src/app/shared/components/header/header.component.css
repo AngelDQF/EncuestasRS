@@ -9,6 +9,8 @@
   height: 120px;
   background-color: #fff;
   transition: all 0.2s ease;
+  border-bottom: 0.4px groove #71c4cf53;
+
 }
 img{
   user-select: none;
