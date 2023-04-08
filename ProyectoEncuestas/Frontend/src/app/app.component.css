@@ -1,6 +1,6 @@
 .contenido {
   padding: 30px;
-  height: calc(100vh - 156px);
+  height: calc(100vh - 120px);
   background-color: #fff;
   font-family: "Verdana", Geneva, Tahoma, sans-serif;
 }
@@ -123,20 +123,42 @@ a {
 .btnPrincipal a {
   font-size: 15px;
 }
+/*Estilos para las tablas*/
 .tabla th {
-  font-size: 15px;
+  font-size: 18px;
   text-align: center;
+  background-color: var(--color1);
+  user-select: none;
+  color: #fff;
+  font-weight: bold;
+}
+.tabla td {
+  text-align: center;
+  font-size: 16px !important; 
+}
+.botonEditarTabla{
+  color: var(--btn1);
+}
+.botonDesactivarTabla{
+  color: var(--btn3);
+}
+.botonEditarTabla i, .botonDesactivarTabla i{
+  font-size: 20px;
+  cursor: pointer;
 }
 .tabla {
+  height: calc(100vh - 340px)!important;
+  overflow-y: scroll !important;
+}
+.tabla a{
+  margin: 0px 10px;
 }
 .headerListar {
   padding: 0px;
   border-bottom: 1px solid var(--color1);
   margin-bottom: 0px;
 }
-.tabla td {
-  font-size: 15px;
-}
+
 
 .tabla #body:hover {
   background-color: #71c4cf60;
@@ -161,14 +183,12 @@ a {
   .titulo p {
     font-size: 30px;
   }
-
-
 }
 /*Pantallas sm*/
 @media screen and (max-width: 767px) {
-  .contenido{
+  .contenido {
     height: 100vh;
-    padding:15px;
+    padding: 15px;
   }
   .pad {
     padding: 0px 0px;
@@ -179,7 +199,7 @@ a {
   .titulo p {
     font-size: 40px;
   }
-  .titulo{
+  .titulo {
     margin: 0px;
     font-size: 20px !important;
   }
@@ -191,13 +211,10 @@ a {
   .tabla th,
   .table td,
   .table a {
-    font-size: 10px;
+    font-size: 10px !important;
   }
   .btnPrincipal a {
     font-size: 10px;
-  }
-  .tabla {
-    height: 60% !important;
   }
   .bordeContenido {
     border-radius: 0px;
@@ -223,10 +240,6 @@ a {
   .contenido {
     padding: 0px 15px 15px 15px;
   }
-  .tabla {
-    padding-top: 5px;
-    height: 75%;
-  }
   .btnPrincipal a {
     margin-bottom: 5px;
   }
@@ -239,5 +252,4 @@ a {
   .tabla {
     height: 100%;
   }
-
 }

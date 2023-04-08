@@ -11,7 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuariosService } from '@serv/usuarios.service';
 import { AsignacionesComponent } from './pages/asignaciones/asignaciones.component';
 import { EncuestasService } from '@serv/encuestas.service';
-
+import { MatTableModule, } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -28,10 +29,12 @@ import { EncuestasService } from '@serv/encuestas.service';
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
-  providers:[
-    UsuariosService,EncuestasService
+  providers: [
+    UsuariosService, EncuestasService
   ]
 })
 export class UsuariosModule { }

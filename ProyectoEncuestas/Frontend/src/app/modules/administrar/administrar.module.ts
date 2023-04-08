@@ -22,7 +22,6 @@ import { JuntaComponent } from './pages/junta/junta.component';
 import { CargosComponent } from './pages/junta/cargos/cargos.component';
 import { CargosDesactivadosComponent } from './pages/junta/cargos/cargos-desactivados.component';
 import { EjesComponent } from './pages/junta/ejes/ejes.component';
-import { EjesDesactivadosComponent } from './pages/junta/ejes/ejes.desactivados.component';
 import { BasicosComponent } from './pages/servicios/basicos/basicos.component';
 import { BasicosDesactivadosComponent } from './pages/servicios/basicos/basicos-desactivados.component';
 import { LocalesComponent } from './pages/servicios/locales/locales.component';
@@ -47,8 +46,10 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
-
-
+import { MatTableModule, } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AdministrarComponent,
@@ -61,7 +62,6 @@ import { SharedModule } from '@shared/shared.module';
     CargosComponent,
     CargosDesactivadosComponent,
     EjesComponent,
-    EjesDesactivadosComponent,
     OrganizacionComponent,
     RecursosComponent,
     BosquesComponent,
@@ -91,6 +91,7 @@ import { SharedModule } from '@shared/shared.module';
     MunicipiosComponent,
     AldeasComponent,
     CaseriosComponent,
+
   ],
   imports: [
     CommonModule,
@@ -98,9 +99,13 @@ import { SharedModule } from '@shared/shared.module';
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatGridListModule,
+    MatNativeDateModule
   ],
-  providers:[ JuntaService,UbicacionesService
+  providers: [JuntaService, UbicacionesService
   ]
 })
 export class AdministrarModule { }

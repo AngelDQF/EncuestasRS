@@ -12,7 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     ...components.components,
@@ -30,7 +30,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatListModule,
     MatToolbarModule,
     MatMenuModule,
-    MatGridListModule
+    MatGridListModule,
+    MatNativeDateModule,
   ],
 
   exports: [

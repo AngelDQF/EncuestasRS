@@ -3,16 +3,16 @@
     <div class="row mb-2 align-items-center ">
       <div class="col-12 d-flex p-0 align-items-center">
         <div class=" col-2 align-items-center">
-          <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
+          <a routerLink="../" class="text-start iconoRegresar btn p-0"><i class="bi bi-arrow-left"></i></a>
         </div>
         <div class="col-8 align-items-center text-center">
           <h1 class="text-center  titulo">Caserios de Honduras</h1>
         </div>
         <div class="col-2 align-items-end text-end">
-          <a (click)="refresh()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+          <a (click)="refresh()" class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
         </div>
       </div>
-      <div class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+      <div class="col-12 text-bold text-center text-sm-center p-0 text-md-center text-lg-end btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
             <input name="bus" type="text" class="form-control btn" placeholder="Buscar Caserio"
@@ -22,37 +22,43 @@
       </div>
     </div>
   </div>
-  <div class="tabla table-responsive">
-    <table class="table">
-      <thead class="table-dark align-middle">
-        <tr>
-          <th scope="col">ID Caserio</th>
-          <th scope="col">Caserio</th>
-          <th scope="col">Municipio</th>
-          <th scope="col">Departamento</th>
-          <th scope="col">Opciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="body" *ngFor="let cas of caserios | paginate: { itemsPerPage: 5, currentPage: page }"
-          class="align-middle text-center">
-          <th scope="row" class="text-center"><strong>{{cas.id_caserio}}</strong></th>
-          <td>{{cas.caserio}}</td>
-          <td>{{cas.mun}}</td>
-          <td>{{cas.dep}}</td>
-          <td>
-            <div class=" d-grid mt-1 pb-1">
-              <a routerLink="get" class="form-control btn btnGuardar ">Ver</a>
-            </div>
-          </td>
-        </tr>
-      </tbody>
+  <div class="mat-elevation-z8 table-responsive">
+    <table mat-table [dataSource]="dataSource" class="tabla">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id_caserio}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <td mat-cell *matCellDef="let element" class="">
+          <a class="botonEditarTabla"><i class="bi bi-pencil-square"></i></a>
+          <a class="botonDesactivarTabla"><i class="bi bi-trash3-fill"> </i></a>
+        </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="caserio">
+        <th mat-header-cell *matHeaderCellDef> Caserio </th>
+        <td mat-cell *matCellDef="let element"> {{element.caserio}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="municipio">
+        <th mat-header-cell *matHeaderCellDef> Municipio </th>
+        <td mat-cell *matCellDef="let element"> {{element.caserio}} </td>
+      </ng-container>
+      <ng-container matColumnDef="departamento">
+        <th mat-header-cell *matHeaderCellDef> Departamento </th>
+        <td mat-cell *matCellDef="let element"> {{element.caserio}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="seleccione">
+    </mat-paginator>
   </div>
-  <div class="row">
-    <div class="col-12 align-items-center justify-content-center d-flex botones">
-      <pagination-controls (pageChange)="page=$event" previousLabel="Anterior"
-        nextLabel="Siguiente"></pagination-controls>
-    </div>
-  </div>
+
 </div>

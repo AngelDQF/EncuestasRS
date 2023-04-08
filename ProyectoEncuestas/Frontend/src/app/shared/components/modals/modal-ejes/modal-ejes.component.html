@@ -1,8 +1,12 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<button mat-raised-button (click)="openDialog('0ms', '0ms')">Open dialog without animation</button>
+<button mat-raised-button (click)="openDialog('3000ms', '1500ms')">Open dialog slowly</button>
+
+
+<!-- <div class="modal fade" id="ejeModal" tabindex="-1" aria-labelledby="ejeModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">{{title}}</h1>
+        <h1 class="modal-title fs-5" id="ejeModalLabel">{{title}}</h1>
         <button (click)="onCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -29,4 +33,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

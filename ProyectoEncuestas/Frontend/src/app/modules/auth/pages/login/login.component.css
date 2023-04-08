@@ -82,6 +82,12 @@ button:hover {
 input.ng-invalid.ng-touched{
   border: 2px solid red !important;
 }
+.bodyColor {
+  background: url(../../../../../assets/img/fondo.png),
+  -webkit-gradient(linear, right top, left top, from(var(--color1)), to(var(--color2)));
+  background-position: center center;
+  height: 100vh;
+}
 input.ng-valid.ng-touched{
   border: 2px solid rgb(4, 255, 79) !important;
 }

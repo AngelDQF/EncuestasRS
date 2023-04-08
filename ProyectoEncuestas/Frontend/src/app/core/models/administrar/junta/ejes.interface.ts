@@ -1,6 +1,7 @@
 
 export interface EjesInterface {
-  id?: number
-  eje: string
-  estado: boolean
+  id?: number;
+  eje: string;
+  estado: boolean;
+  est?:string;
 }

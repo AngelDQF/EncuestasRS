@@ -9,7 +9,6 @@ import { TiposFinanciamientosComponent } from './pages/financiamiento/tipos/tipo
 import { CargosDesactivadosComponent } from './pages/junta/cargos/cargos-desactivados.component';
 import { CargosComponent } from './pages/junta/cargos/cargos.component';
 import { EjesComponent } from './pages/junta/ejes/ejes.component';
-import { EjesDesactivadosComponent } from './pages/junta/ejes/ejes.desactivados.component';
 import { JuntaComponent } from './pages/junta/junta.component';
 import { OrganizacionComponent } from './pages/organizaciones/organizacion.component';
 import { OrganizacionesTiposDesactivadosComponent } from './pages/organizaciones/organizaciones-tipos/organizaciones-tipos-desactivados.component';
@@ -55,7 +54,7 @@ const routes: Routes = [
       {
         path: 'ejes', children: [
           { path: '', component: EjesComponent },
-          { path: 'desactivados', component: EjesDesactivadosComponent }
+          { path: '**', component: EjesComponent }
         ]
       }
     ]
