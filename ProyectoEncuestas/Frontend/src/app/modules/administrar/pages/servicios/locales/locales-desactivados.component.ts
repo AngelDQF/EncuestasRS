@@ -1,17 +1,26 @@
-import { Component } from '@angular/core';
-import { Servicio, ServiciosResponse, ServiciosService } from '@serv/servicios.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { ServiciosInterface } from '@models/administrar/servicios/servicios.interface';
+import { ServiciosService } from '@serv/servicios.service';
 
 @Component({
   selector: 'app-locales-desactivados',
   templateUrl: './locales-desactivados.component.html',
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
-export class LocalesDesactivadosComponent {
-  page:any;
-  servicios: Servicio[] = [];
-  constructor(private serModel: ServiciosService) {
-    this.serModel.getSerBasicosDesactivados().subscribe((data: ServiciosResponse) => {
-      this.servicios = data.results;
+export class LocalesDesactivadosComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'opciones', 'servicio', 'tipo', 'estado'];
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(private serviciosModel: ServiciosService) { }
+  ngOnInit(): void {
+    this.obtenerOrg();
+  }
+  obtenerOrg() {
+    this.serviciosModel.getSerLocalesDesactivados().subscribe((data: ServiciosInterface[]) => {
+      this.dataSource = new MatTableDataSource<ServiciosInterface>(data);
+      this.dataSource.paginator = this.paginator;
     })
   }
 }

@@ -1,13 +1,18 @@
 <div class="contenido bordeContenido">
   <div class="headerListar">
     <div class="row mb-2 align-items-center ">
-      <div class="col-12 d-flex padT align-items-center">
-        <div class=" col-2">
-          <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
+      <div class="col-12 d-flex p-0 align-items-center">
+        <div class=" col-2 align-items-center">
+          <a routerLink="../" class="text-start iconoRegresar btn p-0"><i class="bi bi-arrow-left"></i></a>
         </div>
-        <h1 class="text-center col-10 titulo">Organizaciones</h1>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Organizaciones</h1>
+        </div>
+        <div class="col-2 align-items-end text-end p-0">
+          <a (click)="obtenerOrg()" class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
+        </div>
       </div>
-      <div class="col-xl-3 col-xxl-2 col-lg-6 col-md-6">
+      <div class="col-xl-3 col-xxl-2 col-lg-6 col-md-6 p-0">
         <a routerLink="agregar" class="btn btnEditar form-control"><i class="bi bi-stack"></i>Nueva Organización</a>
       </div>
 
@@ -15,7 +20,7 @@
         <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-stack"></i>Organizaciones Desactivadas</a>
       </div>
       <div
-        class="col-xl-5 col-xxl-7 col-lg-12 col-md-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+        class="p-0 col-xl-5 col-xxl-7 col-lg-12 col-md-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
             <input name="bus" type="text" class="form-control btn" placeholder="Buscar Organización">

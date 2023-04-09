@@ -1,5 +1,5 @@
 export interface TiposOrgInterface{
-  id:number;
+  id?:number;
   tipo:string;
   estado:boolean;
 }

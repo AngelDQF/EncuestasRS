@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TiposOrgInterface } from '@models/administrar/organizaciones/tipos-org.interface';
@@ -9,7 +9,7 @@ import { OrganizacionesService } from '@serv/organizaciones.service';
   templateUrl: './organizaciones-tipos.component.html',
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
-export class OrganizacionesTiposComponent {
+export class OrganizacionesTiposComponent implements OnInit {
   displayedColumns: string[] = ['id', 'opciones', 'tipo'];
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;

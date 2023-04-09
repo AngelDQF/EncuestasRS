@@ -8,14 +8,7 @@ export class OrganizacionesService {
   private URL = environment.api;
   constructor(private http: HttpClient) { }
   getTiposOrganizacion():Observable<any> {
-    return this.http.get(`${this.URL}/redsolidaria/organizaciones/tipos`).pipe(
-      map(({ results }: any) => {
-        return results;
-      })
-    )
-  }
-  getTiposOrganizacionDesactivados():Observable<any> {
-    return this.http.get(`${this.URL}/redsolidaria/organizaciones/tipos/desactivados`).pipe(
+    return this.http.get(`${this.URL}/organizaciones/tipos`).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -23,14 +16,14 @@ export class OrganizacionesService {
   }
 
   getOrganizaciones():Observable<any> {
-    return this.http.get(`${this.URL}/redsolidaria/organizaciones`).pipe(
+    return this.http.get(`${this.URL}/organizaciones`).pipe(
       map(({ results }: any) => {
         return results;
       })
     )
   }
   getOrganizacionesDesactivados():Observable<any> {
-    return this.http.get(`${this.URL}/redsolidaria/organizaciones/desactivados`).pipe(
+    return this.http.get(`${this.URL}/organizaciones/desactivados`).pipe(
       map(({ results }: any) => {
         return results;
       })

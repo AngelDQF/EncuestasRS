@@ -1,24 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {environment} from '@shared/environments/environment'
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable()
 export class ServiciosService {
   private readonly URL = environment.api;
 
   constructor(private http:HttpClient) { }
-  getSerBasicos() {
-    return this.http.get<ServiciosResponse>('http://'+environment.puerto+'/redsolidaria/servicios/locales')
+  getSerBasicos():Observable<any> {
+    return this.http.get(`${this.URL}/servicios/locales`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getSerBasicosDesactivados() {
-    return this.http.get<ServiciosResponse>('http://'+environment.puerto+'/redsolidaria/servicios/locales/desactivados')
+  getSerBasicosDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/servicios/locales/desactivados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getSerLocales() {
-    return this.http.get<ServiciosResponse>('http://'+environment.puerto+'/redsolidaria/servicios/basicos')
+  getSerLocales():Observable<any> {
+    return this.http.get(`${this.URL}/servicios/basicos`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getSerLocalesDesactivados() {
-    return this.http.get<ServiciosResponse>('http://'+environment.puerto+'/redsolidaria/servicios/basicos/desactivados')
+  getSerLocalesDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/servicios/basicos/desactivados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
   putEstadoSerLocal$(id:number,est:string):Observable<any>{
     const body = [
@@ -26,14 +42,4 @@ export class ServiciosService {
     ];
     return this.http.post(`${this.URL}/encuestas/aldeas`, body[0]);
   }
-}
-
-export interface ServiciosResponse {
-  results: Servicio[];
-}
-export interface Servicio{
-  id: number
-  servicio:string
-  tipo: string
-  estado: boolean
 }
