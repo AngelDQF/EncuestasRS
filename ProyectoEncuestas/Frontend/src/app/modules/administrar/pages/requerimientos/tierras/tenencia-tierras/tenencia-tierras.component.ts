@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { TenenciaTierraInterface } from '@models/administrar/requerimientos/tenencia.interface';
 import { RequerimientosService } from '@serv/requerimientos.service';
 
 @Component({
@@ -6,6 +9,18 @@ import { RequerimientosService } from '@serv/requerimientos.service';
   templateUrl: './tenencia-tierras.component.html',
   styleUrls: ['../../../../../cardLarge.css','../../../../../../app.component.css']
 })
-export class TenenciaTierrasComponent {
-
+export class TenenciaTierrasComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'opciones', 'tenencia', 'estado'];
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(private reqModel: RequerimientosService) { }
+  ngOnInit(): void {
+    this.obtenerTenencia();
+  }
+  obtenerTenencia() {
+    this.reqModel.getTenenciaTierras().subscribe((data: TenenciaTierraInterface[]) => {
+      this.dataSource = new MatTableDataSource<TenenciaTierraInterface>(data);
+      this.dataSource.paginator = this.paginator;
+    })
+  }
 }

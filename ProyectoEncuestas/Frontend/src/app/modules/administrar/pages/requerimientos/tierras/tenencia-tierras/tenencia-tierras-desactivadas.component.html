@@ -1,20 +1,54 @@
 <div class="contenido bordeContenido">
-  <div class="headerListar pt-3">
-    <div class="mb-2 align-items-center row">
-      <div class="col-12 d-flex padT align-items-center">
-        <div class=" col-lg-2 col-xl-2">
-          <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
+  <div class="mb-2 align-items-center row">
+    <div class="headerListar">
+      <div class="mb-2 align-items-center row">
+        <div class="col-12 d-flex p-0 align-items-center">
+          <div class=" col-2 align-items-center">
+            <a routerLink="../" class="text-start iconoRegresar btn p-0"><i class="bi bi-arrow-left"></i></a>
+          </div>
+          <div class="col-8 align-items-center text-center">
+            <h1 class="text-center  titulo">Tipos de Tenencia de la Tierra Desactivadas</h1>
+          </div>
+          <div class="col-2 align-items-end text-end">
+            <a (click)="obtenerTenencia()" class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
+          </div>
         </div>
-        <h1 class="col-10 text-center titulo ">Tipos de Tenencia de las Tierras Desactivados</h1>
-      </div>
-      <div class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
-        <div class="input-group mt-2 mb-2 inpBuscar">
-          <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar una Tenencia de la Tierra">
-          </label>
+        <div class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal p-0">
+          <div class="input-group mt-2 mb-2 inpBuscar">
+            <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
+              <input name="bus" type="text" class="form-control btn" placeholder="Buscar Tenencia de la Tierra">
+            </label>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="mat-elevation-z8 table-responsive">
+    <table mat-table [dataSource]="dataSource" class="tabla">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <td mat-cell *matCellDef="let element" class="">
+          <a class="botonGuardarTabla"><i class="bi bi-eye-fill"></i></a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="tenencia">
+        <th mat-header-cell *matHeaderCellDef> Tipo de Tenencia de la Tierra </th>
+        <td mat-cell *matCellDef="let element"> {{element.tenencia}} </td>
+      </ng-container>
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element" style="color:var(--color2);" class="fw-bold"> Inactivo </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons aria-label="seleccione">
+    </mat-paginator>
+  </div>
 </div>
