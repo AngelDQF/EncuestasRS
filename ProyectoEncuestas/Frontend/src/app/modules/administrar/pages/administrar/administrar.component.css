@@ -2,14 +2,12 @@
   border: 30 solid white;
   padding: 30px;
   background-color: #fff;
-  height: calc(100vh - 156px);
+  height: 100%;
 }
 
 .imgPadre {
-  overflow-x: hidden;
-  overflow-y: scroll;
+  padding-bottom: 30px !important;
   justify-content: center;
-  height: 100%;
 }
 .imgPadre div {
   margin: 0px;

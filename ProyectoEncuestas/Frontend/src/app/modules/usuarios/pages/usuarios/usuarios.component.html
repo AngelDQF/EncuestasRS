@@ -56,15 +56,15 @@
           </div>
           <div class="col-6 p-0 mt-1">
             <div class="input-group ps-2">
-              <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+              <span class="input-group-text"><i class="bi bi-person-fill-gear"></i></span>
               <input formControlName="txtContra" type="password" class="form-control" aria-label="Sizing example input"
                 placeholder="Ingrese la Contraseña" aria-describedby="inputGroup-sizing-default">
             </div>
           </div>
           <div class="col-6 p-0 mt-1">
             <div class="input-group pe-2">
-              <label class="input-group-text" for="inputGroupSelect01"><i class="bi bi-person-fill-gear"></i></label>
-              <select formControlName="selectTipo" class="form-select" id="inputGroupSelect01">
+              <label class="input-group-text" for="selectTipo"><i class="bi bi-person-fill-gear"></i></label>
+              <select formControlName="selectTipo" class="form-select" id="selectTipo">
                 <option value="" selected>Tipo de Usuario</option>
                 <option *ngFor="let tipo of usuariosTipos" [value]="tipo.id">{{tipo.tipo}}</option>
               </select>
@@ -72,8 +72,8 @@
           </div>
           <div class="col-6 p-0 mt-1">
             <div class="input-group ps-2">
-              <label class="input-group-text" for="inputGroupSelect01"><i class="bi bi-person-badge-fill"></i></label>
-              <select formControlName="selectSexo" class="form-select" id="inputGroupSelect01">
+              <label class="input-group-text" for="select"><i class="bi bi-person-badge-fill"></i></label>
+              <select formControlName="selectSexo" class="form-select" id="select">
                 <option value="" selected>Sexo</option>
                 <option value="Hombre">Hombre</option>
                 <option value="Mujer">Mujer</option>

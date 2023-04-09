@@ -9,6 +9,11 @@ import { ListadoEncuestasComponent } from './pages/listado-encuestas/listado-enc
 import { IndexEncuestasComponent } from './pages/index-encuestas.component';
 import { UbicacionesService } from '@serv/ubicaciones.service';
 
+import { MatTableModule, } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [EncuestasComponent, ListadoEncuestasComponent, IndexEncuestasComponent],
   imports: [
@@ -16,8 +21,13 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
     EncuestasRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatIconModule
   ],
-  providers:[
+  providers: [
     EncuestasService,
     UbicacionesService
   ]

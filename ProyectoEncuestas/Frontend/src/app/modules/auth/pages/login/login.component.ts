@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '@serv/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import {RecuperarComponent} from '../recuperar/recuperar.component'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +23,7 @@ export class LoginComponent implements OnInit {
     ])
   });
 
-  constructor(private modelAuth: AuthService,private cookie:CookieService, private router:Router) { }
+  constructor(private modelAuth: AuthService,private cookie:CookieService, private router:Router, private recuperar:MatDialog) { }
   ngOnInit(): void {
     this.errorSesion = false
   }
@@ -41,5 +43,14 @@ export class LoginComponent implements OnInit {
         console.log('Usuario o Contraseña Invalidos');
       }
     );
+  }
+  openDialog(): void {
+    const dialogRef = this.recuperar.open(RecuperarComponent, {
+      width: '400px',
+
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

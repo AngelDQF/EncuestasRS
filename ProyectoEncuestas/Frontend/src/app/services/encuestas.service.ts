@@ -9,7 +9,11 @@ export class EncuestasService {
 
   constructor(private http: HttpClient) { }
   getEncuestas(): Observable<any> {
-    return this.http.get(`${this.URL}/encuestas/listar`)
+    return this.http.get(`${this.URL}/encuestas/listar`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
   getDepartamentosUser$(id: number): Observable<any> {
     const body = [

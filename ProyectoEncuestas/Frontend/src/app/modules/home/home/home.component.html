@@ -4,6 +4,12 @@
       <mat-list-item (click)="isExpanded = !isExpanded" class="text-center menu">
         <mat-icon mat-list-icon class="chevron-button"><i class="bi bi-list"></i></mat-icon>
       </mat-list-item>
+      <mat-list-item routerLink="usuarios/miuser">
+        <div class="align-items-center d-flex">
+          <mat-icon mat-list-icon class="menu-item align-items-center"><i class="bi bi-person-circle" style="color: #041401;"></i></mat-icon>
+          <span *ngIf="isExpanded">Mi Usuario</span>
+        </div>
+      </mat-list-item>
       <mat-list-item routerLink="usuarios">
         <div class="align-items-center d-flex">
           <mat-icon mat-list-icon class="menu-item"><i class="bi bi-people-fill mr-2 lead"

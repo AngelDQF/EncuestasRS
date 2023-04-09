@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JuntaService } from '@serv/junta.service';
 import * as components from './components/index';
-import { DetalleOrgComponent } from './components/modals/encuestas/detalle-org/detalle-org.component';
 import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +15,6 @@ import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     ...components.components,
-    DetalleOrgComponent,
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { EncuestasService } from '@serv/encuestas.service';
 import { PruebasComponent } from './../pruebas/prueba/prueba.component';
 import { NgModule } from '@angular/core';
@@ -8,11 +9,12 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '@shared/shared.module';
 import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -28,6 +30,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatListModule,
     MatToolbarModule,
     MatMenuModule,
+    MatDialogModule,
     MatGridListModule
   ],
   providers: [

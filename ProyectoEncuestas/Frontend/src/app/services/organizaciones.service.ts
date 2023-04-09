@@ -1,41 +1,39 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {environment} from '@shared/environments/environment'
+import { environment } from '@shared/environments/environment'
 import { map, Observable } from 'rxjs';
 
 @Injectable()
 export class OrganizacionesService {
-  private URL=environment.api;
-  constructor(private http:HttpClient) { }
-  getTiposOrganizacion() {
-    return this.http.get<TiposOrganizacionResponse>('http://'+environment.puerto+'/redsolidaria/organizaciones/tipos')
+  private URL = environment.api;
+  constructor(private http: HttpClient) { }
+  getTiposOrganizacion():Observable<any> {
+    return this.http.get(`${this.URL}/redsolidaria/organizaciones/tipos`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getTiposOrganizacionDesactivados() {
-    return this.http.get<TiposOrganizacionResponse>('http://'+environment.puerto+'/redsolidaria/organizaciones/tipos/desactivados')
+  getTiposOrganizacionDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/redsolidaria/organizaciones/tipos/desactivados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
 
-  getOrganizaciones() {
-    return this.http.get<OrganizacionesResponse>('http://'+environment.puerto+'/redsolidaria/organizaciones')
+  getOrganizaciones():Observable<any> {
+    return this.http.get(`${this.URL}/redsolidaria/organizaciones`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getOrganizacionesDesactivados() {
-    return this.http.get<OrganizacionesResponse>('http://'+environment.puerto+'/redsolidaria/organizaciones/desactivados')
+  getOrganizacionesDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/redsolidaria/organizaciones/desactivados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-}
-
-export interface TiposOrganizacionResponse {
-  results: TiposOrganizacion[];
-}
-export interface TiposOrganizacion{
-  id: number
-  tipo: string
-  estado: boolean
-}
-export interface OrganizacionesResponse {
-  results: Organizacion[];
-}
-export interface Organizacion{
-  id: number
-  org: string
-  tipo: string
-  estado: boolean
 }

@@ -10,7 +10,7 @@ import { UsersInterface } from '@models/usuarios/users.interface';
 })
 export class UsuariosComponent implements OnInit {
   public usersForm: any;
-
+  public hide:boolean;
   public usuariosTipos: Array<UsersInterface> = [];
   constructor(private usuariosModel: UsuariosService, private fb: FormBuilder) { }
   ngOnInit(): void {
@@ -18,6 +18,7 @@ export class UsuariosComponent implements OnInit {
       this.usuariosTipos = data;
     });
     this.initForm();
+    this.hide = true;
   }
   initForm() {
     this.usersForm = this.fb.group({

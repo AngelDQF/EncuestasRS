@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { UsersInterface } from '@models/usuarios/users.interface';
 import { UsuariosService } from '@serv/usuarios.service';
 
@@ -8,11 +10,14 @@ import { UsuariosService } from '@serv/usuarios.service';
   styleUrls: ['./listar-usuarios.component.css','../../../../app.component.css']
 })
 export class UsuariosDeactivadosComponent {
-  search='';
-  desactivados: Array<UsersInterface> = [];
-  constructor(private usuariosModel:UsuariosService) {
-    this.usuariosModel.getUsuariosDesactivados().subscribe((data: UsersInterface[])=>{
-      this.desactivados = data;
-      })
+  displayedColumns: string[] = ['id', 'opciones', 'name', 'tel','dni','email','creado','actualizado','tipo','sexo'];
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  public page!:number;
+  constructor(private usuariosModel: UsuariosService) {
+    this.usuariosModel.getUsuariosDesactivados().subscribe((data:UsersInterface[]) => {
+      this.dataSource = new MatTableDataSource<UsersInterface>(data);
+      this.dataSource.paginator = this.paginator;
+    })
   }
 }

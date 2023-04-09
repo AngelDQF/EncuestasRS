@@ -1,1 +1,22 @@
-<p>recuperar works!</p>
+<div mat-dialog-content class="bordeD">
+  <div mat-dialog-actions>
+    <h1 class="titulo">Recuperación de Contraseña</h1>
+    <div class="row mt-3">
+      <div class="col-12">
+        <mat-form-field appearance="fill">
+          <mat-label>Ingrese su Correo</mat-label>
+          <input matInput placeholder="ejemplo@redsolidaria.gob.hn" [formControl]="emailData" required>
+          <mat-error *ngIf="emailData.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="botones col-12 row mt-3">
+        <div class="col-6">
+          <button class="btnEliminar form-control me-1" mat-button (click)="onClickNo()">Cancelar</button>
+        </div>
+        <div class="col-6">
+          <button class="btnGuardar form-control ms-1" mat-button [mat-dialog-close]="true">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

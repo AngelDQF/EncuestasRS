@@ -24,6 +24,11 @@ a {
 .imgContainer {
   height: 100%;
 }
+#recuperar{
+  color: var(--color1);
+  cursor: pointer;
+  font-weight: bold;
+}
 .imgLogo {
   width: 300px;
   user-select: none;

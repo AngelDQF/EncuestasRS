@@ -1,11 +1,15 @@
 .contenido {
   padding: 30px;
   height: calc(100vh - 120px);
-  background-color: #fff;
+  background-color: #f7f7f7;
   font-family: "Verdana", Geneva, Tahoma, sans-serif;
 }
 .bordeContenido {
   border-radius: 0px;
+}
+mat-paginator{
+  background-color: #fff;
+  width: 100% !important;
 }
 a {
   text-decoration: none;
@@ -139,10 +143,13 @@ a {
 .botonEditarTabla{
   color: var(--btn1);
 }
+.botonGuardarTabla{
+  color: var(--btn2);
+}
 .botonDesactivarTabla{
   color: var(--btn3);
 }
-.botonEditarTabla i, .botonDesactivarTabla i{
+.botonEditarTabla i, .botonDesactivarTabla i, .botonGuardarTabla i{
   font-size: 20px;
   cursor: pointer;
 }
@@ -186,6 +193,7 @@ a {
 }
 /*Pantallas sm*/
 @media screen and (max-width: 767px) {
+  
   .contenido {
     height: 100vh;
     padding: 15px;

@@ -17,11 +17,6 @@ export class EjesComponent implements OnInit {
     this.obtenerEjes();
 
   }
-  nombrarEstado(est: boolean): void {
-    if (est) {
-      this.dataSource.data.est = 'Activo';
-    }
-  }
   obtenerEjes() {
     this.ejesModel.getEjes().subscribe((data: EjesInterface[]) => {
       this.dataSource = new MatTableDataSource<EjesInterface>(data);

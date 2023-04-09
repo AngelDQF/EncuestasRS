@@ -1,4 +1,13 @@
 .row {
+  --bs-gutter-x: 0px;
+  background-color: #f7f7f7;
+}
+
+#btnCambio{
+  background-color: var(--color1) !important;
+  color:#Fff;
+}
+.row {
   margin: 0px !important;
 }
 h3 {
@@ -7,11 +16,10 @@ h3 {
 }
 .card {
   border: none !important;
-  height:90% !important;
-  overflow-y: scroll !important;
+  height:100% !important;
 }
 .input-group-text {
-  background-color: #fff !important;
+  background-color: #fff ;
   border-radius: 0px !important;
   width: 110px !important;
   text-align: center !important;

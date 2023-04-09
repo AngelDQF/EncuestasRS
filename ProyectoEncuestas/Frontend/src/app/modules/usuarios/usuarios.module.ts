@@ -13,7 +13,10 @@ import { AsignacionesComponent } from './pages/asignaciones/asignaciones.compone
 import { EncuestasService } from '@serv/encuestas.service';
 import { MatTableModule, } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MyuserComponent } from './pages/myuser/myuser.component';
 @NgModule({
   declarations: [
     UsuariosComponent,
@@ -21,6 +24,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     SearchPipe,
     UsuariosDeactivadosComponent,
     AsignacionesComponent,
+    MyuserComponent,
   ],
   imports: [
     CommonModule,
@@ -31,7 +35,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     SharedModule,
     NgxPaginationModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatNativeDateModule, 
+    MatFormFieldModule,
+    MatIconModule
   ],
   providers: [
     UsuariosService, EncuestasService

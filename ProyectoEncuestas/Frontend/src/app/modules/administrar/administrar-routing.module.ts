@@ -11,7 +11,6 @@ import { CargosComponent } from './pages/junta/cargos/cargos.component';
 import { EjesComponent } from './pages/junta/ejes/ejes.component';
 import { JuntaComponent } from './pages/junta/junta.component';
 import { OrganizacionComponent } from './pages/organizaciones/organizacion.component';
-import { OrganizacionesTiposDesactivadosComponent } from './pages/organizaciones/organizaciones-tipos/organizaciones-tipos-desactivados.component';
 import { OrganizacionesTiposComponent } from './pages/organizaciones/organizaciones-tipos/organizaciones-tipos.component';
 import { OrganizacionesDesactivadosComponent } from './pages/organizaciones/organizaciones/organizaciones-desactivados.component';
 import { OrganizacionesComponent } from './pages/organizaciones/organizaciones/organizaciones.component';
@@ -88,7 +87,6 @@ const routes: Routes = [
       {
         path: 'tipos', children: [
           { path: '', component: OrganizacionesTiposComponent },
-          { path: 'desactivados', component: OrganizacionesTiposDesactivadosComponent }
         ]
       }
 

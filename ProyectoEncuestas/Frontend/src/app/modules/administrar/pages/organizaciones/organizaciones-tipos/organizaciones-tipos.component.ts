@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import {  Router } from '@angular/router';
-import { OrganizacionesService, TiposOrganizacion, TiposOrganizacionResponse } from '@serv/organizaciones.service';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { TiposOrgInterface } from '@models/administrar/organizaciones/tipos-org.interface';
+import { OrganizacionesService } from '@serv/organizaciones.service';
 
 @Component({
   selector: 'app-organizaciones-tipos',
@@ -8,11 +10,17 @@ import { OrganizacionesService, TiposOrganizacion, TiposOrganizacionResponse } f
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class OrganizacionesTiposComponent {
-  page:any;
-  orgs: TiposOrganizacion[] = [];
-  constructor(private orgModel:OrganizacionesService,private router:Router) {
-    this.orgModel.getTiposOrganizacion().subscribe((data: TiposOrganizacionResponse)=>{
-      this.orgs = data.results;
-      })
+  displayedColumns: string[] = ['id', 'opciones', 'tipo'];
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(private orgModel: OrganizacionesService) { }
+  ngOnInit(): void {
+    this.obtenerOrg();
+  }
+  obtenerOrg() {
+    this.orgModel.getTiposOrganizacion().subscribe((data: TiposOrgInterface[]) => {
+      this.dataSource = new MatTableDataSource<TiposOrgInterface>(data);
+      this.dataSource.paginator = this.paginator;
+    })
   }
 }

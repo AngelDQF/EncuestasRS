@@ -2,7 +2,7 @@
   background-color: #fff;
   border-radius: 40px;
   padding: 30px;
-  height: calc(100vh - 156px);
+  height: 100%;
 }
 .iconoRegresar i {
   color: var(--btn3);

@@ -5,7 +5,7 @@
     </div>
     <div class="col-12 col-md-6">
       <h2>Inicio de Sesión</h2>
-      <form [formGroup]="formLogin" (ngSubmit)="onLogin()" >
+      <form [formGroup]="formLogin" (ngSubmit)="onLogin()">
         <div class="form-group">
           <label for="username">Username:</label>
           <input formControlName="email" type="text" id="username" name="username">
@@ -13,7 +13,9 @@
         <div class="form-group">
           <label for="password">Password:</label>
           <input formControlName="password" type="password" id="password" name="password">
-          <a routerLink="recuperar">¿Olvido su contraseña?</a>
+          <div class="mt-1">
+            <a id="recuperar" (click)="openDialog() ">¿Olvido su contraseña?</a>
+          </div>
         </div>
         <div *ngIf="errorSesion" class="error">Usuario o contraseña Invalidos</div>
         <button [disabled]="formLogin.invalid" type="submit" class="btn btn-primary form-control">Acceder</button>

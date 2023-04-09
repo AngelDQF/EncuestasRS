@@ -41,3 +41,19 @@ mat-nav-list {
 .botonCerrar:hover {
   background-color: var(--color2) !important;
 }
+
+/*Pantallas sm*/
+@media screen and (max-width: 767px) {
+  i {
+    font-size: 15px;
+  }
+  span{
+    font-size: 10px;
+  }
+}
+/*Pantallas md*/
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  i {
+    font-size: 20px;
+  }
+}

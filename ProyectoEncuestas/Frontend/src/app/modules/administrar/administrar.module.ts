@@ -11,7 +11,6 @@ import { RecursosComponent } from './pages/recursos/recursos.component';
 import { RequerimientosComponent } from './pages/requerimientos/requerimientos.component';
 import { ServiciosComponent } from './pages/servicios/servicios.component';
 import { OrganizacionesTiposComponent } from './pages/organizaciones/organizaciones-tipos/organizaciones-tipos.component';
-import { OrganizacionesTiposDesactivadosComponent } from './pages/organizaciones/organizaciones-tipos/organizaciones-tipos-desactivados.component';
 import { OrganizacionesComponent } from './pages/organizaciones/organizaciones/organizaciones.component';
 import { OrganizacionesDesactivadosComponent } from './pages/organizaciones/organizaciones/organizaciones-desactivados.component';
 import { FuentesFinanciamientosComponent } from './pages/financiamiento/fuentes/fuentes-financiamientos.component';
@@ -83,7 +82,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     LocalesComponent,
     LocalesDesactivadosComponent,
     OrganizacionesTiposComponent,
-    OrganizacionesTiposDesactivadosComponent,
     OrganizacionesComponent,
     OrganizacionesDesactivadosComponent,
     DepartamentosComponent,
