@@ -10,7 +10,7 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
   styleUrls: ['../../../../cardLarge.css', '../../../../../app.component.css']
 })
 export class CaseriosComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'opciones', 'caserio', 'municipio', 'departamento'];
+  displayedColumns: string[] = ['id', 'caserio', 'aldea','municipio', 'departamento'];
   dataSource: any;
   buscarCaserio: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;

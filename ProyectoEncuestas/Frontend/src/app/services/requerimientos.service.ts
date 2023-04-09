@@ -1,65 +1,65 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '@shared/environments/environment'
+import { Observable, map } from 'rxjs';
 @Injectable()
 export class RequerimientosService {
-
+  private readonly URL = environment.api;
   constructor(private http: HttpClient) { }
-  getMercados() {
-    return this.http.get<MercadosResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/mercados')
+  getMercados():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/mercados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getMercadosDesactivados() {
-    return this.http.get<MercadosResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/mercados/desactivados')
+  getMercadosDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/mercados/desactivados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-
-  getUsosTierra() {
-    return this.http.get<UsosTierraResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/tierras/usos')
+  getUsosTierra():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/tierras/usos`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getUsosTierraDesactivados() {
-    return this.http.get<UsosTierraResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/tierras/usos/desactivados')
+  getUsosTierraDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/tierras/usos/desactivados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getTenenciaTierras() {
-    return this.http.get<TenenciaTierrasResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/tierras/tenencia')
+  getTenenciaTierras():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/tierras/tenencia`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getTenenciaTierrasDesactivados() {
-    return this.http.get<TenenciaTierrasResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/tierras/tenencia/desactivados')
+  getTenenciaTierrasDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/tierras/tenencia/desactivados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getEstructuras() {
-    return this.http.get<EstructurasResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/estructuras')
+  getEstructuras():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/estructuras`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getEstructurasDesactivados() {
-    return this.http.get<EstructurasResponse>('http://'+environment.puerto+'/redsolidaria/requerimientos/estructuras/desactivados')
+  getEstructurasDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/estructuras/desactivados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-}
-export interface MercadosResponse {
-  results: Mercado[];
-}
-export interface Mercado {
-  id: number
-  mercado: string
-  estado: boolean
-}
-export interface UsosTierraResponse {
-  results: UsoTierra[];
-}
-export interface UsoTierra {
-  id: number
-  uso: string
-  estado: boolean
-}
-export interface TenenciaTierrasResponse {
-  results: TenenciaTierra[];
-}
-export interface TenenciaTierra {
-  id: number
-  tenencia: string
-  estado: boolean
-}
-export interface EstructurasResponse {
-  results: Estructura[];
-}
-export interface Estructura {
-  id: number
-  estructura: string
-  estado: boolean
 }

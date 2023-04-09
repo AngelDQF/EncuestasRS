@@ -1,11 +1,16 @@
 <div class="contenido bordeContenido">
   <div class="headerListar">
     <div class="row mb-2 align-items-center ">
-      <div class="col-12 d-flex padT align-items-center">
-        <div class=" col-2">
+      <div class="col-12 d-flex p-0 align-items-center">
+        <div class=" col-2 align-items-center">
           <a routerLink="../" class="text-start iconoRegresar btn p-0"><i class="bi bi-arrow-left"></i></a>
         </div>
-        <h1 class="text-center col-10 titulo">Tipos de Organizaciones</h1>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Tipos de Organizaciones</h1>
+        </div>
+        <div class="col-2 align-items-end text-end">
+          <a (click)="obtenerOrg()" class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
+        </div>
       </div>
       <div class="col-12 col-md-4 p-0 pe-2">
         <a routerLink="agregar" class=" btn btnEditar form-control"><i class="bi bi-stack"></i>Nuevo Tipo de Organizacion</a>

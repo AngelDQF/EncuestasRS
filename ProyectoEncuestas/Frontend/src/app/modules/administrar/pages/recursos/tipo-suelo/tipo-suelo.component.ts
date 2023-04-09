@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { Natural, NaturalesResponse, RecursosService } from '@serv/recursos.service';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { SuelosInterface } from '@models/administrar/recursos/suelos.interface';
+import { RecursosService } from '@serv/recursos.service';
 
 @Component({
   selector: 'app-tipo-suelo',
@@ -7,11 +10,17 @@ import { Natural, NaturalesResponse, RecursosService } from '@serv/recursos.serv
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
 export class TipoSueloComponent {
-  page:any;
-  suelos: Natural[] = [];
-  constructor(private bosquesModel: RecursosService) {
-    this.bosquesModel.getSuelos().subscribe((data: NaturalesResponse) => {
-      this.suelos = data.results;
+  displayedColumns: string[] = ['id', 'opciones', 'suelo', 'estado'];
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(private suelosModel: RecursosService) { }
+  ngOnInit(): void {
+    this.obtenerSuelos();
+  }
+  obtenerSuelos() {
+    this.suelosModel.getSuelos().subscribe((data: SuelosInterface[]) => {
+      this.dataSource = new MatTableDataSource<SuelosInterface>(data);
+      this.dataSource.paginator = this.paginator;
     })
   }
 }

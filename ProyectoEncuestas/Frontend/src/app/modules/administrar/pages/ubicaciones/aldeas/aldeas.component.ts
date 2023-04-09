@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { AldeasInterface } from '@models/ubicaciones/aldeas.interface';
 import { UbicacionesService } from '@serv/ubicaciones.service';
 
 @Component({
@@ -7,26 +10,27 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
   styleUrls: ['../../../../cardLarge.css','../../../../../app.component.css']
 })
 export class AldeasComponent implements OnInit{
-  aldeas:any;
-  page:any;
+  displayedColumns: string[] = ['id','aldea', 'mun','dep'];
+  dataSource: any;
   buscarAldea:string;
-  constructor(private ubicacionesModel:UbicacionesService){
-
-  }
+  public page!:number;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(private ubicacionesModel: UbicacionesService) {  }
   ngOnInit(): void {
-    this.refresh()
+    this.refresh();
   }
   callSearch(tern: string): void {
     if (tern.length >= 3) {
       this.ubicacionesModel.getSearchAldeas$(this.buscarAldea).subscribe((response: AldeasComponent[]) => {
-        this.aldeas = response;
+        this.dataSource = response;
       })
     }
   }
   refresh(){
-    this.ubicacionesModel.getAldeas().subscribe((response: AldeasComponent[]) => {
-      this.aldeas = response;
-    });
+    this.ubicacionesModel.getAldeas().subscribe((data: AldeasInterface[]) => {
+      this.dataSource = new MatTableDataSource<AldeasInterface>(data);
+      this.dataSource.paginator = this.paginator;
+    })
     this.buscarAldea="";
   }
 }

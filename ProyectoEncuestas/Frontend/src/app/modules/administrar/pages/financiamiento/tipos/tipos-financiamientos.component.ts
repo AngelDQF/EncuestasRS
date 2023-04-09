@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { FinanciamientosService, TipoFinancimiento, TiposFinancimientoResponse } from '@serv/financiamientos.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { TiposOrgInterface } from '@models/administrar/organizaciones/tipos-org.interface';
+import { FinanciamientosService} from '@serv/financiamientos.service';
 
 @Component({
   selector: 'app-tipos-financiamientos',
@@ -7,12 +10,18 @@ import { FinanciamientosService, TipoFinancimiento, TiposFinancimientoResponse }
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 
 })
-export class TiposFinanciamientosComponent {
-  page:any;
-  financiamientos: TipoFinancimiento[] = [];
-  constructor(private financiamientoModel: FinanciamientosService) {
-    this.financiamientoModel.getTiposFinanciamientoDesactivados().subscribe((data: TiposFinancimientoResponse) => {
-      this.financiamientos = data.results;
+export class TiposFinanciamientosComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'opciones', 'tipo', 'estado'];
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(private finanModel: FinanciamientosService) { }
+  ngOnInit(): void {
+    this.obtenerTipos();
+  }
+  obtenerTipos() {
+    this.finanModel.getTiposFinanciamientoDesactivados().subscribe((data: TiposOrgInterface[]) => {
+      this.dataSource = new MatTableDataSource<TiposOrgInterface>(data);
+      this.dataSource.paginator = this.paginator;
     })
   }
 }

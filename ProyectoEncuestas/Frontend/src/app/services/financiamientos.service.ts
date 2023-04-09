@@ -1,36 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '@shared/environments/environment'
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs';
 
 @Injectable()
 export class FinanciamientosService {
+  private URL = environment.api;
   constructor(private http: HttpClient) { }
-  getTiposFinanciamiento() {
-    return this.http.get<TiposFinancimientoResponse>('http://'+environment.puerto+'/redsolidaria/financiamientos/tipos')
+  getTiposFinanciamiento():Observable<any> {
+    return this.http.get(`${this.URL}/financiamientos/tipos`)  .pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getTiposFinanciamientoDesactivados() {
-    return this.http.get<TiposFinancimientoResponse>('http://'+environment.puerto+'/redsolidaria/financiamientos/tipos/desactivados')
+  getTiposFinanciamientoDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/financiamientos/tipos/desactivados`)  .pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getFuentesFinanciamiento() {
-    return this.http.get<FuentesFinancimientoResponse>('http://'+environment.puerto+'/redsolidaria/financiamientos/fuentes')
+  getFuentesFinanciamiento():Observable<any> {
+    return this.http.get(`${this.URL}/financiamientos/fuentes`)  .pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-  getFuentesFinanciamientoDesactivados() {
-    return this.http.get<FuentesFinancimientoResponse>('http://'+environment.puerto+'/redsolidaria/financiamientos/fuentes/desactivados')
+  getFuentesFinanciamientoDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/financiamientos/fuentes/desactivados`)  .pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
-}
-export interface TiposFinancimientoResponse {
-  results: TipoFinancimiento[];
-}
-export interface TipoFinancimiento {
-  id: number
-  tipo: string
-  estado: boolean
-}
-export interface FuentesFinancimientoResponse {
-  results: FuenteFinancimiento[];
-}
-export interface FuenteFinancimiento {
-  id: number
-  fuente: string
-  estado: boolean
 }

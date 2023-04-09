@@ -1,13 +1,18 @@
 <div class="contenido bordeContenido">
   <div class="headerListar">
     <div class="row mb-2 align-items-center ">
-      <div class="col-12 d-flex padT align-items-center">
-        <div class=" col-2">
-          <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
+      <div class="col-12 d-flex p-0 align-items-center mb-2">
+        <div class=" col-2 align-items-center">
+          <a routerLink="../" class="text-start iconoRegresar btn p-0"><i class="bi bi-arrow-left"></i></a>
         </div>
-        <h1 class="text-center col-10 titulo">Fuentes de Financiamientos</h1>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Fuentes de Financiamiento</h1>
+        </div>
+        <div class="col-2 align-items-end text-end">
+          <a (click)="obtenerFuentes()" class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
+        </div>
       </div>
-      <div class="col-xl-3 col-xxl-2 col-lg-6 col-md-6">
+      <div class="col-xl-3 col-xxl-2 col-lg-6 col-md-6 p-0">
         <a routerLink="agregar" class="btn btnEditar form-control"><i class="bi bi-bank2"></i>Nueva Fuente de Financiamiento</a>
       </div>
 
@@ -15,7 +20,7 @@
         <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-bank2"></i>Fuentes de Financiamientos Desactivados</a>
       </div>
       <div
-        class="col-xl-5 col-xxl-7 col-lg-12 col-md-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+        class="col-xl-5 col-xxl-7 col-lg-12 col-md-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal p-0">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
             <input name="bus" type="text" class="form-control btn" placeholder="Buscar Fuente de Financiamiento">
@@ -24,37 +29,36 @@
       </div>
     </div>
   </div>
-  <div class="tabla table-responsive">
-    <table class="table">
-      <thead class="table-dark align-middle">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Opciones</th>
-          <th scope="col">Tipo de Financiamientos</th>
-          <th scope="col">Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="body" *ngFor="let fin of financiamientos | paginate: { itemsPerPage: 3, currentPage: page }" class="align-middle text-center">
-          <th routerLink=":id" scope="row" class="text-center"><strong>{{fin.id}}</strong></th>
-          <td>
-            <div class=" d-grid mt-1 pb-1">
-              <a class="form-control btn btnEditar">Editar</a>
-            </div>
-            <div class=" d-grid mb-1">
-              <a class="form-control btn btnEliminar">Desactivar</a>
-            </div>
-          </td>
-          <td>{{fin.fuente}}</td>
-          <td class="text-info fw-bold">{{fin.estado}}</td>
-        </tr>
-      </tbody>
+  <div class="mat-elevation-z8 table-responsive">
+    <table mat-table [dataSource]="dataSource" class="tabla">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <td mat-cell *matCellDef="let element" class="">
+          <a class="botonEditarTabla"><i class="bi bi-pencil-square"></i></a>
+          <a class="botonDesactivarTabla"><i class="bi bi-trash3-fill"> </i></a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fuente">
+        <th mat-header-cell *matHeaderCellDef> Fuente de Financiamiento </th>
+        <td mat-cell *matCellDef="let element"> {{element.fuente}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element" style="color:var(--color1);" class="fw-bold"> Activo </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-  </div>
-  <div class="row">
-    <div class="col-12 align-items-center justify-content-center d-flex botones">
-      <pagination-controls (pageChange)="page=$event" previousLabel="Anterior"
-        nextLabel="Siguiente"></pagination-controls>
-    </div>
+
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons aria-label="seleccione">
+    </mat-paginator>
   </div>
 </div>

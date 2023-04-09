@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Estructura, EstructurasResponse, RequerimientosService } from '@serv/requerimientos.service';
+import {  RequerimientosService } from '@serv/requerimientos.service';
 
 @Component({
   selector: 'app-estructuras-desactivadas',
@@ -7,11 +7,5 @@ import { Estructura, EstructurasResponse, RequerimientosService } from '@serv/re
   styleUrls: ['../../../../cardLarge.css','../../../../../app.component.css']
 })
 export class EstructurasDesactivadasComponent {
-  page:any;
-  estructuras: Estructura[] = [];
-  constructor(private financiamientoModel: RequerimientosService) {
-    this.financiamientoModel.getEstructurasDesactivados().subscribe((data: EstructurasResponse) => {
-      this.estructuras = data.results;
-    })
-  }
+
 }

@@ -134,7 +134,6 @@ begin
 					  dbo.tbl_Tenencia_Tierra ON dbo.tbl_Encuestas.id_Tenencia = dbo.tbl_Tenencia_Tierra.id_Tenencia INNER JOIN
 					  dbo.tbl_Tecnologico_General ON dbo.tbl_Encuestas.id_Tecno = dbo.tbl_Tecnologico_General.id_Tecno INNER JOIN
 					  dbo.tbl_Usuarios ON dbo.tbl_Encuestas.id_Usuario = dbo.tbl_Usuarios.id_Usuario
-	order by dbo.tbl_Encuestas.fecha_Encuesta
 end
 --Procedimiento Almacenado para obtener los departamentos del usuario
 Create procedure prc_Encuestas_Departamentos

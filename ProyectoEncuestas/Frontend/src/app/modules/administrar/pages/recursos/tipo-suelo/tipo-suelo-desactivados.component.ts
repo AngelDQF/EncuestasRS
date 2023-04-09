@@ -1,17 +1,26 @@
-import { Component } from '@angular/core';
-import { Natural, NaturalesResponse, RecursosService } from '@serv/recursos.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { SuelosInterface } from '@models/administrar/recursos/suelos.interface';
+import { RecursosService } from '@serv/recursos.service';
 
 @Component({
   selector: 'app-tipo-suelo-desactivados',
   templateUrl: './tipo-suelo-desactivados.component.html',
   styleUrls: ['../../../../card.css','../../../../../app.component.css']
 })
-export class TipoSueloDesactivadosComponent {
-  page:any;
-  suelos: Natural[] = [];
-  constructor(private bosquesModel: RecursosService) {
-    this.bosquesModel.getSuelosDesactivados().subscribe((data: NaturalesResponse) => {
-      this.suelos = data.results;
+export class TipoSueloDesactivadosComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'opciones', 'suelo', 'estado'];
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(private suelosModel: RecursosService) { }
+  ngOnInit(): void {
+    this.obtenerSuelos();
+  }
+  obtenerSuelos() {
+    this.suelosModel.getSuelosDesactivados().subscribe((data: SuelosInterface[]) => {
+      this.dataSource = new MatTableDataSource<SuelosInterface>(data);
+      this.dataSource.paginator = this.paginator;
     })
   }
 }

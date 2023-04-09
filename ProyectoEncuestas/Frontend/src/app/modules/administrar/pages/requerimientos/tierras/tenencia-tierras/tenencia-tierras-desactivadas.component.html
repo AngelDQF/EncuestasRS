@@ -16,34 +16,5 @@
       </div>
     </div>
   </div>
-  <div class="tabla table-responsive">
-    <table class="table">
-      <thead class="table-dark align-middle">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Opciones</th>
-          <th scope="col">Tipo de Tenencia de la Tierra</th>
-          <th scope="col">Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="body" *ngFor="let tenencia of tenencias | paginate: { itemsPerPage: 3, currentPage: page }" class="align-middle text-center">
-          <th routerLink=":id" scope="row" class="text-center"><strong>{{tenencia.id}}</strong></th>
-          <td>
-            <div class=" d-grid pb-1">
-              <a class="form-control btn btnGuardar">Activar</a>
-            </div>
-          </td>
-          <td>{{tenencia.tenencia}}</td>
-          <td class="text-danger fw-bold">{{tenencia.estado}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="row">
-    <div class="col-12 align-items-center justify-content-center d-flex botones">
-      <pagination-controls (pageChange)="page=$event" previousLabel="Anterior"
-        nextLabel="Siguiente"></pagination-controls>
-    </div>
-  </div>
+
 </div>

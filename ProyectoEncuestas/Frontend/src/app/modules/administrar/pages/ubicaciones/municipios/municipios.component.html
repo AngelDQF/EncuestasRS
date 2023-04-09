@@ -3,17 +3,17 @@
     <div class="row mb-2 align-items-center ">
       <div class="col-12 d-flex p-0 align-items-center">
         <div class=" col-2">
-          <a routerLink="../" class="text-start iconoRegresar btn"><i class="bi bi-arrow-left"></i></a>
+          <a routerLink="../" class="text-start iconoRegresar btn p-0"><i class="bi bi-arrow-left"></i></a>
         </div>
         <div class="col-8 align-items-center text-center">
           <h1 class="text-center  titulo">Municipios de Honduras</h1>
         </div>
         <div class="col-2 align-items-end text-end">
-          <a (click)="refresh()" class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
+          <a (click)="refresh()" class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
         </div>
       </div>
       <div
-        class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+        class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal p-0">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
             <input name="bus" type="text" class="form-control btn" placeholder="Buscar Municipio" [(ngModel)]="buscarMunicipio" (ngModelChange)="callSearch($event)">
@@ -22,34 +22,25 @@
       </div>
     </div>
   </div>
-  <div class="tabla table-responsive">
-    <table class="table">
-      <thead class="table-dark align-middle">
-        <tr>
-          <th scope="col">ID Municipio</th>
-          <th scope="col">Municipio</th>
-          <th scope="col">Departamento</th>
-          <th scope="col">Opciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="body" *ngFor="let mun of municipios | paginate: { itemsPerPage: 3, currentPage: page }" class="align-middle text-center">
-          <th routerLink=":id" scope="row" class="text-center"><strong>{{mun.id_mun}}</strong></th>
-          <td>{{mun.mun}}</td>
-          <td>{{mun.dep}}</td>
-          <td>
-            <div class=" d-grid mt-1 pb-1">
-              <a routerLink="get" class="form-control btn btnGuardar ">Ver</a>
-            </div>
-          </td>
-        </tr>
-      </tbody>
+  <div class="mat-elevation-z8 table-responsive">
+    <table mat-table [dataSource]="dataSource" class="tabla">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id_mun}} </td>
+      </ng-container>
+      <ng-container matColumnDef="mun">
+        <th mat-header-cell *matHeaderCellDef> Municipio </th>
+        <td mat-cell *matCellDef="let element"> {{element.mun}} </td>
+      </ng-container>
+      <ng-container matColumnDef="dep">
+        <th mat-header-cell *matHeaderCellDef> Departamento </th>
+        <td mat-cell *matCellDef="let element"> {{element.dep}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-  </div>
-  <div class="row">
-    <div class="col-12 align-items-center justify-content-center d-flex botones">
-      <pagination-controls (pageChange)="page=$event" previousLabel="Anterior"
-        nextLabel="Siguiente"></pagination-controls>
-    </div>
+
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons aria-label="seleccione">
+    </mat-paginator>
   </div>
 </div>

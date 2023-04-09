@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { DepartamentosInterface } from '@models/ubicaciones/departamentos.interface';
 import { UbicacionesService } from '@serv/ubicaciones.service';
 
@@ -8,28 +10,33 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
   styleUrls: ['../../../../cardLarge.css','../../../../../app.component.css']
 })
 export class DepartamentosComponent implements OnInit{
+  displayedColumns: string[] = ['id', 'dep'];
+  dataSource: any;
   buscarDepartamento:string="";
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(private ubicacionesModel: UbicacionesService) {  }
+  ngOnInit(): void {
+    this.refresh();
+  }
+  refresh(){
+    this.ubicacionesModel.getDepartamentos().subscribe((data: DepartamentosInterface[]) => {
+      this.dataSource = new MatTableDataSource<DepartamentosInterface>(data);
+      this.dataSource.paginator = this.paginator;
+    })
+    this.buscarDepartamento="";
+  }
+
   departamentos:DepartamentosInterface[];
    page:any;
-  constructor(private ubicacionesModel: UbicacionesService) {
 
-  }
-  ngOnInit(): void {
-    this. refresh();
-  }
   callSearch():void{
       this.ubicacionesModel.getSearchDepartamentos$(this.buscarDepartamento).subscribe((response: DepartamentosInterface[]) => {
-        this.departamentos = response;
+        this.dataSource = response;
       },
       (error)=>{
         alert(error);
       })
   }
-  refresh(){
-    this.ubicacionesModel.getDepartamentos().subscribe((response: DepartamentosInterface[]) => {
-      this.departamentos = response;
-      console.log(this.departamentos)
-    })
-    this.buscarDepartamento="";
-  }
+
 }
