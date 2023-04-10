@@ -49,7 +49,7 @@ Create Procedure prc_Usuarios_Buscar_ID
                   dbo.tbl_Tipos_Usuario ON dbo.tbl_Usuarios.id_Tipo_Usuario = dbo.tbl_Tipos_Usuario.id_Tipo_Usuario
 	where dbo.tbl_Usuarios.id_Usuario=@id
 end
---Procedimiento Almacenado para desactivar un usuario
+--Procedimiento Almacenado para desactivar/activar un usuario
 Create Procedure prc_Usuarios_Cambiar_Estado
 @id int,
 @estado int
@@ -58,6 +58,15 @@ as begin
 	SET
 	[id_Estado_Usuario] = @estado
 
+ WHERE id_Usuario=@id
+end
+--Procedimiento Almacenado para restablecer la contraseña de un usuario
+Create Procedure prc_Usuarios_Cambiar_Restablecer_Passsword
+@id int,
+@password nvarchar(60)
+as begin
+	UPDATE [dbo].[tbl_Usuarios]
+	SET [contrasenia_Usuario] = @password
  WHERE id_Usuario=@id
 end
 --Procedimiento Almacenado para buscar la existencia de un correo

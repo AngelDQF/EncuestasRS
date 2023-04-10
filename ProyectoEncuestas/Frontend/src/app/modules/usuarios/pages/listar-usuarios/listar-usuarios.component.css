@@ -13,6 +13,9 @@
 .row {
   --bs-gutter-x: 0px !important;
 }
+.options-a{
+  align-items: center;
+}
 .botones{
   height: 100%;
 }

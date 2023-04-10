@@ -7,7 +7,7 @@
 .bordeContenido {
   border-radius: 0px;
 }
-mat-paginator{
+mat-paginator {
   background-color: #fff;
   width: 100% !important;
 }
@@ -140,24 +140,31 @@ a {
   text-align: center;
   font-size: 16px !important;
 }
-.botonEditarTabla{
+.botonEditarTabla {
   color: var(--btn1);
 }
-.botonGuardarTabla{
+
+.botonGuardarTabla {
   color: var(--btn2);
 }
-.botonDesactivarTabla{
+.botonDesactivarTabla {
   color: var(--btn3);
 }
-.botonEditarTabla i, .botonDesactivarTabla i, .botonGuardarTabla i{
+.botonCambiarTabla {
+  color: var(--btn4);
+}
+.botonEditarTabla i,
+.botonDesactivarTabla i,
+.botonGuardarTabla i,
+.botonCambiarTabla i {
   font-size: 20px;
   cursor: pointer;
 }
 .tabla {
-  height: calc(100vh - 340px)!important;
+  height: calc(100vh - 340px) !important;
   overflow-y: scroll !important;
 }
-.tabla a{
+.tabla a {
   margin: 0px 10px;
 }
 .headerListar {
@@ -165,7 +172,6 @@ a {
   border-bottom: 1px solid var(--color1);
   margin-bottom: 0px;
 }
-
 
 .tabla #body:hover {
   background-color: #71c4cf60;
@@ -192,7 +198,6 @@ a {
 }
 /*Pantallas sm*/
 @media screen and (max-width: 767px) {
-
   .contenido {
     height: 100vh;
     padding: 15px;

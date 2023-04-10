@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DesactivarUserComponent } from '@shared/components';
+import { Observable } from 'rxjs';
+import { RestablecerPasswordComponent } from '@shared/components/modals/restablecer-password/restablecer-password.component';
 @Component({
   selector: 'app-listar',
   templateUrl: './listar-usuarios.component.html',
@@ -24,11 +26,22 @@ export class ListarUsuariosComponent implements OnInit{
   }
   desactivar(id:any) {
     try {
-       this.dialog.open(DesactivarUserComponent, {
+      const dialogRef= this.dialog.open(DesactivarUserComponent, {
         width: '400px',
         data: [id,"Desactivar",2],
-      },
-   );
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerUsers()})
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  restablecer(id:any) {
+    try {
+      const dialogRef= this.dialog.open(RestablecerPasswordComponent, {
+        width: '400px',
+        data: [id,"Desactivar",2],
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerUsers()})
     } catch (error) {
       console.log(error);
     }

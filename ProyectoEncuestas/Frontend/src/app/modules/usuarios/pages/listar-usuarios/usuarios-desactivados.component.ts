@@ -21,11 +21,11 @@ export class UsuariosDeactivadosComponent {
   }
   activar(id:any) {
     try {
-       this.dialog.open(DesactivarUserComponent, {
+      const dialogRef= this.dialog.open(DesactivarUserComponent, {
         width: '400px',
         data: [id,"Activar",1],
-      },
-   );
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerUsers()});
     } catch (error) {
       console.log(error);
     }

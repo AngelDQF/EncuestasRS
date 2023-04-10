@@ -39,6 +39,16 @@ async function putUsuariosEstado(id,estado) {
     console.log(error);
   }
 };
+async function putRestablecerContraseña(id,password) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    await pool.request().query(`Exec prc_Usuarios_Cambiar_Restablecer_Passsword '${id}', '${password}'`);
+    return "Contraseña Restablecida"
+  }
+  catch (error) {
+    console.log(error);
+  }
+};
 async function getUsuariosDesactivados() {//TODO: Función para obtener todos los usuarios
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -127,4 +137,4 @@ async function verificarEmail(email) {//TODO: Función para verificar si el DNI 
   }
 }
 
-module.exports = { getUsuariosDesactivados,getUsuarios, getUsuario, postUsuario, verificarEmail,verificarDNI ,getUsuariosTipos,getUsuarioID,putUsuariosEstado};//TODO: Exportamos las funciones que hemos creado
+module.exports = { getUsuariosDesactivados,getUsuarios, getUsuario, postUsuario, verificarEmail,verificarDNI ,getUsuariosTipos,getUsuarioID,putUsuariosEstado,putRestablecerContraseña};//TODO: Exportamos las funciones que hemos creado

@@ -41,6 +41,18 @@ const ctrPutUsuariosEstado = async (req,res)=>{
     console.log(error);ss
   }
 }
+const ctrPutRestablecerContraseña = async (req,res)=>{
+  try {
+    const {id,password}=req.body;
+    const eContra = await encrypt(password);//TODO: Encriptamos la contraseña
+    usuariosModel.putRestablecerContraseña(id,eContra).then(results => {//TODO: Llamamos a la función del modelo para obtener los usuarios
+      res.json({results});//TODO: Mostramos el resultado en un json
+    });
+  } catch (error) {
+    handleHttpError(res, 'ERROR_LISTAR_USUARIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    console.log(error);ss
+  }
+}
 const ctrGetUsuariosDesactivados = async (req, res) => {//TODO: Creamos la función que se encargará de obtener los usuarios
   try {
     usuariosModel.getUsuariosDesactivados().then(result => {//TODO: Llamamos a la función del modelo para obtener los usuarios
@@ -92,4 +104,4 @@ const ctrPostUsuario = async (req, res) => {//TODO: Creamos la función que se e
     console.log(error);
   }
 };
-module.exports = { ctrGetUsuariosDesactivados,ctrGetUsuarios,ctrGetUsuariosTipos,ctrPostUsuario,ctrGetUsuarioByID,ctrPutUsuariosEstado};//TODO: Exportamos las funcionessss
+module.exports = { ctrGetUsuariosDesactivados,ctrGetUsuarios,ctrGetUsuariosTipos,ctrPostUsuario,ctrGetUsuarioByID,ctrPutUsuariosEstado,ctrPutRestablecerContraseña};//TODO: Exportamos las funcionessss

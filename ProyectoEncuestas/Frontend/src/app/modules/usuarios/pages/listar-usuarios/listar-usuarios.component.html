@@ -21,8 +21,7 @@
         <a routerLink="desactivados" class="btn btnEliminar form-control"><i class="bi bi-person-x-fill"></i>Usuarios
           Desactivados</a>
       </div>
-      <div
-        class="col-6 col-md-6 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+      <div class="col-6 col-md-6 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="filterUsers" class="input-group-text form-control"><i class="bi bi-search"></i>
             <input name="filterUsers" type="text" class="form-control btn" placeholder="Buscar Usuario">
@@ -43,10 +42,23 @@
         <!-- Name Column -->
         <ng-container matColumnDef="opciones">
           <th mat-header-cell *matHeaderCellDef> Opciones </th>
-          <td mat-cell *matCellDef="let element" class="">
-            <a class="botonEditarTabla" [routerLink]="['editar',element.id]"><i class="bi bi-pencil-square"></i></a>
-            <a class="botonDesactivarTabla" (click)="desactivar(element.id)"><i class="bi bi-trash3-fill"> </i></a>
+          <td mat-cell *matCellDef="let element" class="options-a">
+            <div class="row d-flex">
+              <div class="col-12">
+                <a matTooltip="Editar" matTooltipPosition="above" class="botonEditarTabla"
+                  [routerLink]="['editar',element.id]"><i class="bi bi-pencil-square"></i></a>
+                <a matTooltip="Asignaciones" matTooltipPosition="above" class="botonGuardarTabla"
+                  [routerLink]="['editar',element.id]"><i class="bi bi-geo-alt-fill"></i></a>
+              </div>
+              <div class="col-12 pt-3">
+                <a matTooltip="Desactivar" matTooltipPosition="above" class="botonDesactivarTabla"
+                  (click)="desactivar(element.id)"><i class="bi bi-trash3-fill"> </i></a>
+                <a matTooltip="Restablecer Contraseña" matTooltipPosition="above" class="botonCambiarTabla"
+                  (click)="restablecer(element.id)"><i class="bi bi-shield-lock-fill"></i></a>
+              </div>
+            </div>
           </td>
+
         </ng-container>
 
         <!-- Weight Column -->
