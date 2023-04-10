@@ -17,6 +17,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MyuserComponent } from './pages/myuser/myuser.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 @NgModule({
   declarations: [
     UsuariosComponent,
@@ -34,6 +36,7 @@ import { MyuserComponent } from './pages/myuser/myuser.component';
     FormsModule,
     SharedModule,
     NgxPaginationModule,
+    MatTooltipModule,
     MatTableModule,
     MatPaginatorModule,
     MatNativeDateModule, 

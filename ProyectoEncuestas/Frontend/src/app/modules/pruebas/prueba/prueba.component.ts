@@ -1,39 +1,38 @@
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { OrganizacionesInterface } from '@models/administrar/organizaciones/organizaciones.interface';
-import { EncuestasService } from '@serv/encuestas.service';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-prueba',
   templateUrl: './prueba.component.html',
   styleUrls: ['./prueba.component.css', '../../../app.component.css']
 })
-export class PruebasComponent implements OnInit {
-  public formPadre: any = this.fb.group({});
-  constructor(private fb: FormBuilder, private encuestasModel: EncuestasService) {
-    this.formPadre = this.fb.group({
-      orgSociales: this.fb.array([])
-    });
+export class PruebasComponent {
+  items: any[] = [];
+  itemTxt:string="";
+  addItem() {
+    this.items.push(this.itemTxt);
   }
-  get orgSociales(): FormArray {
-    return this.formPadre.get('orgSociales') as FormArray;
+  removeItem(index: number) {
+    this.items.splice(index, 1);
   }
-  addOrgSocial(): void {
-    this.orgSociales.push(this.fb.group({
-      nombre: [''],
-      descripcion: ['']
-    }));
+  fruits: any[] = []
+  selectedFruit:any;
+  getSelectedFruitText() {
+   this.Fruta=this.cambiosNew(); 
   }
-  ngOnInit(): void {
+   Fruta:any;
+  cambiosNew(){
+    const selectedOption = this.fruits.find(fruit => fruit.value === this.selectedFruit);
+    return selectedOption ? selectedOption.label : '';
   }
-  addBoton() {
-    this.organizacionesSociales();
-  }
+  /* firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+  isLinear = true;
 
-    sociales: any;
-    organizacionesSociales() {
-      this.encuestasModel.getOrganizacionesSociales$().subscribe((response: OrganizacionesInterface[]) => {
-        this.sociales = response;
-      })
-    }
-  }
+  constructor(private _formBuilder: FormBuilder) {}
+  */
+}

@@ -14,7 +14,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { InjectSessionInterceptor } from './core/interceptors/inject-session.interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {MaterialExampleModule} from '@AM/*';
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent
@@ -24,7 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     NgxPaginationModule,
     HttpClientModule,
+    MatNativeDateModule,
     BrowserAnimationsModule,
+    MaterialExampleModule,
   ],
   providers: [
     UsuariosService,

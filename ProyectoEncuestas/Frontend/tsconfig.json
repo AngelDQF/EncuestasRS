@@ -25,11 +25,12 @@
     "paths": {
       "@modules/*": ["src/app/modules/*"],
       "@shared/*": ["src/app/shared/*"],
+      "@modals/*": ["src/app/shared/components/modals/*"],
       "@serv/*":["src/app/services/*"],
       "@env/*":["src/app/shared/environments/*"],
       "@models/*":["src/app/core/models/*"],
       "@guards/*":["src/app/core/guards/*"],
-
+      "@AM/*":["src/material.module.ts"]
     }
   },
   "angularCompilerOptions": {

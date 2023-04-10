@@ -1,5 +1,5 @@
-<div class="contEncuesta">
-  <div class="row slideEncuesta ps-0">
+<div class="contenido">
+  <!-- <div class="row slideEncuesta ps-0">
     <div class="col-12 d-flex p-0">
       <div class="btnRegresar col-2">
         <a routerLink="../" class="text-start iconoRegresar btn ps-0"><i class="bi bi-arrow-left"></i></a>
@@ -282,5 +282,66 @@
         </div>
       </form>
     </div>
+  </div> -->
+  <div class="row">
+    <div class="col-12 d-flex p-0">
+      <div class="btnRegresar col-2">
+        <a routerLink="../" class="text-start iconoRegresar btn ps-0"><i class="bi bi-arrow-left"></i></a>
+      </div>
+      <div class="col-8 align-items-center text-center d-flex">
+        <h1 class="text-center col-12 titulo">Encuesta Mesas Solidarias</h1>
+      </div>
+      <div class="col-2 align-items-end text-end pe-0">
+        <a (click)="datosIniciales()" class="iconoRefrescar btn pe-0"><i class="bi bi-arrow-clockwise"></i></a>
+      </div>
+    </div>
   </div>
+  <form [formGroup]="EncuestasForm" class="mt-2">
+    <div id="DatosGenerales" class="row">
+      <div class="col-12 col-md-6 col-lg-3">
+        <mat-form-field appearance="fill" class="form-control">
+          <mat-label>Departamento</mat-label>
+          <mat-select #selDep formControlName="selectDep" (valueChange)="changeDep()" required>
+            <mat-option value="">--</mat-option>
+            <mat-option *ngFor="let dep of departamentos" [value]="dep.id_dep">
+              {{dep.dep}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <mat-form-field appearance="fill" class="form-control">
+          <mat-label>Municipio</mat-label>
+          <mat-select #selMun formControlName="selectMun" (valueChange)="changeMun()" required>
+            <mat-option value="">--</mat-option>
+            <mat-option *ngFor="let mun of municipios" [value]="mun.id_mun">
+              {{mun.mun}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <mat-form-field appearance="fill" class="form-control">
+          <mat-label>Aldea</mat-label>
+          <mat-select #selAldea formControlName="selectAldea" (valueChange)="changeAldea()" required>
+            <mat-option value="">--</mat-option>
+            <mat-option *ngFor="let aldea of aldeas" [value]="aldea.id">
+              {{aldea.aldea}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <mat-form-field appearance="fill" class="form-control">
+          <mat-label>Caserio</mat-label>
+          <mat-select #selCaserio formControlName="selectCaserio" required>
+            <mat-option value="">--</mat-option>
+            <mat-option *ngFor="let cas of caserios" [value]="cas.id">
+              {{cas.caserio}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
 </div>

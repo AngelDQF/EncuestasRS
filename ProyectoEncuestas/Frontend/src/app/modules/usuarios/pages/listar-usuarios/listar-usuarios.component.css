@@ -19,6 +19,7 @@
 .botones a, .botones span, .botones li{
   color:aqua;
 }
+
 /*Pantallas lg*/
 @media screen and (max-width: 1200px) {
   #a1,

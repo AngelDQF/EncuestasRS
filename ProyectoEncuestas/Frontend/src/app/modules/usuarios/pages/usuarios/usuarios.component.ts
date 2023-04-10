@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '@serv/usuarios.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UsersInterface } from '@models/usuarios/users.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -12,7 +13,7 @@ export class UsuariosComponent implements OnInit {
   public usersForm: any;
   public hide:boolean;
   public usuariosTipos: Array<UsersInterface> = [];
-  constructor(private usuariosModel: UsuariosService, private fb: FormBuilder) { }
+  constructor(private usuariosModel: UsuariosService, private fb: FormBuilder, private router: Router) { }
   ngOnInit(): void {
     this.usuariosModel.getUsuariosTipos().subscribe((data: UsersInterface[]) => {
       this.usuariosTipos = data;
@@ -46,6 +47,7 @@ export class UsuariosComponent implements OnInit {
     }
     console.log(body)
     this.usuariosModel.postUsuarios(body).subscribe()
+    this.router.navigate(['/usuarios']);
   }
   refresh() {
     this.initForm();

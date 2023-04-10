@@ -1,9 +1,8 @@
-.contEncuesta {
+/*Encabezados*/
+.DatosGenerales {
   background-color: #fff;
-  border-radius: 40px;
-  padding: 30px;
-  height: 100%;
 }
+/*Botones de Regresar y Refrescar*/
 .iconoRegresar i {
   color: var(--btn3);
   border: 1px solid var(--btn3);
@@ -11,36 +10,7 @@
   font-weight: bold;
   border-radius: 100%;
   padding: 5px;
-  cursor:pointer;
-}
-textarea{
-  font-size: 15px;
-}
-.input-group select, .input-group input, .input-group span{
-  width: 100% !important;
-  border-radius: 0px;
-}
-.input-group input,.input-group select{
-  height: 35px !important;
-}
-.btnGuardar{
-  height: 100% !important;
-  align-items: center !important;
-  width: 100% !important;
-}
-.btnHeight{
-  align-items: center !important;
-  height: 100% !important;
-  padding: 0px !important;
-}
-.btnHeight2{
-  align-self: center !important;
-  height: 100% !important;
-  padding: 0px !important;
-}
-.botonAgregarNuevo{
-  height: 70px !important;
-  width: 100% !important;
+  cursor: pointer;
 }
 .iconoRefrescar i {
   color: var(--btn2);
@@ -49,7 +19,7 @@ textarea{
   font-weight: bold;
   border-radius: 100%;
   padding: 5px;
-  cursor:pointer;
+  cursor: pointer;
 }
 .iconoRegresar i:hover {
   color: white;
@@ -59,227 +29,35 @@ textarea{
   color: white;
   background-color: var(--btn2);
 }
-input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
-  border: 2px solid red !important;
-}
-input.ng-valid.ng-touched, select.ng-valid.ng-touched, textarea.ng-valid.ng-touched{
-  border: 2px solid rgb(4, 255, 79) !important;
-}
-
-.padForm {
-  padding: 0px 15px;
-}
-.slideEncuesta {
-  height: 95%;
-  overflow-x:none;
-}
-.slideEncuesta.encuesta {
-  height: calc(100% - 50px);
-  overflow-x:hidden; overflow-y:scroll;
-}
-.encuesta h2 {
-  font-size: 22px;
-  background-color: #52535430;
-  padding: 5px 0px;
-  margin: 0px;
-}
-.encuesta h3 {
-  padding: 3px 0px;
-  font-size: 18px;
-  border: 1px solid #32e6ed;
-  background-color: #088ff630;
-  margin: 0px 0px 15px 0px;
-}
-#ubh3 {
-  border: 1px solid #32e6ed;
-  background-color: #08deff2e;
-}
-.form-control {
-  border-radius: 0px;
-  border: 2px solid #088ff630;
-}
-p{
-  margin: 0px;
-  padding: 0px;
-}
-.row {
-  padding: 0px;
-  margin: 0px;
-}
-/*Estilos del segmento de los select*/
 .row {
   --bs-gutter-x: 0px !important;
 }
-.selects {
-  margin-top: 10px;
-  display: flex;
+/*Selects*/
+mat-form-field {
+  border: none;
+  border-radius: 0px;
 }
-.selectedSelect p{
-  font-weight: 100 !important;
-  color: aliceblue !important;
-}
-.selects div {
-  padding: 0px 15px;
-}
-.selects label {
-  font-weight: 600;
+mat-label,
+mat-select,
+mat-option {
   font-size: 18px;
 }
-.selects select {
-  border-radius: 0px;
-  height: 35px;
-  font-weight: 600;
-  font-size: 15px;
-  background-color: #08fbff13;
-}
-.selects option {
-  font-size: 15px !important;
-}
-/*Estilos del segmento de los texbox*/
-.textbox {
-  margin-top: 20px;
-  display: flex;
-}
-.input-group {
-  padding: 0px 5px;
-}
-.input-group input {
-  background-color: #03dff806;
-  height: 35px;
-  text-align: center;
-  font-size: 15px;
-}
-.input-group span {
-  height: 35px;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 17px;
-}
-.conTabla span,
-.conTabla input,
-.conTabla select {
-  border-radius: 0px;
-  height: 30px;
-  text-align: center;
-}
-.conTabla span {
-  width: 100%;
-}
-.rnSuelo label {
-  background-color: #5d5d5d2f;
-  border-radius: 0px;
-}
-.rnSuelo select {
-  background-color: #08fbff13;
-  border-radius: 0px;
-}
-span {
-  background-color: #5d5d5d2f;
-}
-.conTabla select,
-.conTabla input {
-  background-color: #08fbff13;
-  font-size: 15px;
-}
-.form-control {
-  background-color: #fff;
-}
-/*Estilos geo ubicacion*/
-.btnGuardar,
-.form-control {
-  border-radius: none !important;
-}
-input.ng-invalid.ng-touched {
-  border: 2px solid red !important;
-}
-input.ng-valid.ng-touched {
-  border: 2px solid rgb(4, 255, 79) !important;
-}
 @media screen and (max-width: 767px) {
-  .conTabla select,
-  .conTabla input {
-    font-size: 12px ;
-  }
-  select{
-    font-size: 12px !important;
-  }
-  .encuesta h2 {
-    font-size: 15px !important;
-  }
-  .encuesta h3 {
-    font-size: 12px;
-  }
-  .selects label {
-    font-size: 12px !important;
-  }
-  .selects select,
-  .selects option {
-    font-size: 12px !important;
-  }
-  .input-group {
-    padding: 0px;
-  }
   .iconoRegresar i,
   .iconoRefrescar i {
     font-size: 10px;
   }
-  .input-group input {
-    background-color: #03dff806;
-    text-align: center;
-    font-size: 12px !important;
-  }
-  .input-group span {
-    background-color: #54525230;
-    font-weight: bold;
-    font-size: 12px !important;
-    text-align: center;
-  }
-  .rnSuelo label,.rnSuelo select  {
+  mat-label,mat-select,mat-option{
     font-size: 12px;
   }
-
+  mat-form-field{
+    padding: 0px;
+  }
 }
 /*Pantallas md*/
 @media screen and (max-width: 991px) {
   .iconoRegresar i,
   .iconoRefrescar i {
     font-size: 10px;
-  }
-  .botonAgregarNuevo{
-    height: 30px !important;
-    font-size: 10px;
-  }
-  .contEncuesta {
-    border-radius: 0px;
-    padding: 10px;
-  }
-  .encuesta h2 {
-    font-size: 15px;
-  }
-  .encuesta h3 {
-    font-size: 13px;
-  }
-  textarea{
-    font-size: 10px;
-  }
-  .selects label,.rnSuelo label  {
-    font-size: 12px;
-  }
-  .selects select,.rnSuelo select {
-    font-size: 10px;
-  }
-  .input-group input {
-    background-color: #03dff806;
-    text-align: center;
-    height: 30px;
-    font-size: 12px;
-  }
-  .input-group span {
-    background-color: #54525230;
-    font-weight: bold;
-    height: 30px;
-    width: 100px;
-    font-size: 12px;
-    text-align: center;
   }
 }

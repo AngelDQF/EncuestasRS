@@ -22,13 +22,13 @@
       </div>
     </div>
   </div>
-  <div class="mat-elevation-z8 table-responsive">
+  <div class="mat-elevation-z8">
+    <div class="table-responsive">
     <table mat-table [dataSource]="dataSource" class="tabla">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let element"> {{element.id_caserio}} </td>
       </ng-container>
-
       <ng-container matColumnDef="caserio">
         <th mat-header-cell *matHeaderCellDef> Caserio </th>
         <td mat-cell *matCellDef="let element"> {{element.caserio}} </td>
@@ -48,7 +48,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
+  </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="seleccione">
     </mat-paginator>
   </div>

@@ -12,6 +12,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CerrarSesionComponent } from './components/index';
 @NgModule({
   declarations: [
     ...components.components,
@@ -19,25 +23,29 @@ import {MatNativeDateModule} from '@angular/material/core';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
     MatSidenavModule,
     MatButtonModule,
     MatListModule,
+    MatDialogModule,
+    MatInputModule,
     MatToolbarModule,
     MatMenuModule,
     MatGridListModule,
     MatNativeDateModule,
+    MatFormFieldModule
   ],
-
+  entryComponents: [
+   CerrarSesionComponent
+  ],
   exports: [
     ...components.components
   ],
   providers: [
     JuntaService
-  ]
+  ],
 })
 export class SharedModule {
 }

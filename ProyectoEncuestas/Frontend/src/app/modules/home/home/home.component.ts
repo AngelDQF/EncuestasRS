@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import jwt_decode from 'jwt-decode';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CerrarSesionComponent } from '@shared/components';
 
 @Component({
   selector: 'app-home',
@@ -10,49 +9,46 @@ import { Router } from '@angular/router';
 
 })
 export class HomeComponent implements OnInit {
-  isExpanded:boolean;
-
-  token = this.cookieToken.get('token');
-  tokenString: any;
-  aprobacion: boolean = false;
-  inicio: any = null;
-  si: number = 0;
-  constructor(private cookieToken: CookieService,private router: Router) {
+  isExpanded: boolean;
+  btn1: string = "Mi Usuario";
+  btn2: string = "Usuarios";
+  btn3: string = "Encuestas";
+  btn4: string = "Dashboard";
+  btn5: string = "Administrar Encuestas";
+  btn6: string = "Exportar";
+  btn7: string = "Cerrar Sesión";
+  constructor(private cerrar: MatDialog) {
   }
   ngOnInit(): void {
-    this.tokenString = (this.getDecodedAccessToken(this.token)).tipo;
-    this.validacion(this.tokenString);
-    this.isExpanded = true;
+    this.isExpanded = false;
   }
-  validacion(tokenResponse: any): void {
-    do {
-      if (tokenResponse == 1) {
-        this.aprobacion = false;
-      } else if (tokenResponse == 2) {
-        this.aprobacion = true;
-        this.si = 1;
-      }
-    } while (this.si == 0)
-  }
-  getDecodedAccessToken(tok: string): any {
+  cerrarSesion() {
     try {
-      return jwt_decode(tok);
-    } catch (Error) {
-      return null;
+       this.cerrar.open(CerrarSesionComponent, {
+        width: '400px',
+
+      });
+    } catch (error) {
+      console.log(error);
     }
   }
-  cerrarSesion(event: any) {
-    try{
-    let result = confirm("¿Está seguro que desea salir?");
-    if (result==true) {
-      this.cookieToken.delete('token');
-      this.si = 0;
-      this.aprobacion = false;
-      this.router.navigate(['/auth']);
+  cambio(): void {
+    if (this.isExpanded) {
+      this.btn1 = "";
+      this.btn2 = "";
+      this.btn3 = "";
+      this.btn4 = "";
+      this.btn5 = "";
+      this.btn6 = "";
+      this.btn7 = "";
     } else {
-      this.inicio = null;
-    }}catch(error){
-      console.log(error);
+      this.btn1 = "Mi Usuario";
+      this.btn2 = "Usuarios";
+      this.btn3 = "Encuestas";
+      this.btn4 = "Dashboard";
+      this.btn5 = "Administrar Encuestas";
+      this.btn6 = "Exportar";
+      this.btn7 = "Cerrar Sesión";
     }
   }
 }

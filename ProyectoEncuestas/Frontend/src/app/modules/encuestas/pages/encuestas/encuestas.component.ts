@@ -1,5 +1,5 @@
 import { CookieService } from 'ngx-cookie-service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DepartamentosUsersInterface } from '@models/encuesta/departamentos-users.interface';
 import { EncuestasService } from '@serv/encuestas.service';
@@ -13,13 +13,14 @@ import { CaseriosUserInterface } from '@models/encuesta/caserios-users.interface
 import { EstructuraUsers } from '@models/encuesta/estructuras-users-interface';
 import { EstadosInterface } from '@models/encuesta/estados-encuestas.interface';
 import { TecnologicoInterface } from '@models/encuesta/tecnologico-encuestas.interface';
-
+import { MatSelect } from '@angular/material/select';
 @Component({
   selector: 'app-encuestas',
   templateUrl: './encuestas.component.html',
   styleUrls: ['./encuestas.component.css', '../../../../app.component.css']
 })
 export class EncuestasComponent implements OnInit {
+  /*
   encuestaForm: FormGroup;
   token = this.cookieToken.get('token');
   tokenString: any;
@@ -282,5 +283,135 @@ export class EncuestasComponent implements OnInit {
       })
       this.encuestaForm.get("checkLegal")?.disable();
     }
+  }*/
+  //Variables de uso especial
+  tokenString: any;
+  token = this.cookieToken.get('token');
+  EncuestasForm: FormGroup;
+  //Todo: Variables para los select de Ubicaciones
+  departamentos: DepartamentosUsersInterface[] = [];
+  municipios: MunicipiosUserInterface[] = [];
+  aldeas: AldeasUserInterface[] = [];
+  caserios: CaseriosUserInterface[] = [];
+  ngOnInit(): void {
+    this.datosIniciales();
+  }
+  constructor(private fb: FormBuilder, private encuestasModel: EncuestasService, private cookieToken: CookieService) { }
+  datosIniciales() {
+    this.EncuestasForm = this.initForm();
+    this.tokenString = this.getDecodedAccessToken(this.token);
+    this.DepartamentosUser(this.tokenString.id);
+    this.municipios = [];
+    this.aldeas = [];
+    this.caserios = [];
+  }
+  //Metodo para obtener el token
+  getDecodedAccessToken(tok: string): any {
+    try {
+      return jwt_decode(tok);
+    } catch (Error) {
+      return null;
+    }
+  }
+  //Metodo para inicializar el formulario
+  initForm(): FormGroup {
+    return this.fb.group({
+      selectDep: ["", [Validators.required]],
+      selectMun: ["", [Validators.required]],
+      selectAldea: ["", [Validators.required]],
+      selectCaserio: ["", [Validators.required]],
+    });
+  }
+
+  //Metodos para los select de Ubicacion Change
+  @ViewChild('selDep') selDep: MatSelect;
+  @ViewChild('selMun') selMun: MatSelect;
+  @ViewChild('selAldea') selAldea: MatSelect;
+  @ViewChild('selCaserio') selCaserio: MatSelect;
+  //TODO: Metodo para el change del select de departamentos
+  changeDep() {
+    try {
+      if (this.selDep.value == "") {
+        this.EncuestasForm.patchValue({
+          selectMun: [""],
+          selectAldea: ["",],
+          selectCaserio: [""],
+        })
+        this.municipios = [];
+      } else {
+        this.EncuestasForm.patchValue({
+          selectMun: [""],
+          selectAldea: ["",],
+          selectCaserio: [""],
+        })
+        this.MunicipiosUser(this.tokenString.id, this.selDep.value)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  changeMun() {
+    try {
+      if (this.selMun.value == "") {
+        this.EncuestasForm.patchValue({
+          selectAldea: ["",],
+          selectCaserio: [""],
+        })
+        this.aldeas = [];
+      } else {
+        this.EncuestasForm.patchValue({
+          selectAldea: ["",],
+          selectCaserio: [""],
+        })
+        this.AldeasUser(this.selMun.value);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  changeAldea() {
+    try {
+      if (this.selAldea.value == "") {
+        this.EncuestasForm.patchValue({
+          selectCaserio: [""],
+        })
+        this.caserios = [];
+      } else {
+        this.EncuestasForm.patchValue({
+          selectCaserio: [""],
+        })
+        this.CaseriosUser(this.selAldea.value);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  //Metodos para traer las ubicaciones de la Api
+  //TODO: Metodo para obtener las los departamentos asignados al usuario
+  DepartamentosUser(tok: any): void {
+    try {
+      this.encuestasModel.getDepartamentosUser$(tok).subscribe((response: DepartamentosUsersInterface[]) => {
+        this.departamentos = response;
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  //TODO: Metodo para obtener los municipios asignados al usuario
+  MunicipiosUser(id: number, dep: string) {
+    this.encuestasModel.getMunicipiosUser$(id, dep).subscribe((response: MunicipiosUserInterface[]) => {
+      this.municipios = response;
+    })
+  }
+  //TODO: Metodo para obtener las aldeas asignadas al usuario
+  AldeasUser(id: string) {
+    this.encuestasModel.getAldeasUser$(id).subscribe((response: AldeasUserInterface[]) => {
+      this.aldeas = response;
+    })
+  }
+  CaseriosUser(id: string){
+    this.encuestasModel.getCaseriosUser$(id).subscribe((response: CaseriosUserInterface[]) => {
+      this.caserios = response;
+    })
   }
 }
