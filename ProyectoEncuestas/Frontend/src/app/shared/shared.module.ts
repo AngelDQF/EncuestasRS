@@ -15,10 +15,11 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CerrarSesionComponent } from './components/index';
+import { DesactivarUserComponent } from './components/modals/desactivar-user/desactivar-user.component';
 @NgModule({
   declarations: [
     ...components.components,
+    DesactivarUserComponent,
   ],
   imports: [
     CommonModule,
@@ -36,9 +37,6 @@ import { CerrarSesionComponent } from './components/index';
     MatGridListModule,
     MatNativeDateModule,
     MatFormFieldModule
-  ],
-  entryComponents: [
-   CerrarSesionComponent
   ],
   exports: [
     ...components.components

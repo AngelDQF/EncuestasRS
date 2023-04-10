@@ -1,0 +1,13 @@
+<div mat-dialog-content class="bordeD">
+  <div mat-dialog-actions>
+    <h1 class="w-100">{{titulo}} a: <p>{{nombre}}</p></h1>
+    <div class="row mt-3 d-flex w-100">
+        <div class="col-6">
+          <button class="btnEliminar form-control me-1" (click)="onClickNo()">Cancelar</button>
+        </div>
+        <div class="col-6">
+          <button class="btnGuardar form-control ms-1" (click)="desactivar()">{{titulo}}</button>
+        </div>
+      </div>
+  </div>
+</div>

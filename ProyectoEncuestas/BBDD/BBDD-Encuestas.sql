@@ -304,6 +304,7 @@ id_Eje INT Not Null,
 dni_Cargo nvarchar(20) Not Null,
 nombre_Junta nvarchar(40) Not Null,
 telefono_Junta nvarchar(20) Not Null,
+sexo nvarchar(20) Not Null,
 Constraint fk_EncuestaJD Foreign Key (id_Encuesta)
 References tbl_Encuestas(id_Encuesta),
 Constraint fk_CargosJD Foreign Key (id_Cargo)

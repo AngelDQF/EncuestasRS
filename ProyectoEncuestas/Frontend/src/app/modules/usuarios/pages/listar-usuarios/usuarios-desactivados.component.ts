@@ -1,8 +1,10 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsersInterface } from '@models/usuarios/users.interface';
 import { UsuariosService } from '@serv/usuarios.service';
+import { DesactivarUserComponent } from '@shared/components';
 
 @Component({
   selector: 'app-usuarios-desactivados',
@@ -14,7 +16,21 @@ export class UsuariosDeactivadosComponent {
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public page!:number;
-  constructor(private usuariosModel: UsuariosService) {
+  constructor(private usuariosModel: UsuariosService,private dialog:MatDialog) {
+    this.obtenerUsers();
+  }
+  activar(id:any) {
+    try {
+       this.dialog.open(DesactivarUserComponent, {
+        width: '400px',
+        data: [id,"Activar",1],
+      },
+   );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  obtenerUsers(){
     this.usuariosModel.getUsuariosDesactivados().subscribe((data:UsersInterface[]) => {
       this.dataSource = new MatTableDataSource<UsersInterface>(data);
       this.dataSource.paginator = this.paginator;

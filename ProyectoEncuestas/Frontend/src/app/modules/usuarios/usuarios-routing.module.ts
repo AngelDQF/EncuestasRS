@@ -5,6 +5,7 @@ import { ListarUsuariosComponent } from './pages/listar-usuarios/listar-usuarios
 import { UsuariosDeactivadosComponent } from './pages/listar-usuarios/usuarios-desactivados.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { MyuserComponent } from './pages/myuser/myuser.component';
+import { EditarUsuariosComponent } from './pages/editar-usuarios/editar-usuarios.component';
 
 const routes: Routes = [
   {path:'',children:[
@@ -12,7 +13,8 @@ const routes: Routes = [
     {path:'desactivados',component:UsuariosDeactivadosComponent},
     {path:'agregar',component:UsuariosComponent},
     {path:'asignaciones',component:AsignacionesComponent},
-    {path:'miuser',component:MyuserComponent}
+    {path:'miuser',component:MyuserComponent},
+    {path:'editar/:id',component:EditarUsuariosComponent}
   ]},
 ];
 

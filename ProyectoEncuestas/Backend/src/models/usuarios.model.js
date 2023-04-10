@@ -29,6 +29,16 @@ async function getUsuarioID(id) {
     console.log(error);
   }
 };
+async function putUsuariosEstado(id,estado) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    await pool.request().query(`Exec prc_Usuarios_Cambiar_Estado '${id}', '${estado}'`);
+    return "Estado Actualizado"
+  }
+  catch (error) {
+    console.log(error);
+  }
+};
 async function getUsuariosDesactivados() {//TODO: Función para obtener todos los usuarios
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -117,4 +127,4 @@ async function verificarEmail(email) {//TODO: Función para verificar si el DNI 
   }
 }
 
-module.exports = { getUsuariosDesactivados,getUsuarios, getUsuario, postUsuario, verificarEmail,verificarDNI ,getUsuariosTipos,getUsuarioID};//TODO: Exportamos las funciones que hemos creado
+module.exports = { getUsuariosDesactivados,getUsuarios, getUsuario, postUsuario, verificarEmail,verificarDNI ,getUsuariosTipos,getUsuarioID,putUsuariosEstado};//TODO: Exportamos las funciones que hemos creado

@@ -9,7 +9,8 @@ export const components:any[]=[
   IndexComponent,
   ...modals.modals,
 ]
-export * from './error/error.component'
-export * from './header/header.component'
-export * from './index/index.component'
-export * from './modals/cerrar-sesion/cerrar-sesion.component'
+export * from './error/error.component';
+export * from './header/header.component';
+export * from './index/index.component';
+export * from './modals/cerrar-sesion/cerrar-sesion.component';
+export * from './modals/desactivar-user/desactivar-user.component';

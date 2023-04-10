@@ -138,7 +138,7 @@ a {
 }
 .tabla td {
   text-align: center;
-  font-size: 16px !important; 
+  font-size: 16px !important;
 }
 .botonEditarTabla{
   color: var(--btn1);
@@ -174,7 +174,6 @@ a {
   font-size: 15px;
   text-decoration: none;
 }
-
 /*Pantallas xs*/
 @media screen and (max-width: 575px) {
   .row {
@@ -193,7 +192,7 @@ a {
 }
 /*Pantallas sm*/
 @media screen and (max-width: 767px) {
-  
+
   .contenido {
     height: 100vh;
     padding: 15px;

@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MyuserComponent } from './pages/myuser/myuser.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { EditarUsuariosComponent } from './pages/editar-usuarios/editar-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     UsuariosDeactivadosComponent,
     AsignacionesComponent,
     MyuserComponent,
+    EditarUsuariosComponent,
   ],
   imports: [
     CommonModule,

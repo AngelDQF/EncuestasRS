@@ -1,0 +1,36 @@
+mat-form-field{
+  width: 100%;
+
+}
+.bordeD{
+  border:5px solid var(--color1);
+}
+.botones{
+  padding: 0px ;
+}
+.row {
+  --bs-gutter-x: 0px;
+}
+button{
+  height: 40px;
+}
+mat-label{
+  color:var(--color1);
+  font-weight: bold;
+
+}
+mat-form-field{
+  background-color: #fff;
+}
+h1{
+  color: var(--color2);
+  text-align: center;
+}
+h1 p{
+  color: var(--color1);
+}
+h1, h1 p{
+  font-size: 20px;
+  font-weight: bold;
+}
+

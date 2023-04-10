@@ -19,6 +19,7 @@ FROM     dbo.tbl_Usuarios INNER JOIN
                   dbo.tbl_Tipos_Usuario ON dbo.tbl_Usuarios.id_Tipo_Usuario = dbo.tbl_Tipos_Usuario.id_Tipo_Usuario INNER JOIN
                   dbo.tbl_Estados_Usuario ON dbo.tbl_Usuarios.id_Estado_Usuario = dbo.tbl_Estados_Usuario.id_Estado_Usuario
 where dbo.tbl_Usuarios.id_Estado_Usuario=2
+go
 --vista para listar los tipos de usuarios
 CREATE VIEW [dbo].[vew_Usuarios_Tipos_Listar]
 AS
@@ -27,7 +28,7 @@ FROM     dbo.tbl_Tipos_Usuario
 where estado_Tipo_Usuario=1
 GO
 --Vitas Junta Directiva
-/*Creacion Vista Listar Cargos*/
+--Creacion Vista Listar Cargos
 CREATE VIEW [dbo].[vew_Cargos_Listar]
 as
 	SELECT id_Cargo AS id, descripcion_Cargo AS cargo, estado_Cargo AS estado
@@ -41,18 +42,20 @@ as
 	FROM     dbo.tbl_Cargos
 	where estado_Cargo=0
 GO
-/*Creación Vista Listar Ejes*/
+--Creación Vista Listar Ejes
 CREATE VIEW [dbo].[vew_Ejes_Listar]
 AS
 SELECT id_Eje AS id, descripcion_Eje AS eje, estado_Eje AS estado
 FROM    dbo.tbl_Ejes
 where estado_Eje=1
-/*Creacion vista litar Ejes Desactivados*/
+go
+--Creacion vista litar Ejes Desactivados
 CREATE VIEW [dbo].[vew_Ejes_Listar_Desactivados]
 AS
 SELECT id_Eje AS id, descripcion_Eje AS eje, estado_Eje AS estado
 FROM    dbo.tbl_Ejes
 where estado_Eje=0
+go
 --------------------------------------------------------------------------------------------------------------------------------------
 --Creacion Vistas Organizaciones
 --Creacion Vista Listar Tipos de Organizaciones
