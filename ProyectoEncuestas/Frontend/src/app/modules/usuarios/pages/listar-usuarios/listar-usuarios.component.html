@@ -43,22 +43,25 @@
         <ng-container matColumnDef="opciones">
           <th mat-header-cell *matHeaderCellDef> Opciones </th>
           <td mat-cell *matCellDef="let element" class="options-a">
-            <div class="row d-flex">
-              <div class="col-12">
+            <div class="row d-flex contenedorTabla">
+              <div class="col-6 a-tabla">
                 <a matTooltip="Editar" matTooltipPosition="above" class="botonEditarTabla"
                   [routerLink]="['editar',element.id]"><i class="bi bi-pencil-square"></i></a>
+              </div>
+              <div class="col-6 a-tabla">
                 <a matTooltip="Asignaciones" matTooltipPosition="above" class="botonGuardarTabla"
                   [routerLink]="['editar',element.id]"><i class="bi bi-geo-alt-fill"></i></a>
               </div>
-              <div class="col-12 pt-3">
+              <div class="col-6 a-tabla">
                 <a matTooltip="Desactivar" matTooltipPosition="above" class="botonDesactivarTabla"
                   (click)="desactivar(element.id)"><i class="bi bi-trash3-fill"> </i></a>
+              </div>
+              <div class="col-6 a-tabla">
                 <a matTooltip="Restablecer Contraseña" matTooltipPosition="above" class="botonCambiarTabla"
                   (click)="restablecer(element.id)"><i class="bi bi-shield-lock-fill"></i></a>
               </div>
             </div>
           </td>
-
         </ng-container>
 
         <!-- Weight Column -->

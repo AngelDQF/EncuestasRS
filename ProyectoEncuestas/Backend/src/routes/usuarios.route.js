@@ -9,6 +9,6 @@ router.get('/des',authMiddleware,ctrGetUsuariosDesactivados);
 router.get('/tipos',authMiddleware,ctrGetUsuariosTipos);
 router.post('/',authMiddleware,ctrPostUsuario);
 router.put('/editar/estado',authMiddleware,ctrPutUsuariosEstado);
-router.put('/editar/contraseña',authMiddleware,ctrPutRestablecerContraseña);
+router.put('/editar/password',authMiddleware,ctrPutRestablecerContraseña);
 
 module.exports = router;//TODO: Exportamos las rutas que hemos creado

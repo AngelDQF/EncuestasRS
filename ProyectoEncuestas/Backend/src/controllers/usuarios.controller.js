@@ -48,9 +48,10 @@ const ctrPutRestablecerContraseña = async (req,res)=>{
     usuariosModel.putRestablecerContraseña(id,eContra).then(results => {//TODO: Llamamos a la función del modelo para obtener los usuarios
       res.json({results});//TODO: Mostramos el resultado en un json
     });
+    console.log("Listo")
   } catch (error) {
     handleHttpError(res, 'ERROR_LISTAR_USUARIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
-    console.log(error);ss
+    console.log(error);
   }
 }
 const ctrGetUsuariosDesactivados = async (req, res) => {//TODO: Creamos la función que se encargará de obtener los usuarios

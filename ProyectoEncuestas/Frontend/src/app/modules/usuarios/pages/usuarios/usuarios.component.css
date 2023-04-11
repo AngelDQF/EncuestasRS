@@ -7,8 +7,7 @@ h3 {
 }
 .card {
   border: none !important;
-  height:90% !important;
-  overflow-y: scroll !important;
+  height:100% !important;
 }
 .input-group-text {
   background-color: #fff !important;
@@ -48,4 +47,34 @@ i{
 }
 input{
   text-align: center;
+}
+.iconoRegresar i {
+  color: var(--btn3) !important;
+  border: 1px solid var(--btn3) !important;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 5px;
+  cursor:pointer;
+}
+.iconoRefrescar i {
+  color: var(--btn2) !important;
+  border: 1px solid var(--btn2) !important;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 5px;
+  cursor:pointer;
+}
+.iconoRegresar i:hover {
+  color: #fff !important;
+  background-color: var(--btn3) !important;
+}
+.iconoRefrescar i:hover {
+  color: #fff !important;
+  background-color: var(--btn2) !important;
+}
+.contenidoForm{
+  height: 100% !important;
+  align-items: center !important;
 }

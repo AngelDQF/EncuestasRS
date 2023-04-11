@@ -33,21 +33,23 @@ export class UsuariosService {
   postUsuarios(body: any): Observable<any> {
     return this.http.post(`${this.URL}/usuarios`, body);
   }
-  getUsuarioById(id:number):Observable<any>{
-    const body={
-      id:id
+  getUsuarioById(id: number): Observable<any> {
+    const body = {
+      id: id
     }
-    return this.http.post(`${this.URL}/usuarios/buscar`,body).pipe(
+    return this.http.post(`${this.URL}/usuarios/buscar`, body).pipe(
       map((dataRaw: any) => {
         return dataRaw.results
       })
     )
   }
-  putEstadoUsuario(id:number,estado:number):Observable<any>{
-    const body={
-      id:id,
-      estado:estado
-    }
-    return this.http.put(`${this.URL}/usuarios/editar/estado`,body);
+  putEstadoUsuario(id: number, estado: number): Observable<any> {
+    const body = { id, estado }
+    return this.http.put(`${this.URL}/usuarios/editar/estado`, body);
+  }
+  putPassword(id: number, password: string): Observable<any> {
+    let body = { id, password }
+    console.log(body)
+    return this.http.put(`${this.URL}/usuarios/editar/password`, body);
   }
 }
