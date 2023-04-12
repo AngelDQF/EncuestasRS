@@ -110,6 +110,14 @@ create procedure prc_Usuarios_Asignaciones_ID
                   dbo.tbl_Departamentos ON dbo.tbl_Municipios.id_Departamento = dbo.tbl_Departamentos.id_Departamento
 	where id_Asignacion=@id
 end
+--Procedimiento Almacenado para cambiar el estado de una asignación
+create procedure prc_Usuarios_Asignaciones_Cambiar_Estado
+@id int,
+@estado bit as begin
+	UPDATE [dbo].[tbl_Asignacion_Usuario]
+	SET [estado_Asignacion] = @estado
+	WHERE id_Asignacion=@id
+end
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --Creación Procedimientos Almacenados  de Servicios
 --Creación Procedimiento Almacenado para Listar Servicios Locales
