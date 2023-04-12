@@ -6,12 +6,10 @@ import { JuntaService } from '@serv/junta.service';
 import * as components from './components/index';
 import { MaterialExampleModule } from '@AM/*';
 import { DesactivarUserComponent } from './components/modals/desactivar-user/desactivar-user.component';
-import { RestablecerPasswordComponent } from './components/modals/restablecer-password/restablecer-password.component';
 @NgModule({
   declarations: [
     ...components.components,
     DesactivarUserComponent,
-    RestablecerPasswordComponent,
   ],
   imports: [
     CommonModule,

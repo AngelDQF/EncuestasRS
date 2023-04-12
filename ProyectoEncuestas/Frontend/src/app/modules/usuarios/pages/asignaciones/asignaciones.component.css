@@ -1,28 +1,33 @@
-.row{
-  --bs-gutter-x: 0px !important;
-  height: 85%;
+.row {
+  --bs-gutter-x: 0px;
 }
-form{
-  height: 90%;
-  overflow-y: scroll;
+h1{
+  margin-top: 5px;
+  width: 100%;
 }
-i{
-  color:red;
-  font-size: 20px;
+.iconoRegresar i {
+  color: var(--btn3) !important;
+  border: 1px solid var(--btn3) !important;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 5px;
+  cursor:pointer;
 }
-input[type="checkbox"]{
-  font-size: 20px;
+.iconoRefrescar i {
+  color: var(--btn2) !important;
+  border: 1px solid var(--btn2) !important;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 5px;
+  cursor:pointer;
 }
-a{
-  padding: 0px;
+.iconoRegresar i:hover {
+  color: #fff !important;
+  background-color: var(--btn3) !important;
 }
-td{
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  height: 100%;
-}
-p{
-  font-size: 20px;
-  margin: 0px;
+.iconoRefrescar i:hover {
+  color: #fff !important;
+  background-color: var(--btn2) !important;
 }

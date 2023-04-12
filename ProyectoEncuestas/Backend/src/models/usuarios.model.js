@@ -12,16 +12,16 @@ async function getUsuarios() {//TODO: Función para obtener todos los usuarios
 
   } catch (error) {
     console.log(error);
-    
+
   }
 }
 async function getUsuarioID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Usuarios_Buscar_ID '${id}'`);
-    if(result.recordset.length!==0){
-      return await result.recordset
-    }else{
+    if (result.recordset.length !== 0) {
+      return result.recordset
+    } else {
       return "Usuario no encontrado"
     }
   }
@@ -29,7 +29,7 @@ async function getUsuarioID(id) {
     console.log(error);
   }
 };
-async function putUsuariosEstado(id,estado) {
+async function putUsuariosEstado(id, estado) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     await pool.request().query(`Exec prc_Usuarios_Cambiar_Estado '${id}', '${estado}'`);
@@ -39,7 +39,7 @@ async function putUsuariosEstado(id,estado) {
     console.log(error);
   }
 };
-async function putRestablecerContraseña(id,password) {
+async function putRestablecerContraseña(id, password) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     await pool.request().query(`Exec prc_Usuarios_Cambiar_Restablecer_Passsword '${id}', '${password}'`);
@@ -61,7 +61,7 @@ async function getUsuariosDesactivados() {//TODO: Función para obtener todos lo
     console.log(error);
   }
 }
-async function getUsuariosTipos(){
+async function getUsuariosTipos() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * FROM vew_Usuarios_Tipos_Listar");//TODO: Ejecutamos la consulta
@@ -82,9 +82,9 @@ async function getUsuario(dni) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Usuarios_Buscar_DNI '${dni}'`);
-    if(result.recordset.length!==0){
-      return await result.recordset
-    }else{
+    if (result.recordset.length !== 0) {
+      return result.recordset
+    } else {
       return "Usuario no encontrado"
     }
   }
@@ -106,11 +106,11 @@ async function getUsuario(dni) {
  */
 async function postUsuario(nombre, telefono, dni, correo, contra, estado, tipo, sexo) {//TODO: Función para crear un usuario
   try {
-      await pool.connect()//TODO: Conectamos a la base de datos
-      await pool.request().query(`Exec prc_Usuarios_Crear '${nombre}', '${telefono}', '${dni}', '${correo}', '${contra}', ${estado}, ${tipo}, ${sexo}`);
-      pool.close();//TODO: Cerramos la conexión
-      const result = await getUsuario(dni);
-      return result;
+    await pool.connect()//TODO: Conectamos a la base de datos
+    await pool.request().query(`Exec prc_Usuarios_Crear '${nombre}', '${telefono}', '${dni}', '${correo}', '${contra}', ${estado}, ${tipo}, ${sexo}`);
+    pool.close();//TODO: Cerramos la conexión
+    const result = await getUsuario(dni);
+    return result;
   } catch (error) {
     console.log(error);
   }
@@ -136,5 +136,40 @@ async function verificarEmail(email) {//TODO: Función para verificar si el DNI 
     console.log(error);//TODO: Mostramos el error
   }
 }
-
-module.exports = { getUsuariosDesactivados,getUsuarios, getUsuario, postUsuario, verificarEmail,verificarDNI ,getUsuariosTipos,getUsuarioID,putUsuariosEstado,putRestablecerContraseña};//TODO: Exportamos las funciones que hemos creado
+async function getAsignaciones(id) {
+  try {
+    await pool.connect();
+    const result = await pool.request().query(`Exec prc_Usuarios_Asignaciones_Listar '${id}'`);
+    if (result.recordset.length !== 0) {
+      return result.recordset
+    } else {
+      return "Asignaciones no encontrado"
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function getAsignacionByID(id) {
+  try {
+    await pool.connect();
+    const result = await pool.request().query(`Exec prc_Usuarios_Asignaciones_ID '${id}'`);
+    if (result.recordset.length !== 0) {
+      return result.recordset
+    } else {
+      return "Asignación no encontrado"
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function putEstadoAsignacion(id, estado) {
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Usuarios_Asignaciones_Cambiar_Estado '${id}', ${estado}`);
+    return {message:"Estado Cambiado"}
+ 
+  } catch (error) {
+    console.log(error);
+  }
+}
+module.exports = { getUsuariosDesactivados, getUsuarios, getUsuario, getAsignaciones, postUsuario, verificarEmail, verificarDNI, getUsuariosTipos, getUsuarioID, putUsuariosEstado, putRestablecerContraseña, getAsignacionByID, putEstadoAsignacion };//TODO: Exportamos las funciones que hemos creado

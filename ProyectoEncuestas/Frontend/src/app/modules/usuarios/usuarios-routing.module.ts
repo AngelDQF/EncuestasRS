@@ -12,7 +12,7 @@ const routes: Routes = [
     {path:'',component:ListarUsuariosComponent},
     {path:'desactivados',component:UsuariosDeactivadosComponent},
     {path:'agregar',component:UsuariosComponent},
-    {path:'asignaciones',component:AsignacionesComponent},
+    {path:'asignaciones/:id',component:AsignacionesComponent},
     {path:'miuser',component:MyuserComponent},
     {path:'editar/:id',component:EditarUsuariosComponent}
   ]},

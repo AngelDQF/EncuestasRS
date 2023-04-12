@@ -79,6 +79,37 @@ Begin
 	where correo_Usuario=@email
 
 End
+--Procedimiento Almacenado para buscar las asignaciones de un usuario
+create procedure prc_Usuarios_Asignaciones_Listar
+@id int as begin
+	SELECT dbo.tbl_Asignacion_Usuario.id_Asignacion AS id, dbo.tbl_Municipios.municipio AS mun, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Asignacion_Usuario.estado_Asignacion AS estado
+	FROM     dbo.tbl_Asignacion_Usuario INNER JOIN
+                  dbo.tbl_Municipios ON dbo.tbl_Asignacion_Usuario.id_Municipio = dbo.tbl_Municipios.id_Municipio INNER JOIN
+                  dbo.tbl_Departamentos ON dbo.tbl_Municipios.id_Departamento = dbo.tbl_Departamentos.id_Departamento
+	where id_Usuario=@id AND estado_Asignacion=1
+end
+--Procedimiento Almacenado para crear una nueva aignación a un usuario
+create procedure prc_Usuarios_Asignaciones_Crear
+@id int,
+@mun nvarchar(10),
+@estado bit
+as begin
+INSERT INTO [dbo].[tbl_Asignacion_Usuario]
+           ([id_Usuario]
+           ,[id_Municipio]
+           ,[estado_Asignacion])
+     VALUES
+           (@id,@mun,@estado)
+end
+--Procedimiento Almacenado para obtener el id de una asignación
+create procedure prc_Usuarios_Asignaciones_ID
+@id int as begin
+	SELECT dbo.tbl_Asignacion_Usuario.id_Asignacion AS id, dbo.tbl_Municipios.municipio AS mun, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Asignacion_Usuario.estado_Asignacion AS estado
+	FROM     dbo.tbl_Asignacion_Usuario INNER JOIN
+                  dbo.tbl_Municipios ON dbo.tbl_Asignacion_Usuario.id_Municipio = dbo.tbl_Municipios.id_Municipio INNER JOIN
+                  dbo.tbl_Departamentos ON dbo.tbl_Municipios.id_Departamento = dbo.tbl_Departamentos.id_Departamento
+	where id_Asignacion=@id
+end
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --Creación Procedimientos Almacenados  de Servicios
 --Creación Procedimiento Almacenado para Listar Servicios Locales

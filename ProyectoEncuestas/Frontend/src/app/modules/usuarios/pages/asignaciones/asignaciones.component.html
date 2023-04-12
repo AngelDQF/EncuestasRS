@@ -1,125 +1,59 @@
 <div class="contenido bordeContenido">
-  <div class="row d-flex">
-    <div class="col-4 d-flex text-center p-2 row">
-      <div class=" text-center">
-        <button class="btn btnEditar" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Agregar
-        </button>
-      </div>
-    </div>
-    <div class="tabla table-responsive col-8 p-2">
-      <table class="table">
-        <thead class="table-dark align-middle">
-          <tr>
-            <th scope="col">Organización</th>
-            <th scope="col">Legalizada</th>
-            <th scope="col">Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <p>as</p>
-            </td>
-            <td>
-              <p> <input type="checkbox"></p>
-            </td>
-            <td>
-              <a class="btn"><i class="bi bi-trash3-fill"></i></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <p> {{formOrgs.value.orgsSocial | json}}
-    s</p>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Organizacion Social Productiva</h1>
-        <button (click)="onCancelar()" type="button" class="btn-close" data-bs-dismiss="modal"
-          aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="formOrgs" class="row">
-          <div formArrayName="orgsSocial">
-            <select class="form-select mb-2" formControlName="organizacion">
-              <option value="">Seleccione una Organización</option>
-              <option *ngFor="let social of sociales" [value]="social.org">{{social.org}}</option>
-            </select>
-            <select class="form-select mb-2" formControlName="checkLegal">
-              <option value="">¿Está Legalizado?</option>
-              <option value="1">Si</option>
-              <option value="2">No</option>
-            </select>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onCancelar()">Cancelar</button>
-        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="agregarOrg()">Guardar</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="row d-flex">
-    <div class="col-12 d-flex p-0 align-items-center">
-      <div class=" col-2 align-items-center">
-        <a routerLink="../" class="text-start btn iconoRegresar">
-          <i class="bi bi-arrow-left"></i>
-        </a>
-      </div>
-      <div class="col-8 align-items-center text-center">
-        <h1 class="text-center  titulo">Asignaciones Usuarios</h1>
-      </div>
-      <div class="col-2 align-items-end text-end">
-        <a class="iconoRefrescar btn"><i class="bi bi-arrow-clockwise"></i></a>
-      </div>
-    </div>
-    <div class="col-8 text-center mt-5">
-      <button class="btn btn-success" type="button" (click)="addOrg()">Agregar</button>
-    </div>
-    <br><br><br><br>
-    <form [formGroup]="formParent" class="d-flex col-12">
-      <div class="col-12 row d-flex text-center mt-2" formArrayName="orgs">
-        <div class="col-12 d-flex mt-2" *ngFor="let skill of getCtrl('orgs',formParent)?.controls;index as formChild">
-          <div class="col-12" [formGroupName]="formChild">
-            <div class="form-field"> 
-              <input type="text" placeholder="id" formControlName="id">
-            </div>
-            <div class="form-field">
-              <input type="text" placeholder="encuesta" formControlName="encuesta">
-            </div>
-            <div class="form-field">
-              <input type="text" placeholder="org" formControlName="org">
-            </div>
-            <div class="form-field">
-              <input type="text" placeholder="legalizado" formControlName="legalizado">
-            </div>
-            <div class="col-12 mt-2">
-              <button class="btn btn-danger" (click)="removeValidation(formChild,'id')">Remover</button>
-              <button class="btn btn-info text-light" (click)="removeValidation(formChild,'id')">Agregar</button>
-              <button class="btn btn-primary text-light" (click)="addNew()">Enviar</button>
-            </div>
-          </div>
+  <div class="headerListar">
+    <div class="row mb-2 align-items-center ">
+      <div class="col-12 d-flex p-0 align-items-center">
+        <div class="col-2 align-items-center p-0">
+          <a routerLink="../../" class="text-start iconoRegresar btn p-0"><i class="bi bi-arrow-left"></i></a>
+        </div>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Asignaciones de: {{nameTitle}}</h1>
+        </div>
+        <div class="col-2 align-items-end text-end">
+          <a (click)="obtenerAsignaciones()" class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
         </div>
       </div>
-    </form>
-    <div class="col-4">
-      {{formParent}}
+      <div class="col-12 p-0 col-md-3 pe-0 pe-md-3">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#ejeModal" class="btn btnEditar form-control "><i
+            class="bi bi-diagram-3-fill"></i>Nueva Asignación</button>
+      </div>
+      <div class="col-md-9 col-12 p-0 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
+        <div class="input-group mt-2 mb-2 inpBuscar">
+          <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Eje">
+          </label>
+        </div>
+      </div>
     </div>
-  </div> -->
+  </div>
+  <div class="mat-elevation-z8 table-responsive">
+    <table mat-table [dataSource]="dataSource" class="tabla">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <td mat-cell *matCellDef="let element">
+          <a class="botonDesactivarTabla" matTooltip="Desactivar" matTooltipPosition="above"><i
+              class="bi bi-trash3-fill" style="color:(--btn2);"> </i></a>
+          <a (click)="mensaje()" class="botonGuardarTabla" matTooltip="Ver Encuestas" matTooltipPosition="above"><i
+              class="bi bi-eye-fill"></i></a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="mun">
+        <th mat-header-cell *matHeaderCellDef> Municipio Asignado </th>
+        <td mat-cell *matCellDef="let element"> {{element.mun}} </td>
+      </ng-container>
+      <ng-container matColumnDef="dep">
+        <th mat-header-cell *matHeaderCellDef> Municipio Asignado </th>
+        <td mat-cell *matCellDef="let element"> {{element.dep}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[4,10,15]" showFirstLastButtons aria-label="seleccione">
+    </mat-paginator>
+  </div>
+</div>

@@ -1,93 +1,62 @@
-import { formatCurrency } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { OrganizacionesInterface } from '@models/administrar/organizaciones/organizaciones.interface';
-import { EncuestasService } from '@serv/encuestas.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
+import { AsignacionesInterface } from '@models/usuarios/asignaciones.interface';
+import { UsersInterface } from '@models/usuarios/users.interface';
+import { UsuariosService } from '@serv/usuarios.service';
+import { InfoComponent } from '@shared/components';
 @Component({
   selector: 'app-asignaciones',
   templateUrl: './asignaciones.component.html',
-  styleUrls: ['./asignaciones.component.css', '../../../../app.component.css', '../../../cardLarge.css']
+  styleUrls: ['./asignaciones.component.css', '../../../../app.component.css']
 })
 export class AsignacionesComponent implements OnInit {
-  sociales: any;
-  orgArray: any[];
-  public formOrgs: FormGroup = new FormGroup({});
-  constructor(private encuestasModel: EncuestasService) { }
+  usuarios: any;
+  nameTitle: any;
+  //Datos para la tabla
+  displayedColumns: string[] = ['id', 'opciones', 'mun', 'dep'];
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  public page!: number;
+  constructor(private router: ActivatedRoute, private userModel: UsuariosService, private dialog:MatDialog) { }
+  idUser: any;
   ngOnInit(): void {
-    // this.initFormParent();
-    const formsArrayInit= this.formOrgs.get('orgsSocial') as FormArray;
-    this.initOrg();
-    this.organizacionesSociales();
-    this.initArray();
+    this.obtenerID();
+    this.obtenerUser();
+    this.obtenerAsignaciones();
   }
-  agregarOrg(): void {
-    const refOrgs = this.formOrgs.get('orgsSocial') as FormArray;//Hacemos referencia a la propiedad del formulario padre
-    refOrgs.push(this.initArray());
-
+  obtenerID() {
+    this.router.params.subscribe(params => {
+      this.idUser = params['id'];
+    })
   }
-  initOrg() {
-    this.formOrgs = new FormGroup({
-      orgsSocial: new FormArray([], [Validators.required]),
+  obtenerUser() {
+    this.userModel.getUsuarioById(this.idUser).subscribe((data: UsersInterface[]) => {
+      this.usuarios = data;
+      this.nameTitle = this.usuarios[0].name;
+    })
+  }
+  obtenerAsignaciones() {
+    try {
+      this.userModel.getAsignaciones(this.idUser).subscribe((data: AsignacionesInterface[]) => {
+        this.dataSource = new MatTableDataSource<AsignacionesInterface>(data);
+        this.dataSource.paginator = this.paginator;
+      });
+    } catch (error) {
+      console.log(error);
     }
-    )
   }
-  initArray(): FormGroup {
-    return new FormGroup({
-      organizacion: new FormControl("", [Validators.required]),
-      checkLegal: new FormControl("", [Validators.required])
-    })
+  mensaje() {
+    try {
+      const dialogRef= this.dialog.open(InfoComponent, {
+        width: '500px',
+        data: ["Información","Asignación Creada","4"],
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerAsignaciones()});
+    } catch (error) {
+      console.log(error);
+    }
   }
-  getCtrl(key: string, form: FormGroup): any {//TODO: Funcion para buscar una referencia en un formulario
-    return form.get(key);
-  }
-  removeValidation(index: number): void {
-    const refParent = this.formOrgs.get('orgs') as FormArray;
-    refParent.removeAt(index);
-  }
-  onCancelar() {
-    this.initOrg();
-  }
-  organizacionesSociales() {
-    this.encuestasModel.getOrganizacionesSociales$().subscribe((response: OrganizacionesInterface[]) => {
-      this.sociales = response;
-    })
-  }
-  // public formParent: FormGroup = new FormGroup({});
-  // orgArray:any[]=[];
-  // initFormParent() {
-  //   this.formParent = new FormGroup(
-  //     {
-  //       name: new FormControl(),
-  //       orgs: new FormArray([], [Validators.required])
-  //     }
-  //   )
-  // }
-  // initFormOrgs():FormGroup{
-  //   return new FormGroup(
-  //     {
-  //       id: new FormControl('', [Validators.required]),
-  //       encuesta: new FormControl('', [Validators.required]),
-  //       org: new FormControl('', [Validators.required]),
-  //       legalizado: new FormControl('', [Validators.required])
-  //     }
-  //   )
-  // }
-  // addOrg():void{
-  //   const refOrgs=this.formParent.get('orgs')as FormArray;//Hacemos referencia a la propiedad del formulario padre
-  //   refOrgs.push(this.initFormOrgs());
-  // }
-  // getCtrl(key:string,form:FormGroup):any{//TODO: Funcion para buscar una referencia en un formulario
-  //   return form.get(key);
-  // }
-  // removeValidation(index:number,key:string):void{
-  //   const refParent=this.formParent.get('orgs') as FormArray;
-  //   //  const refSingle=refParent.at(index).get(key) as FormGroup;
-  //   // refSingle.clearValidators();
-  //   // refSingle.updateValueAndValidity();
-  //   refParent.removeAt(index);
-  // }
-  // addValidation(index:number,key:string):void{ }
-  // addNew(){
-
-  // }
 }

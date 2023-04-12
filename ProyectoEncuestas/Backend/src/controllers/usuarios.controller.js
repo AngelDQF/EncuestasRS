@@ -105,4 +105,37 @@ const ctrPostUsuario = async (req, res) => {//TODO: Creamos la función que se e
     console.log(error);
   }
 };
-module.exports = { ctrGetUsuariosDesactivados,ctrGetUsuarios,ctrGetUsuariosTipos,ctrPostUsuario,ctrGetUsuarioByID,ctrPutUsuariosEstado,ctrPutRestablecerContraseña};//TODO: Exportamos las funcionessss
+const ctrGetAsignaciones=async (req,res)=>{
+  try {
+    const {id}=req.body;
+    usuariosModel.getAsignaciones(id).then(results => {//TODO: Llamamos a la función del modelo para obtener los usuarios
+      res.json({results});//TODO: Mostramos el resultado en un json
+    });
+  } catch (error) {
+    handleHttpError(res, 'ERROR_LISTAR_ASIGNACIONES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    console.log(error);ss
+  }
+}
+const ctrGetAsignacionByID=async (req,res)=>{
+  try {
+    const {id}=req.body;
+    usuariosModel.getAsignacionByID(id).then(results => {//TODO: Llamamos a la función del modelo para obtener los usuarios
+      res.json({results});//TODO: Mostramos el resultado en un json
+    });
+  } catch (error) {
+    handleHttpError(res, 'ERROR_LISTAR_ASIGNACIONES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    console.log(error);ss
+  }
+}
+const ctrPutEstadoAsignacion=async (req,res)=>{
+  try {
+    const {id,estado}=req.body;
+    usuariosModel.putEstadoAsignacion(id,estado).then(results => {//TODO: Llamamos a la función del modelo para obtener los usuarios
+      res.json({results});//TODO: Mostramos el resultado en un json
+    });
+  } catch (error) {
+    handleHttpError(res, 'ERROR_PUT_ESTADO_ASIGNACIÓN');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    console.log(error);ss
+  }
+}
+module.exports = { ctrGetUsuariosDesactivados,ctrGetUsuarios,ctrGetUsuariosTipos,ctrPostUsuario,ctrGetUsuarioByID,ctrPutUsuariosEstado,ctrPutRestablecerContraseña,ctrGetAsignaciones,ctrGetAsignacionByID,ctrPutEstadoAsignacion};//TODO: Exportamos las funcionessss
