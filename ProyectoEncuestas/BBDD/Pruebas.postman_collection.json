@@ -380,6 +380,127 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Listar Asignaciones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjgxMzEzNjE0LCJleHAiOjE2ODEzMjA4MTR9.V5MxsCltNY_TBd9E651fFgVUKP3RJvNkaJ9s9trn4f4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/usuarios/asig",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"usuarios",
+								"asig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Asignacion By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidGlwbyI6MiwiaWF0IjoxNjgxMzEzNjE0LCJleHAiOjE2ODEzMjA4MTR9.V5MxsCltNY_TBd9E651fFgVUKP3RJvNkaJ9s9trn4f4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/usuarios/asig/buscar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"usuarios",
+								"asig",
+								"buscar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar Estado Asignación",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGlwbyI6MiwiaWF0IjoxNjgxMzI1ODkzLCJleHAiOjE2ODEzMzMwOTN9.zZZTqY-U1DvK2Ae7CtRWv2kJHiLsgujSx8SujXPGg6Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":2,\r\n    \"estado\":0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/redsolidaria/usuarios/asig",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"redsolidaria",
+								"usuarios",
+								"asig"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1867,7 +1988,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"angeldavidquintanilla@gmail.com\",\r\n    \"password\":\"admin777\"\r\n}",
+							"raw": "{\r\n    \"email\":\"encuestador@gmail.com\",\r\n    \"password\":\"admin777\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
