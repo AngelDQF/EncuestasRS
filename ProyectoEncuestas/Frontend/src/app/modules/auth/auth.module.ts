@@ -9,12 +9,13 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { SharedModule } from '@shared/shared.module';
 @NgModule({
   declarations: [LoginComponent, RecuperarComponent, RecuperarComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,
     MatDialogModule,
@@ -22,7 +23,8 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    SharedModule
   ],
   entryComponents: [
     RecuperarComponent

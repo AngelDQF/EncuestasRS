@@ -21,14 +21,15 @@ const ctrLogin = async (req, res) => {//TODO: Creamos la función que se encarga
     const check = await compare(passwordPlain, hashPassword);
     if (!check) {
       handleHttpError(res, 'CONTRASEÑA_INCORRECTA', 404);
-      returns
+      return
     }
     consulta.recordset[0].password = undefined;
 
-    const results = {
+    const data = {
+      data: consulta.recordset[0],
       token: await tokenSign(consulta.recordset[0])
     }
-    res.send( {results} );
+    res.send({ data })
   } catch (error) {
     handleHttpError(res, `ERROR_CREAR_${error}`);
     console.log(error);
