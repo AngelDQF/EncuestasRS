@@ -48,14 +48,15 @@ export class AsignacionesComponent implements OnInit {
       console.log(error);
     }
   }
-  // mensaje() {
-  //   try {
-  //     const dialogRef= this.dialog.open(InfoComponent, {
-  //       width: '500px',
-  //     });
-  //     dialogRef.afterClosed().subscribe(exc=>{this.obtenerAsignaciones()});
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  mensaje() {
+    try {
+      const dialogRef= this.dialog.open(InfoComponent, {
+        width: '500px',
+        data: ['Asignación de Municipios', '¿Está seguro que desea asignar este municipio?', 3]
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerAsignaciones()});
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

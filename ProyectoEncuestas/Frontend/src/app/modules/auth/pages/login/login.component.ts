@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '@serv/auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import {RecuperarComponent} from '../recuperar/recuperar.component'
+import { RecuperarComponent } from '../recuperar/recuperar.component'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,26 +23,34 @@ export class LoginComponent implements OnInit {
     ])
   });
 
-  constructor(private modelAuth: AuthService,private cookie:CookieService, private router:Router, private recuperar:MatDialog) { }
+  constructor(private modelAuth: AuthService, private cookie: CookieService, private router: Router, private recuperar: MatDialog) { }
   ngOnInit(): void {
     this.errorSesion = false
   }
 
   onLogin() {
-    const { email, password } = this.formLogin.value;
-    this.modelAuth.sendCredentials(email, password).subscribe(
-      responseOk => {//TODO: Aqui se entrara si todo se cumple
-        this.errorSesion = false;
-        const {data,token}=responseOk.data
-        this.cookie.set('token',token,1,'/');
-        console.log('Sesión Iniciada Correctamente'	);
-        this.router.navigate(['/'])
-      },
-      err => {//TODO: Aqui entraran los errores
-        this.errorSesion = true
-        console.log('Usuario o Contraseña Invalidos');
-      }
-    );
+    try {
+      const { email, password } = this.formLogin.value;
+      this.modelAuth.sendCredentials(email, password).subscribe(
+        responseOk => {//TODO: Aqui se entrara si todo se cumple
+          this.errorSesion = false;
+          const { token } = responseOk.data;
+          if (token == undefined) {
+            this.errorSesion = true;
+          } else {
+            this.cookie.set('token', token, 1, '/');
+            console.log('Sesión Iniciada Correctamente');
+            this.router.navigate(['/']);
+          }
+        },
+        err => {//TODO: Aqui entraran los errores
+          this.errorSesion = true
+          console.log('Usuario o Contraseña Invalidos');
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   }
   openDialog(): void {
     const dialogRef = this.recuperar.open(RecuperarComponent, {
