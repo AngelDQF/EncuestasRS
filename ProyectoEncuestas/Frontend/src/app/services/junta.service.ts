@@ -55,4 +55,20 @@ export class JuntaService {
     }
     return this.http.post(`${this.URL}/cargos`, body);
   }
+  getGrados(): Observable<any> {
+    return this.http.get(`${this.URL}/escolaridad`)
+      .pipe(
+        map(({ results }: any) => {
+          return results;
+        })
+      )
+  }
+  getGradosDesactivados(): Observable<any> {
+    return this.http.get(`${this.URL}/escolaridad/desactivados`)
+      .pipe(
+        map(({ results }: any) => {
+          return results;
+        })
+      )
+  }
 }

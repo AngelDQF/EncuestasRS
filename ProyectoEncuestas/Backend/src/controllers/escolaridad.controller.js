@@ -10,4 +10,13 @@ const ctrGetGrados = async (req, res) => {
     handleHttpError(res, 'ERROR_LISTAR_GRADOS_ESCOLARIDAD');
   }
 }
-module.exports = {ctrGetGrados}
+const ctrGetGradosDesactivados = async (req, res) => {
+  try {
+    escolaridadModel.getGradosDesactivados().then(result => {
+      res.json({results:result})
+    });
+  } catch{
+    handleHttpError(res, 'ERROR_LISTAR_GRADOS_ESCOLARIDAD');
+  }
+}
+module.exports = {ctrGetGrados,ctrGetGradosDesactivados}

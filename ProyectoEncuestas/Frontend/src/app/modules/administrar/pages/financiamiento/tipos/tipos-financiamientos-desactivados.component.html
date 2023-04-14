@@ -15,41 +15,43 @@
       <div class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal p-0">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Tipo de Financiamiento">
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Tipo de Financiamiento"
+              [(ngModel)]="txtBusqueda" (input)="buscarTabla()">
           </label>
         </div>
       </div>
     </div>
   </div>
-  <div class="mat-elevation-z8 table-responsive">
-    <table mat-table [dataSource]="dataSource" class="tabla">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
+  <div class="mat-elevation-z8">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" class="tabla">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="opciones">
-        <th mat-header-cell *matHeaderCellDef> Opciones </th>
-        <td mat-cell *matCellDef="let element" class="">
-          <a class="botonEditarTabla"><i class="bi bi-pencil-square"></i></a>
-          <a class="botonDesactivarTabla"><i class="bi bi-trash3-fill"> </i></a>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="opciones">
+          <th mat-header-cell *matHeaderCellDef> Opciones </th>
+          <td mat-cell *matCellDef="let element" class="">
+            <a class="botonEditarTabla"><i class="bi bi-pencil-square"></i></a>
+            <a class="botonDesactivarTabla"><i class="bi bi-trash3-fill"> </i></a>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="tipo">
-        <th mat-header-cell *matHeaderCellDef> Tipo de Financiamiento </th>
-        <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
-      </ng-container>
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Financiamiento </th>
+          <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="estado">
-        <th mat-header-cell *matHeaderCellDef> Estado </th>
-        <td mat-cell *matCellDef="let element" style="color:var(--color1);" class="fw-bold"> Activo </td>
-      </ng-container>
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element" style="color:var(--color1);" class="fw-bold"> Activo </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
     <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons aria-label="seleccione">
     </mat-paginator>
   </div>

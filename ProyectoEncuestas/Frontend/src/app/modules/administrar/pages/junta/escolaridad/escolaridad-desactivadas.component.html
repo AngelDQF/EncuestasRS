@@ -1,1 +1,59 @@
-<p>escolaridad-desactivadas works!</p>
+<div class="contenido bordeContenido">
+  <div class="headerListar">
+    <div class="mb-2 align-items-center row">
+      <div class="col-12 d-flex p-0 align-items-center">
+        <div class=" col-2 align-items-center">
+          <a routerLink="../" class="text-start iconoRegresar btn p-0"><i class="bi bi-arrow-left"></i></a>
+        </div>
+        <div class="col-8 align-items-center text-center">
+          <h1 class="text-center  titulo">Grados de Escolaridad Desactivados</h1>
+        </div>
+        <div class="col-2 align-items-end text-end">
+          <a (click)="obtenerGradosDesactivados()" class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
+        </div>
+      </div>
+      <div class="col-12 text-bold text-center text-sm-center text-md-center p-0 text-lg-end btnPrincipal">
+        <div class="input-group mt-2 mb-2 inpBuscar">
+          <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Grado de Escolaridad">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mat-elevation-z8">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" class="tabla">
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="opciones">
+          <th mat-header-cell *matHeaderCellDef> Opciones </th>
+          <td mat-cell *matCellDef="let element" class="">
+            <a class="botonGuardarTabla"><i class="bi bi-eye-fill"></i></a>
+          </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="grado">
+          <th mat-header-cell *matHeaderCellDef> Cargo </th>
+          <td mat-cell *matCellDef="let element"> {{element.grado}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element" style="color:var(--color2);" class="fw-bold"> Inacctivo </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons aria-label="seleccione">
+    </mat-paginator>
+  </div>

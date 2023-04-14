@@ -59,7 +59,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'grado', children: [
+        path: 'grados', children: [
           { path: '', component: EscolaridadComponent },
           { path: 'desactivados', component: EscolaridadDesactivadasComponent }
         ]

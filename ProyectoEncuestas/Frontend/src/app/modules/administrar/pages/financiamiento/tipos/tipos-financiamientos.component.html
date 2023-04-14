@@ -23,13 +23,14 @@
         class="col-xl-5 col-xxl-7 col-lg-12 col-md-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal p-0">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Tipo de Financiamiento">
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Tipo de Financiamiento" [(ngModel)]="txtBusqueda" (input)="buscarTabla()">
           </label>
         </div>
       </div>
     </div>
   </div>
-  <div class="mat-elevation-z8 table-responsive">
+  <div class="mat-elevation-z8">
+    <div class="table-responsive">
     <table mat-table [dataSource]="dataSource" class="tabla">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -57,7 +58,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
+  </div>
     <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons aria-label="seleccione">
     </mat-paginator>
   </div>

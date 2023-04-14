@@ -31,87 +31,87 @@
 
         <!-- Weight Column -->
         <ng-container matColumnDef="dep">
-          <th mat-header-cell *matHeaderCellDef> Departamento </th>
-          <td mat-cell *matCellDef="let element"> {{element.departamento}} </td>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Departamento </th>
+          <td mat-cell *matCellDef="let element"> {{element.dep}} </td>
         </ng-container>
         <ng-container matColumnDef="mun">
-          <th mat-header-cell *matHeaderCellDef> Municipio </th>
-          <td mat-cell *matCellDef="let element"> {{element.municipio}} </td>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Municipio </th>
+          <td mat-cell *matCellDef="let element"> {{element.mun}} </td>
         </ng-container>
         <!-- Symbol Column -->
         <ng-container matColumnDef="aldea">
-          <th mat-header-cell *matHeaderCellDef> Aldea </th>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Aldea </th>
           <td mat-cell *matCellDef="let element">{{element.aldea}}</td>
         </ng-container>
 
         <ng-container matColumnDef="caserio">
-          <th mat-header-cell *matHeaderCellDef> Mesa Solidaria </th>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Mesa Solidaria </th>
           <td mat-cell *matCellDef="let element"> {{element.caserio}} </td>
         </ng-container>
         <ng-container matColumnDef="address">
-          <th mat-header-cell *matHeaderCellDef> Dirección </th>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Dirección </th>
           <td mat-cell *matCellDef="let element">{{element.address}}</td>
         </ng-container>
         <ng-container matColumnDef="hombres">
-          <th mat-header-cell *matHeaderCellDef> Hombres </th>
-          <td mat-cell *matCellDef="let element"> {{element.total_Hombres}}</td>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Hombres </th>
+          <td mat-cell *matCellDef="let element"> {{element.hombres}}</td>
         </ng-container>
         <ng-container matColumnDef="mujeres">
-          <th mat-header-cell *matHeaderCellDef> Mujeres </th>
-          <td mat-cell *matCellDef="let element"> {{element.total_Mujeres}} </td>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Mujeres </th>
+          <td mat-cell *matCellDef="let element"> {{element.mujeres}} </td>
         </ng-container>
         <ng-container matColumnDef="asistencia">
-          <th mat-header-cell *matHeaderCellDef> Total Asistencia </th>
-          <td mat-cell *matCellDef="let element"> {{element.total_Asistencia}} </td>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Total Asistencia </th>
+          <td mat-cell *matCellDef="let element"> {{element.total}} </td>
         </ng-container>
         <ng-container matColumnDef="org">
-          <th mat-header-cell *matHeaderCellDef> Organización </th>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Organización </th>
           <td mat-cell *matCellDef="let element"> {{element.org}} </td>
         </ng-container>
         <ng-container matColumnDef="exRios">
-          <th mat-header-cell *matHeaderCellDef> ¿Existen Ríos? </th>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> ¿Existen Ríos? </th>
           <td mat-cell *matCellDef="let element"> {{element.rios}} </td>
         </ng-container>
         <ng-container matColumnDef="cantRios">
-          <th mat-header-cell *matHeaderCellDef> Cantidad Ríos </th>
-          <td mat-cell *matCellDef="let element"> {{element.cant_rio}} </td>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Cantidad Ríos </th>
+          <td mat-cell *matCellDef="let element"> {{element.cant_rios}} </td>
         </ng-container>
         <ng-container matColumnDef="extBosques">
-          <th mat-header-cell *matHeaderCellDef> ¿Existen Bosques? </th>
-          <td mat-cell *matCellDef="let element"> {{element.bosque}} </td>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> ¿Existen Bosques? </th>
+          <td mat-cell *matCellDef="let element"> {{element.bosques}} </td>
         </ng-container>
         <ng-container matColumnDef="tipoBosque">
-          <th mat-header-cell *matHeaderCellDef> Tipo de Bosque </th>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Tipo de Bosque </th>
           <td mat-cell *matCellDef="let element"> {{element.tipo_bosque}} </td>
         </ng-container>
         <ng-container matColumnDef="tipoSuelo">
-          <th mat-header-cell *matHeaderCellDef> Tipo de Suelo </th>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Tipo de Suelo </th>
           <td mat-cell *matCellDef="let element"> {{element.suelo}} </td>
         </ng-container>
         <ng-container matColumnDef="tenencia">
-          <th mat-header-cell *matHeaderCellDef> Tenencia de la tierra </th>
-          <td mat-cell *matCellDef="let element"> {{element.tenencia}} </td>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Tenencia de la tierra </th>
+          <td  mat-cell *matCellDef="let element"> {{element.tenencia}} </td>
         </ng-container>
         <ng-container matColumnDef="mercado">
-          <th mat-header-cell *matHeaderCellDef> Mercado </th>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Mercado </th>
           <td mat-cell *matCellDef="let element"> {{element.mercado}} </td>
         </ng-container>
         <ng-container matColumnDef="tecno">
-          <th mat-header-cell *matHeaderCellDef> Nivel Técnologico </th>
-          <td mat-cell *matCellDef="let element"> {{element.nivel_tec}} </td>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Nivel Técnologico </th>
+          <td mat-cell *matCellDef="let element"> {{element.tecno}} </td>
         </ng-container>
 
         <ng-container matColumnDef="fecha">
-          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Fecha </th>
           <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
         </ng-container>
         <ng-container matColumnDef="hora">
-          <th mat-header-cell *matHeaderCellDef> Hora </th>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Hora </th>
           <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
         </ng-container>
         <ng-container matColumnDef="user">
-          <th mat-header-cell *matHeaderCellDef> Aplicada por </th>
-          <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
+          <th class="tabla_width" mat-header-cell *matHeaderCellDef> Aplicada por </th>
+          <td mat-cell *matCellDef="let element"> {{element.user}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

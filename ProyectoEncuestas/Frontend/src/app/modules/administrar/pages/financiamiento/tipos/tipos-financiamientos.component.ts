@@ -13,6 +13,8 @@ import { FinanciamientosService} from '@serv/financiamientos.service';
 export class TiposFinanciamientosComponent implements OnInit {
   displayedColumns: string[] = ['id', 'opciones', 'tipo', 'estado'];
   dataSource: any;
+  txtBusqueda:string ="";
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private finanModel: FinanciamientosService) { }
   ngOnInit(): void {
@@ -23,5 +25,9 @@ export class TiposFinanciamientosComponent implements OnInit {
       this.dataSource = new MatTableDataSource<TiposOrgInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+  }
+  buscarTabla() {
+    // Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

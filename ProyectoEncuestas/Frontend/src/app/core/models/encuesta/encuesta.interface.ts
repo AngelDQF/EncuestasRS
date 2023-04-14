@@ -1,23 +1,23 @@
 export interface EncuestasInterface{
   id: number;
-  departamento: string;
-  municipio: string;
+  dep: string;
+  mun: string;
   aldea: string;
   caserio: string;
   address: string;
-  total_Hombres: number;
-  total_Mujeres: number;
-  total_Asistencia: number;
+  hombres: number;
+  mujeres: number;
+  total: number;
   org: string;
   rios: string;
-  cant_rio: string;
-  bosque: string;
+  cant_rios: string;
+  bosques: string;
   tipo_bosque: string;
   suelo: string;
   tenencia: string;
   mercado: string;
-  nivel_tec: string;
+  tecno: string;
   fecha: string;
   hora:string;
-  usuario: string;
+  user: string;
 }

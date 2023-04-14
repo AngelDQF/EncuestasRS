@@ -177,23 +177,24 @@ end
 Create procedure prc_Encuestas_Listar
 as
 begin
-	SELECT dbo.tbl_Encuestas.id_Encuesta AS id, dbo.tbl_Departamentos.departamento, dbo.tbl_Municipios.municipio, dbo.tbl_Aldeas.aldea, dbo.tbl_Caserios.caserio, dbo.tbl_Encuestas.direccion_Sede AS address, dbo.tbl_Encuestas.total_Hombres, 
-					  dbo.tbl_Encuestas.total_Mujeres, dbo.tbl_Encuestas.total_Asistencia, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Encuestas.existencia_Rio AS rios, dbo.tbl_Encuestas.cantidad_Rio AS cant_rio, 
-					  dbo.tbl_Encuestas.existencia_Bosque AS bosque, dbo.tbl_Tipos_Bosque.tipo_Bosque AS tipo_bosque, dbo.tbl_Suelos.descripcion_Suelo AS suelo, dbo.tbl_Tenencia_Tierra.descripcion_Tenencia AS tenencia, 
-					  dbo.tbl_Mercados.descripcion_Mercado AS mercado, dbo.tbl_Tecnologico_General.nivel AS nivel_tec,convert(nvarchar(10),dbo.tbl_Encuestas.fecha_Encuesta,23)  AS fecha,convert(char(8), dbo.tbl_Encuestas.fecha_Encuesta,108) as hora, dbo.tbl_Usuarios.nombre_Usuario AS usuario
-	FROM     dbo.tbl_Encuestas INNER JOIN
-					  dbo.tbl_Aldeas ON dbo.tbl_Encuestas.id_Aldea = dbo.tbl_Aldeas.id_Aldea INNER JOIN
-					  dbo.tbl_Departamentos ON dbo.tbl_Encuestas.id_Departamento = dbo.tbl_Departamentos.id_Departamento INNER JOIN
-					  dbo.tbl_Mercados ON dbo.tbl_Encuestas.id_Mercado = dbo.tbl_Mercados.id_Mercado INNER JOIN
-					  dbo.tbl_Municipios ON dbo.tbl_Encuestas.id_Municipio = dbo.tbl_Municipios.id_Municipio AND dbo.tbl_Aldeas.id_Municipio = dbo.tbl_Municipios.id_Municipio AND 
-					  dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento INNER JOIN
-					  dbo.tbl_Caserios ON dbo.tbl_Encuestas.id_Caserio = dbo.tbl_Caserios.id_Caserio AND dbo.tbl_Aldeas.id_Aldea = dbo.tbl_Caserios.id_Aldea INNER JOIN
-					  dbo.tbl_Organizaciones ON dbo.tbl_Encuestas.id_Organizacion = dbo.tbl_Organizaciones.id_Organizacion INNER JOIN
-					  dbo.tbl_Tipos_Bosque ON dbo.tbl_Encuestas.id_Tipo_Bosque = dbo.tbl_Tipos_Bosque.id_Tipo_Bosque INNER JOIN
-					  dbo.tbl_Suelos ON dbo.tbl_Encuestas.id_Suelo = dbo.tbl_Suelos.id_Suelo INNER JOIN
-					  dbo.tbl_Tenencia_Tierra ON dbo.tbl_Encuestas.id_Tenencia = dbo.tbl_Tenencia_Tierra.id_Tenencia INNER JOIN
-					  dbo.tbl_Tecnologico_General ON dbo.tbl_Encuestas.id_Tecno = dbo.tbl_Tecnologico_General.id_Tecno INNER JOIN
-					  dbo.tbl_Usuarios ON dbo.tbl_Encuestas.id_Usuario = dbo.tbl_Usuarios.id_Usuario
+	SELECT e.id_Encuesta as id, dep.departamento as dep,mun.municipio as mun,aldea.aldea,caserio.caserio,e.direccion_Sede as [address],
+	e.total_Hombres as hombres, e.total_Mujeres as mujeres, e.total_Asistencia as total, org.descripcion_Organizacion as org, e.existencia_Rio as rios,
+	e.cantidad_Rio as cant_rios,e.existencia_Bosque as bosques,bosque.tipo_Bosque as tipo_bosque, suelo.descripcion_Suelo as suelo, tenencia.descripcion_Tenencia as tenencia,
+	merca.descripcion_Mercado as mercado, tecno.id_Tecno as tecno, convert(nvarchar(10),e.fecha_Encuesta,23)  AS fecha ,
+	convert(char(8), e.fecha_Encuesta,108) as hora,users.nombre_Usuario as [user]
+	From tbl_Encuestas as e
+	Join tbl_Departamentos as dep on dep.id_Departamento=E.id_Departamento
+	Join tbl_Municipios as mun on mun.id_Municipio=e.id_Municipio
+	Join tbl_Aldeas as aldea on aldea.id_Aldea=e.id_Aldea
+	Join tbl_Caserios as caserio on caserio.id_Caserio=e.id_Caserio
+	Join tbl_Organizaciones as org on org.id_Organizacion = e.id_Organizacion
+	Join tbl_Tipos_Bosque as bosque on bosque.id_Tipo_Bosque=e.id_Tipo_Bosque
+	Join tbl_Suelos as suelo on suelo.id_Suelo=e.id_Suelo
+	Join tbl_Tenencia_Tierra as tenencia on tenencia.id_Tenencia=e.id_Tenencia
+	Join tbl_Mercados as merca on merca.id_Mercado = e.id_Mercado
+	Join tbl_Tecnologico_General as tecno on tecno.id_Tecno=e.id_Tecno
+	Join tbl_Usuarios as users on users.id_Usuario=e.id_Usuario
+	Order by e.id_Departamento
 end
 --Procedimiento Almacenado para obtener los departamentos del usuario
 Create procedure prc_Encuestas_Departamentos
@@ -361,6 +362,15 @@ create procedure prc_Escolaridad_Listar
 as begin
 	SELECT id_Escolaridad AS id, grado_Escolaridad AS grado, estado
 	FROM     dbo.tbl_Grado_Escolaridad
+	where estado=1
+	Order By grado_Escolaridad
+end
+--Procedimineto Almacenado para listar los Grados de Escolaridad Desactivados
+create procedure prc_Escolaridad_Listar_Desactivados
+as begin
+	SELECT id_Escolaridad AS id, grado_Escolaridad AS grado, estado
+	FROM     dbo.tbl_Grado_Escolaridad
+	where estado=0
 	Order By grado_Escolaridad
 end
 --Procedimiento Almacenado para Agregar una Escolaridad
