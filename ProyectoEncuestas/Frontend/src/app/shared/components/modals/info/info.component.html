@@ -1,10 +1,10 @@
 <div mat-dialog-content [ngClass]="bordeModal">
   <div mat-dialog-actions>
+    <div class="col-12" [ngClass]="colorTitle">
+      <h1 class="iconTitle w-100" >{{titulo}}</h1>
+    </div>
     <div class="row d-flex align-items-center">
-      <div class="col-12">
-        <h1 class="iconTitle w-100" [ngClass]="colorTitle">{{titulo}}</h1>
-      </div>
-      <div class="col-10">{{cuerpo}}</div>
+      <div class="col-10"><p>{{cuerpo}}</p></div>
       <div class="col-2 text-center iconSize">
         <i [ngClass]="iconoContent"></i>
       </div>
@@ -12,7 +12,7 @@
     <div class="row mt-3 d-flex w-100 ">
       <div class="col-8"></div>
       <div class="col-4">
-        <button class="btnGuardar form-control me-1" (click)="onClickNo()">Ok</button>
+        <button class="form-control me-1" [ngClass]="botonClass" (click)="onClickNo()">Ok</button>
       </div>
     </div>
   </div>

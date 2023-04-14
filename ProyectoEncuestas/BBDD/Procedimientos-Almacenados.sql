@@ -87,6 +87,7 @@ create procedure prc_Usuarios_Asignaciones_Listar
                   dbo.tbl_Municipios ON dbo.tbl_Asignacion_Usuario.id_Municipio = dbo.tbl_Municipios.id_Municipio INNER JOIN
                   dbo.tbl_Departamentos ON dbo.tbl_Municipios.id_Departamento = dbo.tbl_Departamentos.id_Departamento
 	where id_Usuario=@id AND estado_Asignacion=1
+	Order By dbo.tbl_Departamentos.departamento
 end
 --Procedimiento Almacenado para crear una nueva aignación a un usuario
 create procedure prc_Usuarios_Asignaciones_Crear
@@ -355,6 +356,51 @@ as begin
 	from tbl_Cargos
 	where descripcion_Cargo=@cargo
 end
-
+--Procedimiento Almacenado para Listar la Escolaridades
+create procedure prc_Escolaridad_Listar
+as begin
+	SELECT id_Escolaridad AS id, grado_Escolaridad AS grado, estado
+	FROM     dbo.tbl_Grado_Escolaridad
+	Order By grado_Escolaridad
+end
+--Procedimiento Almacenado para Agregar una Escolaridad
+create procedure prc_Escolaridad_Agregar
+@grado nvarchar(100),
+@estado bit
+as begin
+	INSERT INTO [dbo].[tbl_Grado_Escolaridad]
+           ([grado_Escolaridad]
+           ,[estado])
+     VALUES
+           (@grado,@estado)
+end
+--Procedimiento Almacenado para Cambiar el estado de una Escolaridad
+create procedure prc_Escolaridad_Cambiar_Estado
+@id int,
+@estado bit
+as begin
+	UPDATE [dbo].[tbl_Grado_Escolaridad]
+	   SET [estado] = @estado
+	 WHERE id_Escolaridad=@id
+end
+--Procedimiento Almacenado para Editar el nombre de una Escolaridad
+create procedure prc_Escolaridad_Cambiar_Nombre
+@id int,
+@grado nvarchar(100)
+as begin
+	UPDATE [dbo].[tbl_Grado_Escolaridad]
+	   SET [grado_Escolaridad] = @grado
+	 WHERE id_Escolaridad=@id
+end
+----------------------------------------------------------------------------------------------------------------------------------------------
+--Creacion Precedimiento Listar Municipios por Departamento
+Create procedure prc_Municipios_By_Dep
+@id nvarchar(10)
+as begin
+	SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun
+	FROM     dbo.tbl_Departamentos INNER JOIN
+			 dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento
+	where dbo.tbl_Municipios.id_Departamento = @id
+end
 --Reiniciar id en 1
 --DBCC CHECKIDENT (  [tbl_Tipos_Usuario], RESEED, 0);

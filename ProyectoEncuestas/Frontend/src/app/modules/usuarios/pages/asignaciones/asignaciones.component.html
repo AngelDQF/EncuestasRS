@@ -1,4 +1,4 @@
-<div class="contenido bordeContenido">
+<div class="contenido">
   <div class="headerListar">
     <div class="row mb-2 align-items-center ">
       <div class="col-12 d-flex p-0 align-items-center">
@@ -13,47 +13,48 @@
         </div>
       </div>
       <div class="col-12 p-0 col-md-3 pe-0 pe-md-3">
-        <button (click)="mensaje()" type="button" data-bs-toggle="modal" data-bs-target="#ejeModal" class="btn btnEditar form-control "><i
-            class="bi bi-diagram-3-fill"></i>Nueva Asignación</button>
+        <button (click)="newAsignacion()" type="button" data-bs-toggle="modal" data-bs-target="#ejeModal"
+          class="btn btnEditar form-control "><i class="bi bi-geo-alt-fill"></i>Nueva Asignación</button>
       </div>
       <div class="col-md-9 col-12 p-0 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Eje">
+            <input matInput [(ngModel)]="txtBusqueda" (input)="buscarTabla()"name="bus" type="text" class="form-control btn" placeholder="Buscar Asignación">
           </label>
         </div>
       </div>
     </div>
   </div>
-  <div class="mat-elevation-z8 table-responsive">
-    <table mat-table [dataSource]="dataSource" class="tabla">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
-      <ng-container matColumnDef="opciones">
-        <th mat-header-cell *matHeaderCellDef> Opciones </th>
-        <td mat-cell *matCellDef="let element">
-          <a class="botonDesactivarTabla" matTooltip="Desactivar" matTooltipPosition="above"><i
-              class="bi bi-trash3-fill" style="color:(--btn2);"> </i></a>
-          <a class="botonGuardarTabla" matTooltip="Ver Encuestas" matTooltipPosition="above"><i
-              class="bi bi-eye-fill"></i></a>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="mun">
-        <th mat-header-cell *matHeaderCellDef> Municipio Asignado </th>
-        <td mat-cell *matCellDef="let element"> {{element.mun}} </td>
-      </ng-container>
-      <ng-container matColumnDef="dep">
-        <th mat-header-cell *matHeaderCellDef> Municipio Asignado </th>
-        <td mat-cell *matCellDef="let element"> {{element.dep}} </td>
-      </ng-container>
+  <div class="mat-elevation-z8">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" class="tabla" >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element" > {{element.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="opciones">
+          <th mat-header-cell *matHeaderCellDef> Opciones </th>
+          <td mat-cell *matCellDef="let element">
+            <a class="botonDesactivarTabla" matTooltip="Desactivar" matTooltipPosition="above"><i
+                class="bi bi-trash3-fill" style="color:(--btn2);"> </i></a>
+            <a class="botonGuardarTabla" matTooltip="Ver Encuestas" matTooltipPosition="above"><i
+                class="bi bi-eye-fill"></i></a>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="mun">
+          <th mat-header-cell *matHeaderCellDef> Municipio Asignado </th>
+          <td mat-cell *matCellDef="let element"> {{element.mun}} </td>
+        </ng-container>
+        <ng-container matColumnDef="dep">
+          <th mat-header-cell *matHeaderCellDef> Municipio Asignado </th>
+          <td mat-cell *matCellDef="let element"> {{element.dep}} </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-    <mat-paginator [pageSizeOptions]="[4,10,15]" showFirstLastButtons aria-label="seleccione">
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons aria-label="seleccione1">
     </mat-paginator>
   </div>
 </div>

@@ -232,6 +232,7 @@ SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.de
 FROM     dbo.tbl_Departamentos INNER JOIN
                   dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento
 go
+
 --Creacion Vista Listar Aldeas
 CREATE VIEW [dbo].[vew_Aldeas_Listar]
 as

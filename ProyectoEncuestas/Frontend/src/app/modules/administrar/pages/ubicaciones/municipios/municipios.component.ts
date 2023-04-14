@@ -12,23 +12,22 @@ import { MatTableDataSource } from '@angular/material/table';
 export class MunicipiosComponent implements OnInit{
   displayedColumns: string[] = ['id', 'mun','dep'];
   dataSource: any;
-  buscarMunicipio:any;
+  txtBusqueda:string ="";
   public page!:number;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private ubicacionesModel: UbicacionesService) {  }
   ngOnInit(): void {
     this.refresh();
   }
-  callSearch(tern: string): void {
-      this.ubicacionesModel.getSearchMunicipios$(this.buscarMunicipio).subscribe((response: MunicipiosInterface[]) => {
-        this.dataSource = response;
-      })
+  buscarTabla() {
+    // Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
   refresh(){
     this.ubicacionesModel.getMunicipios$().subscribe((data: MunicipiosInterface[]) => {
       this.dataSource = new MatTableDataSource<MunicipiosInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
-    this.buscarMunicipio="";
+    this.txtBusqueda="";
   }
 }

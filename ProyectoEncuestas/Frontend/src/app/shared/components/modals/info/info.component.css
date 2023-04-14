@@ -8,15 +8,18 @@
   align-items: center;
 }
 .iconSize .i1,
-.title1 {
+.title1 h1,
+.btnBoton1 {
   color: var(--btn4) !important;
 }
 .iconSize .i2,
-.title2 {
+.title2 h1,
+.btnBoton2 {
   color: var(--color1) !important;
 }
 .iconSize .i3,
-.title3 {
+.title3 h1,
+.btnBoton3 {
   color: var(--color2) !important;
 }
 .iconTitle {
@@ -31,4 +34,49 @@
 }
 .bordeModal3 {
   border: 5px solid var(--color2);
+}
+.btnBoton1 {
+  border-color: var(--btn4);
+}
+
+.btnBoton2 {
+  border-color: var(--color1);
+}
+.btnBoton3 {
+  border-color: var(--color2);
+}
+button {
+  border: 3px solid !important;
+  font-weight: bold !important;
+}
+.btnBoton1:hover {
+  background-color: var(--btn4);
+  color: #fff !important;
+}
+.btnBoton2:hover {
+  background-color: var(--color1);
+  color: #fff !important;
+}
+.btnBoton3:hover {
+  background-color: var(--color2);
+  color: #fff !important;
+}
+.title1,.title2,.title3{
+  border-bottom: 1px solid !important;
+  margin-bottom: 15px !important;
+}
+.title1 h1,.title2 h1,.title3 h1{
+  margin-bottom: 15px !important;
+}
+.title1{
+  border-color: var(--btn4) !important;
+}
+.title2{
+  border-color: var(--color1) !important;
+}
+.title3{
+  border-color: var(--color2) !important;
+}
+p{
+  font-weight: bold !important;
 }

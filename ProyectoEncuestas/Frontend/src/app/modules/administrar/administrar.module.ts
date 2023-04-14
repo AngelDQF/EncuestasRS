@@ -49,6 +49,8 @@ import { MatTableModule, } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatNativeDateModule } from '@angular/material/core';
+import { EscolaridadComponent } from './pages/junta/escolaridad/escolaridad.component';
+import { EscolaridadDesactivadasComponent } from './pages/junta/escolaridad/escolaridad-desactivadas.component';
 @NgModule({
   declarations: [
     AdministrarComponent,
@@ -89,6 +91,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MunicipiosComponent,
     AldeasComponent,
     CaseriosComponent,
+    EscolaridadComponent,
+    EscolaridadDesactivadasComponent,
 
   ],
   imports: [

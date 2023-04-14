@@ -1,3 +1,4 @@
+import { LoginInterface } from '@models/auth/login.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,6 +13,11 @@ import { RecuperarComponent } from '../recuperar/recuperar.component'
 })
 export class LoginComponent implements OnInit {
   errorSesion: boolean;
+  token: any;
+  hide: boolean;
+  eye: boolean;
+  eyeOff: boolean;
+
   formLogin = new FormGroup({
     email: new FormControl('', [
       Validators.required,
@@ -29,28 +35,18 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    try {
-      const { email, password } = this.formLogin.value;
-      this.modelAuth.sendCredentials(email, password).subscribe(
-        responseOk => {//TODO: Aqui se entrara si todo se cumple
-          this.errorSesion = false;
-          const { token } = responseOk.data;
-          if (token == undefined) {
-            this.errorSesion = true;
-          } else {
-            this.cookie.set('token', token, 1, '/');
-            console.log('Sesión Iniciada Correctamente');
-            this.router.navigate(['/']);
-          }
-        },
-        err => {//TODO: Aqui entraran los errores
-          this.errorSesion = true
-          console.log('Usuario o Contraseña Invalidos');
-        }
-      );
-    } catch (err) {
-      console.log(err);
+    const { email, password } = this.formLogin.value;
+    this.modelAuth.sendCredentials(email, password).subscribe(({ token }: LoginInterface) => {//TODO: Aqui se entrara si todo se cumple
+      this.token = token;
+      if (this.token == "400") {
+        this.errorSesion = true;
+      } else {
+        this.cookie.set('token', this.token, 1, '/');
+        console.log('Sesión Iniciada Correctamente');
+        this.router.navigate(['/']);
+      }
     }
+    );
   }
   openDialog(): void {
     const dialogRef = this.recuperar.open(RecuperarComponent, {
@@ -58,5 +54,16 @@ export class LoginComponent implements OnInit {
 
     });
     dialogRef.afterClosed();
+  }
+  cambio() {
+    if (this.hide) {
+      this.hide = false;
+      this.eye = true;
+      this.eyeOff = false;
+    } else {
+      this.hide = true;
+      this.eye = false;
+      this.eyeOff = true;
+    }
   }
 }

@@ -7,12 +7,16 @@ import { AsignacionesInterface } from '@models/usuarios/asignaciones.interface';
 import { UsersInterface } from '@models/usuarios/users.interface';
 import { UsuariosService } from '@serv/usuarios.service';
 import { InfoComponent } from '@shared/components';
+import { AgregarAsignacionComponent } from '@shared/components/modals/agregar-asignacion/agregar-asignacion.component';
 @Component({
   selector: 'app-asignaciones',
   templateUrl: './asignaciones.component.html',
   styleUrls: ['./asignaciones.component.css', '../../../../app.component.css']
 })
 export class AsignacionesComponent implements OnInit {
+  //TODO: Variables para el input de busquedad
+  txtBusqueda: string = '';
+  //TODO: Variables para los datos generales
   usuarios: any;
   nameTitle: any;
   //Datos para la tabla
@@ -20,7 +24,7 @@ export class AsignacionesComponent implements OnInit {
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public page!: number;
-  constructor(private router: ActivatedRoute, private userModel: UsuariosService, private dialog:MatDialog) { }
+  constructor(private router: ActivatedRoute, private userModel: UsuariosService, private dialog: MatDialog) { }
   idUser: any;
   ngOnInit(): void {
     this.obtenerID();
@@ -48,15 +52,31 @@ export class AsignacionesComponent implements OnInit {
       console.log(error);
     }
   }
-  mensaje() {
+  newAsignacion(): void {
     try {
-      const dialogRef= this.dialog.open(InfoComponent, {
+      const dialogRef = this.dialog.open(AgregarAsignacionComponent, {
         width: '500px',
-        data: ['Asignación de Municipios', '¿Está seguro que desea asignar este municipio?', 3]
+        data: [this.idUser]
       });
-      dialogRef.afterClosed().subscribe(exc=>{this.obtenerAsignaciones()});
+      dialogRef.afterClosed().subscribe(exc => { this.obtenerAsignaciones() });
+
+    } catch (error) {
+      this.mensaje("Error", "Ha Ocurrido un Error al Crear la Asignación", 3);
+    }
+  }
+  mensaje(titulo: string, cuerpo: string, tipo: number): void {
+    try {
+      const dialogRef = this.dialog.open(InfoComponent, {
+        width: '500px',
+        data: [titulo, cuerpo, tipo]
+      });
+      dialogRef.afterClosed().subscribe(exc => { this.obtenerAsignaciones() });
     } catch (error) {
       console.log(error);
     }
+  }
+  buscarTabla() {
+    // Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

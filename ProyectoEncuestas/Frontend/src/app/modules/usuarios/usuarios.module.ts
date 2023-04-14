@@ -6,7 +6,6 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ListarUsuariosComponent } from './pages/listar-usuarios/listar-usuarios.component';
 import { UsuariosDeactivadosComponent } from './pages/listar-usuarios/usuarios-desactivados.component';
 import { SharedModule } from '@shared/shared.module';
-import { SearchPipe } from 'src/app/pipes/search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuariosService } from '@serv/usuarios.service';
 import { AsignacionesComponent } from './pages/asignaciones/asignaciones.component';
@@ -24,7 +23,7 @@ import { EditarUsuariosComponent } from './pages/editar-usuarios/editar-usuarios
   declarations: [
     UsuariosComponent,
     ListarUsuariosComponent,
-    SearchPipe,
+
     UsuariosDeactivadosComponent,
     AsignacionesComponent,
     MyuserComponent,

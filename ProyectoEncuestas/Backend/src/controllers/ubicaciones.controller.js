@@ -33,6 +33,16 @@ const ctrGetMunicipios = async (req, res) => {
     handleHttpError(res, 'ERROR_LISTAR_MUNICIPIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
+const ctrGetMunicipiosByDep = async (req, res) => {
+  try {
+    const {id}=req.body
+    ubicacionesModel.getMunicipiosByDepartamento(id).then(results => {//TODO: Ejecutamos la funcion getEjes del modelo
+      res.json({ results })//TODO: Mostramos el resultado en un json
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_MUNICIPIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
 const ctrGetMunicipio = async (req, res) => {
   try {
     const {mun}=req.body;
@@ -81,4 +91,4 @@ const ctrGetCaserio = async (req, res) => {
     handleHttpError(res, 'ERROR_LISTAR_CASERIO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-module.exports = { ctrGetDepartamentos,ctrGetDepartamento ,ctrGetMunicipios,ctrGetAldea,ctrGetAldeas,ctrGetCaserio,ctrGetCaserios,ctrGetMunicipio}
+module.exports = { ctrGetDepartamentos,ctrGetDepartamento ,ctrGetMunicipios,ctrGetAldea,ctrGetAldeas,ctrGetCaserio,ctrGetCaserios,ctrGetMunicipio,ctrGetMunicipiosByDep}

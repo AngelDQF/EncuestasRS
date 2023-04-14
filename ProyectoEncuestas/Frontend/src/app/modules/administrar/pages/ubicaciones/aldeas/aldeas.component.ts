@@ -11,6 +11,7 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 })
 export class AldeasComponent implements OnInit{
   displayedColumns: string[] = ['id','aldea', 'mun','dep'];
+  txtBusqueda: string = '';
   dataSource: any;
   buscarAldea:string;
   public page!:number;
@@ -32,5 +33,9 @@ export class AldeasComponent implements OnInit{
       this.dataSource.paginator = this.paginator;
     })
     this.buscarAldea="";
+  }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

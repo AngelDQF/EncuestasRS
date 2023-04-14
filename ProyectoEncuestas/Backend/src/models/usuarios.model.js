@@ -172,4 +172,5 @@ async function putEstadoAsignacion(id, estado) {
     console.log(error);
   }
 }
+
 module.exports = { getUsuariosDesactivados, getUsuarios, getUsuario, getAsignaciones, postUsuario, verificarEmail, verificarDNI, getUsuariosTipos, getUsuarioID, putUsuariosEstado, putRestablecerContraseña, getAsignacionByID, putEstadoAsignacion };//TODO: Exportamos las funciones que hemos creado

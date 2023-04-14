@@ -11,6 +11,7 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 })
 export class CaseriosComponent implements OnInit {
   displayedColumns: string[] = ['id', 'caserio', 'aldea','municipio', 'departamento'];
+  txtBusqueda: string = '';
   dataSource: any;
   buscarCaserio: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -19,10 +20,9 @@ export class CaseriosComponent implements OnInit {
   ngOnInit(): void {
     this.refresh()
   }
-  callSearch(tern: string): void {
-    this.ubicacionesModel.getSearchCaserios$(this.buscarCaserio).subscribe((data: CaseriosInterface[]) => {
-      this.dataSource = new MatTableDataSource<CaseriosInterface>(data);
-    })
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
   refresh() {
     this.ubicacionesModel.getCaserios().subscribe((data: CaseriosInterface[]) => {

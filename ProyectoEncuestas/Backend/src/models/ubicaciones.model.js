@@ -51,6 +51,23 @@ async function getMunicipios(){
     console.log(error);
   }
 }
+async function getMunicipiosByDepartamento(id){
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query(`Exec prc_Municipios_By_Dep '${id}'`);//TODO: Ejecutamos la consulta
+    //console.log(result.recordset);
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Municipios Agregados"
+    }
+     pool.close();//TODO: Cerramos la conexión
+
+  } catch (error) {
+    console.log(error);
+  }
+}
 async function getMunicipiosByName(mun){
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -136,4 +153,4 @@ async function getCaserioByName(caserio){
     console.log(error);
   }
 }
-module.exports={getDepartamentos,getMunicipios,getMunicipiosByName,getAldeas,getCaserios,getCaserioByName,getDepartamentoByName,getAldeasByName};//TODO: Exportamos las funciones
+module.exports={getDepartamentos,getMunicipios,getMunicipiosByName,getAldeas,getCaserios,getCaserioByName,getDepartamentoByName,getAldeasByName,getMunicipiosByDepartamento};//TODO: Exportamos las funciones

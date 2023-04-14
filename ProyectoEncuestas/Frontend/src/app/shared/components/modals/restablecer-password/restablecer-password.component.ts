@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UsersInterface } from '@models/usuarios/users.interface';
 import { UsuariosService } from '@serv/usuarios.service';
@@ -22,8 +22,7 @@ export class RestablecerPasswordComponent implements OnInit {
   eyeOff2: boolean;
   idUser: number;
   constructor(public dialogoRef: MatDialogRef<RestablecerPasswordComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Array<any>, private userModel: UsuariosService, private fb: FormBuilder) {
-  }
+    @Inject(MAT_DIALOG_DATA) public data: Array<any>, private userModel: UsuariosService, private fb: FormBuilder) {  }
   ngOnInit(): void {
     this.obtenerUser(this.data[0]);
     this.hide = true;

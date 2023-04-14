@@ -1,0 +1,36 @@
+<div mat-dialog-content class="bordeD">
+  <div mat-dialog-actions>
+    <h1 class="w-100 m-0 titulo">Agregar Asignaciones<br>
+    </h1>
+    <hr>
+    <form [formGroup]="frmAsignacion" class="mt-3">
+      <div class="row mt-1 w-100">
+        <div class="col-12">
+          <mat-form-field appearance="fill" class="form-control">
+            <mat-label>Departamento</mat-label>
+            <mat-select #selDep formControlName="selectDep" (valueChange)="changeDep()">
+              <mat-option *ngFor="let elements of departamentos" [value]="elements.id_dep">
+                {{elements.dep}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12">
+          <mat-form-field appearance="fill" class="form-control">
+            <mat-label>Municipios</mat-label>
+            <mat-select #selMun formControlName="selectMun" multiple (valueChange)="changeMun()">
+              <mat-option *ngFor="let element of municipios" [value]="element.id_mun">{{element.mun}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <button type="button" class="btnEliminar form-control me-1" (click)="onClickNo()">Cancelar</button>
+        </div>
+        <div class="col-6">
+          <button (click)="onAgregar()" type="button" class="btnGuardar form-control ms-1"
+            [disabled]="frmAsignacion.invalid">Restablecer</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

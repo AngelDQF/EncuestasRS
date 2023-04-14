@@ -12,38 +12,39 @@
           <a (click)="refresh()" class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
         </div>
       </div>
-      <div
-        class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal p-0">
+      <div class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal p-0">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Aldea" [(ngModel)]="buscarAldea" (ngModelChange)="callSearch($event)">
+            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Aldea" [(ngModel)]="txtBusqueda"
+              (input)="buscarTabla()">
           </label>
         </div>
       </div>
     </div>
   </div>
-  <div class="mat-elevation-z8 table-responsive">
-    <table mat-table [dataSource]="dataSource" class="tabla">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id_aldea}} </td>
-      </ng-container>
-      <ng-container matColumnDef="aldea">
-        <th mat-header-cell *matHeaderCellDef> Aldea </th>
-        <td mat-cell *matCellDef="let element"> {{element.aldea}} </td>
-      </ng-container>
-      <ng-container matColumnDef="mun">
-        <th mat-header-cell *matHeaderCellDef> Municipio </th>
-        <td mat-cell *matCellDef="let element"> {{element.mun}} </td>
-      </ng-container>
-      <ng-container matColumnDef="dep">
-        <th mat-header-cell *matHeaderCellDef> Departamento </th>
-        <td mat-cell *matCellDef="let element"> {{element.dep}} </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
+  <div class="mat-elevation-z8">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" class="tabla">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id_aldea}} </td>
+        </ng-container>
+        <ng-container matColumnDef="aldea">
+          <th mat-header-cell *matHeaderCellDef> Aldea </th>
+          <td mat-cell *matCellDef="let element"> {{element.aldea}} </td>
+        </ng-container>
+        <ng-container matColumnDef="mun">
+          <th mat-header-cell *matHeaderCellDef> Municipio </th>
+          <td mat-cell *matCellDef="let element"> {{element.mun}} </td>
+        </ng-container>
+        <ng-container matColumnDef="dep">
+          <th mat-header-cell *matHeaderCellDef> Departamento </th>
+          <td mat-cell *matCellDef="let element"> {{element.dep}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
     <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons aria-label="seleccione">
     </mat-paginator>
   </div>

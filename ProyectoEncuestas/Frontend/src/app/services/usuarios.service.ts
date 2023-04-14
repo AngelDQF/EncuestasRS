@@ -60,4 +60,19 @@ export class UsuariosService {
       })
     )
   }
+  getDepartamentos():Observable<any>{
+    return this.http.get(`${this.URL}/ubicaciones/departamentos`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    );
+  } 
+  getMunicipios(id:string):Observable<any>{
+    const body={id};
+    return this.http.post(`${this.URL}/ubicaciones/departamentos/mun`,body).pipe(
+      map(({results}:any)=>{
+        return results;
+      })
+    )
+  }
 }

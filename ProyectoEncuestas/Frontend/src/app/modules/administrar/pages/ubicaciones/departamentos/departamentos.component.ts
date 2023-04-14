@@ -12,7 +12,7 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 export class DepartamentosComponent implements OnInit{
   displayedColumns: string[] = ['id', 'dep'];
   dataSource: any;
-  buscarDepartamento:string="";
+  txtBusqueda:string="";
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private ubicacionesModel: UbicacionesService) {  }
@@ -24,19 +24,11 @@ export class DepartamentosComponent implements OnInit{
       this.dataSource = new MatTableDataSource<DepartamentosInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
-    this.buscarDepartamento="";
+    this.txtBusqueda="";
   }
-
-  departamentos:DepartamentosInterface[];
-   page:any;
-
-  callSearch():void{
-      this.ubicacionesModel.getSearchDepartamentos$(this.buscarDepartamento).subscribe((response: DepartamentosInterface[]) => {
-        this.dataSource = response;
-      },
-      (error)=>{
-        alert(error);
-      })
+  buscarTabla() {
+    // Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 
 }

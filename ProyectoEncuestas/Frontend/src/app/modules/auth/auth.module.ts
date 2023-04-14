@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '@shared/shared.module';
+import { MaterialExampleModule } from '@AM/*';
 @NgModule({
   declarations: [LoginComponent, RecuperarComponent, RecuperarComponent],
   imports: [
@@ -17,14 +18,11 @@ import { SharedModule } from '@shared/shared.module';
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatNativeDateModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule
+    MaterialExampleModule
   ],
   providers: [
     AuthService,
-    SharedModule
+    SharedModule,
   ],
   entryComponents: [
     RecuperarComponent

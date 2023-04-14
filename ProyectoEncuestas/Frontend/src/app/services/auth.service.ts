@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, catchError, map, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,7 +12,7 @@ export class AuthService {
    *
    * @param http TODO: Inyectamos el servicio HttpClient en el constructor
    */
-  constructor(private http: HttpClient, private cookie:CookieService) { }
+  constructor(private http: HttpClient, private cookie: CookieService) { }
 
   sendCredentials(email: any, password: any): Observable<any> {
     const body = {
@@ -20,6 +20,10 @@ export class AuthService {
       password
     };
 
-    return this.http.post(`${this.URL}/auth/login`, body);
+    return this.http.post(`${this.URL}/auth/login`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    );
   }
 }

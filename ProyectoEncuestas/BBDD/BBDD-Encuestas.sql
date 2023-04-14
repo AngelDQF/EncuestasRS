@@ -295,6 +295,12 @@ References tbl_Encuestas(id_Encuesta),
 Constraint fk_usos Foreign Key (id_Uso_Tierra)
 References tbl_Usos_Tierra(id_Uso_Tierra),
 );
+--Creación Tabla de Grado de Escolaridad
+Create table tbl_Grado_Escolaridad(
+id_Escolaridad int primary key identity(1,1),
+grado_Escolaridad nvarchar(100) not null,
+estado bit not null
+);
 --Creación Tabla Miembros de la Junta Directiva
 Create Table tbl_Detalle_Junta_Directiva(
 id_Miembro_Junta INT Primary Key Identity(1,1),
@@ -305,12 +311,16 @@ dni_Cargo nvarchar(20) Not Null,
 nombre_Junta nvarchar(40) Not Null,
 telefono_Junta nvarchar(20) Not Null,
 sexo nvarchar(20) Not Null,
+edad int not null,
+id_Escolaridad int Not Null,
 Constraint fk_EncuestaJD Foreign Key (id_Encuesta)
 References tbl_Encuestas(id_Encuesta),
 Constraint fk_CargosJD Foreign Key (id_Cargo)
 References tbl_Cargos(id_Cargo),
 Constraint fk_EjesJD Foreign Key (id_Eje)
 References tbl_Ejes(id_Eje),
+Constraint fk_Escolaridad Foreign Key(id_Escolaridad)
+References tbl_Grado_Escolaridad(id_Escolaridad)
 );
 --Creación tabla de Estructuras
 create table tbl_Estructuras(

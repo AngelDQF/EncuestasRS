@@ -38,6 +38,8 @@ import { CaseriosComponent } from './pages/ubicaciones/caserios/caserios.compone
 import { DepartamentosComponent } from './pages/ubicaciones/departamentos/departamentos.component';
 import { MunicipiosComponent } from './pages/ubicaciones/municipios/municipios.component';
 import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component';
+import { EscolaridadComponent } from './pages/junta/escolaridad/escolaridad.component';
+import { EscolaridadDesactivadasComponent } from './pages/junta/escolaridad/escolaridad-desactivadas.component';
 
 const routes: Routes = [
   { path: '', component: AdministrarComponent },
@@ -54,6 +56,12 @@ const routes: Routes = [
         path: 'ejes', children: [
           { path: '', component: EjesComponent },
           { path: '**', component: EjesComponent }
+        ]
+      },
+      {
+        path: 'grado', children: [
+          { path: '', component: EscolaridadComponent },
+          { path: 'desactivados', component: EscolaridadDesactivadasComponent }
         ]
       }
     ]

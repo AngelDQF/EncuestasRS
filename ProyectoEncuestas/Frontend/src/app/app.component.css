@@ -1,6 +1,7 @@
 .contenido {
   padding: 30px;
   height: calc(100vh - 120px);
+  overflow-y: scroll;
   background-color: #f7f7f7;
   font-family: "Verdana", Geneva, Tahoma, sans-serif;
 }
