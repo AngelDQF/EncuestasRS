@@ -43,6 +43,16 @@ export class UsuariosService {
       })
     )
   }
+  getUsuarioEncuestas(id: number): Observable<any> {
+    const body = {
+      id: id
+    }
+    return this.http.post(`${this.URL}/administrar/encuestas`, body).pipe(
+      map((dataRaw: any) => {
+        return dataRaw.results
+      })
+    )
+  }
   putEstadoUsuario(id: number, estado: number): Observable<any> {
     const body = { id, estado }
     return this.http.put(`${this.URL}/usuarios/editar/estado`, body);
@@ -52,25 +62,58 @@ export class UsuariosService {
     return this.http.put(`${this.URL}/usuarios/editar/password`, body);
   }
   //Servicios para las Asignaciones de los usuarios
-  getAsignaciones(id:number):Observable<any>{
-    const body={id};
-    return this.http.post(`${this.URL}/usuarios/asig`,body).pipe(
-      map((dataRaw:any)=>{
+  getAsignaciones(id: number): Observable<any> {
+    const body = { id };
+    return this.http.post(`${this.URL}/usuarios/asig`, body).pipe(
+      map((dataRaw: any) => {
         return dataRaw.results
       })
     )
   }
-  getDepartamentos():Observable<any>{
+  getDepartamentos(): Observable<any> {
     return this.http.get(`${this.URL}/ubicaciones/departamentos`).pipe(
       map(({ results }: any) => {
         return results;
       })
     );
-  } 
-  getMunicipios(id:string):Observable<any>{
-    const body={id};
-    return this.http.post(`${this.URL}/ubicaciones/departamentos/mun`,body).pipe(
-      map(({results}:any)=>{
+  }
+  getMunicipios(id: string): Observable<any> {
+    const body = { id };
+    return this.http.post(`${this.URL}/ubicaciones/departamentos/mun`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getDepartamentosUser(id: number): Observable<any> {
+    const body = { id };
+    return this.http.post(`${this.URL}/encuestas/departamentos`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    );
+  }
+
+  getMunicipiosUser(id: number, dep: string) {
+    const body = { id, dep };
+    return this.http.post(`${this.URL}/encuestas/municipios`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getEncuestasDepUser(id: string,idUser:number) {
+    const body = { id,idUser };
+    return this.http.post(`${this.URL}/administrar/encuestas/dep`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getEncuestasMunUser(id: string, idUser:number) {
+    const body = { id,idUser };
+    return this.http.post(`${this.URL}/administrar/encuestas/mun`, body).pipe(
+      map(({ results }: any) => {
         return results;
       })
     )

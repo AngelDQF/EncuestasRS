@@ -23,7 +23,8 @@
         class="col-12 col-md-6 p-0 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Tipo de Suelo">
+            <input name="bus" type="search" class="form-control btn" placeholder="Buscar Tipo de Suelo" [(ngModel)]="txtBusqueda"
+            (input)="buscarTabla()">
           </label>
         </div>
       </div>

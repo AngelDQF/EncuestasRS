@@ -12,6 +12,7 @@ import { BosquesInterface } from '@models/administrar/recursos/bosques.interface
 export class BosquesComponent implements OnInit{
   displayedColumns: string[] = ['id', 'opciones', 'bosque', 'estado'];
   dataSource: any;
+  txtBusqueda:string = "";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private bosquesModel: RecursosService) { }
   ngOnInit(): void {
@@ -22,5 +23,10 @@ export class BosquesComponent implements OnInit{
       this.dataSource = new MatTableDataSource<BosquesInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda="";
+  }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

@@ -16,7 +16,7 @@
         <div class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal p-0">
           <div class="input-group mt-2 mb-2 inpBuscar">
             <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-              <input name="bus" type="text" class="form-control btn" placeholder="Buscar Tenencia de la Tierra">
+              <input name="bus" type="search" class="form-control btn" placeholder="Buscar Tenencia de la Tierra" [(ngModel)]="txtBusqueda" (input)="buscarTabla()">
             </label>
           </div>
         </div>

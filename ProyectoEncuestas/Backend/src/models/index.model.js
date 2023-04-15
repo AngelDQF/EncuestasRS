@@ -12,5 +12,6 @@ const model = {//TODO: Exportamos todos los modelos hijos
   encuestasModel:require('./encuestas.model'),//TODO:Exportamos el modelo de Encuestas
   ubicacionesModel:require('./ubicaciones.model'),//TODO: Exportamos el modelo de las Ubicaciones
   escolaridadModel:require('./escolaridad.model'),//TODO: Exportamos el modelo los Grados de Escolaridad
+  administrarModel:require('./administrar.model'),//TODO: Exportamos el modelo de Administrar
 };
 module.exports = model;//TODO: Exportamos el modelo padre

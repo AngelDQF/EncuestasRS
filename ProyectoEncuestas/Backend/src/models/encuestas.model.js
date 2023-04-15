@@ -38,7 +38,7 @@ async function getDepartamentosUsuario(id) {//TODO: Creamos la función que se e
     console.log(error);
   }
 }
-async function getMunicipiosUsuario(user,dep) {//TODO: Creamos la función que se encargará de listar todos los ejes
+async function getMunicipiosUsuario(user, dep) {//TODO: Creamos la función que se encargará de listar todos los ejes
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query(`Exec prc_Encuestas_Municipios ${user},'${dep}'`);//TODO: Ejecutamos la consulta
@@ -168,4 +168,40 @@ async function getTecnologicoEncuestas() {//TODO: Función para obtener todos lo
     console.log(error);
   }
 }
-module.exports = { getEncuestas,getDepartamentosUsuario,getOrganizacion,getOrganizacionesSociales,getMunicipiosUsuario,getAldeasUsuario,getCaseriosUsuario ,getEstructurasEncuestas,getEstadosEncuestas,getTecnologicoEncuestas};//TODO: Exportamos las funcionessss
+
+async function getEncuestasDep(id) {//TODO: Creamos la función que se encargará de listar todos los ejes
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query(`Exec prc_Encuestas_Departamento '${id}'`);//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Encuestas agregadas"
+    }
+    //console.log(result.recordsets);
+    pool.close();//TODO: Cerramos la conexión
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function getEncuestasMun(id) {//TODO: Creamos la función que se encargará de listar todos los ejes
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query(`Exec prc_Encuestas_Municipio '${id}'`);//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay Encuestas agregadas"
+    }
+    //console.log(result.recordsets);
+    pool.close();//TODO: Cerramos la conexión
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+module.exports = { getEncuestas, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun };//TODO: Exportamos las funcionessss

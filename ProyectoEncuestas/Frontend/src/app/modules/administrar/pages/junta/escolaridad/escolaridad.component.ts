@@ -12,6 +12,7 @@ import { JuntaService } from '@serv/junta.service';
 export class EscolaridadComponent implements OnInit {
   displayedColumns: string[] = ['id', 'opciones', 'grado', 'estado'];
   dataSource: any;
+  txtBusqueda:string ="";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private juntaModel: JuntaService) { }
   ngOnInit(): void {
@@ -22,5 +23,10 @@ export class EscolaridadComponent implements OnInit {
       this.dataSource = new MatTableDataSource<EscolaridadInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda="";
+  }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

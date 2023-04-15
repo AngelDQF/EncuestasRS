@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class EjesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'opciones', 'eje', 'estado'];
   dataSource: any;
+  txtBusqueda:string="";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private ejesModel: JuntaService) { }
   ngOnInit(): void {
@@ -22,6 +23,10 @@ export class EjesComponent implements OnInit {
       this.dataSource = new MatTableDataSource<EjesInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda=""
   }
-
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
+  }
 }  

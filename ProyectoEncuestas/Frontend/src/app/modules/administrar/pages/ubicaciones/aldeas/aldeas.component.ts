@@ -13,26 +13,18 @@ export class AldeasComponent implements OnInit{
   displayedColumns: string[] = ['id','aldea', 'mun','dep'];
   txtBusqueda: string = '';
   dataSource: any;
-  buscarAldea:string;
   public page!:number;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private ubicacionesModel: UbicacionesService) {  }
   ngOnInit(): void {
     this.refresh();
   }
-  callSearch(tern: string): void {
-    if (tern.length >= 3) {
-      this.ubicacionesModel.getSearchAldeas$(this.buscarAldea).subscribe((response: AldeasComponent[]) => {
-        this.dataSource = response;
-      })
-    }
-  }
   refresh(){
     this.ubicacionesModel.getAldeas().subscribe((data: AldeasInterface[]) => {
       this.dataSource = new MatTableDataSource<AldeasInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
-    this.buscarAldea="";
+    this.txtBusqueda="";
   }
   buscarTabla() {
     //TODO: Filtrar los datos de la tabla en base al valor de búsqueda

@@ -12,6 +12,7 @@ import { OrganizacionesService } from '@serv/organizaciones.service';
 export class OrganizacionesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'opciones', 'org', 'tipo', 'social','estado'];
   dataSource: any;
+  txtBusqueda:string = "";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private orgModel: OrganizacionesService) { }
   ngOnInit(): void {
@@ -22,5 +23,10 @@ export class OrganizacionesComponent implements OnInit {
       this.dataSource = new MatTableDataSource<OrganizacionesInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda="";
+  }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

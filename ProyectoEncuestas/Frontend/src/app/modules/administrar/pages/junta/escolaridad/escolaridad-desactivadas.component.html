@@ -9,13 +9,15 @@
           <h1 class="text-center  titulo">Grados de Escolaridad Desactivados</h1>
         </div>
         <div class="col-2 align-items-end text-end">
-          <a (click)="obtenerGradosDesactivados()" class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
+          <a (click)="obtenerGradosDesactivados()" class="iconoRefrescar btn p-0"><i
+              class="bi bi-arrow-clockwise"></i></a>
         </div>
       </div>
       <div class="col-12 text-bold text-center text-sm-center text-md-center p-0 text-lg-end btnPrincipal">
         <div class="input-group mt-2 mb-2 inpBuscar">
           <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Grado de Escolaridad">
+            <input name="bus" type="search" class="form-control btn" placeholder="Buscar Grado de Escolaridad"
+              [(ngModel)]="txtBusqueda" (input)="buscarTabla()">
           </label>
         </div>
       </div>

@@ -12,6 +12,7 @@ import { RequerimientosService } from '@serv/requerimientos.service';
 export class UsosTierrasComponent implements OnInit {
   displayedColumns: string[] = ['id', 'opciones', 'uso', 'estado'];
   dataSource: any;
+  txtBusqueda:string="";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private reqModel: RequerimientosService) { }
   ngOnInit(): void {
@@ -22,5 +23,10 @@ export class UsosTierrasComponent implements OnInit {
       this.dataSource = new MatTableDataSource<UsosTierraInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda = "";
+  }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

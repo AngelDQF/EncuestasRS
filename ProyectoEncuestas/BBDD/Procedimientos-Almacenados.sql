@@ -25,7 +25,7 @@ Begin
      VALUES
            (@nombre,@telefono,@dni,@correo,@contra,GETDATE(),GETDATE(),@estado,@tipo,@sexo)
 End
-/*Creación Proceso Almacenado para Buscar un Usuario*/
+--Creación Proceso Almacenado para Buscar un Usuario
 create procedure prc_Usuarios_Buscar_DNI
 @dni nvarchar(50)
 As
@@ -174,7 +174,8 @@ begin
 	order by id_Servicio
 end
 --Creacion Procedimientos Almacenados para la tabla de Encuesta
-Create procedure prc_Encuestas_Listar
+Create procedure prc_Usuarios_Encuestas
+@id int
 as
 begin
 	SELECT e.id_Encuesta as id, dep.departamento as dep,mun.municipio as mun,aldea.aldea,caserio.caserio,e.direccion_Sede as [address],
@@ -194,9 +195,109 @@ begin
 	Join tbl_Mercados as merca on merca.id_Mercado = e.id_Mercado
 	Join tbl_Tecnologico_General as tecno on tecno.id_Tecno=e.id_Tecno
 	Join tbl_Usuarios as users on users.id_Usuario=e.id_Usuario
+	where e.id_Usuario=@id
 	Order by e.id_Departamento
 end
---Procedimiento Almacenado para obtener los departamentos del usuario
+--Procedimiento Almacenado para listar encuestas por departamento
+Create procedure prc_Encuestas_Departamento
+@id nvarchar(10)
+as
+begin
+	SELECT e.id_Encuesta as id, dep.departamento as dep,mun.municipio as mun,aldea.aldea,caserio.caserio,e.direccion_Sede as [address],
+	e.total_Hombres as hombres, e.total_Mujeres as mujeres, e.total_Asistencia as total, org.descripcion_Organizacion as org, e.existencia_Rio as rios,
+	e.cantidad_Rio as cant_rios,e.existencia_Bosque as bosques,bosque.tipo_Bosque as tipo_bosque, suelo.descripcion_Suelo as suelo, tenencia.descripcion_Tenencia as tenencia,
+	merca.descripcion_Mercado as mercado, tecno.id_Tecno as tecno, convert(nvarchar(10),e.fecha_Encuesta,23)  AS fecha ,
+	convert(char(8), e.fecha_Encuesta,108) as hora,users.nombre_Usuario as [user]
+	From tbl_Encuestas as e
+	Join tbl_Departamentos as dep on dep.id_Departamento=E.id_Departamento
+	Join tbl_Municipios as mun on mun.id_Municipio=e.id_Municipio
+	Join tbl_Aldeas as aldea on aldea.id_Aldea=e.id_Aldea
+	Join tbl_Caserios as caserio on caserio.id_Caserio=e.id_Caserio
+	Join tbl_Organizaciones as org on org.id_Organizacion = e.id_Organizacion
+	Join tbl_Tipos_Bosque as bosque on bosque.id_Tipo_Bosque=e.id_Tipo_Bosque
+	Join tbl_Suelos as suelo on suelo.id_Suelo=e.id_Suelo
+	Join tbl_Tenencia_Tierra as tenencia on tenencia.id_Tenencia=e.id_Tenencia
+	Join tbl_Mercados as merca on merca.id_Mercado = e.id_Mercado
+	Join tbl_Tecnologico_General as tecno on tecno.id_Tecno=e.id_Tecno
+	Join tbl_Usuarios as users on users.id_Usuario=e.id_Usuario
+	where e.id_Departamento=@id
+end
+--Procedimiento Almacenado para listar encuestas por departamento y usuario
+Create procedure prc_Encuestas_Departamento_User
+@id nvarchar(10),
+@idUser int
+as
+begin
+	SELECT e.id_Encuesta as id, dep.departamento as dep,mun.municipio as mun,aldea.aldea,caserio.caserio,e.direccion_Sede as [address],
+	e.total_Hombres as hombres, e.total_Mujeres as mujeres, e.total_Asistencia as total, org.descripcion_Organizacion as org, e.existencia_Rio as rios,
+	e.cantidad_Rio as cant_rios,e.existencia_Bosque as bosques,bosque.tipo_Bosque as tipo_bosque, suelo.descripcion_Suelo as suelo, tenencia.descripcion_Tenencia as tenencia,
+	merca.descripcion_Mercado as mercado, tecno.id_Tecno as tecno, convert(nvarchar(10),e.fecha_Encuesta,23)  AS fecha ,
+	convert(char(8), e.fecha_Encuesta,108) as hora,users.nombre_Usuario as [user]
+	From tbl_Encuestas as e
+	Join tbl_Departamentos as dep on dep.id_Departamento=E.id_Departamento
+	Join tbl_Municipios as mun on mun.id_Municipio=e.id_Municipio
+	Join tbl_Aldeas as aldea on aldea.id_Aldea=e.id_Aldea
+	Join tbl_Caserios as caserio on caserio.id_Caserio=e.id_Caserio
+	Join tbl_Organizaciones as org on org.id_Organizacion = e.id_Organizacion
+	Join tbl_Tipos_Bosque as bosque on bosque.id_Tipo_Bosque=e.id_Tipo_Bosque
+	Join tbl_Suelos as suelo on suelo.id_Suelo=e.id_Suelo
+	Join tbl_Tenencia_Tierra as tenencia on tenencia.id_Tenencia=e.id_Tenencia
+	Join tbl_Mercados as merca on merca.id_Mercado = e.id_Mercado
+	Join tbl_Tecnologico_General as tecno on tecno.id_Tecno=e.id_Tecno
+	Join tbl_Usuarios as users on users.id_Usuario=e.id_Usuario
+	where e.id_Departamento=@id and e.id_Usuario=@idUser
+end
+--Procedimiento Almacenado para buscar encuestas por municipio
+Create procedure prc_Encuestas_Municipio
+@id nvarchar(10)
+as
+begin
+	SELECT e.id_Encuesta as id, dep.departamento as dep,mun.municipio as mun,aldea.aldea,caserio.caserio,e.direccion_Sede as [address],
+	e.total_Hombres as hombres, e.total_Mujeres as mujeres, e.total_Asistencia as total, org.descripcion_Organizacion as org, e.existencia_Rio as rios,
+	e.cantidad_Rio as cant_rios,e.existencia_Bosque as bosques,bosque.tipo_Bosque as tipo_bosque, suelo.descripcion_Suelo as suelo, tenencia.descripcion_Tenencia as tenencia,
+	merca.descripcion_Mercado as mercado, tecno.id_Tecno as tecno, convert(nvarchar(10),e.fecha_Encuesta,23)  AS fecha ,
+	convert(char(8), e.fecha_Encuesta,108) as hora,users.nombre_Usuario as [user]
+	From tbl_Encuestas as e
+	Join tbl_Departamentos as dep on dep.id_Departamento=E.id_Departamento
+	Join tbl_Municipios as mun on mun.id_Municipio=e.id_Municipio
+	Join tbl_Aldeas as aldea on aldea.id_Aldea=e.id_Aldea
+	Join tbl_Caserios as caserio on caserio.id_Caserio=e.id_Caserio
+	Join tbl_Organizaciones as org on org.id_Organizacion = e.id_Organizacion
+	Join tbl_Tipos_Bosque as bosque on bosque.id_Tipo_Bosque=e.id_Tipo_Bosque
+	Join tbl_Suelos as suelo on suelo.id_Suelo=e.id_Suelo
+	Join tbl_Tenencia_Tierra as tenencia on tenencia.id_Tenencia=e.id_Tenencia
+	Join tbl_Mercados as merca on merca.id_Mercado = e.id_Mercado
+	Join tbl_Tecnologico_General as tecno on tecno.id_Tecno=e.id_Tecno
+	Join tbl_Usuarios as users on users.id_Usuario=e.id_Usuario
+	where e.id_Municipio=@id
+end
+
+--Procedimiento Almacenado para listar encuestas por Municipio y usuario
+Create procedure prc_Encuestas_Municipio_User
+@id nvarchar(10),
+@idUser int
+as
+begin
+	SELECT e.id_Encuesta as id, dep.departamento as dep,mun.municipio as mun,aldea.aldea,caserio.caserio,e.direccion_Sede as [address],
+	e.total_Hombres as hombres, e.total_Mujeres as mujeres, e.total_Asistencia as total, org.descripcion_Organizacion as org, e.existencia_Rio as rios,
+	e.cantidad_Rio as cant_rios,e.existencia_Bosque as bosques,bosque.tipo_Bosque as tipo_bosque, suelo.descripcion_Suelo as suelo, tenencia.descripcion_Tenencia as tenencia,
+	merca.descripcion_Mercado as mercado, tecno.id_Tecno as tecno, convert(nvarchar(10),e.fecha_Encuesta,23)  AS fecha ,
+	convert(char(8), e.fecha_Encuesta,108) as hora,users.nombre_Usuario as [user]
+	From tbl_Encuestas as e
+	Join tbl_Departamentos as dep on dep.id_Departamento=E.id_Departamento
+	Join tbl_Municipios as mun on mun.id_Municipio=e.id_Municipio
+	Join tbl_Aldeas as aldea on aldea.id_Aldea=e.id_Aldea
+	Join tbl_Caserios as caserio on caserio.id_Caserio=e.id_Caserio
+	Join tbl_Organizaciones as org on org.id_Organizacion = e.id_Organizacion
+	Join tbl_Tipos_Bosque as bosque on bosque.id_Tipo_Bosque=e.id_Tipo_Bosque
+	Join tbl_Suelos as suelo on suelo.id_Suelo=e.id_Suelo
+	Join tbl_Tenencia_Tierra as tenencia on tenencia.id_Tenencia=e.id_Tenencia
+	Join tbl_Mercados as merca on merca.id_Mercado = e.id_Mercado
+	Join tbl_Tecnologico_General as tecno on tecno.id_Tecno=e.id_Tecno
+	Join tbl_Usuarios as users on users.id_Usuario=e.id_Usuario
+	where e.id_Municipio=@id and e.id_Usuario=@idUser
+end
+--Procedimiento almacenado para Obtener los departamentos asignados a un usuario de un usuario
 Create procedure prc_Encuestas_Departamentos
 @id int
 as

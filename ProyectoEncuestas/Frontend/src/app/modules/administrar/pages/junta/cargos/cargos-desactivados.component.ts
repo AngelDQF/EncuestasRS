@@ -12,6 +12,7 @@ import { JuntaService } from '@serv/junta.service';
 export class CargosDesactivadosComponent implements OnInit {
   displayedColumns: string[] = ['id', 'opciones', 'cargo', 'estado'];
   dataSource: any;
+  txtBusqueda:string = "";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private cargosModel: JuntaService) { }
   ngOnInit(): void {
@@ -25,5 +26,10 @@ export class CargosDesactivadosComponent implements OnInit {
       this.dataSource = new MatTableDataSource<CargosInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda="";
+  }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

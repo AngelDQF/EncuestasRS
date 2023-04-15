@@ -12,6 +12,7 @@ import { RequerimientosService} from '@serv/requerimientos.service';
 export class TenenciaTierrasDesactivadasComponent implements OnInit {
   displayedColumns: string[] = ['id', 'opciones', 'tenencia', 'estado'];
   dataSource: any;
+  txtBusqueda:string="";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private reqModel: RequerimientosService) { }
   ngOnInit(): void {
@@ -22,5 +23,10 @@ export class TenenciaTierrasDesactivadasComponent implements OnInit {
       this.dataSource = new MatTableDataSource<TenenciaTierraInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda = "";
+  }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

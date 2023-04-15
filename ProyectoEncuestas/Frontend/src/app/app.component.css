@@ -181,6 +181,14 @@ a {
   font-size: 15px;
   text-decoration: none;
 }
+.true{
+  color: var(--color1) !important;
+  font-weight: bold !important;;
+}
+.false{
+  color:var(--color2) !important;
+  font-weight: bold !important;;
+}
 /*Pantallas xs*/
 @media screen and (max-width: 575px) {
   .row {

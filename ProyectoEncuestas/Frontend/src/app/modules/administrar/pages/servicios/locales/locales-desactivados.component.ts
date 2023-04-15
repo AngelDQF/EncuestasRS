@@ -12,6 +12,7 @@ import { ServiciosService } from '@serv/servicios.service';
 export class LocalesDesactivadosComponent implements OnInit {
   displayedColumns: string[] = ['id', 'opciones', 'servicio', 'tipo', 'estado'];
   dataSource: any;
+  txtBusqueda:string = "";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private serviciosModel: ServiciosService) { }
   ngOnInit(): void {
@@ -22,5 +23,10 @@ export class LocalesDesactivadosComponent implements OnInit {
       this.dataSource = new MatTableDataSource<ServiciosInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda="";
+  }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

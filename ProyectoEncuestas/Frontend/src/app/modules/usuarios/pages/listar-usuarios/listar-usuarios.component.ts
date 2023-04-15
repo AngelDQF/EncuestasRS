@@ -16,6 +16,7 @@ import { RestablecerPasswordComponent } from '@shared/components/modals/restable
 export class ListarUsuariosComponent implements OnInit{
   displayedColumns: string[] = ['id', 'opciones', 'name', 'tel','dni','email','creado','actualizado','tipo','sexo'];
   dataSource: any;
+  txtBusqueda:string="";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public page!:number;
   constructor(private usuariosModel: UsuariosService,private router:Router, private dialog:MatDialog) {
@@ -51,5 +52,10 @@ export class ListarUsuariosComponent implements OnInit{
       this.dataSource = new MatTableDataSource<UsersInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda="";
+  }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }

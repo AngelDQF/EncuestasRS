@@ -23,14 +23,15 @@
   color:aqua;
 }
 .contenedorTabla{
-  height: 100%;
   padding: 5px;
   align-items: center;
 }
 
-.a-tabla{
-  align-items: center;
-}
+
+
+
+
+
 /*Pantallas lg*/
 @media screen and (max-width: 1200px) {
   #a1,

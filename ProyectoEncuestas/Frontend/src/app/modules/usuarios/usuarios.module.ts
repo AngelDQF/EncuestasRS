@@ -10,24 +10,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuariosService } from '@serv/usuarios.service';
 import { AsignacionesComponent } from './pages/asignaciones/asignaciones.component';
 import { EncuestasService } from '@serv/encuestas.service';
-import { MatTableModule, } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MyuserComponent } from './pages/myuser/myuser.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
 import { EditarUsuariosComponent } from './pages/editar-usuarios/editar-usuarios.component';
+import { EncuestasUserComponent } from './pages/encuestas-user/encuestas-user.component';
+import { MaterialExampleModule } from '@AM/*';
 
 @NgModule({
   declarations: [
     UsuariosComponent,
     ListarUsuariosComponent,
-
     UsuariosDeactivadosComponent,
     AsignacionesComponent,
     MyuserComponent,
     EditarUsuariosComponent,
+    EncuestasUserComponent
   ],
   imports: [
     CommonModule,
@@ -37,12 +33,7 @@ import { EditarUsuariosComponent } from './pages/editar-usuarios/editar-usuarios
     FormsModule,
     SharedModule,
     NgxPaginationModule,
-    MatTooltipModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatNativeDateModule, 
-    MatFormFieldModule,
-    MatIconModule
+    MaterialExampleModule
   ],
   providers: [
     UsuariosService, EncuestasService

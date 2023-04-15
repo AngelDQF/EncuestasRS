@@ -12,6 +12,7 @@ import { RecursosService } from '@serv/recursos.service';
 export class TipoSueloComponent {
   displayedColumns: string[] = ['id', 'opciones', 'suelo', 'estado'];
   dataSource: any;
+  txtBusqueda:string = "";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private suelosModel: RecursosService) { }
   ngOnInit(): void {
@@ -22,5 +23,10 @@ export class TipoSueloComponent {
       this.dataSource = new MatTableDataSource<SuelosInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda="";
+  }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
 }
