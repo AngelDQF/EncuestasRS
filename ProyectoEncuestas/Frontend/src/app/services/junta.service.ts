@@ -33,22 +33,31 @@ export class JuntaService {
         })
       )
   }
+  getEjeByID(id:number): Observable<any> {
+    const body={id};
+    return this.http.post(`${this.URL}/ejes/buscar`, body).pipe(
+      map(({results}: any) => {
+        return results;
+      })
+    )
+  }
   getEjesDesactivados(): Observable<any> {
     return this.http.get(`${this.URL}/ejes/desactivados`)
       .pipe(
-        map((dataRaw: any) => {
-          return dataRaw.results;
+        map(({results}: any) => {
+          return results;
         })
       )
   }
-  postEje$(eje: string, estado: string): Observable<any> {
-    let body = {
-      eje,
-      estado
-    }
-    return this.http.post(`${this.URL}/ejes`, body)
+  putEje(id:number,eje:string): Observable<any> {
+    const body={id,eje}
+    return this.http.put(`${this.URL}/ejes/editar`, body).pipe(
+      map(({results}: any) => {
+        return results;
+      })
+    )
   }
-  postCargo$(cargo: string, estado: string): Observable<any> {
+  postCargo(cargo: string, estado: string): Observable<any> {
     let body = {
       cargo,
       estado

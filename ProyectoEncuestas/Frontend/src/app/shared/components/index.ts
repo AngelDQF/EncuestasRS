@@ -17,3 +17,8 @@ export * from './modals/desactivar-user/desactivar-user.component';
 export * from './modals/estado-asig/estado-asig.component'
 export * from './modals/restablecer-password/restablecer-password.component'
 export * from './modals/info/info.component'
+export * from './modals/put-eje/put-eje.component'
+export * from './modals/agregar-asignacion/agregar-asignacion.component'
+export * from './modals/agregar-cargo/agregar-cargo.component'
+export * from './modals/agregar-escolaridad/agregar-escolaridad.component'
+

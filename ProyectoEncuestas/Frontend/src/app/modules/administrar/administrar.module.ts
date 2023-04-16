@@ -45,12 +45,9 @@ import { UbicacionesService } from '@serv/ubicaciones.service';
 import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
-import { MatTableModule, } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatNativeDateModule } from '@angular/material/core';
 import { EscolaridadComponent } from './pages/junta/escolaridad/escolaridad.component';
 import { EscolaridadDesactivadasComponent } from './pages/junta/escolaridad/escolaridad-desactivadas.component';
+import { MaterialExampleModule } from '@AM/*';
 @NgModule({
   declarations: [
     AdministrarComponent,
@@ -102,10 +99,7 @@ import { EscolaridadDesactivadasComponent } from './pages/junta/escolaridad/esco
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatGridListModule,
-    MatNativeDateModule
+    MaterialExampleModule
   ],
   providers: [JuntaService, UbicacionesService
   ]

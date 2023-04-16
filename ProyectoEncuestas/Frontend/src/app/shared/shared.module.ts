@@ -9,17 +9,17 @@ import { MaterialExampleModule } from '@AM/*';
 import { DesactivarUserComponent } from './components/modals/desactivar-user/desactivar-user.component';
 import { AgregarAsignacionComponent } from './components/modals/agregar-asignacion/agregar-asignacion.component';
 import { EncuestasService } from '@serv/encuestas.service';
-import { AgregarEjeComponent } from './components/modals/agregar-eje/agregar-eje.component';
 import { AgregarCargoComponent } from './components/modals/agregar-cargo/agregar-cargo.component';
 import { AgregarEscolaridadComponent } from './components/modals/agregar-escolaridad/agregar-escolaridad.component';
+import { PutEjeComponent } from './components/modals/put-eje/put-eje.component';
 @NgModule({
   declarations: [
     ...components.components,
     DesactivarUserComponent,
     AgregarAsignacionComponent,
-    AgregarEjeComponent,
     AgregarCargoComponent,
     AgregarEscolaridadComponent,
+    PutEjeComponent,
   ],
   imports: [
     CommonModule,

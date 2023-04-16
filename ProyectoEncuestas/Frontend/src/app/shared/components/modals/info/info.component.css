@@ -15,7 +15,7 @@
 .iconSize .i2,
 .title2 h1,
 .btnBoton2 {
-  color: var(--color1) !important;
+  color: var(--btn1) !important;
 }
 .iconSize .i3,
 .title3 h1,
@@ -24,13 +24,13 @@
 }
 .iconTitle {
   font-size: 25px;
-  color: var(--color1);
+  color: var(--btn1);
 }
 .bordeModal1 {
   border: 5px solid var(--btn4);
 }
 .bordeModal2 {
-  border: 5px solid var(--color1);
+  border: 5px solid var(--btn1);
 }
 .bordeModal3 {
   border: 5px solid var(--color2);
@@ -40,7 +40,7 @@
 }
 
 .btnBoton2 {
-  border-color: var(--color1);
+  border-color: var(--btn1);
 }
 .btnBoton3 {
   border-color: var(--color2);
@@ -54,7 +54,7 @@ button {
   color: #fff !important;
 }
 .btnBoton2:hover {
-  background-color: var(--color1);
+  background-color: var(--btn1);
   color: #fff !important;
 }
 .btnBoton3:hover {
@@ -72,11 +72,14 @@ button {
   border-color: var(--btn4) !important;
 }
 .title2{
-  border-color: var(--color1) !important;
+  border-color: var(--btn1) !important;
 }
 .title3{
   border-color: var(--color2) !important;
 }
 p{
   font-weight: bold !important;
+}
+.cuerpo{
+  width: 100%;
 }

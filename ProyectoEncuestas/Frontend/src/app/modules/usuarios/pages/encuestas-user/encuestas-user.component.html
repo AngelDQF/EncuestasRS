@@ -15,7 +15,7 @@
       <div class="col-6 mt-2">
         <mat-form-field appearance="fill" class="form-control">
           <mat-label>Departamento</mat-label>
-          <mat-select #selDep [(ngModel)]="selectDep" (valueChange)="changeDep()" required>
+          <mat-select #selDep (valueChange)="changeDep($event)" required>
             <mat-option value="">--</mat-option>
             <mat-option *ngFor="let dep of departamentos" [value]="dep.id_dep">
               {{dep.dep}}
@@ -26,7 +26,7 @@
       <div class="col-6 mt-2">
         <mat-form-field appearance="fill" class="form-control">
           <mat-label>Municipio</mat-label>
-          <mat-select #selDep [(ngModel)]="selectMun" (valueChange)="changeMun()" required>
+          <mat-select #selMun (valueChange)="changeMun()" required>
             <mat-option value="">--</mat-option>
             <mat-option *ngFor="let mun of municipios" [value]="mun.id_mun">
               {{mun.mun}}

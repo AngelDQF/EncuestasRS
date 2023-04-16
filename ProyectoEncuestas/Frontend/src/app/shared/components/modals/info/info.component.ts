@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
-  styleUrls: ['./info.component.css','../modals-desactivar.css']
+  styleUrls: ['./info.component.css','../modals.css']
 })
 export class InfoComponent implements OnInit{
   titulo:any;
@@ -31,7 +31,7 @@ export class InfoComponent implements OnInit{
       this.colorTitle="title1";
       this.botonClass="btnBoton1"
     }else if(this.icono==2){
-      this.iconoContent="bi bi-info-circle i2";
+      this.iconoContent="bi bi-check-circle i2";
       this.bordeModal="bordeModal2";
       this.colorTitle="title2";
       this.botonClass="btnBoton2"

@@ -1,90 +1,79 @@
-const { ejesModel } = require('../models/index.model');//TODO: Importamos el modelo de ejes
-const { handleHttpError } = require('../utils/handleError');//TODO: Importamos el metodo handleHttpError
+const { ejesModel } = require('../models/index.model');
+const { handleHttpError } = require('../utils/handleError');
 
-const ctrGetEjes = async (req, res) => {//TODO: Funcion para hacer get a los ejes
+const ctrGetEjes = async (req, res) => {
   try {
-    ejesModel.getEjes().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    ejesModel.getEjes().then(result => {
+      res.json({ results: result })
     });
   } catch {
-    handleHttpError(res, 'ERROR_LISTAR_EJES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'ERROR_LISTAR_EJES');
   }
-
 }
-const ctrGetEjesDesactivados = async (req, res) => {//TODO: Funcion para hacer get a los ejes
+const ctrBuscarEjeByID= async (req,res)=>{
+    try{
+      const {id}=req.body;
+      ejesModel.getEjeID(id).then(results=>{
+        res.json({results})
+      })
+    } catch {
+      handleHttpError(res, 'ERROR_LISTAR_EJES_DESACTIVADOS');
+    }
+}
+const ctrGetEjesDesactivados = async (req, res) => {
   try {
-    ejesModel.getEjesDesactivados().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    ejesModel.getEjesDesactivados().then(result => {
+      res.json({ results: result })
     });
   } catch {
-    handleHttpError(res, 'ERROR_LISTAR_EJES_DESACTIVADOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'ERROR_LISTAR_EJES_DESACTIVADOS');
   }
 
 }
-/**
- * TODO: Creacion del controlador para listar un eje por su nombre
- * @param {*} req 
- * @param {*} res 
- */
-const ctrGetEje = async (req, res) => {//TODO: Funcion para hacer get a un eje
+
+const ctrPostEje = async (req, res) => {
   try {
-    const { eje } = req.params;//TODO: Extraemos el dni del parámetro
-    const resultado = await ejesModel.getEje(eje);//TODO: Llamamos a la función del modelo para obtener un usuario
-    res.json(resultado);//TODO: Mostramos el resultado en un json
-  }
-  catch {
-    handleHttpError(res, 'ERROR_LISTAR_EJE');//TODO: Si surge un error hacemos uso del metodo handleHttpError
-  }
-}
-/**
- * TODO: Creacion del controlador para crear un eje
- * @param {*} req 
- * @param {*} res 
- */
-const ctrPostEje = async (req, res) => {//TODO: Funcion para hacer post a un eje
-  try {//TODO: Intentamos ejecutar el codigo
-
-    const { eje, estado } = req.body;//TODO: Extraemos los datos del body
-    const resultado = await ejesModel.postEjes(eje, estado);//TODO: Llamamos a la función del modelo para crear un usuario
-    if (resultado == true) {
-      res.json({ info: "Eje Agregado", estado: resultado });//TODO: Mostramos el resultado en un json
-    } else if (resultado == false) {
-      res.json({ info: "Ya Existe un eje con ese nombre", estado: resultado });//TODO: Mostramos el resultado en un json
+    const { eje, estado } = req.body;
+    const resultado = await ejesModel.postEjes(eje, estado);
+    if (resultado == "exito") {
+      res.json({ results: { mensaje: "Eje Agregado exitosamente", estado: 2 } });
+    } else if (resultado == "ambiguo") {
+      res.json({ results: { mensaje: "Ya Existe un eje con ese nombre", estado: 1 } });
     } else {
       res.json({
-        error: "Ha Ocurrido un error"
+        results: {mensaje: "Ha Ocurrido un error", estado: 3}
       })
     }
   } catch {
-    handleHttpError(res, 'ERROR_POST_EJES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'Error al crear eje');
   }
 }
-/**
- * TODO: Creacion del controlador para actualizar un eje
- * @param {*} req 
- * @param {*} res 
- */
-const ctrPutEje = async (req, res) => {//TODO: Funcion para hacer put a un eje
-  try {//TODO: Intentamos ejecutar el codigo
-    const { id, eje } = req.body;//TODO: Extraemos los datos del body
-    const resultado = await ejesModel.putEjeNombre(id, eje);//TODO: Llamamos a la función del modelo para crear un usuario
-    res.json(resultado);//TODO: Mostramos el resultado en un json
+const ctrPutEje = async (req, res) => {
+  try {
+    const { id, eje } = req.body;
+    const resultado = await ejesModel.putEjeNombre(id, eje);
+    if (resultado == "exito") {
+      res.json({ results: { mensaje: "Eje Editado Correctamento", estado: 2 } });
+    } else if (resultado == "ambiguo") {
+      res.json({ results: { mensaje: "Ya Existe un eje con ese nombre", estado: 1 } });
+    } else {
+      res.json({
+        results: {mensaje: "Ha Ocurrido un error", estado: 3}
+      })
+    }
   } catch {
-    handleHttpError(res, 'ERROR_UPDATE_EJE');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'Error al editar eje');
   }
 }
-/**
- * TODO: Creacion del controlador para actualizar el eje de un estado ("Eliminar")
- * @param {*} req 
- * @param {*} res 
- */
-const ctrPutEjeEstado = async (req, res) => {//TODO: Funcion para hacer put a un eje
-  try {//TODO: Intentamos ejecutar el codigo
-    const { id, estado } = req.body;//TODO: Extraemos los datos del body
-    const resultado = await ejesModel.putEjeEstado(id, estado);//TODO: Llamamos a la función del modelo para crear un usuario
-    res.json(resultado);//TODO: Mostramos el resultado en un json
+
+const ctrPutEjeEstado = async (req, res) => {
+  try {
+    const { id, estado } = req.body;
+    const resultado = await ejesModel.putEjeEstado(id, estado);
+    res.json(resultado);
   } catch {
-    handleHttpError(res, 'ERROR_UPDATE_EJE_ESTADO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'Error al Actualizar Estado');
   }
 }
-module.exports = { ctrGetEjes, ctrGetEjesDesactivados, ctrGetEje, ctrPostEje, ctrPutEje, ctrPutEjeEstado };//TODO: Exportamos las funciones del controlador
+
+module.exports = { ctrGetEjes, ctrGetEjesDesactivados, ctrPostEje, ctrPutEje, ctrPutEjeEstado,ctrBuscarEjeByID };

@@ -10,7 +10,7 @@ import { MatSelect } from '@angular/material/select';
 @Component({
   selector: 'app-agregar-asignacion',
   templateUrl: './agregar-asignacion.component.html',
-  styleUrls: ['./agregar-asignacion.component.css', '../modals-desactivar.css', '../../../../app.component.css']
+  styleUrls: ['./agregar-asignacion.component.css', '../modals.css', '../../../../app.component.css']
 })
 export class AgregarAsignacionComponent implements OnInit {
   frmAsignacion: any;

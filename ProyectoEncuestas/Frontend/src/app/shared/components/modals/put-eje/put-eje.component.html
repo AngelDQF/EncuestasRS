@@ -1,0 +1,29 @@
+<div mat-dialog-content class="bordeD">
+  <div mat-dialog-actions>
+    <div class="row">
+      <div class="col-12 mb-2">
+        <h1 class="w-100 m-0 titulo">Modificar Eje</h1>
+      </div>
+      <hr>
+      <div class="col-12 mb-2">
+        <mat-form-field appearance="fill" class="form-control">
+          <mat-label>Nombre actual</mat-label>
+          <input matInput placeholder="Eje de Salud" [(ngModel)]="ejeActual" readonly>
+        </mat-form-field>
+      </div>
+      <div class="col-12 mb-2">
+        <mat-form-field appearance="fill" class="form-control">
+          <mat-label>Nombre nuevo</mat-label>
+          <input matInput placeholder="Eje de Salud" [formControl]="eje" required>
+          <mat-error *ngIf="eje.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <button type="button" class="btnEliminar form-control me-1" (click)="onClickNo()">Cancelar</button>
+      </div>
+      <div class="col-6">
+        <button (click)="putEje()" type="button" class="btnGuardar form-control ms-1" [disabled]="eje.invalid">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,9 +15,8 @@ button{
   height: 40px;
 }
 mat-label{
-  color:var(--color1);
-  font-weight: bold;
-
+  color:var(--color1) !important;
+  font-weight: bold !important;
 }
 mat-form-field{
   background-color: #fff;
@@ -33,4 +32,3 @@ mat-form-field{
   font-size: 20px;
   font-weight: bold;
 }
-

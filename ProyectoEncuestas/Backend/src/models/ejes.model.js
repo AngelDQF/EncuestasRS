@@ -33,26 +33,6 @@ async function getEjesDesactivados() {//TODO: Función para obtener todos los us
   }
 }
 /**
- * TODO: Funcion para obtener un eje en base a su nombre
- * @param {*} eje 
- * @returns 
- */
-async function getEje(eje) {//TODO: Creamos la función que se encargará de obtenr un eje por su nombre
-  try {
-    await pool.connect()//TODO: Conectamos a la base de datos
-    let consulta = await pool.request().query(`Exec prc_Ejes_Buscar_Eje '${eje}'`);
-    if (consulta.recordset.length === 0) {
-      return "El Eje no existe";
-    }
-    else {
-      return await consulta.recordset;
-    }
-    pool.close();//TODO: Cerramos la conexión
-  } catch (error) {
-    console.log(error);
-  }
-}
-/**
  * TODO: Funcion para obtener un eje en base a su ID
  * @param {*} id 
  * @returns 
@@ -65,7 +45,7 @@ async function getEjeID(id) {//TODO: Creamos la función que se encargará de ob
       return "El Eje no existe";//TODO: Retornamos un mensaje
     }
     else {//TODO: Si hay resultados
-      return await consulta.recordset;//TODO: Retornamos los datos
+      return consulta.recordset;//TODO: Retornamos los datos
     }
     pool.close();//TODO: Cerramos la conexión
   } catch (error) {//TODO: Si hay un error
@@ -85,12 +65,12 @@ async function postEjes(eje, estado) {//TODO: Creamos la función que se encarga
       await pool.connect()//TODO: Conectamos a la base de datos
       await pool.request().query(`Exec prc_Ejes_Agregar '${eje}', '${estado}'`);//TODO: Ejecutamos la consulta
       pool.close();//TODO: Cerramos la conexión
-      return true;//TODO: Retornamos el eje creado
+      return "exito";//TODO: Retornamos el eje creado
     } else {//TODO: Si el eje existe
-      return false;//TODO: Retornamos un mensaje
+      return "ambiguo";//TODO: Retornamos un mensaje
     }
   } catch (error) {//TODO: Si hay un error
-    console.log(error);// TODO: Mostramos el error
+    return "error";//TODO: Retornamos un mensaje
   }
 }
 /**
@@ -107,27 +87,22 @@ async function putEjeNombre(id, eje) {//TODO: Creamos la función que se encarga
       const consulta2 = await verificarEje(eje);//TODO: Verificamos si hay un eje existente con el mismo nombre
       if (consulta2) {//TODO: Si no hay un eje con el mismo nombre
         await pool.connect()//TODO: Conectamos a la base de datos
-        await pool.request().query(`Exec prc_Ejes_Actualizar_Nombre '${id}', '${eje}'`);//TODO: Ejecutamos la consulta
+        await pool.request().query(`Exec prc_Ejes_Editar '${id}', '${eje}'`);//TODO: Ejecutamos la consulta
         pool.close();//TODO: Cerramos la conexión
-        const result = await getEjeID(id);//TODO: Obtenemos el eje actualizado
-        return await result;//TODO: Retornamos el eje actualizado
+        result = await getEjeID(id);//TODO: Obtenemos el eje actualizado
+        return "exito";//TODO: Retornamos el eje actualizado
       } else {//TODO: Si hay un eje con el mismo nombre
-        return "Ya existe un eje con ese nombre";//TODO: Retornamos un mensaje
+        return "ambiguo";//TODO: Retornamos un mensaje
       }
     } else {//TODO: Si el ID no existe
-      return "El eje no existe";//TODO: Retornamos un mensaje
+      return "noID";//TODO: Retornamos un mensaje
     }
   } catch (error) {//TODO: Si hay un error
-    console.log(error);//TODO: Mostramos el error
+    return "error";
   }
 
 }
-/**
- * TODO: Funcion para actualizar el estado de un eje
- * @param {*} id 
- * @param {*} estado 
- * @returns 
- */
+
 async function putEjeEstado(id, estado) {
   try {
     const consulta = await verificarEjeID(id);
@@ -144,11 +119,6 @@ async function putEjeEstado(id, estado) {
   }
 
 }
-/**
- * TODO: Funcion para verificar la existencia de un eje en base a su nombre
- * @param {*} eje 
- * @returns 
- */
 async function verificarEje(eje) {//TODO: Creamos la función que se encargará de verificar si un eje existe en base a su nombre
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -177,4 +147,4 @@ async function verificarEjeID(id) {//TODO: Creamos la función que se encargará
   }
 }
 
-module.exports = { getEjes, getEjesDesactivados, getEje, postEjes, verificarEje, putEjeNombre, putEjeEstado };//TODO: Exportamos las funcionessss
+module.exports = { getEjes, getEjesDesactivados,getEjeID, postEjes, verificarEje, putEjeNombre, putEjeEstado };//TODO: Exportamos las funcionessss

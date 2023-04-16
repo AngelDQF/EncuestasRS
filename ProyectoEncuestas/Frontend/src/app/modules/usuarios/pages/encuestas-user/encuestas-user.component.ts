@@ -25,12 +25,14 @@ export class EncuestasUserComponent implements OnInit {
   selectMun: any;
   idUser: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  public page!: number;
+  @ViewChild('selDep') selDep: MatSelect;
+  @ViewChild('selMun') selMun: MatSelect;
   constructor(private usuariosModel: UsuariosService, private dialog: MatDialog, private router: ActivatedRoute) { }
   ngOnInit(): void {
     this.obtenerID();
     this.obtenerEncuestas();
     this.departamentosUser();
+    this.selDep.value = "";
   }
 
   obtenerID() {
@@ -51,6 +53,8 @@ export class EncuestasUserComponent implements OnInit {
         this.usuario = data[0].user;
       })
       this.txtBusqueda = "";
+      this.selDep.value = "";
+      this.selMun.value = "";
     } catch (error) {
       console.log(error);
     }
@@ -95,17 +99,31 @@ export class EncuestasUserComponent implements OnInit {
       console.log(error);
     }
   }
-  changeDep() {
-    try {
-      this.municipiosUser(this.idUser,this.selectDep);
 
+  changeDep(event: any): void {
+    try {
+      if (this.selDep.value == "") {
+        this.obtenerEncuestas();
+        this.selMun.value = "";
+      } else {
+        this.municipiosUser(this.idUser, this.selDep.value);
+        this.encuestasByDep(this.selDep.value, this.idUser);
+      }
     } catch (error) {
       console.log(error);
     }
   }
   changeMun() {
     try {
-
+      if (this.selMun.value == "") {
+        if (this.selDep.value == "") {
+          this.obtenerEncuestas();
+        }else{
+          this.encuestasByDep(this.selDep.value, this.idUser);
+        }
+      } else {
+        this.encuestasByMun(this.selMun.value, this.idUser);
+      }
     } catch (error) {
       console.log(error);
     }

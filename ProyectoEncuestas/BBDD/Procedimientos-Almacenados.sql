@@ -432,6 +432,15 @@ as begin
 			   ,[estado_Eje])
      VALUES (@eje,@estado)           
 end
+--Procedimiento Almacenado para Editar un Eje
+create procedure prc_Ejes_Editar
+@id int,
+@eje nvarchar(250)
+as begin
+	 UPDATE [dbo].[tbl_Ejes]
+	   SET [descripcion_Eje] = @eje	
+	 WHERE id_Eje=@id
+end
 --Procedimiento Almacenado para Buscar un Eje
 create procedure prc_Ejes_Buscar_Eje
 @eje nvarchar(250)
@@ -439,6 +448,13 @@ as begin
 	select id_Eje
 	from tbl_Ejes
 	where descripcion_Eje=@eje
+end
+--Procedimiento Almacenado para buscar un eje por ID
+Create procedure prc_Ejes_Buscar_ID
+@id int as begin
+	SELECT id_Eje AS id, descripcion_Eje AS eje, estado_Eje AS estado
+	FROM    dbo.tbl_Ejes
+	where id_Eje=@id
 end
 --Procedimiento Almacenado para Crear un Cargo
 create procedure prc_Cargos_Agregar

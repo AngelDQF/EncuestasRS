@@ -5,7 +5,6 @@ import { UsuariosRoutingModule } from './usuarios-routing.module';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ListarUsuariosComponent } from './pages/listar-usuarios/listar-usuarios.component';
 import { UsuariosDeactivadosComponent } from './pages/listar-usuarios/usuarios-desactivados.component';
-import { SharedModule } from '@shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuariosService } from '@serv/usuarios.service';
 import { AsignacionesComponent } from './pages/asignaciones/asignaciones.component';
@@ -14,6 +13,7 @@ import { MyuserComponent } from './pages/myuser/myuser.component';
 import { EditarUsuariosComponent } from './pages/editar-usuarios/editar-usuarios.component';
 import { EncuestasUserComponent } from './pages/encuestas-user/encuestas-user.component';
 import { MaterialExampleModule } from '@AM/*';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,9 +31,9 @@ import { MaterialExampleModule } from '@AM/*';
     UsuariosRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule,
     NgxPaginationModule,
-    MaterialExampleModule
+    MaterialExampleModule,
+    SharedModule
   ],
   providers: [
     UsuariosService, EncuestasService
