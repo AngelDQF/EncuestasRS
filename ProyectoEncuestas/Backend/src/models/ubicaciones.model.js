@@ -1,6 +1,6 @@
 let pool = require('./config.model');// TODO: Importamos el archivo de configuración
 
-async function getDepartamentos(){
+async function getDepartamentos() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Select * from vew_Departamentos_Listar");//TODO: Ejecutamos la consulta
@@ -11,13 +11,13 @@ async function getDepartamentos(){
     else {
       return "No hay Departamentos Agregados"
     }
-     pool.close();//TODO: Cerramos la conexión
+    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
   }
 }
-async function getMunicipios(){
+async function getMunicipios() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Select * from vew_Municipios_Listar");//TODO: Ejecutamos la consulta
@@ -28,13 +28,13 @@ async function getMunicipios(){
     else {
       return "No hay Municipios Agregados"
     }
-     pool.close();//TODO: Cerramos la conexión
+    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
   }
 }
-async function getMunicipiosByDepartamento(id){
+async function getMunicipiosByDepartamento(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query(`Exec prc_Municipios_By_Dep '${id}'`);//TODO: Ejecutamos la consulta
@@ -45,14 +45,14 @@ async function getMunicipiosByDepartamento(id){
     else {
       return "No hay Municipios Agregados"
     }
-     pool.close();//TODO: Cerramos la conexión
+    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
   }
 }
 
-async function getAldeas(){
+async function getAldeas() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Select * from vew_Aldeas_Listar");//TODO: Ejecutamos la consulta
@@ -63,14 +63,14 @@ async function getAldeas(){
     else {
       return "No hay Aldeas Agregados"
     }
-     pool.close();//TODO: Cerramos la conexión
+    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
   }
 }
 
-async function getCaserios(){
+async function getCaserios() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Select * from vew_Caserios_Listar");//TODO: Ejecutamos la consulta
@@ -81,13 +81,13 @@ async function getCaserios(){
     else {
       return "No hay Aldeas Agregados"
     }
-     pool.close();//TODO: Cerramos la conexión
+    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
   }
 }
-async function getCaserioByName(caserio){
+async function getCaserioByName(caserio) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query(`Exec prc_Caserios_Buscar '${caserio}'`);//TODO: Ejecutamos la consulta
@@ -98,10 +98,27 @@ async function getCaserioByName(caserio){
     else {
       return "No hay Caserios Agregados"
     }
-     pool.close();//TODO: Cerramos la conexión
+    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
   }
 }
-module.exports={getDepartamentos,getMunicipios,getAldeas,getCaserios,getCaserioByName,getMunicipiosByDepartamento};//TODO: Exportamos las funciones
+async function getMunicipiosSinAsignar(dep, id) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query(`Exec prc_Usuarios_Asignaciones_Sin_Asignar '${dep}','${id}'`);//TODO: Ejecutamos la consulta
+    //console.log(result.recordset);
+    if (result.recordset.length !== 0) {
+      pool.close();//TODO: Cerramos la conexión
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      pool.close();//TODO: Cerramos la conexión
+      return "advertencia"
+    }
+  } catch {
+    return "error"
+  }
+}
+module.exports = { getDepartamentos, getMunicipios, getAldeas, getCaserios, getCaserioByName, getMunicipiosByDepartamento, getMunicipiosSinAsignar };//TODO: Exportamos las funciones

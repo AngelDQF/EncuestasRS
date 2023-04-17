@@ -29,10 +29,8 @@ export class EscolaridadDesactivadasComponent implements OnInit {
     this.txtBusqueda="";
   }
   buscarTabla() {
-    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
     this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
-
   desactivar(id:number) {
     try {
       if(id!==undefined){

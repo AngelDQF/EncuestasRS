@@ -12,21 +12,33 @@ import { InfoComponent } from '../info/info.component';
 export class DesactivarUserComponent implements OnInit {
   usuarios: any;
   nombre: any;
-  titulo:any
+  titulo: any;
+  color:string ="";
+  color2:string ="";
   constructor(public dialogoRef: MatDialogRef<DesactivarUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:Array<any>, private userModel: UsuariosService,private dialog:MatDialog) {
+    @Inject(MAT_DIALOG_DATA) public data: Array<any>, private userModel: UsuariosService, private dialog: MatDialog) {
   }
   ngOnInit(): void {
     this.obtenerUser(this.data[0]);
+    this.getColor(this.data[2]);
   }
 
   onClickNo(): void {
     this.dialogoRef.close();
   }
+  getColor(estado:boolean){
+    if (estado) {
+      this.color = "color1";
+      this.color2 = "color2";
+    }else{
+      this.color = "color2";
+      this.color2 = "color1";
+    }
+  } 
   desactivar() {
     try {
       if (this.data !== null) {
-        this.userModel.putEstadoUsuario(this.data[0], this.data[2]).subscribe(data=>{
+        this.userModel.putEstadoUsuario(this.data[0], this.data[2]).subscribe(data => {
           if (data.estado == 1) {
             this.mensaje("Advertencia", `${data.mensaje}`, 1);
           } else if (data.estado == 2) {
@@ -42,11 +54,15 @@ export class DesactivarUserComponent implements OnInit {
     }
   }
   obtenerUser(id: number) {
-    this.userModel.getUsuarioById(id).subscribe((data: UsersInterface) => {
-      this.usuarios = data;
-      this.nombre = this.usuarios[0].name;
-    })
-    this.titulo=this.data[1];
+    try {
+      this.userModel.getUsuarioById(id).subscribe((data: UsersInterface) => {
+        this.usuarios = data;
+        this.nombre = this.usuarios[0].name;
+      })
+      this.titulo = this.data[1];
+    } catch (error) {
+      console.log(error);
+    }
   }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {

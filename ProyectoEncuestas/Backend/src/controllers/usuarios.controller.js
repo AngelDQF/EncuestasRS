@@ -5,13 +5,13 @@ const { tokenSign } = require('../utils/handlejwt');//TODO: Importamos las funci
 require("dotenv").config();//TODO: Importamos dotenv para poder usar las variables de entorno
 const nodemailer = require('nodemailer');
 let transporter = nodemailer.createTransport({
-  host:'smtp.gmail.com',
+  host: 'smtp.gmail.com',
   port: 587,
   secure: false,
   auth: {
-      type: "login",
-      user: "rsangeldqf7@gmail.com", 
-      pass: "r3s0lidaria2023" 
+    type: "login",
+    user: "rsangeldqf7@gmail.com",
+    pass: "r3s0lidaria2023"
   }
 });
 /**
@@ -38,24 +38,22 @@ const ctrGetUsuarioByID = async (req, res) => {//TODO: Creamos la función que s
     });
   } catch (error) {
     handleHttpError(res, 'ERROR_LISTAR_USUARIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
-    console.log(error); ss
   }
 };
 const ctrPutUsuariosEstado = async (req, res) => {
   try {
     const { id, estado } = req.body;
-    const resultado=await usuariosModel.putUsuarioEstado(id, estado);
-    if(resultado=="exito"){
-      res.json({results:{mensaje:"El estado del usuario se cambio exitosamente",estado:2}})
-    }else if(resultado=="ambiguo"){
-      res.json({results:{mensaje:"Usuario no encontrado",estado:1}})
+    const resultado = await usuariosModel.putUsuarioEstado(id, estado);
+    if (resultado == "exito") {
+      res.json({ results: { mensaje: "El estado del usuario se cambio exitosamente", estado: 2 } })
+    } else if (resultado == "ambiguo") {
+      res.json({ results: { mensaje: "Usuario no encontrado", estado: 1 } })
     }
-    else{
-      res.json({results:{mensaje:"Error al cambiar el estado del usuario",estado:3}})
+    else {
+      res.json({ results: { mensaje: "Error al cambiar el estado del usuario", estado: 3 } })
     }
   } catch (error) {
     handleHttpError(res, 'Error al cambiar estado');//TODO: Si surge un error hacemos uso del metodo handleHttpError
-    console.log(error); ss
   }
 }
 const ctrPutRestablecerContraseña = async (req, res) => {
@@ -108,12 +106,12 @@ const ctrPostUsuario = async (req, res) => {//TODO: Creamos la función que se e
         const consulta = await usuariosModel.postUsuario(nombre, telefono, dni, correo, eContra, estado, tipo, sexo);//TODO: Llamamos a la función del modelo para crear un usuario
         res.send(consulta);
       } else {
-        res.json({results: {mensaje: "Ya existe un usuario con ese correo",estado:1} })
+        res.json({ results: { mensaje: "Ya existe un usuario con ese correo", estado: 1 } })
         return
       }
     }
     else {
-      res.json({ results:{mensaje: "Ya existe un usuario con esa DNI",estado:1 }})
+      res.json({ results: { mensaje: "Ya existe un usuario con esa DNI", estado: 1 } })
       return
     }
   } catch (error) {
@@ -129,7 +127,6 @@ const ctrGetAsignaciones = async (req, res) => {
     });
   } catch (error) {
     handleHttpError(res, 'ERROR_LISTAR_ASIGNACIONES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
-    console.log(error); ss
   }
 }
 const ctrGetAsignacionByID = async (req, res) => {
@@ -140,21 +137,19 @@ const ctrGetAsignacionByID = async (req, res) => {
     });
   } catch (error) {
     handleHttpError(res, 'ERROR_LISTAR_ASIGNACIONES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
-    console.log(error); ss
   }
 }
 const ctrPutEstadoAsignacion = async (req, res) => {
   try {
     const { id, estado } = req.body;
     const resultado = usuariosModel.putEstadoAsignacion(id, estado);
-    if(resultado=="exito"){
-      res.json({results:{mensaje:"El estado del usuario se cambio exitosamente",estado:2}})
-    }else{
-      res.json({results:{mensaje:"Error al cambiar el estado del usuario",estado:3}})
+    if (resultado == "exito") {
+      res.json({ results: { mensaje: "El estado del usuario se cambio exitosamente", estado: 2 } })
+    } else {
+      res.json({ results: { mensaje: "Error al cambiar el estado del usuario", estado: 3 } })
     }
   } catch (error) {
     handleHttpError(res, 'ERROR_PUT_ESTADO_ASIGNACIÓN');//TODO: Si surge un error hacemos uso del metodo handleHttpError
-    console.log(error); ss
   }
 }
 const recuperarContra = async (req, res) => {
@@ -162,20 +157,20 @@ const recuperarContra = async (req, res) => {
     const { email } = req.body;
     const verificar = await usuariosModel.verificarEmail(email);
     if (!verificar) {
-      
+
       const contra = "123456";
       let mailOptions = {
-        from: process.env.email_user, 
+        from: process.env.email_user,
         to: email,
         subject: '¡Hola desde nodemailer!',
         text: 'Este es un correo electrónico enviado desde nodemailer a través de Outlook.',
-        html: '<h1>¡Hola desde nodemailer!</h1><p>Este es un correo electrónico enviado desde nodemailer a través de Outlook.</p>' 
+        html: '<h1>¡Hola desde nodemailer!</h1><p>Este es un correo electrónico enviado desde nodemailer a través de Outlook.</p>'
       };
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            console.log('Error al enviar el correo electrónico:', error);
+          console.log('Error al enviar el correo electrónico:', error);
         } else {
-            console.log('Correo electrónico enviado con éxito:', info.response);
+          console.log('Correo electrónico enviado con éxito:', info.response);
         }
       });
       res.json({ mensaje: "Se ha enviado un correo con su contraseña" })
@@ -187,4 +182,17 @@ const recuperarContra = async (req, res) => {
     console.log(error);
   }
 }
-module.exports = { ctrGetUsuariosDesactivados, ctrGetUsuarios, ctrGetUsuariosTipos, ctrPostUsuario, ctrGetUsuarioByID, ctrPutUsuariosEstado, ctrPutRestablecerContraseña, ctrGetAsignaciones, ctrGetAsignacionByID, ctrPutEstadoAsignacion,recuperarContra};//TODO: Exportamos las funcionessss
+const ctrPostAsignacion = async (req, res) => {
+  try {
+    const {id,mun,estado}=req.body;
+    const resultado = await usuariosModel.postAsignacion(id,mun,estado);
+    if (resultado == "exito") {
+      res.json({ results: { mensaje: "Se asignó el municipio exitosamente", estado: 2 } })
+    } else {
+      res.json({ results: { mensaje: "Error al asignar el municipio", estado: 3 } })
+    }
+  } catch (error) {
+    handleHttpError(res, 'ERROR_POST_ASIGNACIÓN');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
+module.exports = { ctrGetUsuariosDesactivados, ctrGetUsuarios, ctrGetUsuariosTipos, ctrPostUsuario, ctrGetUsuarioByID, ctrPutUsuariosEstado, ctrPutRestablecerContraseña, ctrGetAsignaciones, ctrGetAsignacionByID, ctrPutEstadoAsignacion, recuperarContra, ctrPostAsignacion };//TODO: Exportamos las funcione

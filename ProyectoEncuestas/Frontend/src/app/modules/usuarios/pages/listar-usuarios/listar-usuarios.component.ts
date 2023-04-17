@@ -25,9 +25,9 @@ export class ListarUsuariosComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerUsers();
   }
-  desactivar(id: any) {
+  desactivar(id: number) {
     try {
-      if (id == undefined) {
+      if (id !== undefined) {
         const dialogRef = this.dialog.open(DesactivarUserComponent, {
           width: '400px',
           data: [id, "Desactivar", 2],

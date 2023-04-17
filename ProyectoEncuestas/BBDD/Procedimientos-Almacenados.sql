@@ -88,6 +88,22 @@ create procedure prc_Usuarios_Asignaciones_Listar
 	where id_Usuario=@id AND estado_Asignacion=1
 	Order By dbo.tbl_Departamentos.departamento
 end
+--Procedimiento almacenado para buscar los municipios que el usuario aun no tiene asignados
+create procedure prc_Usuarios_Asignaciones_Sin_Asignar
+@dep nvarchar(10),
+@id int
+as begin
+	SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.id_Municipio AS id_mun, dbo.tbl_Municipios.municipio AS mun
+	FROM     dbo.tbl_Departamentos INNER JOIN
+             dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento
+	where tbl_Municipios.id_Departamento=@dep
+	Except
+	SELECT dbo.tbl_Departamentos.id_Departamento AS id_dep, dbo.tbl_Departamentos.departamento AS dep, m.id_Municipio AS id_mun, m.municipio AS mun
+	FROM     dbo.tbl_Departamentos INNER JOIN
+             dbo.tbl_Municipios as m ON dbo.tbl_Departamentos.id_Departamento = m.id_Departamento
+			 inner join dbo.tbl_Asignacion_Usuario as a on a.id_Municipio=m.id_Municipio
+	where a.id_Usuario=@id
+end
 --Procedimiento Almacenado para crear una nueva aignación a un usuario
 create procedure prc_Usuarios_Asignaciones_Crear
 @id int,

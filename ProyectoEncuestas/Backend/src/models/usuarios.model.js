@@ -164,6 +164,15 @@ async function getAsignaciones(id) {
     console.log(error);
   }
 }
+async function postAsignacion(id,mun,estado){
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Usuarios_Asignaciones_Crear '${id}', '${mun}', ${estado}`);
+    return "exito"
+  } catch (error) {
+    return "error"
+  }
+}
 async function getAsignacionByID(id) {
   try {
     await pool.connect();
@@ -187,4 +196,4 @@ async function putEstadoAsignacion(id, estado) {
   }
 }
 
-module.exports = { getUsuariosDesactivados, getUsuarios, getUsuario, getAsignaciones, postUsuario, verificarEmail, verificarDNI, getUsuariosTipos, getUsuarioID, putUsuarioEstado, putRestablecerContraseña, getAsignacionByID, putEstadoAsignacion };//TODO: Exportamos las funciones que hemos creado
+module.exports = { getUsuariosDesactivados, getUsuarios, getUsuario, getAsignaciones, postUsuario, verificarEmail, verificarDNI, getUsuariosTipos, getUsuarioID, putUsuarioEstado, putRestablecerContraseña, getAsignacionByID, putEstadoAsignacion,postAsignacion };//TODO: Exportamos las funciones que hemos creado

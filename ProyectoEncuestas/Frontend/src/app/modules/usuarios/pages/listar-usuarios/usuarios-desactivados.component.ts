@@ -9,11 +9,13 @@ import { DesactivarUserComponent, InfoComponent } from '@shared/components';
 @Component({
   selector: 'app-usuarios-desactivados',
   templateUrl: './usuarios-desactivados.html',
-  styleUrls: ['./listar-usuarios.component.css','../../../../app.component.css']
+  styleUrls: ['./listar-usuarios.component.css', '../../../../app.component.css', '../../../card.css']
 })
 export class UsuariosDeactivadosComponent {
   displayedColumns: string[] = ['id', 'opciones', 'name', 'tel','dni','email','creado','actualizado','tipo','sexo'];
   dataSource: any;
+  txtBusqueda: string = "";
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public page!:number;
   constructor(private usuariosModel: UsuariosService,private dialog:MatDialog) {
@@ -34,11 +36,16 @@ export class UsuariosDeactivadosComponent {
       console.log(error);
     }
   }
+  buscarTabla() {
+    //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
+    this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
+  }
   obtenerUsers(){
     this.usuariosModel.getUsuariosDesactivados().subscribe((data:UsersInterface[]) => {
       this.dataSource = new MatTableDataSource<UsersInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+    this.txtBusqueda = "";
   }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {

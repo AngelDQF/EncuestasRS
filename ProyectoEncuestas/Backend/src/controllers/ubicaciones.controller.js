@@ -36,8 +36,8 @@ const ctrGetMunicipiosByDep = async (req, res) => {
 
 const ctrGetAldeas = async (req, res) => {
   try {
-    ubicacionesModel.getAldeas().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    ubicacionesModel.getAldeas().then(results => {//TODO: Ejecutamos la funcion getEjes del modelo
+      res.json({ results })//TODO: Mostramos el resultado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_ALDEAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -45,12 +45,27 @@ const ctrGetAldeas = async (req, res) => {
 }
 const ctrGetCaserios = async (req, res) => {
   try {
-    ubicacionesModel.getCaserios().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    ubicacionesModel.getCaserios().then(results => {//TODO: Ejecutamos la funcion getEjes del modelo
+      res.json({ results })//TODO: Mostramos el resultado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_CASERIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-
-module.exports = { ctrGetDepartamentos, ctrGetMunicipios, ctrGetAldeas, ctrGetCaserios, ctrGetMunicipiosByDep }
+const ctrGetUbicacionesSinAsignar = async (req, res) => {
+  try {
+    const { dep, id } = req.body;
+    ubicacionesModel.getMunicipiosSinAsignar(dep, id).then(results => {
+      if (results == "error") {
+        res.json({ results: { mensaje: "Error al Buscar Municipios", estado: 2 } })
+      } else if (results == "advertencia") {
+        res.json({ results: { mensaje: "Este usuario ya tiene asignados todos los municipios de este departamento", estado: 1 } })
+      } else {
+        res.json({ results })
+      }
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_UBICACIONES_SIN_ASIGNAR');
+  }
+}
+module.exports = { ctrGetDepartamentos, ctrGetMunicipios, ctrGetAldeas, ctrGetCaserios, ctrGetMunicipiosByDep, ctrGetUbicacionesSinAsignar }
