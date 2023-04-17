@@ -14,6 +14,21 @@ async function getGrados() {
     console.log(error);
   }
 }
+async function getGradoByID(id) {
+  try {
+    await pool.connect()
+    let result = await pool.request().query(`Exec prc_Escolaridad_Buscar_ID '${id}'`);
+
+    if (result.recordset.length !== 0) {
+      return result.recordset;
+    }
+    else {
+      return "No hay grados de escolaridad agregados"
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 async function getGradosDesactivados() {
   try {
     await pool.connect()
@@ -29,5 +44,55 @@ async function getGradosDesactivados() {
     console.log(error);
   }
 }
+async function postGrado(grado,estado){
+  try{
+    const consulta = await verificarGradoByName(grado);
+    if (consulta) {
+      await pool.connect()
+      await pool.request().query(`Exec prc_Escolaridad_Agregar '${grado}', '${estado}'`);
+      pool.close();
+      return "exito";
+    } else {
+      return "ambiguo";
+    }
+  }catch (error){
+    return "error";
+  }
+}
+async function putGradoEstado(id,estado){
+  try{
+    const consulta = await verificarGradoByID(id);
+    if (!consulta) {
+      await pool.connect()
+      await pool.request().query(`Exec prc_Escolaridad_Cambiar_Estado '${id}', '${estado}'`);
+      pool.close();
+      return "exito";
+    } else {
+      return "ambiguo";
+    }
+  }catch (error){
+    return "error";
+  }
+}
+async function verificarGradoByName(grado){
+  try{
+    await pool.connect()//TODO: Conectamos a la base de datos
+    const result = await pool.request().query(`Exec prc_Escolaridad_Buscar '${grado}'`);
+    pool.close();//TODO: Cerramos la conexión
+    return result.recordset.length === 0;
+  }catch (error){
+    console.log(error);
+  }
+}
 
-module.exports = {getGrados,getGradosDesactivados};
+async function verificarGradoByID(id){
+  try{
+    await pool.connect()//TODO: Conectamos a la base de datos
+    const result = await pool.request().query(`Exec prc_Escolaridad_Buscar_ID '${id}'`);
+    pool.close();//TODO: Cerramos la conexión
+    return result.recordset.length === 0;
+  }catch (error){
+    console.log(error);
+  }
+}
+module.exports = {getGradoByID,putGradoEstado,getGrados,getGradosDesactivados,postGrado};

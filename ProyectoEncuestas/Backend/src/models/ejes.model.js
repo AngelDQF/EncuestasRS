@@ -89,7 +89,6 @@ async function putEjeNombre(id, eje) {//TODO: Creamos la función que se encarga
         await pool.connect()//TODO: Conectamos a la base de datos
         await pool.request().query(`Exec prc_Ejes_Editar '${id}', '${eje}'`);//TODO: Ejecutamos la consulta
         pool.close();//TODO: Cerramos la conexión
-        result = await getEjeID(id);//TODO: Obtenemos el eje actualizado
         return "exito";//TODO: Retornamos el eje actualizado
       } else {//TODO: Si hay un eje con el mismo nombre
         return "ambiguo";//TODO: Retornamos un mensaje

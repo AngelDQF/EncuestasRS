@@ -1,4 +1,4 @@
-require("dotenv").config();//TODO: Importamos dotenv para poder usar las variables de entorno
+
 const sql = require('mssql');// TODO: Importamos el módulo de mssql
 
 const configBD = {//TODO: Exportamos un objeto con las variables de entorno
@@ -14,4 +14,5 @@ const configBD = {//TODO: Exportamos un objeto con las variables de entorno
   }
 }
 const pool = new sql.ConnectionPool(configBD);//TODO: Creamos una instancia de la conexión a la base de datos
+
 module.exports = pool;//TODO: Exportamos la instancia de la conexión a la base de datos

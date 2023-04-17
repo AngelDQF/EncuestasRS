@@ -1,1 +1,23 @@
-<p>agregar-escolaridad works!</p>
+<div mat-dialog-content class="bordeD">
+  <div mat-dialog-actions>
+    <div class="row">
+      <div class="col-12 mb-2">
+        <h1 class="w-100 m-0 titulo">Agregar Grado de Escolaridad</h1>
+      </div>
+      <hr>
+      <div class="col-12 mb-2">
+        <mat-form-field appearance="fill" class="form-control">
+          <mat-label>Ingrese el Grado de Escolaridad</mat-label>
+          <input matInput placeholder="Primaria" [formControl]="grado" required>
+          <mat-error *ngIf="grado.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <button type="button" class="btnEliminar form-control me-1" (click)="onClickNo()">Cancelar</button>
+      </div>
+      <div class="col-6">
+        <button (click)="newGrado()" type="button" class="btnGuardar form-control ms-1" [disabled]="grado.invalid">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>

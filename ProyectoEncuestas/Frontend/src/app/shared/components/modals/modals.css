@@ -21,12 +21,11 @@ mat-label{
 mat-form-field{
   background-color: #fff;
 }
-.h1Desactivar{
-  color: var(--color2);
-  text-align: center;
+.color1{
+  color: var(--color1) !important;
 }
-.h1Desactivar p{
-  color: var(--color1);
+.color2{
+  color: var(--color2) !important;
 }
 .h1Desactivar, .h1Desactivar p{
   font-size: 20px;

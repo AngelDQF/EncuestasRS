@@ -28,15 +28,31 @@ async function getUsuarioID(id) {
   catch (error) {
     console.log(error);
   }
-};
-async function putUsuariosEstado(id, estado) {
+}
+async function verificarUserByID(id) {//TODO: Función para verificar si el DNI ya existe
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    await pool.request().query(`Exec prc_Usuarios_Cambiar_Estado '${id}', '${estado}'`);
-    return "Estado Actualizado"
+    const result = await pool.request().query(`Exec prc_Usuarios_Buscar_ID '${id}'`);//TODO: Ejecutamos la consulta
+    return result.recordset.length === 0;//TODO: Retornamos el resultado
   }
   catch (error) {
-    console.log(error);
+    console.log(error);//TODO: Mostramos el error
+  }
+}
+async function putUsuarioEstado(id, estado) {
+  try {
+    const consulta = await verificarUserByID(id);
+    if (!consulta) {
+      await pool.connect()
+      await pool.request().query(`Exec prc_Usuarios_Cambiar_Estado '${id}', '${estado}'`);
+      pool.close();
+      return "exito";
+    } else {
+      return "ambiguo";
+    }
+  }
+  catch (error) {
+    return "error"
   }
 };
 async function putRestablecerContraseña(id, password) {
@@ -109,8 +125,7 @@ async function postUsuario(nombre, telefono, dni, correo, contra, estado, tipo, 
     await pool.connect()//TODO: Conectamos a la base de datos
     await pool.request().query(`Exec prc_Usuarios_Crear '${nombre}', '${telefono}', '${dni}', '${correo}', '${contra}', ${estado}, ${tipo}, ${sexo}`);
     pool.close();//TODO: Cerramos la conexión
-    const result = await getUsuario(dni);
-    return result;
+    return "Usuario creado";
   } catch (error) {
     console.log(error);
   }
@@ -166,11 +181,10 @@ async function putEstadoAsignacion(id, estado) {
   try {
     await pool.connect();
     await pool.request().query(`Exec prc_Usuarios_Asignaciones_Cambiar_Estado '${id}', ${estado}`);
-    return {message:"Estado Cambiado"}
- 
+    return "exito"
   } catch (error) {
-    console.log(error);
+    return "error"
   }
 }
 
-module.exports = { getUsuariosDesactivados, getUsuarios, getUsuario, getAsignaciones, postUsuario, verificarEmail, verificarDNI, getUsuariosTipos, getUsuarioID, putUsuariosEstado, putRestablecerContraseña, getAsignacionByID, putEstadoAsignacion };//TODO: Exportamos las funciones que hemos creado
+module.exports = { getUsuariosDesactivados, getUsuarios, getUsuario, getAsignaciones, postUsuario, verificarEmail, verificarDNI, getUsuariosTipos, getUsuarioID, putUsuarioEstado, putRestablecerContraseña, getAsignacionByID, putEstadoAsignacion };//TODO: Exportamos las funciones que hemos creado

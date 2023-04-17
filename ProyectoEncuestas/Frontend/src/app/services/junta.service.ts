@@ -72,6 +72,14 @@ export class JuntaService {
         })
       )
   }
+  getEscolaridadByID(id:number): Observable<any> {
+    const body={id};
+    return this.http.post(`${this.URL}/escolaridad/buscar`, body).pipe(
+      map(({results}: any) => {
+        return results;
+      })
+    )
+  }
   getGradosDesactivados(): Observable<any> {
     return this.http.get(`${this.URL}/escolaridad/desactivados`)
       .pipe(
@@ -79,5 +87,21 @@ export class JuntaService {
           return results;
         })
       )
+  }
+  postGrado(grado:string): Observable<any> {
+    const body={grado,estado:1}
+    return this.http.post(`${this.URL}/escolaridad/agregar`, body).pipe(
+      map(({results}: any) => {
+        return results;
+      })
+    )
+  }
+  putGradoEstado(id:number,estado:boolean): Observable<any> {
+    const body={id,estado}
+    return this.http.put(`${this.URL}/escolaridad/editar/estado`, body).pipe(
+      map(({results}: any) => {
+        return results;
+      })
+    )
   }
 }

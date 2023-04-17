@@ -13,5 +13,6 @@ const model = {//TODO: Exportamos todos los modelos hijos
   ubicacionesModel:require('./ubicaciones.model'),//TODO: Exportamos el modelo de las Ubicaciones
   escolaridadModel:require('./escolaridad.model'),//TODO: Exportamos el modelo los Grados de Escolaridad
   administrarModel:require('./administrar.model'),//TODO: Exportamos el modelo de Administrar
+  configModel:require('./config.model'),//TODO: Exportamos el modelo de Configuración
 };
 module.exports = model;//TODO: Exportamos el modelo padre

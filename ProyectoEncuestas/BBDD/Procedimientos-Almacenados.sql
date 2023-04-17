@@ -16,7 +16,6 @@ Begin
            ,[telefono_Usuario]
            ,[dni_Usuario]
            ,[correo_Usuario]
-           ,[contrasenia_Usuario]
            ,[create_At]
            ,[update_At]
            ,[id_Estado_Usuario]
@@ -480,7 +479,23 @@ as begin
 	SELECT id_Escolaridad AS id, grado_Escolaridad AS grado, estado
 	FROM     dbo.tbl_Grado_Escolaridad
 	where estado=1
-	Order By grado_Escolaridad
+	Order By id_Escolaridad
+end
+--Procedimiento Almacenado para buscar una escolaridad por su nombre
+create procedure prc_Escolaridad_Buscar
+@grado nvarchar(100)
+as begin
+	SELECT id_Escolaridad AS id, grado_Escolaridad AS grado, estado
+	FROM     dbo.tbl_Grado_Escolaridad
+	where grado_Escolaridad=@grado
+end
+--Procedimiento Almacenado para buscar una escolaridad por su ID
+create procedure prc_Escolaridad_Buscar_ID
+@id int
+as begin
+	SELECT id_Escolaridad AS id, grado_Escolaridad AS grado, estado
+	FROM     dbo.tbl_Grado_Escolaridad
+	where id_Escolaridad=@id
 end
 --Procedimineto Almacenado para listar los Grados de Escolaridad Desactivados
 create procedure prc_Escolaridad_Listar_Desactivados

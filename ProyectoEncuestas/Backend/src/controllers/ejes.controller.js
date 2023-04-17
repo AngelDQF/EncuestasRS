@@ -30,7 +30,6 @@ const ctrGetEjesDesactivados = async (req, res) => {
   }
 
 }
-
 const ctrPostEje = async (req, res) => {
   try {
     const { eje, estado } = req.body;
