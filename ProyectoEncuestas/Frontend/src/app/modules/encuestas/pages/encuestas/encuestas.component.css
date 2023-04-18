@@ -59,6 +59,12 @@
   font-size: 20px;
   font-weight: bold;
 }
+h3{
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+  margin: 0px;
+}
 .row {
   --bs-gutter-x: 0px !important;
 }
@@ -144,6 +150,18 @@ h2{
   }
   .encabezado h1 {
     font-size: 15px;
+  }
+  h3{
+    font-size: 12px;
+  }
+  ::placeholder{
+    font-size: 10px;
+  }
+  select{
+    font-size: 10px;
+  }
+  option{
+    font-size: 10px;
   }
 }
 /*Pantallas md*/

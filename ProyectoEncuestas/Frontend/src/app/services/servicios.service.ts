@@ -9,28 +9,28 @@ export class ServiciosService {
 
   constructor(private http:HttpClient) { }
   getSerBasicos():Observable<any> {
-    return this.http.get(`${this.URL}/servicios/locales`).pipe(
-      map(({ results }: any) => {
-        return results;
-      })
-    )
-  }
-  getSerBasicosDesactivados():Observable<any> {
-    return this.http.get(`${this.URL}/servicios/locales/desactivados`).pipe(
-      map(({ results }: any) => {
-        return results;
-      })
-    )
-  }
-  getSerLocales():Observable<any> {
     return this.http.get(`${this.URL}/servicios/basicos`).pipe(
       map(({ results }: any) => {
         return results;
       })
     )
   }
-  getSerLocalesDesactivados():Observable<any> {
+  getSerBasicosDesactivados():Observable<any> {
     return this.http.get(`${this.URL}/servicios/basicos/desactivados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getSerLocales():Observable<any> {
+    return this.http.get(`${this.URL}/servicios/locales`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getSerLocalesDesactivados():Observable<any> {
+    return this.http.get(`${this.URL}/servicios/locales/desactivados`).pipe(
       map(({ results }: any) => {
         return results;
       })

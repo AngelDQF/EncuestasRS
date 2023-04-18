@@ -20,6 +20,9 @@ import { EscolaridadInterface } from '@models/administrar/junta/escolaridad.inte
 import { EjesInterface } from '@models/administrar/junta/ejes.interface';
 import { EstructurasInterface } from '@models/administrar/requerimientos/estructuras.interface';
 import { MercadosInterface } from '@models/administrar/requerimientos/mercados.interface';
+import { ServiciosInterface } from '@models/administrar/servicios/servicios.interface';
+import { TenenciaTierraInterface } from '@models/administrar/requerimientos/tenencia.interface';
+import { UsosTierraInterface } from '@models/administrar/requerimientos/usos-tierra.interface';
 @Component({
   selector: 'app-encuestas',
   templateUrl: './encuestas.component.html',
@@ -52,13 +55,24 @@ export class EncuestasComponent implements OnInit {
   estructuras: any
   //TODO: Variables para org locales
   orgLocales: any;
+  //TODO: Variables para recursos naturales
+  tipoBosque: any;
   //TODO: Variables para nivel tecnologico
   nivel: any;
   //TODO: Variables para tipos de mercados
-  mercados:any;
+  mercados: any;
+  //TODO: Tipo de tenencia de la tierra
+  tenencia: any;
+  //TODO: Variables para los tipos de servicios
+  servBasicos: any;
+  servLocales:any;
+  //TODO: Variables para el uso de la tierra
+  usosTierra:any;
   ngOnInit(): void {
     this.datosIniciales();
   }
+  //TODO: Variables para Organizaciones Sociales Productivas
+  sociales: any;
   constructor(private fb: FormBuilder, private encuestasModel: EncuestasService, private cookieToken: CookieService) { }
   datosIniciales() {
     this.EncuestasForm = this.initForm();
@@ -81,6 +95,12 @@ export class EncuestasComponent implements OnInit {
     this.getOrgLocales();
     this.getNivelTec();
     this.getMercados();
+    this.getTiposBosque();
+    this.getServiciosBasicos();
+    this.getOrgSociales();
+    this.getTenenciasTierra();
+    this.getUsosTierra();
+    this.getServiciosLocales();
   }
   //Metodo para obtener el token
   getDecodedAccessToken(tok: string): any {
@@ -101,7 +121,13 @@ export class EncuestasComponent implements OnInit {
       txtLongitud: ["", [Validators.required]],
       txtLatitud: ["", [Validators.required]],
       identificadores: this.fb.array([]),
-      selectNivelTec:["", [Validators.required]],
+      selectNivelTec: ["", [Validators.required]],
+      txtCantRios: ["", [Validators.required]],
+      selectBosque: ["", [Validators.required]],
+      txtExportacion: ["", [Validators.required]],
+      txtImportacion: ["", [Validators.required]],
+      selectActividades: ["", [Validators.required]],
+      selectSociales: ["", [Validators.required]],
     });
   }
   initFrmM(): FormGroup {
@@ -201,6 +227,11 @@ export class EncuestasComponent implements OnInit {
       this.orgLocales = response;
     })
   }
+  getTiposBosque() {
+    this.encuestasModel.getTiposBosques$().subscribe((response: BosquesInterface[]) => {
+      this.tipoBosque = response;
+    })
+  }
   getCargos() {
     try {
       this.encuestasModel.getCargos$().subscribe((response: CargosInterface[]) => {
@@ -256,13 +287,54 @@ export class EncuestasComponent implements OnInit {
       console.log(error)
     }
   }
-  getMercados(){
+  getMercados() {
     try {
-      this.encuestasModel.getMercados$().subscribe((response: MercadosInterface[]) =>{
-        this.mercados=response;
+      this.encuestasModel.getMercados$().subscribe((response: MercadosInterface[]) => {
+        this.mercados = response;
       })
     } catch (error) {
       console.log(error)
+    }
+  }
+  getServiciosBasicos() {
+    try {
+      this.encuestasModel.getSerBasicos$().subscribe((response: ServiciosInterface[]) => {
+        this.servBasicos = response;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getOrgSociales() {
+    try {
+      this.encuestasModel.getOrganizacionesSociales$().subscribe((response: OrganizacionesInterface[]) => {
+        this.sociales = response;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getTenenciasTierra() {
+    this.encuestasModel.getTenenciaTierras$().subscribe((response: TenenciaTierraInterface[]) => {
+      this.tenencia = response;
+    });
+  }
+  getServiciosLocales(){
+    try{
+    this.encuestasModel.getSerLocales$().subscribe((response: ServiciosInterface[]) => {
+      this.servLocales = response;
+    });
+    }catch(error){
+      console.log(error);
+    }
+  }
+  getUsosTierra() {
+    try {
+      this.encuestasModel.getUsosTierra$().subscribe((response: UsosTierraInterface[]) => {
+        this.usosTierra = response;
+      });
+    } catch (error) {
+      console.log(error);
     }
   }
   //TODO: Metodo para obtener los municipios asignados al usuario

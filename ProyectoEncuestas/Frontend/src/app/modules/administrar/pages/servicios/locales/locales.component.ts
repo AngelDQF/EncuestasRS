@@ -19,7 +19,7 @@ export class LocalesComponent implements OnInit {
     this.obtenerOrg();
   }
   obtenerOrg() {
-    this.serviciosModel.getSerBasicos().subscribe((data: ServiciosInterface[]) => {
+    this.serviciosModel.getSerLocales().subscribe((data: ServiciosInterface[]) => {
       this.dataSource = new MatTableDataSource<ServiciosInterface>(data);
       this.dataSource.paginator = this.paginator;
     })

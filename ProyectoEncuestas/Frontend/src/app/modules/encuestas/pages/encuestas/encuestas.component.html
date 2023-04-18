@@ -564,14 +564,22 @@
         <table class="table table-striped">
           <thead class="bg-dark text-light">
             <tr class="text-center">
-              <th>Organización</th>
-              <th>Existe</th>
-              <th>Legalizada</th>
+              <th>
+                <h3>Organización</h3>
+              </th>
+              <th>
+                <h3>Existe</h3>
+              </th>
+              <th>
+                <h3>Legalizada</h3>
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let org of orgLocales" class="align-items-center text-center">
-              <td class="justify-content-between"><p>{{org.org}}</p></td>
+              <td class="justify-content-between">
+                <h2>{{org.org}}</h2>
+              </td>
               <td class="align-items-center">
                 <section class="example-section">
                   <mat-checkbox color="primary"></mat-checkbox>
@@ -589,23 +597,130 @@
       <div class="encabezado mt-3 col-12">
         <h1>Recursos Naturales</h1>
       </div>
+      <table class="table table-striped">
+        <thead class="bg-dark text-light">
+          <tr class="text-center">
+            <th>
+              <h3>Recurso</h3>
+            </th>
+            <th>
+              <h3>Existe</h3>
+            </th>
+            <th>
+              <h3>Cantidad/Tipo</h3>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <td>
+              <h2>Ríos</h2>
+            </td>
+            <td class="example-section">
+              <mat-checkbox color="primary"></mat-checkbox>
+            </td>
+            <td>
+              <input placeholder="Ingrese la cantidad" type="number" class="form-control text-center">
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td class="align-items-center">
+              <h2>Bosques</h2>
+            </td>
+            <td class="example-section">
+              <mat-checkbox color="primary"></mat-checkbox>
+            </td>
+            <td>
+              <select class="form-select text-center" formControlName="selectBosque">
+                <option selected value="">Tipo de Bosque</option>
+                <option *ngFor="let tipo of tipoBosque" [value]="tipo.id">{{tipo.tipo}}</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <div class="encabezado mt-3 col-12">
         <h1>Servicios Básicos</h1>
+      </div>
+      <div class="col-12">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Seleccione los Servicios Básicos</mat-label>
+          <mat-select #selBasicos multiple >
+            <mat-option *ngFor="let element of servBasicos" [value]="element.id">{{element.servicio}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="encabezado mt-3 col-12">
         <h1>Organizacies Sociales Productivas</h1>
       </div>
+      <div class="col-12">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Seleccione las organizaciones</mat-label>
+          <mat-select #selActividades formControlName="selectSociales" multiple >
+            <mat-option *ngFor="let element of sociales" [value]="element.id">{{element.org}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
       <div class="encabezado mt-3 col-12">
         <h1>Flujo Comercial</h1>
       </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Principales Productos Exportados</mat-label>
+          <textarea formControlName="txtExportacion" matInput placeholder="Frijoles, maíz, artesanías..."></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Principales Productos Importados</mat-label>
+          <textarea formControlName="txtImportacion" matInput placeholder="Textiles, papa, yuca..."></textarea>
+        </mat-form-field>
+      </div>
       <div class="encabezado mt-3 col-12">
-        <h1>Tipo de Tenencia de la Tierra</h1>
+        <h1>Tenencia de la Tierra</h1>
+      </div>
+      <div class="col-12 row align-items-center borde pt-2">
+        <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
+          <h2>Tipo de tenencia de la tierra:</h2>
+        </div>
+        <div class="col-12 col-md-6">
+          <mat-form-field appearance="outline" class="form-control">
+            <mat-label>Tipo de Tenencia</mat-label>
+            <mat-select #selNTec formControlName="selectNivelTec" required>
+              <mat-option disabled value="">Seleccione</mat-option>
+              <mat-option *ngFor="let ten of tenencia" [value]="ten.id">
+                {{ten.tenencia}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
       <div class="encabezado mt-3 col-12">
         <h1>Resumen de Actividades Productivas de la Tierra</h1>
       </div>
+      <div class="col-12 row align-items-center borde pt-2">
+        <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
+          <h2>Usos de la tierra:</h2>
+        </div>
+        <div class="col-12 col-md-6">
+          <mat-form-field appearance="outline" class="form-control">
+            <mat-label>Usos:</mat-label>
+            <mat-select #selActividades formControlName="selectActividades" multiple >
+              <mat-option *ngFor="let element of usosTierra" [value]="element.id">{{element.uso}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
       <div class="encabezado mt-3 col-12">
         <h1>Servicios Locales</h1>
+      </div>
+      <div class="col-12">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Seleccione los Servicios Locales</mat-label>
+          <mat-select #selBasicos multiple >
+            <mat-option *ngFor="let element of servLocales" [value]="element.id">{{element.servicio}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="encabezado mt-3 col-12">
         <h1>Aspectos Generales del Financiamiento</h1>

@@ -144,4 +144,32 @@ export class EncuestasService {
       }
       ))
   }
+  getSerBasicos$():Observable<any> {
+    return this.http.get(`${this.URL}/servicios/basicos`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getTenenciaTierras$():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/tierras/tenencia`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getUsosTierra$():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/tierras/usos`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getSerLocales$():Observable<any> {
+    return this.http.get(`${this.URL}/servicios/locales`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
 }
