@@ -11,6 +11,7 @@
 }
 .btnEliminarItem{
   color: var(--color2);
+  cursor: pointer;
   font-size: 40px;
 }
 .encabezado {
@@ -43,6 +44,9 @@
   padding: 5px;
   cursor: pointer;
 }
+.checkOrg:checked{
+  background-color: var(--color1) !important;
+}
 .iconoRegresar i:hover {
   color: white;
   background-color: var(--btn3);
@@ -50,6 +54,10 @@
 .iconoRefrescar i:hover {
   color: white;
   background-color: var(--btn2);
+}
+#h2{
+  font-size: 20px;
+  font-weight: bold;
 }
 .row {
   --bs-gutter-x: 0px !important;

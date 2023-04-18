@@ -1,7 +1,7 @@
 import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DepartamentosUsersInterface } from '@models/encuesta/departamentos-users.interface';
 import { EncuestasService } from '@serv/encuestas.service';
 import jwt_decode from 'jwt-decode';
@@ -19,6 +19,7 @@ import { CargosInterface } from '@models/administrar/junta/cargos.interface';
 import { EscolaridadInterface } from '@models/administrar/junta/escolaridad.interface';
 import { EjesInterface } from '@models/administrar/junta/ejes.interface';
 import { EstructurasInterface } from '@models/administrar/requerimientos/estructuras.interface';
+import { MercadosInterface } from '@models/administrar/requerimientos/mercados.interface';
 @Component({
   selector: 'app-encuestas',
   templateUrl: './encuestas.component.html',
@@ -47,9 +48,14 @@ export class EncuestasComponent implements OnInit {
   grados: any;
   ejes: any;
   //TODO: Variables para los identificadores de necesidades
-  estados:any;
-  estructuras:any
-  orgLocales:any;
+  estados: any;
+  estructuras: any
+  //TODO: Variables para org locales
+  orgLocales: any;
+  //TODO: Variables para nivel tecnologico
+  nivel: any;
+  //TODO: Variables para tipos de mercados
+  mercados:any;
   ngOnInit(): void {
     this.datosIniciales();
   }
@@ -73,6 +79,8 @@ export class EncuestasComponent implements OnInit {
     this.getEstados();
     this.getEstructuras();
     this.getOrgLocales();
+    this.getNivelTec();
+    this.getMercados();
   }
   //Metodo para obtener el token
   getDecodedAccessToken(tok: string): any {
@@ -92,7 +100,8 @@ export class EncuestasComponent implements OnInit {
       txtAddress: ["", [Validators.required]],
       txtLongitud: ["", [Validators.required]],
       txtLatitud: ["", [Validators.required]],
-      identificadores: this.fb.array([]) // Crear un FormArray vacío para los miembros
+      identificadores: this.fb.array([]),
+      selectNivelTec:["", [Validators.required]],
     });
   }
   initFrmM(): FormGroup {
@@ -183,18 +192,18 @@ export class EncuestasComponent implements OnInit {
     }
   }
   organizacionOrganizadora() {
-    this.encuestasModel.getOrganizaciones().subscribe((response: OrganizacionesInterface[]) => {
+    this.encuestasModel.getOrganizaciones$().subscribe((response: OrganizacionesInterface[]) => {
       this.organizaciones = response;
     })
   }
   getOrgLocales() {
-    this.encuestasModel.getOrgLocales().subscribe((response: OrganizacionesInterface[]) => {
+    this.encuestasModel.getOrgLocales$().subscribe((response: OrganizacionesInterface[]) => {
       this.orgLocales = response;
     })
   }
   getCargos() {
     try {
-      this.encuestasModel.getCargos().subscribe((response: CargosInterface[]) => {
+      this.encuestasModel.getCargos$().subscribe((response: CargosInterface[]) => {
         this.cargos = response;
       })
     } catch (error) {
@@ -203,7 +212,7 @@ export class EncuestasComponent implements OnInit {
   }
   getGrados() {
     try {
-      this.encuestasModel.getGrados().subscribe((response: EscolaridadInterface[]) => {
+      this.encuestasModel.getGrados$().subscribe((response: EscolaridadInterface[]) => {
         this.grados = response;
       })
     } catch (error) {
@@ -212,29 +221,48 @@ export class EncuestasComponent implements OnInit {
   }
   getEjes() {
     try {
-      this.encuestasModel.getEjes().subscribe((response: EjesInterface[]) => {
+      this.encuestasModel.getEjes$().subscribe((response: EjesInterface[]) => {
         this.ejes = response;
       })
     } catch (error) {
       console.log(error);
     }
   }
-  getEstados(){
+  getEstados() {
     try {
-      this.encuestasModel.getEstados().subscribe((response: EstadosInterface[]) => {
+      this.encuestasModel.getEstados$().subscribe((response: EstadosInterface[]) => {
         this.estados = response;
       })
     } catch (error) {
       console.log(error);
     }
   }
-  getEstructuras(){
+  getEstructuras() {
     try {
-      this.encuestasModel.getEstructuras().subscribe((response: EstructurasInterface[]) => {
+      this.encuestasModel.getEstructuras$().subscribe((response: EstructurasInterface[]) => {
         this.estructuras = response;
       })
     } catch (error) {
       console.log(error);
+    }
+  }
+  getNivelTec() {
+    try {
+      this.encuestasModel.getTecnologico$().subscribe((response: TecnologicoInterface[]) => {
+        this.nivel = response
+      }
+      );
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  getMercados(){
+    try {
+      this.encuestasModel.getMercados$().subscribe((response: MercadosInterface[]) =>{
+        this.mercados=response;
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
   //TODO: Metodo para obtener los municipios asignados al usuario

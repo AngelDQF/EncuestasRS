@@ -55,14 +55,14 @@ export class EncuestasService {
       })
     )
   }
-  getEstructuras(): Observable<any>  {
+  getEstructuras$(): Observable<any>  {
     return this.http.get(`${this.URL}/encuestas/estructuras`).pipe(
       map(({ results }: any) => {
         return results;
       })
     )
   }
-  getEstados(): Observable<any>  {
+  getEstados$(): Observable<any>  {
     return this.http.get(`${this.URL}/encuestas/estados`).pipe(
       map(({ results }: any) => {
         return results;
@@ -76,14 +76,21 @@ export class EncuestasService {
       })
     )
   }
-  getOrganizaciones():Observable<any> {
+  getMercados$():Observable<any> {
+    return this.http.get(`${this.URL}/requerimientos/mercados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getOrganizaciones$():Observable<any> {
     return this.http.get(`${this.URL}/encuestas/org`).pipe(
       map(({ results }: any) => {
         return results;
       })
     )
   }
-  getOrgLocales():Observable<any> {
+  getOrgLocales$():Observable<any> {
     return this.http.get(`${this.URL}/encuestas/org/locales`).pipe(
       map(({ results }: any) => {
         return results;
@@ -98,7 +105,7 @@ export class EncuestasService {
     )
   }
   //Junta Directiva
-  getCargos(): Observable<any> {
+  getCargos$(): Observable<any> {
     return this.http.get(`${this.URL}/cargos`)
       .pipe(
         map(({ results }: any) => {
@@ -106,7 +113,7 @@ export class EncuestasService {
         })
       )
   }
-  getGrados(): Observable<any> {
+  getGrados$(): Observable<any> {
     return this.http.get(`${this.URL}/escolaridad`)
       .pipe(
         map(({ results }: any) => {
@@ -114,7 +121,7 @@ export class EncuestasService {
         })
       )
   }
-  getEjes(): Observable<any> {
+  getEjes$(): Observable<any> {
     return this.http.get(`${this.URL}/ejes`)
       .pipe(
         map(({results}: any) => {
