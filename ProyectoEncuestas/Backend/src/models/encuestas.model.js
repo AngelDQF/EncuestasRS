@@ -20,7 +20,15 @@ async function getEncuestas() {//TODO: Creamos la función que se encargará de 
     console.log(error);
   }
 }
-
+async function postEncuesta(hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user) {
+  try {
+    await pool.connect()
+    const consulta = await pool.request().query(`Exec prc_Encuestas_Crear '${hombres}', '${mujeres}', '${total}', '${dep}', '${mun}', '${aldea}', '${caserio}', '${address}', '${org}', '${rios}', '${cant_rios}','${bosques}', '${tipo_bosque}', '${suelo}', '${tenencia}', '${mercado}', '${tecno}', '${user}'`);
+    return consulta.recordset;
+  } catch {
+    return "error"
+  }
+}
 async function getDepartamentosUsuario(id) {//TODO: Creamos la función que se encargará de listar todos los ejes
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -66,8 +74,6 @@ async function getAldeasUsuario(id) {//TODO: Creamos la función que se encargar
       return "El usuario no tiene aldeas agregados"
     }
     //console.log(result.recordsets);
-    pool.close();//TODO: Cerramos la conexión
-
   } catch (error) {
     console.log(error);
   }
@@ -106,7 +112,7 @@ async function getOrganizacion() {//TODO: Creamos la función que se encargará 
     console.log(error);
   }
 }
-async function getOrgLocales(){
+async function getOrgLocales() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Select * from vew_Encuestas_Organizacion_Local");//TODO: Ejecutamos la consulta
@@ -219,4 +225,15 @@ async function getEncuestasMun(id) {//TODO: Creamos la función que se encargar�
     console.log(error);
   }
 }
-module.exports = { getEncuestas, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun,getOrgLocales };//TODO: Exportamos las funcionessss
+async function postGeoUbicacion(id, lon, lat) {
+  try {
+    await pool.connect()
+    await pool.request().query(`Exec prc_Geo_Ubicacion_Crear '${id}', '${lon}', ${lat}`);
+    pool.close();
+    return "exito";
+  } catch (error){
+    console.log(error);
+    return "error";
+  }
+}
+module.exports = { getEncuestas, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun, getOrgLocales, postEncuesta,postGeoUbicacion };//TODO: Exportamos las funcionessss

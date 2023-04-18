@@ -9,7 +9,7 @@
   padding: 10px;
   border-radius: 15px;
 }
-.btnEliminarItem{
+.btnEliminarItem {
   color: var(--color2);
   cursor: pointer;
   font-size: 40px;
@@ -44,7 +44,7 @@
   padding: 5px;
   cursor: pointer;
 }
-.checkOrg:checked{
+.checkOrg:checked {
   background-color: var(--color1) !important;
 }
 .iconoRegresar i:hover {
@@ -55,11 +55,11 @@
   color: white;
   background-color: var(--btn2);
 }
-#h2{
+#h2 {
   font-size: 20px;
   font-weight: bold;
 }
-h3{
+h3 {
   font-size: 18px;
   color: #fff;
   font-weight: bold;
@@ -73,7 +73,7 @@ mat-form-field {
   border: none;
   border-radius: 0px;
 }
-.botonColor{
+.botonColor {
   background-color: var(--color1);
 }
 mat-label,
@@ -81,14 +81,14 @@ mat-select,
 mat-option {
   font-size: 18px;
 }
-mat-label{
+mat-label {
   color: var(--color1) !important;
   font-weight: bold !important;
 }
-.botonLocation2{
+.botonLocation2 {
   display: none;
 }
-.borde{
+.borde {
   background-color: #efffff;
   border: 3px solid #aadbff;
   height: 100%;
@@ -96,7 +96,7 @@ mat-label{
   justify-content: center;
   display: flex;
 }
-.borde2{
+.borde2 {
   background-color: #fff;
   border: 3px solid #aadbff;
   height: 100%;
@@ -104,34 +104,45 @@ mat-label{
   justify-content: center;
   display: flex;
 }
-h2{
+h2 {
   margin: 0px;
   color: #616161c8;
 }
-@media screen and (max-width: 767px) {
-.btnEliminarItem{
-  font-size: 15px;
+.btnEliminar,
+.btnGuardar {
+  height: 60px;
 }
-  h2{
+.btnSize {
+  font-size: 20px !important;
+}
+@media screen and (max-width: 767px) {
+  .btnEliminarItem {
+    font-size: 15px;
+  }
+  .btnEliminar,
+  .btnGuardar {
+    height: 40px;
+  }
+  h2 {
     font-size: 12px;
   }
-  .tamaño{
+  .tamaño {
     width: 36px;
     height: 36px;
     align-items: center !important;
     justify-content: center !important;
   }
-  .botonLocation1{
+  .botonLocation1 {
     display: none;
   }
-  .botonLocation2{
+  .botonLocation2 {
     display: flex;
   }
-  .tamañoIcon{
+  .tamañoIcon {
     align-items: center !important;
     font-size: 14px;
     padding: 0px;
-    margin:0px
+    margin: 0px;
   }
   .contenidoE {
     height: calc(100vh - 80px);
@@ -151,17 +162,20 @@ h2{
   .encabezado h1 {
     font-size: 15px;
   }
-  h3{
+  h3 {
     font-size: 12px;
   }
-  ::placeholder{
+  ::placeholder {
     font-size: 10px;
   }
-  select{
+  select {
     font-size: 10px;
   }
-  option{
+  option {
     font-size: 10px;
+  }
+  .btnSize {
+    font-size: 15px !important;
   }
 }
 /*Pantallas md*/
@@ -170,7 +184,7 @@ h2{
   .iconoRefrescar i {
     font-size: 10px;
   }
-  .btnEliminarItem{
+  .btnEliminarItem {
     font-size: 25px;
   }
 }

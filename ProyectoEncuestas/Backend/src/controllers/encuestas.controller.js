@@ -14,7 +14,7 @@ const ctrGetEncuestas = async (req, res) => {//TODO: Controlador para hacer get 
 const ctrGetDepartamentosUsuario = async (req, res) => {//TODO: Creamos la función que se encargará de obtener los usuarios
   try {
     const { id } = req.body
-    if(id===""){
+    if (id === "") {
       return
     }
     encuestasModel.getDepartamentosUsuario(id).then(result => {//TODO: Llamamos a la función del modelo para obtener los usuarios
@@ -121,4 +121,27 @@ const ctrGetTecnologicoEncuestas = async (req, res) => {//TODO: Controlador para
     handleHttpError(res, 'ERROR_LISTAR_NIVEL_TECNOLOGICO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-module.exports = { ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetOrganizacion, ctrGetSuelos, ctrGetOrganizacionesSociales, ctrGetMunicipiosUsuario, ctrGetAldeasUsuario, ctrGetCaseriosUsuario,ctrGetEstructurasEncuestas,ctrGetEstadosEncuestas,ctrGetTecnologicoEncuestas,ctrGetOrgLocales};//TODO: Exportamos las funciones del controlador
+const ctrPostEncuesta = async (req, res) => {
+  try {
+    const { hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user } = req.body;
+    encuestasModel.postEncuesta(hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user).then(results => {
+      res.json({ "results": { mensaje: results[0].id_Encuesta, estado: 1 } })
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_NIVEL_TECNOLOGICO');
+  }
+}
+const ctrPostGeoUbicacion=async (req,res)=>{
+  try{
+    const {id,lon,lat}=req.body;
+    const consulta= encuestasModel.postGeoUbicacion(id,lon,lat);
+    if(consulta=="exito"){
+      res.json({"results":{mensaje:"Geo Ubicación agregada exitosamente",estado:2}})
+    }else{
+      res.json({"results":{mensaje:"Error al agregar la Geo Ubicación",estado:3}})
+    }
+  }catch{
+    handleHttpError(res, 'ERROR_LISTAR_NIVEL_TECNOLOGICO');
+  }
+}
+module.exports = { ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetOrganizacion, ctrGetSuelos, ctrGetOrganizacionesSociales, ctrGetMunicipiosUsuario, ctrPostEncuesta, ctrGetAldeasUsuario, ctrGetCaseriosUsuario, ctrGetEstructurasEncuestas, ctrGetEstadosEncuestas, ctrGetTecnologicoEncuestas, ctrGetOrgLocales,ctrPostGeoUbicacion };//TODO: Exportamos las funciones del controlador

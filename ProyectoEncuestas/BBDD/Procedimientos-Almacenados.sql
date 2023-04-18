@@ -627,5 +627,18 @@ as begin
 			@user
 			)
 end
+--Procedimiento almacenado para insertar una Geo Ubicación
+Create procedure prc_Geo_Ubicacion_Crear
+@id int,
+@lon nvarchar(100),
+@lat nvarchar(100)
+as begin
+	INSERT INTO [dbo].[tbl_Detalle_Geo_Ubicaciones]
+           ([id_Encuesta]
+           ,[longitud]
+           ,[latitud])
+     VALUES
+           (@id,@lon,@lat)
+end
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Tipos_Organizacion], RESEED, 2);

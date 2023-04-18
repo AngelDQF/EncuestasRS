@@ -67,6 +67,18 @@
           <textarea formControlName="txtAddress" matInput placeholder="Enfrente de la inglesia..."></textarea>
         </mat-form-field>
       </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Total de Hombres</mat-label>
+          <input class="text-center" matInput placeholder="0" formControlName="txtHombres" required>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Total de Mujeres</mat-label>
+          <input class="text-center" matInput placeholder="0" formControlName="txtMujeres" required>
+        </mat-form-field>
+      </div>
       <div class="col-12 d-flex align-items-center">
         <div class="col-2 text-center pb-3">
           <button (click)="obtenerUbicacion()" matTooltip="Obtener Ubicación" matTooltipPosition="above" mat-fab
@@ -100,7 +112,7 @@
         <div class="col-12 col-md-6">
           <mat-form-field appearance="outline" class="form-control">
             <mat-label>Organización</mat-label>
-            <mat-select #selOrg formControlName="selectDep" required>
+            <mat-select #selOrg formControlName="selectOrgReunion" required>
               <mat-option disabled value="">Seleccione</mat-option>
               <mat-option *ngFor="let org of organizaciones" [value]="org.id">
                 {{org.org}}
@@ -514,7 +526,7 @@
       </div>
       <div class="col-12">
         <div class="text-center">
-          <button type="button" class="btn btn-info text-light" (click)="agregarIdentificador()">Agregar Nueva</button>
+          <button type="button" class="btn btn-info text-light fw-bold" (click)="agregarIdentificador()">Agregar Nueva</button>
         </div>
         <div formArrayName="identificadores">
           <div *ngFor="let ide of identificadores.controls; let i = index">
@@ -617,10 +629,10 @@
               <h2>Ríos</h2>
             </td>
             <td class="example-section">
-              <mat-checkbox color="primary"></mat-checkbox>
+              <mat-checkbox formControlName="checkRios" color="primary"></mat-checkbox>
             </td>
             <td>
-              <input placeholder="Ingrese la cantidad" type="number" class="form-control text-center">
+              <input formControlName="txtCantRios" placeholder="Ingrese la cantidad" type="number" class="form-control text-center">
             </td>
           </tr>
           <tr class="text-center">
@@ -628,7 +640,7 @@
               <h2>Bosques</h2>
             </td>
             <td class="example-section">
-              <mat-checkbox color="primary"></mat-checkbox>
+              <mat-checkbox formControlName="checkBosques" color="primary"></mat-checkbox>
             </td>
             <td>
               <select class="form-select text-center" formControlName="selectBosque">
@@ -639,13 +651,29 @@
           </tr>
         </tbody>
       </table>
+      <div class="col-12 row align-items-center borde pt-2">
+        <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
+          <h2>Tipo de suelo de la comunidad:</h2>
+        </div>
+        <div class="col-12 col-md-6">
+          <mat-form-field appearance="outline" class="form-control">
+            <mat-label>Suelo</mat-label>
+            <mat-select #selOrg formControlName="selectSuelos" required>
+              <mat-option disabled value="">Seleccione</mat-option>
+              <mat-option *ngFor="let suelo of suelos" [value]="suelo.id">
+                {{suelo.tipo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
       <div class="encabezado mt-3 col-12">
         <h1>Servicios Básicos</h1>
       </div>
       <div class="col-12">
         <mat-form-field appearance="outline" class="form-control">
           <mat-label>Seleccione los Servicios Básicos</mat-label>
-          <mat-select #selBasicos multiple >
+          <mat-select #selBasicos multiple>
             <mat-option *ngFor="let element of servBasicos" [value]="element.id">{{element.servicio}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -656,7 +684,7 @@
       <div class="col-12">
         <mat-form-field appearance="outline" class="form-control">
           <mat-label>Seleccione las organizaciones</mat-label>
-          <mat-select #selActividades formControlName="selectSociales" multiple >
+          <mat-select #selActividades formControlName="selectSociales" multiple>
             <mat-option *ngFor="let element of sociales" [value]="element.id">{{element.org}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -686,7 +714,7 @@
         <div class="col-12 col-md-6">
           <mat-form-field appearance="outline" class="form-control">
             <mat-label>Tipo de Tenencia</mat-label>
-            <mat-select #selNTec formControlName="selectNivelTec" required>
+            <mat-select #selNTec formControlName="selectTenencia" required>
               <mat-option disabled value="">Seleccione</mat-option>
               <mat-option *ngFor="let ten of tenencia" [value]="ten.id">
                 {{ten.tenencia}}
@@ -705,7 +733,7 @@
         <div class="col-12 col-md-6">
           <mat-form-field appearance="outline" class="form-control">
             <mat-label>Usos:</mat-label>
-            <mat-select #selActividades formControlName="selectActividades" multiple >
+            <mat-select #selActividades formControlName="selectActividades" multiple>
               <mat-option *ngFor="let element of usosTierra" [value]="element.id">{{element.uso}}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -717,13 +745,58 @@
       <div class="col-12">
         <mat-form-field appearance="outline" class="form-control">
           <mat-label>Seleccione los Servicios Locales</mat-label>
-          <mat-select #selBasicos multiple >
+          <mat-select #selBasicos multiple>
             <mat-option *ngFor="let element of servLocales" [value]="element.id">{{element.servicio}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="encabezado mt-3 col-12">
         <h1>Aspectos Generales del Financiamiento</h1>
+      </div>
+      <div class="col-12">
+        <div class="text-center">
+          <button type="button" class="btn btn-info text-light fw-bold" (click)="agregarFinanciamiento()">Agregar Nueva</button>
+        </div>
+        <div formArrayName="financiamientos">
+          <div *ngFor="let ide of financiamientos.controls; let i = index">
+            <div [formGroupName]="i" class="row borde2 mt-2">
+              <div class="col-10 col-md-11 row pt-3">
+                <div class="col-12 col-md-4">
+                  <mat-form-field appearance="outline" class="form-control ">
+                    <mat-label>Tipo</mat-label>
+                    <mat-select #selTipo formControlName="selectTipo" required>
+                      <mat-option value="" disabled>Seleccione</mat-option>
+                      <mat-option *ngFor="let estructura of estructuras" [value]="estructura.id">
+                        {{estructura.estructura}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-4">
+                  <mat-form-field appearance="outline" class="form-control">
+                    <mat-label>Fuente</mat-label>
+                    <mat-select #selFuente formControlName="selectFuente" required>
+                      <mat-option value="" disabled>Seleccione</mat-option>
+                      <mat-option *ngFor="let est of estados" [value]="est.id">
+                        {{est.estado}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-md-4">
+                  <mat-form-field appearance="outline" class="form-control">
+                    <mat-label>Marco Legal Aplicable</mat-label>
+                    <textarea formControlName="txtMarco" matInput
+                      placeholder="Enfrente de la inglesia..."></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-2 col-md-1 align-items-center justify-content-center text-center d-flex">
+                <a class="btnEliminarItem" (click)="eliminarFinanciamiento(i)"><i class="bi bi-x-octagon"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="encabezado mt-3 col-12">
         <h1>Nivel Tecnológico General</h1>
@@ -754,7 +827,7 @@
         <div class="col-12 col-md-6">
           <mat-form-field appearance="outline" class="form-control">
             <mat-label>Mercado</mat-label>
-            <mat-select #selNTec formControlName="selectNivelTec" required>
+            <mat-select #selNTec formControlName="selectMercado" required>
               <mat-option disabled value="">Seleccione</mat-option>
               <mat-option *ngFor="let mer of mercados" [value]="mer.id">
                 {{mer.mercado}}
@@ -762,6 +835,14 @@
             </mat-select>
           </mat-form-field>
         </div>
+      </div>
+    </div>
+    <div class="col-12 mt-3 mb-3 row">
+      <div class="col-6 px-1 px-md-3">
+        <button routerLink="../" type="button" class="btn btnSize btnEliminar form-control">Cancelar</button>
+      </div>
+      <div class="col-6 px-1 px-md-3">
+        <button (click)="enviarEncuesta()" type="button" class="btn btnSize btnGuardar form-control">Enviar</button>
       </div>
     </div>
   </form>

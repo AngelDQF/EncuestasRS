@@ -23,6 +23,8 @@ import { MercadosInterface } from '@models/administrar/requerimientos/mercados.i
 import { ServiciosInterface } from '@models/administrar/servicios/servicios.interface';
 import { TenenciaTierraInterface } from '@models/administrar/requerimientos/tenencia.interface';
 import { UsosTierraInterface } from '@models/administrar/requerimientos/usos-tierra.interface';
+import { InfoComponent } from '@shared/components';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-encuestas',
   templateUrl: './encuestas.component.html',
@@ -65,15 +67,17 @@ export class EncuestasComponent implements OnInit {
   tenencia: any;
   //TODO: Variables para los tipos de servicios
   servBasicos: any;
-  servLocales:any;
+  servLocales: any;
   //TODO: Variables para el uso de la tierra
-  usosTierra:any;
+  usosTierra: any;
+  //TODO: Variables para los tipos de suelos
+  suelos: any;
   ngOnInit(): void {
     this.datosIniciales();
   }
   //TODO: Variables para Organizaciones Sociales Productivas
   sociales: any;
-  constructor(private fb: FormBuilder, private encuestasModel: EncuestasService, private cookieToken: CookieService) { }
+  constructor(private fb: FormBuilder, private encuestasModel: EncuestasService, private cookieToken: CookieService,private dialog:MatDialog) { }
   datosIniciales() {
     this.EncuestasForm = this.initForm();
     this.tokenString = this.getDecodedAccessToken(this.token);
@@ -101,6 +105,7 @@ export class EncuestasComponent implements OnInit {
     this.getTenenciasTierra();
     this.getUsosTierra();
     this.getServiciosLocales();
+    this.getTiposSuelo();
   }
   //Metodo para obtener el token
   getDecodedAccessToken(tok: string): any {
@@ -118,16 +123,25 @@ export class EncuestasComponent implements OnInit {
       selectAldea: ["", [Validators.required]],
       selectCaserio: ["", [Validators.required]],
       txtAddress: ["", [Validators.required]],
+      selectOrgReunion: ["", [Validators.required]],
+      txtHombres: ["", [Validators.required]],
+      txtMujeres: ["", [Validators.required]],
       txtLongitud: ["", [Validators.required]],
       txtLatitud: ["", [Validators.required]],
-      identificadores: this.fb.array([]),
-      selectNivelTec: ["", [Validators.required]],
+      checkRios: [false, [Validators.required]],
       txtCantRios: ["", [Validators.required]],
+      checkBosques: [false, [Validators.required]],
       selectBosque: ["", [Validators.required]],
+      selectSuelos: ["", [Validators.required]],
+      selectTenencia: ["", [Validators.required]],
+      selectNivelTec: ["", [Validators.required]],
       txtExportacion: ["", [Validators.required]],
       txtImportacion: ["", [Validators.required]],
       selectActividades: ["", [Validators.required]],
+      selectMercado: ["", [Validators.required]],
       selectSociales: ["", [Validators.required]],
+      identificadores: this.fb.array([]),
+      financiamientos: this.fb.array([]),
     });
   }
   initFrmM(): FormGroup {
@@ -314,17 +328,26 @@ export class EncuestasComponent implements OnInit {
       console.log(error);
     }
   }
+  getTiposSuelo() {
+    try {
+      this.encuestasModel.getSuelos$().subscribe((response: SuelosInterface[]) => {
+        this.suelos = response;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   getTenenciasTierra() {
     this.encuestasModel.getTenenciaTierras$().subscribe((response: TenenciaTierraInterface[]) => {
       this.tenencia = response;
     });
   }
-  getServiciosLocales(){
-    try{
-    this.encuestasModel.getSerLocales$().subscribe((response: ServiciosInterface[]) => {
-      this.servLocales = response;
-    });
-    }catch(error){
+  getServiciosLocales() {
+    try {
+      this.encuestasModel.getSerLocales$().subscribe((response: ServiciosInterface[]) => {
+        this.servLocales = response;
+      });
+    } catch (error) {
       console.log(error);
     }
   }
@@ -366,6 +389,9 @@ export class EncuestasComponent implements OnInit {
   get identificadores(): FormArray {
     return this.EncuestasForm.get('identificadores') as FormArray;
   }
+  get financiamientos(): FormArray {
+    return this.EncuestasForm.get('financiamientos') as FormArray;
+  }
   agregarIdentificador() {
     // Agregar un FormGroup con los campos requeridos como controles
     this.identificadores.push(this.fb.group({
@@ -377,5 +403,52 @@ export class EncuestasComponent implements OnInit {
   eliminarIdentificador(index: number) {
     // Eliminar el miembro en el índice especificado
     this.identificadores.removeAt(index);
+  }
+  agregarFinanciamiento() {
+    // Agregar un FormGroup con los campos requeridos como controles
+    this.financiamientos.push(this.fb.group({
+      selectTipo: ['', Validators.required],
+      selectFuente: ['', Validators.required],
+      txtMarco: ['']
+    }));
+  }
+  eliminarFinanciamiento(index: number) {
+    // Eliminar el miembro en el índice especificado
+    this.financiamientos.removeAt(index);
+  }
+  enviarEncuesta() {
+    try {
+      let { selectDep, selectMun, selectAldea, selectCaserio, txtAddress, selectOrgReunion, txtHombres, txtMujeres, checkRios, txtCantRios, checkBosques, selectBosque, selectSuelos, selectTenencia, selectNivelTec, selectMercado } = this.EncuestasForm.value
+      let total = parseInt(txtHombres) + parseInt(txtMujeres);
+      let estRios: string;
+      let estBosques: string;
+      if (checkRios) {
+        estRios = 'Si';
+      }else{
+        estRios = 'No';
+      }
+      if (checkBosques) {
+        estBosques = 'Si';
+      }else{
+        estBosques = 'No';
+      }
+      this.encuestasModel.postEncuesta$(txtHombres, txtMujeres, total, selectDep, selectMun, selectAldea, selectCaserio, txtAddress, selectOrgReunion,estRios,txtCantRios,estBosques,selectBosque,selectSuelos,selectTenencia,selectMercado,selectNivelTec,this.tokenString.id).subscribe((response: any) => {
+        alert(response.mensaje);
+      })
+      //hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user
+    } catch (error) {
+      this.mensaje("Error",`${error}`,3);
+    }
+  }
+  mensaje(titulo: string, cuerpo: string, tipo: number): void {
+    try {
+      const dialogRef = this.dialog.open(InfoComponent, {
+        width: '500px',
+        data: [titulo, cuerpo, tipo]
+      });
+      dialogRef.afterClosed().subscribe(exc => { this.datosIniciales() });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

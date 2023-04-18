@@ -172,4 +172,14 @@ export class EncuestasService {
       })
     )
   }
+  postEncuesta$(hombres:number, mujeres:number, total:number, dep:string, mun:string, aldea:string, caserio:string, address:string, org:number, rios:string, cant_rios:number, bosques:string, tipo_bosque:number, suelo:number, tenencia:number, mercado:number, tecno:number, user:number):Observable<any> {
+    const body={
+      hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user
+    }
+    return this.http.post(`${this.URL}/encuestas`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    );
+  }
 }
