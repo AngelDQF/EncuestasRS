@@ -106,6 +106,21 @@ async function getOrganizacion() {//TODO: Creamos la función que se encargará 
     console.log(error);
   }
 }
+async function getOrgLocales(){
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query("Select * from vew_Encuestas_Organizacion_Local");//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "error"
+    }
+
+  } catch {
+    return "error"
+  }
+}
 async function getOrganizacionesSociales() {//TODO: Creamos la función que se encargará de listar todos los ejes
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -204,4 +219,4 @@ async function getEncuestasMun(id) {//TODO: Creamos la función que se encargar�
     console.log(error);
   }
 }
-module.exports = { getEncuestas, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun };//TODO: Exportamos las funcionessss
+module.exports = { getEncuestas, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun,getOrgLocales };//TODO: Exportamos las funcionessss

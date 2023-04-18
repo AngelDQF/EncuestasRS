@@ -20,10 +20,15 @@ i {
 mat-list-item {
   font-size: 15px;
   height: 100%;
-  align-self: center;
+  align-items: center;
 }
 mat-list-item:hover {
   background-color: #fff;
+}
+mat-icon{
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
 }
 mat-nav-list {
   padding: 0px;

@@ -1,6 +1,7 @@
 import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { DepartamentosUsersInterface } from '@models/encuesta/departamentos-users.interface';
 import { EncuestasService } from '@serv/encuestas.service';
 import jwt_decode from 'jwt-decode';
@@ -14,278 +15,20 @@ import { EstructuraUsers } from '@models/encuesta/estructuras-users-interface';
 import { EstadosInterface } from '@models/encuesta/estados-encuestas.interface';
 import { TecnologicoInterface } from '@models/encuesta/tecnologico-encuestas.interface';
 import { MatSelect } from '@angular/material/select';
+import { CargosInterface } from '@models/administrar/junta/cargos.interface';
+import { EscolaridadInterface } from '@models/administrar/junta/escolaridad.interface';
+import { EjesInterface } from '@models/administrar/junta/ejes.interface';
+import { EstructurasInterface } from '@models/administrar/requerimientos/estructuras.interface';
 @Component({
   selector: 'app-encuestas',
   templateUrl: './encuestas.component.html',
   styleUrls: ['./encuestas.component.css', '../../../../app.component.css']
 })
 export class EncuestasComponent implements OnInit {
-  /*
-  encuestaForm: FormGroup;
-  token = this.cookieToken.get('token');
-  tokenString: any;
-  btnNewSocial:any;
-  socialArray: any[] = [];
-  title: string = "Encuestas"
-  //Variables para los ngIf
-  showDep: boolean;
-  showMun: boolean;
-  showAldea: boolean;
-  showCaserio: boolean;
-  OrgArray: Array<any> = [""];
-  OrgSocialValue: any;
-  legalCheck:boolean=true;
-  //Declaracion de variables para guardar datos de los services
-  sociales: any;
-  departamentos: any;
-  municipios: any;
-  aldeas: any;
-  caserios: any;
-  bosques: any;
-  organizaciones: any;
-  suelos: any;
-  estructuras: any;
-  estados: any;
-  niveles: any;
-  idSocial:number=0;
-  //Declaracion del constructor
-  constructor(private encuestasModel: EncuestasService, private cookieToken: CookieService, private fb: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.activarShows();
-    this.encuestaForm = this.initForm();
-    this.datosIniciales();
-    this.socialArray = [];
-  }
-  initForm(): FormGroup {
-    return this.fb.group({
-      selectDepartamentos: ["", [Validators.required]],
-      selectMunicipios: ["", [Validators.required]],
-      selectAldeas: ["", [Validators.required]],
-      selectCaserios: ["", [Validators.required]],
-      txtDireccion: ["",
-        [
-          Validators.required,
-          Validators.maxLength(250)
-        ]
-      ],
-      selectOrganizacion: ["", [Validators.required]],
-      txtTotalHombres: ["", [Validators.required]],
-      txtTotalMujeres: ["", [Validators.required]],
-      txtTotalAsistencia: ["", [Validators.required]],
-      txtLatitud: ["", [Validators.required]],
-      txtLongitud: ["", [Validators.required]],
-      selectRios: [1, [Validators.required]],
-      txtCantidadRios: ["", [Validators.required]],
-      selectBosques: [1, [Validators.required]],
-      selectTipoBosque: ["", [Validators.required]],
-      selectTiposSuelos: ["", [Validators.required]],
-      selectOrgSocial: ["", [Validators.required]],
-      checkLegal:["",[Validators.required]],
-      txtOrgSociales: ["", [Validators.required]],
-      selectEstructuras: ["", [Validators.required]],
-      selectEstado: ["", [Validators.required]],
-      txtObservacionEstructura: ["",],
-      selectNivel: ["", [Validators.required]],
-      // orgs: [[], [Validators.required]],
-      // txtOrgSociales: this.fb.array([""]),
-    })
-  }
-  datosIniciales() {
-    this.tokenString = this.getDecodedAccessToken(this.token);
-    this.DepartamentosUser(this.tokenString.id);
-    this.organizacionOrganizadora();
-    this.organizacionesSociales();
-    this.tiposSuelos();
-    this.ObtenerEstados();
-    this.nivelTecnologico();
-    this.ObtenerEstructuras();
-    this.encuestaForm.get("txtCantidadRios")?.disable();
-    this.encuestaForm.get("selectTipoBosque")?.disable();
-    this.encuestaForm.get("checkLegal")?.disable();
-  }
-  sumaTotalAsistencia() {
-    const totalHombres = this.encuestaForm.get("txtTotalHombres")?.value;
-    const totalMujeres = this.encuestaForm.get("txtTotalMujeres")?.value;
-    this.encuestaForm.patchValue({
-      txtTotalAsistencia: totalHombres + totalMujeres
-    });
-  }
-  agregarOrg(term: any) {
-    this.socialArray.push({id:(this.idSocial=+this.idSocial),org:this.encuestaForm.value.selectOrgSocial,legal:this.encuestaForm.value.checkLegal});
-    console.log(this.socialArray)
-    this.encuestaForm.patchValue({
-      checkLegal:[""],
-    })
-  }
-  eliminarSocial(index:any){
-    this.socialArray.splice(index);
-    console.log(this.socialArray)
-  }
-  obtenerCoordenadas(): void {
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.encuestaForm.patchValue({
-        txtLatitud: position.coords.latitude,
-        txtLongitud: position.coords.longitude
-      })
-    })
-  }
-  organizacionOrganizadora() {
-    this.encuestasModel.getOrganizacion$().subscribe((response: OrganizacionesInterface[]) => {
-      this.organizaciones = response;
-    })
-  }
-  tiposSuelos() {
-    this.encuestasModel.getSuelos$().subscribe((response: SuelosInterface[]) => {
-      this.suelos = response;
-    })
-  }
-  nivelTecnologico() {
-    this.encuestasModel.getTecnologico$().subscribe((response: TecnologicoInterface[]) => {
-      this.niveles = response;
-    })
-  }
-  organizacionesSociales() {
-    this.encuestasModel.getOrganizacionesSociales$().subscribe((response: OrganizacionesInterface[]) => {
-      this.sociales = response;
-    })
-  }
-  limpiarForm() {
-    this.activarShows();
-    this.encuestaForm = this.initForm();
-    this.datosIniciales();
-  }
-  DepartamentosUser(tok: any): void {
-    this.encuestasModel.getDepartamentosUser$(tok).subscribe((response: DepartamentosUsersInterface[]) => {
-      this.departamentos = response;
-    })
-  }
-  ObtenerBosques(): void {
-    this.encuestasModel.getTiposBosques$().subscribe((response: BosquesInterface[]) => {
-      this.bosques = response;
-    })
-  }
-  ObtenerEstructuras(): void {
-    this.encuestasModel.getEstructuras$().subscribe((response: EstructuraUsers[]) => {
-      this.estructuras = response;
-    })
-  }
-  ObtenerEstados(): void {
-    this.encuestasModel.getEstados$().subscribe((response: EstadosInterface[]) => {
-      this.estados = response;
-    })
-  }
-  getDecodedAccessToken(tok: string): any {
-    try {
-      return jwt_decode(tok);
-    } catch (Error) {
-      return null;
-    }
-  }
-  //Metodos para los select de Ubicacion Change
-  departamentosChange(chan: any) {
-    this.encuestaForm.patchValue({
-      selectMunicipios: [""],
-      selectAldeas: ["",],
-      selectCaserios: [""],
-    })
-    this.MunicipiosUser(this.tokenString.id, chan.target.value)
-    this.showDep = false;
-    this.showMun = true;
-    this.showAldea = true;
-    this.showCaserio = true;
-  }
-
-  municipiosChange(chan: any) {
-    this.encuestaForm.patchValue({
-      selectAldeas: ["",],
-      selectCaserios: [""],
-    })
-    this.AldeasUser(chan.target.value)
-    this.showMun = false;
-    this.showAldea = true;
-    this.showCaserio = true;
-  }
-  aldeasChange(chan: any) {
-    this.encuestaForm.patchValue({
-      selectCaserios: [""],
-    })
-    this.CaseriosUser(chan.target.value)
-    this.showAldea = false;
-    this.showCaserio = true;
-  }
-  caseriosChange(chan: any): void {
-    this.showCaserio = false;
-  }
-  //Metodos para los txt change
-  mujeresChange(chan: any) {
-    this.sumaTotalAsistencia();
-  }
-  hombresChange(chan: any) {
-    this.sumaTotalAsistencia();
-  }
-  //Metodos para traer las ubicaciones de la Api
-  MunicipiosUser(id: number, dep: string) {
-    this.encuestasModel.getMunicipiosUser$(id, dep).subscribe((response: MunicipiosUserInterface[]) => {
-      this.municipios = response;
-    })
-  }
-  AldeasUser(id: string) {
-    this.encuestasModel.getAldeasUser$(id).subscribe((response: AldeasUserInterface[]) => {
-      this.aldeas = response;
-    })
-  }
-  CaseriosUser(id: string) {
-    this.encuestasModel.getCaseriosUser$(id).subscribe((response: CaseriosUserInterface[]) => {
-      this.caserios = response;
-    })
-  }
-  activarShows() {
-    this.showDep = true;
-    this.showMun = true;
-    this.showAldea = true;
-    this.showCaserio = true;
-  }
-  riosChange(term: any) {
-    const opcion = term.target.value;
-    if (opcion == 1) {
-      this.encuestaForm.patchValue({
-        txtCantidadRios: [0]
-      })
-      this.encuestaForm.get("txtCantidadRios")?.disable();
-    } else {
-      this.encuestaForm.get("txtCantidadRios")?.enable();
-    }
-  }
-  bosquesChanges(term: any) {
-    const opcion = term.target.value;
-    if (opcion == 1) {
-      this.encuestaForm.patchValue({
-        selectTipoBosque: [""]
-      })
-      this.encuestaForm.get("selectTipoBosque")?.disable();
-    } else {
-      this.ObtenerBosques();
-      this.encuestaForm.get("selectTipoBosque")?.enable();
-    }
-  }
-  onSubmit(): void {
-    alert("Hello");
-  }
-  orgSocialChange(term:any){
-    const opcion = term.target.value;
-    if (opcion != "") {
-
-      this.encuestaForm.get("checkLegal")?.enable();
-    } else {
-      this.encuestaForm.patchValue({
-        checkLegal:["",[Validators.required]]
-      })
-      this.encuestaForm.get("checkLegal")?.disable();
-    }
-  }*/
   //Variables de uso especial
   tokenString: any;
+  icon: boolean = true;
+  organizaciones: any;
   token = this.cookieToken.get('token');
   EncuestasForm: FormGroup;
   //Todo: Variables para los select de Ubicaciones
@@ -293,6 +36,20 @@ export class EncuestasComponent implements OnInit {
   municipios: MunicipiosUserInterface[] = [];
   aldeas: AldeasUserInterface[] = [];
   caserios: CaseriosUserInterface[] = [];
+  isLinear: boolean = true;
+  //TODO: Variables para la junta directiva
+  frmM1: FormGroup;
+  frmM2: FormGroup;
+  frmM3: FormGroup;
+  frmM4: FormGroup;
+  frmM5: FormGroup;
+  cargos: any;
+  grados: any;
+  ejes: any;
+  //TODO: Variables para los identificadores de necesidades
+  estados:any;
+  estructuras:any
+  orgLocales:any;
   ngOnInit(): void {
     this.datosIniciales();
   }
@@ -304,6 +61,18 @@ export class EncuestasComponent implements OnInit {
     this.municipios = [];
     this.aldeas = [];
     this.caserios = [];
+    this.organizacionOrganizadora();
+    this.frmM1 = this.initFrmM();
+    this.frmM2 = this.initFrmM();
+    this.frmM3 = this.initFrmM();
+    this.frmM4 = this.initFrmM();
+    this.frmM5 = this.initFrmM();
+    this.getCargos();
+    this.getGrados();
+    this.getEjes();
+    this.getEstados();
+    this.getEstructuras();
+    this.getOrgLocales();
   }
   //Metodo para obtener el token
   getDecodedAccessToken(tok: string): any {
@@ -320,14 +89,30 @@ export class EncuestasComponent implements OnInit {
       selectMun: ["", [Validators.required]],
       selectAldea: ["", [Validators.required]],
       selectCaserio: ["", [Validators.required]],
+      txtAddress: ["", [Validators.required]],
+      txtLongitud: ["", [Validators.required]],
+      txtLatitud: ["", [Validators.required]],
+      identificadores: this.fb.array([]) // Crear un FormArray vacío para los miembros
     });
   }
-
+  initFrmM(): FormGroup {
+    return this.fb.group({
+      txtNombre: ["", [Validators.required]],
+      txtDNI: ["", [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+      txtEdad: ["", [Validators.required]],
+      txtTelefono: ["", [Validators.required]],
+      selectSexo: ["", [Validators.required]],
+      selectCargo: ["", [Validators.required]],
+      selectNivel: ["", [Validators.required]],
+      selectEje: ["", [Validators.required]],
+    });
+  }
   //Metodos para los select de Ubicacion Change
   @ViewChild('selDep') selDep: MatSelect;
   @ViewChild('selMun') selMun: MatSelect;
   @ViewChild('selAldea') selAldea: MatSelect;
   @ViewChild('selCaserio') selCaserio: MatSelect;
+  @ViewChild('selOrg') selOrg: MatSelect;
   //TODO: Metodo para el change del select de departamentos
   changeDep() {
     try {
@@ -397,6 +182,61 @@ export class EncuestasComponent implements OnInit {
       console.log(error);
     }
   }
+  organizacionOrganizadora() {
+    this.encuestasModel.getOrganizaciones().subscribe((response: OrganizacionesInterface[]) => {
+      this.organizaciones = response;
+    })
+  }
+  getOrgLocales() {
+    this.encuestasModel.getOrgLocales().subscribe((response: OrganizacionesInterface[]) => {
+      this.orgLocales = response;
+    })
+  }
+  getCargos() {
+    try {
+      this.encuestasModel.getCargos().subscribe((response: CargosInterface[]) => {
+        this.cargos = response;
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getGrados() {
+    try {
+      this.encuestasModel.getGrados().subscribe((response: EscolaridadInterface[]) => {
+        this.grados = response;
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getEjes() {
+    try {
+      this.encuestasModel.getEjes().subscribe((response: EjesInterface[]) => {
+        this.ejes = response;
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getEstados(){
+    try {
+      this.encuestasModel.getEstados().subscribe((response: EstadosInterface[]) => {
+        this.estados = response;
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getEstructuras(){
+    try {
+      this.encuestasModel.getEstructuras().subscribe((response: EstructurasInterface[]) => {
+        this.estructuras = response;
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
   //TODO: Metodo para obtener los municipios asignados al usuario
   MunicipiosUser(id: number, dep: string) {
     this.encuestasModel.getMunicipiosUser$(id, dep).subscribe((response: MunicipiosUserInterface[]) => {
@@ -409,9 +249,33 @@ export class EncuestasComponent implements OnInit {
       this.aldeas = response;
     })
   }
-  CaseriosUser(id: string){
+  CaseriosUser(id: string) {
     this.encuestasModel.getCaseriosUser$(id).subscribe((response: CaseriosUserInterface[]) => {
       this.caserios = response;
     })
+  }
+  obtenerUbicacion() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.EncuestasForm.patchValue({
+        txtLatitud: position.coords.latitude,
+        txtLongitud: position.coords.longitude
+      })
+    })
+  }
+  //Metodos para el form array de frmIdentificadores
+  get identificadores(): FormArray {
+    return this.EncuestasForm.get('identificadores') as FormArray;
+  }
+  agregarIdentificador() {
+    // Agregar un FormGroup con los campos requeridos como controles
+    this.identificadores.push(this.fb.group({
+      selectEstructura: ['', Validators.required],
+      selectEstado: ['', Validators.required],
+      observacion: ['']
+    }));
+  }
+  eliminarIdentificador(index: number) {
+    // Eliminar el miembro en el índice especificado
+    this.identificadores.removeAt(index);
   }
 }

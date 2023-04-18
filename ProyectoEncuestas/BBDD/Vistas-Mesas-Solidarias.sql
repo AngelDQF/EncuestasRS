@@ -261,7 +261,15 @@ as
 	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo,dbo.tbl_Organizaciones.social_Productiva AS social, dbo.tbl_Organizaciones.estado_Organizacion AS estado
 	FROM     dbo.tbl_Organizaciones INNER JOIN
                   dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
-	where dbo.tbl_Organizaciones.estado_Organizacion=1 and dbo.tbl_Organizaciones.id_Tipo_Organizacion=2
+	where dbo.tbl_Organizaciones.estado_Organizacion=1 and dbo.tbl_Tipos_Organizacion.tipo_Organizacion like 'Estatal'
+go
+--Vista para ver las organizaciones locales
+CREATE VIEW [dbo].[vew_Encuestas_Organizacion_Local]
+as
+	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo,dbo.tbl_Organizaciones.social_Productiva AS social, dbo.tbl_Organizaciones.estado_Organizacion AS estado
+	FROM     dbo.tbl_Organizaciones INNER JOIN
+                  dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
+	where dbo.tbl_Organizaciones.estado_Organizacion=1 and dbo.tbl_Tipos_Organizacion.tipo_Organizacion like 'Local'
 go
 --Vista para organizacion que organizaciones Sociales
 CREATE VIEW [dbo].[vew_Encuestas_Organizaciones_Sociales]
@@ -282,4 +290,10 @@ CREATE VIEW [dbo].[vew_Encuestas_Tecnologico]
 as
 	SELECT id_Tecno AS id, nivel
 	FROM     dbo.tbl_Tecnologico_General
+go
+--Vista para los estados
+Create View vew_Estados
+as
+	SELECT id_Estado AS id, descripcion_Estado AS estado
+	FROM     dbo.tbl_Estados
 go

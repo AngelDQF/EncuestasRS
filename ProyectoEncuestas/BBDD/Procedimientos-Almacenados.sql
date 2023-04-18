@@ -343,6 +343,9 @@ as begin
 	SELECT id_Aldea AS id, id_Municipio AS id_mun, aldea
 	FROM     dbo.tbl_Aldeas
 	where id_Municipio=@id
+	except
+	Select e.id_Aldea as id, e.id_Municipio as id_mun, a.aldea
+	from tbl_Encuestas as e inner join tbl_Aldeas as a on a.id_Aldea = e.id_Aldea
 end
 --Procedimiento Almacenado para obtener las Aldeas Asignados al usuario
 create procedure prc_Encuestas_Caserios
@@ -560,5 +563,69 @@ as begin
 			 dbo.tbl_Municipios ON dbo.tbl_Departamentos.id_Departamento = dbo.tbl_Municipios.id_Departamento
 	where dbo.tbl_Municipios.id_Departamento = @id
 end
+--Procedimiento almacenado para crear una encuesta
+create procedure prc_Encuestas_Crear
+  @hombres int
+ ,@mujeres int
+ ,@total int
+ ,@dep nvarchar(10)
+ ,@mun nvarchar(10)
+ ,@aldea nvarchar(10)
+ ,@caserio nvarchar(10)
+ ,@address nvarchar(250)
+ ,@org int
+ ,@rios nvarchar(2)
+ ,@cant_rios int
+ ,@bosques nvarchar(2)
+ ,@tipo_bosque int
+ ,@suelo int
+ ,@tenencia int
+ ,@mercado int
+ ,@tecno int
+ ,@user int
+as begin
+	INSERT INTO [dbo].[tbl_Encuestas]
+           ([total_Hombres]
+           ,[total_Mujeres]
+           ,[total_Asistencia]
+           ,[id_Departamento]
+           ,[id_Municipio]
+           ,[id_Aldea]
+           ,[id_Caserio]
+           ,[direccion_Sede]
+           ,[id_Organizacion]
+           ,[existencia_Rio]
+           ,[cantidad_Rio]
+           ,[existencia_Bosque]
+           ,[id_Tipo_Bosque]
+           ,[id_Suelo]
+           ,[id_Tenencia]
+           ,[id_Mercado]
+           ,[id_Tecno]
+           ,[fecha_Encuesta]
+           ,[id_Usuario])
+	output inserted.id_Encuesta
+	VALUES
+           (@hombres,
+			@mujeres,
+			@total,
+			@dep,
+			@mun,
+			@aldea,
+			@caserio,
+			@address,
+			@org,
+			@rios,
+			@cant_rios,
+			@bosques,
+			@tipo_bosque,
+			@suelo,
+			@tenencia,
+			@mercado,
+			@tecno,
+			GETDATE(),
+			@user
+			)
+end
 --Reiniciar id en 1
---DBCC CHECKIDENT (  [tbl_Tipos_Usuario], RESEED, 0);
+--DBCC CHECKIDENT ( [tbl_Tipos_Organizacion], RESEED, 2);

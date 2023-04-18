@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { EncuestasInterface } from '@models/encuesta/encuesta.interface';
-import { Encuesta, EncuestasResponse, EncuestasService, } from '@serv/encuestas.service';
+import {  EncuestasService } from '@serv/encuestas.service';
 @Component({
   selector: 'app-listado-encuestas',
   templateUrl: './listado-encuestas.component.html',

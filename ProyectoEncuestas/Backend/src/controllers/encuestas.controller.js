@@ -67,6 +67,15 @@ const ctrGetOrganizacion = async (req, res) => {//TODO: Controlador para hacer g
     handleHttpError(res, 'ERROR_LISTAR_ORGANIZACION');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
+const ctrGetOrgLocales = async (req, res) => {//TODO: Controlador para hacer get a los Tipos de Financiamientos
+  try {
+    encuestasModel.getOrgLocales().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
+      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_ORGANIZACIONES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
 const ctrGetOrganizacionesSociales = async (req, res) => {//TODO: Controlador para hacer get a los Tipos de Financiamientos
   try {
     encuestasModel.getOrganizacionesSociales().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
@@ -112,4 +121,4 @@ const ctrGetTecnologicoEncuestas = async (req, res) => {//TODO: Controlador para
     handleHttpError(res, 'ERROR_LISTAR_NIVEL_TECNOLOGICO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-module.exports = { ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetOrganizacion, ctrGetSuelos, ctrGetOrganizacionesSociales, ctrGetMunicipiosUsuario, ctrGetAldeasUsuario, ctrGetCaseriosUsuario,ctrGetEstructurasEncuestas,ctrGetEstadosEncuestas,ctrGetTecnologicoEncuestas};//TODO: Exportamos las funciones del controlador
+module.exports = { ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetOrganizacion, ctrGetSuelos, ctrGetOrganizacionesSociales, ctrGetMunicipiosUsuario, ctrGetAldeasUsuario, ctrGetCaseriosUsuario,ctrGetEstructurasEncuestas,ctrGetEstadosEncuestas,ctrGetTecnologicoEncuestas,ctrGetOrgLocales};//TODO: Exportamos las funciones del controlador

@@ -55,14 +55,14 @@ export class EncuestasService {
       })
     )
   }
-  getEstructuras$(): Observable<any>  {
+  getEstructuras(): Observable<any>  {
     return this.http.get(`${this.URL}/encuestas/estructuras`).pipe(
       map(({ results }: any) => {
         return results;
       })
     )
   }
-  getEstados$(): Observable<any>  {
+  getEstados(): Observable<any>  {
     return this.http.get(`${this.URL}/encuestas/estados`).pipe(
       map(({ results }: any) => {
         return results;
@@ -76,8 +76,15 @@ export class EncuestasService {
       })
     )
   }
-  getOrganizacion$():Observable<any> {
+  getOrganizaciones():Observable<any> {
     return this.http.get(`${this.URL}/encuestas/org`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getOrgLocales():Observable<any> {
+    return this.http.get(`${this.URL}/encuestas/org/locales`).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -90,6 +97,32 @@ export class EncuestasService {
       })
     )
   }
+  //Junta Directiva
+  getCargos(): Observable<any> {
+    return this.http.get(`${this.URL}/cargos`)
+      .pipe(
+        map(({ results }: any) => {
+          return results;
+        })
+      )
+  }
+  getGrados(): Observable<any> {
+    return this.http.get(`${this.URL}/escolaridad`)
+      .pipe(
+        map(({ results }: any) => {
+          return results;
+        })
+      )
+  }
+  getEjes(): Observable<any> {
+    return this.http.get(`${this.URL}/ejes`)
+      .pipe(
+        map(({results}: any) => {
+          return results;
+        })
+      )
+  }
+  //Organizaciones Sociales
   getOrganizacionesSociales$():Observable<any> {
     return this.http.get(`${this.URL}/encuestas/sociales`).pipe(
       map(({ results }: any) => {
@@ -104,38 +137,4 @@ export class EncuestasService {
       }
       ))
   }
-}
-export interface UserDepartamentosResponse {
-  results: Departamento[];
-}
-export interface Departamento {
-  id: number
-  tipo: string
-  estado: boolean
-}
-export interface EncuestasResponse {
-  results: Encuesta[];
-}
-export interface Encuesta {
-  id: number;
-  departamento: string;
-  municipio: string;
-  aldea: string;
-  caserio: string;
-  address: string;
-  total_Hombres: number;
-  total_Mujeres: number;
-  total_Asistencia: number;
-  org: string;
-  rios: string;
-  cant_rio: string;
-  bosque: string;
-  tipo_bosque: string;
-  suelo: string;
-  tenencia: string;
-  mercado: string;
-  nivel_tec: string;
-  fecha: string;
-  hora:string;
-  usuario: string;
 }
