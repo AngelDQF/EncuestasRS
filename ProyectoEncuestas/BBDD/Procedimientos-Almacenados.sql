@@ -627,6 +627,8 @@ as begin
 			@user
 			)
 end
+--Procedimiento almacenado para insertar tipo de organizacion
+
 --Procedimiento almacenado para insertar una Geo Ubicación
 Create procedure prc_Geo_Ubicacion_Crear
 @id int,
@@ -639,6 +641,108 @@ as begin
            ,[latitud])
      VALUES
            (@id,@lon,@lat)
+end
+--Procedimiento almacenado para crear un miembro de la junta directiva
+Create Procedure prc_Junta_Crear
+@id int, @cargo int, @eje int, @dni nvarchar(20),@name nvarchar(40),
+@tel nvarchar(20),@sexo nvarchar(20), @edad int, @esc int
+as begin
+INSERT INTO [dbo].[tbl_Detalle_Junta_Directiva]
+           ([id_Encuesta]
+           ,[id_Cargo]
+           ,[id_Eje]
+           ,[dni_Cargo]
+           ,[nombre_Junta]
+           ,[telefono_Junta]
+           ,[sexo]
+           ,[edad]
+           ,[id_Escolaridad])
+     VALUES
+           (@id, @cargo, @eje, @dni, @name, @tel, @sexo, @edad, @esc)
+end
+--Procedimiento almacenado para crear detalle de servicio basico
+create procedure prc_Detalle_Serv_Basicos_Crear
+@id int, @idServ int
+as begin
+INSERT INTO [dbo].[tbl_Detalle_Servicios_Basicos]
+           ([id_Encuesta]
+           ,[id_Servicio])
+     VALUES
+           (@id,@idServ)
+end
+--Procedimiento almacenado para crear detalle de servicio local
+create procedure prc_Detalle_Serv_Locales_Crear
+@id int, @idServ int
+as begin
+INSERT INTO [dbo].[tbl_Detalle_Servicios_Locales]
+           ([id_Encuesta]
+           ,[id_Servicio])
+     VALUES
+           (@id,@idServ)
+end
+--Proceso almacenado para crear detalle de organizaciones
+create procedure prc_Detalle_Org_Crear
+@id int, @idOrg int
+as begin
+INSERT INTO [dbo].[tbl_Detalle_Organizaciones]
+           ([id_Encuesta]
+           ,[id_Organizacion])
+     VALUES
+           (@id,@idOrg)
+end
+--Creacion de procedimiento almacenado para crear una importacion
+create procedure prc_Importacion_Crear
+@id int, @importacion nvarchar(150)
+as begin
+INSERT INTO [dbo].[tbl_Detalle_Importaciones]
+           ([id_Encuesta]
+           ,[descripcion_Importacion])
+     VALUES
+           (@id,@importacion)
+end
+--Creacion de procedimiento almacenado para crear una exportacion
+create procedure prc_Exportacion_Crear
+@id int, @exportacion nvarchar(150)
+as begin
+INSERT INTO [dbo].[tbl_Detalle_Exportaciones]
+           ([id_Encuesta]
+           ,[descripcion_Exportacion])
+     VALUES
+           (@id,@exportacion)
+end
+--Creacion de procedimiento almacenado para crear un Detalle de uso de la tierra
+create procedure prc_Uso_Tierra_Crear
+@id int, @idUso int
+as begin
+INSERT INTO [dbo].[tbl_Detalle_Usos_Tierra]
+           ([id_Encuesta]
+           ,[id_Uso_Tierra])
+     VALUES
+           (@id,@idUso)
+end
+--Creacion de procedimiento almacenado para el detalle del financiamiento
+create procedure prc_Detalle_Financiamiento_Crear
+@id int, @idTipo int, @idFuente int,@marco nvarchar(250)
+as begin
+INSERT INTO [dbo].[tbl_Detalle_Financiamientos]
+           ([id_Encuesta]
+           ,[id_Tipo_Financiamiento]
+           ,[id_Fuente_Financiamiento]
+           ,[marco_Legal])
+     VALUES
+           (@id,@idTipo,@idFuente,@marco)
+end
+---Creacion de procedimiento almacenado para insertar un requerimiento
+create procedure prc_Requerimiento_Crear
+@id int, @idEstructura int, @idEstado int,@observacion nvarchar(250)
+as begin
+INSERT INTO [dbo].[tbl_Detalle_Requerimientos]
+           ([id_Encuesta]
+           ,[id_Estructura]
+           ,[id_Estado]
+           ,[observacion_Requerimiento])
+     VALUES
+           (@id,@idEstructura,@idEstado,@observacion)
 end
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Tipos_Organizacion], RESEED, 2);

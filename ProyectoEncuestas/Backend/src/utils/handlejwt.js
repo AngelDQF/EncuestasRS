@@ -8,7 +8,7 @@ const tokenSign = async (user) => {//TODO: Funcion para firmar el token
     },
     JWT_SECRET,//TODO: Pasamos la variable de entorno JWT_SECRET
     {
-      expiresIn: '2h'//TODO: Pasamos el tiempo de expiracion del token
+      expiresIn: '4h'//TODO: Pasamos el tiempo de expiracion del token
     }
   );
   return sign;//TODO: Retornamos el token firmado

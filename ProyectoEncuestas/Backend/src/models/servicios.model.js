@@ -4,7 +4,6 @@ async function getServiciosLocales() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Locales_Listar");//TODO: Ejecutamos la consulta
-    console.log(result.recordset.length)
 
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
@@ -32,7 +31,6 @@ async function getServiciosLocalesDesactivadas() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Locales_Listar_Desactivados");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }
@@ -49,7 +47,6 @@ async function getServiciosBasicos() {//TODO: Función para obtener todos los us
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Basicos_Listar");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }
@@ -66,7 +63,6 @@ async function getServiciosBasicosDesactivados() {//TODO: Función para obtener 
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Basicos_Listar_Desactivados");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }

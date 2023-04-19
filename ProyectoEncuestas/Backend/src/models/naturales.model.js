@@ -4,7 +4,6 @@ async function getBosques() {//TODO: Funcion para obtener todos los bosques
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Bosques_Listar");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     return result.recordset;//TODO: Retornamos los datos
     pool.close();//TODO: Cerramos la conexión
 
@@ -16,7 +15,6 @@ async function getBosquesDesactivados() {//TODO: Funcion para obtener todos los 
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Bosques_Listar_Desactivados");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     return result.recordset;//TODO: Retornamos los datos
     pool.close();//TODO: Cerramos la conexión
 
@@ -28,7 +26,6 @@ async function getSuelos() {//TODO: Funcion para obtener todos los tipos de suel
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Suelos_Listar");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }
@@ -44,7 +41,6 @@ async function getSuelosDesactivados() {//TODO: Funcion para obtener todos los t
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Suelos_Listar_Desactivados");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }

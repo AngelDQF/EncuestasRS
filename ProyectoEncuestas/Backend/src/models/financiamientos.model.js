@@ -13,7 +13,6 @@ async function getTiposFinanciamientos() {//TODO: Creamos la función que se enc
     else {
       return "No hay Tipos de Financiamientos agregados"
     }
-    //console.log(result.recordsets);
     pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
@@ -24,7 +23,6 @@ async function getTiposFinanciamientosDesactivados() {//TODO: Función para obte
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * FROM vew_Financiamientos_Listar_Tipos_Desactivados");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }
@@ -46,7 +44,6 @@ async function getFuentesFinanciamientos() {//TODO: Creamos la función que se e
     else {
       return "No hay Fuentes de Financiamientos agregados"
     }
-    //console.log(result.recordsets);
     pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
@@ -57,7 +54,6 @@ async function getFuentesFinanciamientosDesactivados() {//TODO: Función para ob
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * FROM vew_Financiamientos_Listar_Fuentes_Desactivadas");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }

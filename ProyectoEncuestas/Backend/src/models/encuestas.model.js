@@ -218,9 +218,6 @@ async function getEncuestasMun(id) {//TODO: Creamos la funci√≥n que se encargar√
     else {
       return "No hay Encuestas agregadas"
     }
-    //console.log(result.recordsets);
-    pool.close();//TODO: Cerramos la conexi√≥n
-
   } catch (error) {
     console.log(error);
   }
@@ -228,12 +225,103 @@ async function getEncuestasMun(id) {//TODO: Creamos la funci√≥n que se encargar√
 async function postGeoUbicacion(id, lon, lat) {
   try {
     await pool.connect()
-    await pool.request().query(`Exec prc_Geo_Ubicacion_Crear '${id}', '${lon}', ${lat}`);
-    pool.close();
+    await pool.request().query(`Exec prc_Geo_Ubicacion_Crear ${id}, '${lon}', '${lat}'`);
     return "exito";
-  } catch (error){
+  } catch (error) {
     console.log(error);
     return "error";
   }
 }
-module.exports = { getEncuestas, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun, getOrgLocales, postEncuesta,postGeoUbicacion };//TODO: Exportamos las funcionessss
+async function postJunta(id, cargo, eje, dni, name, tel, sexo, edad, esc) {
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Junta_Crear ${id}, ${cargo}, ${eje}, '${dni}', '${name}', '${tel}', '${sexo}', ${edad}, ${esc}`);
+    return "exito";
+  } catch (error) {
+    console.log(error);
+    return "error";
+  }
+}
+async function postServBasico(id, idServ) {
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Detalle_Serv_Basicos_Crear ${id},${idServ}`);
+    return "exito"
+  } catch (error) {
+    console.log(error);
+    return "error"
+  }
+}
+async function postServLocal(id, idServ) {
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Detalle_Serv_Locales_Crear ${id}, ${idServ}`);
+    return "exito"
+  } catch (error) {
+    console.log(error);
+    return "error"
+  }
+}
+
+async function postDetalleOrg(id, idOrg) {
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Detalle_Org_Crear ${id}, ${idOrg}`);
+    return "exito"
+  } catch (error) {
+    console.log(error);
+    return "error"
+  }
+}
+async function postDetalleImportacion(id, importacion) {
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Importacion_Crear ${id}, '${importacion}'`);
+    return "exito"
+  } catch (error) {
+    console.log(error);
+    return "error"
+  }
+}
+async function postDetalleExportacion(id, exportacion) {
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Exportacion_Crear ${id}, '${exportacion}'`);
+    return "exito"
+  } catch (error) {
+    console.log(error);
+    return "error"
+  }
+}
+async function postDetalleUsoTierra(id, uso) {
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Uso_Tierra_Crear ${id}, ${uso}`);
+    return "exito"
+  } catch (error) {
+    console.log(error);
+    return "error"
+  }
+}
+async function postDetalleFinanciamiento(id, tipo,fuente,obser) {
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Detalle_Financiamiento_Crear ${id}, ${tipo}, ${fuente}, '${obser}'`);
+    return "exito"
+  } catch (error) {
+    console.log(error);
+    return "error"
+  }
+}
+async function postDetalleRequerimiento(id, estructura,estado,obser) {
+  try {
+    await pool.connect();
+    await pool.request().query(`Exec prc_Requerimiento_Crear ${id}, ${estructura}, ${estado}, '${obser}'`);
+    return "exito"
+  } catch (error) {
+    console.log(error);
+    return "error"
+  }
+}
+
+module.exports = { getEncuestas, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun, getOrgLocales, postEncuesta, postGeoUbicacion, postJunta, postServBasico, postServLocal, postDetalleOrg, postDetalleImportacion, postDetalleExportacion,postDetalleUsoTierra,postDetalleFinanciamiento,postDetalleRequerimiento };//TODO: Exportamos las funcionessss

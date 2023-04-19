@@ -13,7 +13,6 @@ async function getEjes() {//TODO: Creamos la función que se encargará de lista
     else {
       return "No hay Ejes agregados"
     }
-    //console.log(result.recordsets);
     pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
@@ -24,7 +23,6 @@ async function getEjesDesactivados() {//TODO: Función para obtener todos los us
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * FROM vew_Ejes_Listar_Desactivados");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     return result.recordset;//TODO: Retornamos los datos
     pool.close();//TODO: Cerramos la conexión
 

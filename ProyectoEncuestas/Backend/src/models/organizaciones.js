@@ -4,7 +4,6 @@ async function getOrganizaciones() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Organizaciones_Listar");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }
@@ -21,7 +20,6 @@ async function getOrganizacionesDesactivadas() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Organizaciones_Listar_Desactivados");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }
@@ -37,7 +35,6 @@ async function getTipoOrganizaciones() {//TODO: Función para obtener todos los 
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Tipos_Organizaciones_Listar");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }
@@ -53,7 +50,6 @@ async function getTipoOrganizacionesDesactivadas() {//TODO: Función para obtene
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Tipos_Organizaciones_Listar_Desactivados");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }

@@ -222,7 +222,6 @@ Create Table tbl_Detalle_Organizaciones(
 id_Detalle_Organizacion INT Primary Key Identity(1,1),
 id_Encuesta INT Not Null,
 id_Organizacion INT Not Null,
-legalizado bit Not Null,
 Constraint fk_EncuestaDO Foreign Key (id_Encuesta)
 References tbl_Encuestas(id_Encuesta),
 Constraint fk_OrganizacionGU Foreign Key (id_Organizacion)

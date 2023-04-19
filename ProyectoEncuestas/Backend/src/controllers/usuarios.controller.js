@@ -1,19 +1,8 @@
-const { usuariosModel } = require('../models/index.model');//TODO: Importamos las funciones de los modelos de usuarios
+const { usuariosModel, encuestasModel } = require('../models/index.model');//TODO: Importamos las funciones de los modelos de usuarios
 const { handleHttpError } = require('../utils/handleError');//TODO: Importamos el metodo handleHttpError
 const { encrypt } = require('../utils/handleBcrypt');//TODO: Importamos las funciones de encriptación y comparación de contraseñas
 const { tokenSign } = require('../utils/handlejwt');//TODO: Importamos las funciones para firmar y verificar el token
 require("dotenv").config();//TODO: Importamos dotenv para poder usar las variables de entorno
-const nodemailer = require('nodemailer');
-let transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    type: "login",
-    user: "rsangeldqf7@gmail.com",
-    pass: "r3s0lidaria2023"
-  }
-});
 /**
  * Obtener un Registro
  * @param {*} req 
@@ -152,36 +141,6 @@ const ctrPutEstadoAsignacion = async (req, res) => {
     handleHttpError(res, 'ERROR_PUT_ESTADO_ASIGNACIÓN');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-const recuperarContra = async (req, res) => {
-  try {
-    const { email } = req.body;
-    const verificar = await usuariosModel.verificarEmail(email);
-    if (!verificar) {
-
-      const contra = "123456";
-      let mailOptions = {
-        from: process.env.email_user,
-        to: email,
-        subject: '¡Hola desde nodemailer!',
-        text: 'Este es un correo electrónico enviado desde nodemailer a través de Outlook.',
-        html: '<h1>¡Hola desde nodemailer!</h1><p>Este es un correo electrónico enviado desde nodemailer a través de Outlook.</p>'
-      };
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.log('Error al enviar el correo electrónico:', error);
-        } else {
-          console.log('Correo electrónico enviado con éxito:', info.response);
-        }
-      });
-      res.json({ mensaje: "Se ha enviado un correo con su contraseña" })
-    } else {
-      res.json({ mensaje: "No existe un usuario con ese correo" })
-    }
-  } catch (error) {
-    handleHttpError(res, 'ERROR_RECUPERAR_CONTRASEÑA');
-    console.log(error);
-  }
-}
 const ctrPostAsignacion = async (req, res) => {
   try {
     const {id,mun,estado}=req.body;
@@ -195,4 +154,5 @@ const ctrPostAsignacion = async (req, res) => {
     handleHttpError(res, 'ERROR_POST_ASIGNACIÓN');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-module.exports = { ctrGetUsuariosDesactivados, ctrGetUsuarios, ctrGetUsuariosTipos, ctrPostUsuario, ctrGetUsuarioByID, ctrPutUsuariosEstado, ctrPutRestablecerContraseña, ctrGetAsignaciones, ctrGetAsignacionByID, ctrPutEstadoAsignacion, recuperarContra, ctrPostAsignacion };//TODO: Exportamos las funcione
+
+module.exports = { ctrGetUsuariosDesactivados, ctrGetUsuarios, ctrGetUsuariosTipos, ctrPostUsuario, ctrGetUsuarioByID, ctrPutUsuariosEstado, ctrPutRestablecerContraseña, ctrGetAsignaciones, ctrGetAsignacionByID, ctrPutEstadoAsignacion, ctrPostAsignacion };//TODO: Exportamos las funcione
