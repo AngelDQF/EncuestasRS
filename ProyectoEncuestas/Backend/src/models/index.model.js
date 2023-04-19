@@ -14,5 +14,6 @@ const model = {//TODO: Exportamos todos los modelos hijos
   escolaridadModel:require('./escolaridad.model'),//TODO: Exportamos el modelo los Grados de Escolaridad
   administrarModel:require('./administrar.model'),//TODO: Exportamos el modelo de Administrar
   configModel:require('./config.model'),//TODO: Exportamos el modelo de Configuración
+  sesionModel:require('./sesion.model'),//TODO: Exportamos el modelo de Sesión
 };
 module.exports = model;//TODO: Exportamos el modelo padre

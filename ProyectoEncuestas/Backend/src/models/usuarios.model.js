@@ -58,18 +58,18 @@ async function putUsuarioEstado(id, estado) {
 async function putRestablecerContraseña(id, password) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    await pool.request().query(`Exec prc_Usuarios_Cambiar_Restablecer_Passsword '${id}', '${password}'`);
-    return "Contraseña Restablecida"
+    await pool.request().query(`Exec prc_Usuarios_Restablecer_Passsword ${id}, '${password}'`);
+    return "exito"
   }
   catch (error) {
     console.log(error);
+    return "error"
   }
 };
 async function getUsuariosDesactivados() {//TODO: Función para obtener todos los usuarios
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * FROM vew_Usuarios_Listar_Desactivados");//TODO: Ejecutamos la consulta
-    //console.log(result.recordset);
     return result.recordset;//TODO: Retornamos los datos
     pool.close();//TODO: Cerramos la conexión
 

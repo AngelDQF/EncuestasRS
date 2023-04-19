@@ -277,7 +277,8 @@ as
 	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo,dbo.tbl_Organizaciones.social_Productiva AS social, dbo.tbl_Organizaciones.estado_Organizacion AS estado
 	FROM     dbo.tbl_Organizaciones INNER JOIN
                   dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
-	where dbo.tbl_Organizaciones.estado_Organizacion=1 and dbo.tbl_Organizaciones.social_Productiva=1
+	where dbo.tbl_Organizaciones.estado_Organizacion=1 
+	--and dbo.tbl_Organizaciones.social_Productiva=1
 go
 --Vista para Estados
 CREATE VIEW [dbo].[vew_Encuestas_Estados]

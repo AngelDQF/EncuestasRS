@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CerrarSesionComponent } from '@shared/components';
+import { CookieService } from 'ngx-cookie-service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-home',
@@ -17,14 +19,22 @@ export class HomeComponent implements OnInit {
   btn5: string = "Administrar Encuestas";
   btn6: string = "Exportar";
   btn7: string = "Cerrar Sesión";
-  constructor(private cerrar: MatDialog) {
+  token: any;
+  mostrar: boolean;
+  constructor(private cerrar: MatDialog, private cookie: CookieService) {
+    this.token = (this.getDecodedAccessToken(this.cookie.get('token'))).tipo;
+    if (this.token == 2) {
+      this.mostrar=true;
+    } else if (this.token == 2) {
+      this.mostrar=false;
+    }
   }
   ngOnInit(): void {
     this.isExpanded = false;
   }
   cerrarSesion() {
     try {
-       this.cerrar.open(CerrarSesionComponent, {
+      this.cerrar.open(CerrarSesionComponent, {
         width: '400px',
 
       });
@@ -49,6 +59,13 @@ export class HomeComponent implements OnInit {
       this.btn5 = "Administrar Encuestas";
       this.btn6 = "Exportar";
       this.btn7 = "Cerrar Sesión";
+    }
+  }
+  getDecodedAccessToken(tok: string): any {
+    try {
+      return jwt_decode(tok);
+    } catch (Error) {
+      return null;
     }
   }
 }

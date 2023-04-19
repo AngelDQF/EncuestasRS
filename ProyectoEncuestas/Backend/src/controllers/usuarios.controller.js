@@ -49,10 +49,12 @@ const ctrPutRestablecerContraseña = async (req, res) => {
   try {
     const { id, password } = req.body;
     const eContra = await encrypt(password);//TODO: Encriptamos la contraseña
-    usuariosModel.putRestablecerContraseña(id, eContra).then(results => {//TODO: Llamamos a la función del modelo para obtener los usuarios
-      res.json({ results });//TODO: Mostramos el resultado en un json
-    });
-    console.log("Listo")
+    const consulta=await usuariosModel.putRestablecerContraseña(id, eContra);
+    if(consulta==="exito"){
+      res.json({results:{mensaje:"Contraseña restablecida exitosamente",estado:2}})
+    }else{
+      res.json({results:{mensaje:"Error al cambiar la contraseña",estado:1}})
+    }
   } catch (error) {
     handleHttpError(res, 'ERROR_LISTAR_USUARIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
     console.log(error);
@@ -92,8 +94,9 @@ const ctrPostUsuario = async (req, res) => {//TODO: Creamos la función que se e
     if (dniVerify) {//TODO: Verificamos que no exista un usuario con ese DNI
       if (emailVerify) {//TODO: Verificamos que no exista un usuario con ese correo
         const eContra = await encrypt(contra);//TODO: Encriptamos la contraseña
-        const consulta = await usuariosModel.postUsuario(nombre, telefono, dni, correo, eContra, estado, tipo, sexo);//TODO: Llamamos a la función del modelo para crear un usuario
-        res.send(consulta);
+         await usuariosModel.postUsuario(nombre, telefono, dni, correo, eContra, estado, tipo, sexo);//TODO: Llamamos a la función del modelo para crear un usuario
+         res.json({ results: { mensaje: "Usuario Creado Exitosamente", estado: 2 } })
+
       } else {
         res.json({ results: { mensaje: "Ya existe un usuario con ese correo", estado: 1 } })
         return

@@ -31,7 +31,12 @@ export class UsuariosService {
     )
   }
   postUsuarios(body: any): Observable<any> {
-    return this.http.post(`${this.URL}/usuarios`, body);
+    return this.http.post(`${this.URL}/usuarios`, body).pipe(
+      map(({results}:any)=>{
+        return results
+      }
+      )
+    )
   }
   getUsuarioById(id: number): Observable<any> {
     const body = {
@@ -64,7 +69,11 @@ export class UsuariosService {
 
   putPassword(id: number, password: string): Observable<any> {
     let body = { id, password }
-    return this.http.put(`${this.URL}/usuarios/editar/password`, body);
+    return this.http.put(`${this.URL}/usuarios/editar/password`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
   }
   //Servicios para las Asignaciones de los usuarios
   getAsignaciones(id: number): Observable<any> {

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { EncuestasInterface } from '@models/encuesta/encuesta.interface';
-import {  EncuestasService } from '@serv/encuestas.service';
+import { EncuestasService } from '@serv/encuestas.service';
 @Component({
   selector: 'app-listado-encuestas',
   templateUrl: './listado-encuestas.component.html',
@@ -10,8 +10,10 @@ import {  EncuestasService } from '@serv/encuestas.service';
 })
 export class ListadoEncuestasComponent implements OnInit {
   displayedColumns: string[] = ['id', 'dep', 'mun', 'aldea', 'caserio', 'address', 'hombres', 'mujeres', 'asistencia', 'org', 'exRios', 'cantRios', 'extBosques', 'tipoBosque', 'tipoSuelo', 'tenencia', 'mercado', 'tecno', 'mercado', 'fecha', 'hora', 'user'];
-
+  departamentos: any;
+  municipios: any;
   dataSource: any;
+  selectDep:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public page!: number;
   constructor(private encuestasModel: EncuestasService) {
@@ -24,5 +26,11 @@ export class ListadoEncuestasComponent implements OnInit {
       this.dataSource = new MatTableDataSource<EncuestasInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
+  }
+  changeDep(){
+
+  }
+  changeMun(){
+
   }
 }

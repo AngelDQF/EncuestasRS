@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UsersInterface } from '@models/usuarios/users.interface';
 import { UsuariosService } from '@serv/usuarios.service';
+import { InfoComponent } from '../info/info.component';
 
 @Component({
   selector: 'app-restablecer-password',
@@ -22,7 +23,7 @@ export class RestablecerPasswordComponent implements OnInit {
   eyeOff2: boolean;
   idUser: number;
   constructor(public dialogoRef: MatDialogRef<RestablecerPasswordComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Array<any>, private userModel: UsuariosService, private fb: FormBuilder) {  }
+    @Inject(MAT_DIALOG_DATA) public data: Array<any>,private dialog:MatDialog, private userModel: UsuariosService, private fb: FormBuilder) {  }
   ngOnInit(): void {
     this.obtenerUser(this.data[0]);
     this.hide = true;
@@ -37,8 +38,8 @@ export class RestablecerPasswordComponent implements OnInit {
   }
   initForm(): FormGroup {
     return this.fb.group({
-      txtContra: ["", [Validators.required]],
-      txtCambio: ["", [Validators.required]],
+      txtContra: ["", [Validators.required, Validators.minLength(8),Validators.maxLength(60)]],
+      txtCambio: ["", [Validators.required, Validators.minLength(8),Validators.maxLength(60)]],
     });
   }
   onClickNo(): void {
@@ -49,12 +50,17 @@ export class RestablecerPasswordComponent implements OnInit {
       const { txtContra, txtCambio } = this.frmCambio.value;
       if (txtContra !== txtCambio) {
         this.validacion = true
+        this.mensaje("Advertencia","Las contraseñas no coinciden",1)
       } else {
-        this.userModel.putPassword(this.idUser, txtContra).subscribe();
+        this.userModel.putPassword(this.idUser, txtContra).subscribe((data:any)=>{
+            if (data.estado==2){
+              this.mensaje("Información",data.mensaje,2);
+            }
+        });
         this.dialogoRef.close();
       }
     } catch (error) {
-      console.log(error)
+      this.mensaje("Error",`${error}`,3)
     }
   }
   cambio() {
@@ -84,5 +90,16 @@ export class RestablecerPasswordComponent implements OnInit {
       this.usuarios = data;
       this.nombre = this.usuarios[0].name;
     })
+  }
+
+  mensaje(titulo: string, cuerpo: string, tipo: number): void {
+    try {
+      this.dialog.open(InfoComponent, {
+        width: '500px',
+        data: [titulo, cuerpo, tipo]
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

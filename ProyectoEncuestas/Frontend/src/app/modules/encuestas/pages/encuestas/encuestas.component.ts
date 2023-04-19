@@ -110,6 +110,8 @@ export class EncuestasComponent implements OnInit {
     this.getTiposSuelo();
     this.getFuentes();
     this.getTiposFinanciamiento();
+    this.ckRiosChange();
+    this.ckBosquesChange();
   }
   //Metodo para obtener el token
   getDecodedAccessToken(tok: string): any {
@@ -117,6 +119,28 @@ export class EncuestasComponent implements OnInit {
       return jwt_decode(tok);
     } catch (Error) {
       return null;
+    }
+  }
+  get txtCantRios() {
+    return this.EncuestasForm.get('txtCantRios') as FormControl;
+  }
+  get selectBosque() {
+    return this.EncuestasForm.get('selectBosque') as FormControl;
+  }
+  ckRiosChange(): void {
+    let { checkRios } = this.EncuestasForm.value
+    if (checkRios) {
+      this.txtCantRios.enable();
+    } else if (!checkRios) {
+      this.txtCantRios.disable();
+    }
+  }
+  ckBosquesChange(): void {
+    let { checkBosques } = this.EncuestasForm.value
+    if (checkBosques) {
+      this.selectBosque.enable();
+    } else if (!checkBosques) {
+      this.selectBosque.disable();
     }
   }
   //Metodo para inicializar el formulario
@@ -133,7 +157,7 @@ export class EncuestasComponent implements OnInit {
       txtLongitud: ["", [Validators.required]],
       txtLatitud: ["", [Validators.required]],
       checkRios: [false, [Validators.required]],
-      txtCantRios: ["", [Validators.required]],
+      txtCantRios: [0, [Validators.required]],
       checkBosques: [false, [Validators.required]],
       selectBosque: ["", [Validators.required]],
       selectSuelos: ["", [Validators.required]],
@@ -152,14 +176,14 @@ export class EncuestasComponent implements OnInit {
   }
   initFrmM(): FormGroup {
     return this.fb.group({
-      txtNombre: ["", [Validators.required]],
-      txtDNI: ["", [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
-      txtEdad: ["", [Validators.required]],
-      txtTelefono: ["", [Validators.required]],
-      selectSexo: ["", [Validators.required]],
-      selectCargo: ["", [Validators.required]],
-      selectNivel: ["", [Validators.required]],
-      selectEje: ["", [Validators.required]],
+      txtNombre: ['', [Validators.required]],
+      txtDNI: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+      txtEdad: ['', [Validators.required]],
+      txtTelefono: ['', [Validators.required]],
+      selectSexo: ['', [Validators.required]],
+      selectCargo: ['', [Validators.required]],
+      selectNivel: ['', [Validators.required]],
+      selectEje: ['', [Validators.required]],
     });
   }
   //Metodos para los select de Ubicacion Change
@@ -435,43 +459,44 @@ export class EncuestasComponent implements OnInit {
     // Eliminar el miembro en el índice especificado
     this.financiamientos.removeAt(index);
   }
-  alert() {
-    alert(this.frmM1.value.selectEje)
-  }
+
   async enviarEncuesta() {
     try {
       let { txtLongitud, txtLatitud, selectOrgs, txtExportacion, txtImportacion, selectBasicos, selectLocales, selectActividades, identificadores, financiamientos } = this.EncuestasForm.value
- 
+
       this.crearEncuesta();
-      if (this.idEncuesta !== "error") {
-        this.agregarJuntaDirectiva(this.idEncuesta);
-        this.encuestasModel.postGeoUbicacion$(this.idEncuesta, txtLongitud, txtLatitud).subscribe();
-        selectOrgs.forEach((element: number) => {
-          this.encuestasModel.postOrgs$(this.idEncuesta, element).subscribe()
-        });
+      setTimeout(() => {
+        alert(`Codigo Generado: ${this.idEncuesta}`)
+        if (this.idEncuesta !== "error") {
+          this.agregarJuntaDirectiva(this.idEncuesta);
+          this.encuestasModel.postGeoUbicacion$(this.idEncuesta, txtLongitud, txtLatitud).subscribe();
+          selectOrgs.forEach((element: number) => {
+            this.encuestasModel.postOrgs$(this.idEncuesta, element).subscribe()
+          });
 
-        this.encuestasModel.postImportacion$(this.idEncuesta, txtImportacion).subscribe();
-        this.encuestasModel.postExportacion$(this.idEncuesta, txtExportacion).subscribe();
+          this.encuestasModel.postImportacion$(this.idEncuesta, txtImportacion).subscribe();
+          this.encuestasModel.postExportacion$(this.idEncuesta, txtExportacion).subscribe();
 
-        selectLocales.forEach((element: number) => {
-          this.encuestasModel.postServiciosLocales$(this.idEncuesta, element).subscribe()
-        });
-        selectBasicos.forEach((element: number) => {
-          this.encuestasModel.postServiciosBasicos$(this.idEncuesta, element).subscribe()
-        });
-        selectActividades.forEach((element: number) => {
-          this.encuestasModel.postUsosTierra$(this.idEncuesta, element).subscribe();
-        });
-        identificadores.forEach((element: any) => {
-          this.encuestasModel.postRequerimientos$(this.idEncuesta, element.selectEstructura, element.selectEstado, element.observacion).subscribe();
-        });
-        financiamientos.forEach((element: any) => {
-          this.encuestasModel.postFinanciamiento$(this.idEncuesta, element.selectTipo, element.selectFuente, element.txtMarco).subscribe();
-        });
+          selectLocales.forEach((element: number) => {
+            this.encuestasModel.postServiciosLocales$(this.idEncuesta, element).subscribe()
+          });
+          selectBasicos.forEach((element: number) => {
+            this.encuestasModel.postServiciosBasicos$(this.idEncuesta, element).subscribe()
+          });
+          selectActividades.forEach((element: number) => {
+            this.encuestasModel.postUsosTierra$(this.idEncuesta, element).subscribe();
+          });
+          identificadores.forEach((element: any) => {
+            this.encuestasModel.postRequerimientos$(this.idEncuesta, element.selectEstructura, element.selectEstado, element.observacion).subscribe();
+          });
+          financiamientos.forEach((element: any) => {
+            this.encuestasModel.postFinanciamiento$(this.idEncuesta, element.selectTipo, element.selectFuente, element.txtMarco).subscribe();
+          });
 
-      } else {
-        this.mensaje("Error", "Error al crear la encuesta", 3);
-      }
+        } else {
+          this.mensaje("Error", "Error al crear la encuesta", 3);
+        }
+      }, 2000);
     } catch (error) {
       this.mensaje("Error", `${error}`, 3);
     }
@@ -493,7 +518,8 @@ export class EncuestasComponent implements OnInit {
     }
 
     this.encuestasModel.postEncuesta$(txtHombres, txtMujeres, total, this.selDep.value, this.selMun.value, this.selAldea.value, this.selCaserio.value, txtAddress, selectOrgReunion, estRios, txtCantRios, estBosques, selectBosque, selectSuelos, selectTenencia, selectMercado, selectNivelTec, this.tokenString.id).subscribe((data: any) => {
-      return this.idEncuesta = data.mensaje;
+      this.idEncuesta = data.mensaje;
+
     })
   }
   agregarJuntaDirectiva(id: any): void {

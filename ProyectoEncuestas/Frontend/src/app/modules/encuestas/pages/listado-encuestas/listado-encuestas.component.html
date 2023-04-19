@@ -10,12 +10,27 @@
       <div class="col-2 align-items-end text-end">
         <a (click)="refresh()" class="iconoRefrescar p-0 btn"><i class="bi bi-arrow-clockwise"></i></a>
       </div>
-      <div class="col-12 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal">
-        <div class="input-group mt-2 mb-2 inpBuscar">
-          <label for="bus" class="input-group-text form-control"><i class="bi bi-search"></i>
-            <input name="bus" type="text" class="form-control btn" placeholder="Buscar Encuesta">
-          </label>
-        </div>
+      <div class="col-6">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Departamento</mat-label>
+          <mat-select #selDep (valueChange)="changeDep()" required>
+            <mat-option disabled value="">Seleccione</mat-option>
+            <mat-option *ngFor="let element of departamentos" [value]="element.id_dep">
+              {{element.dep}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Departamento</mat-label>
+          <mat-select #selMun (valueChange)="changeMun()" required>
+            <mat-option disabled value="">Seleccione</mat-option>
+            <mat-option *ngFor="let element of municipios" [value]="element.id_mun">
+              {{element.mun}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
   </div>

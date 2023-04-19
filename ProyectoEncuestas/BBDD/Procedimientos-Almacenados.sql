@@ -7,7 +7,7 @@ create procedure prc_Usuarios_Crear
 @correo nvarchar(100),
 @contra nvarchar(60),
 @estado int,
-@tipo int,
+@tipo int, 
 @sexo nvarchar(30)
 As
 Begin
@@ -65,7 +65,8 @@ Create Procedure prc_Usuarios_Cambiar_Restablecer_Passsword
 @password nvarchar(60)
 as begin
 	UPDATE [dbo].[tbl_Usuarios]
-	SET [contrasenia_Usuario] = @password
+	SET [contrasenia_Usuario] = @password,
+		[update_At]=GETDATE()
  WHERE id_Usuario=@id
 end
 --Procedimiento Almacenado para buscar la existencia de un correo
@@ -744,5 +745,30 @@ INSERT INTO [dbo].[tbl_Detalle_Requerimientos]
      VALUES
            (@id,@idEstructura,@idEstado,@observacion)
 end
+--Crear Usuario Administrador
+create procedure prc_Crear_Admin
+ @pass nvarchar(60)
+ as begin
+ INSERT INTO [dbo].[tbl_Usuarios]
+           ([nombre_Usuario]
+           ,[telefono_Usuario]
+           ,[dni_Usuario]
+           ,[correo_Usuario]
+           ,[contrasenia_Usuario]
+           ,[create_At]
+           ,[id_Estado_Usuario]
+           ,[id_Tipo_Usuario]
+           ,[sexo])
+     VALUES
+           ('Adminitrador'
+           ,'00000000'
+           ,'0000000000000'
+           ,'encuestas.mesassolidarias@redsolidaria.gob.hn'
+           ,@pass,
+           GETDATE()
+           ,1
+           ,2
+           ,'Hombre/Mujer')
+ end
 --Reiniciar id en 1
---DBCC CHECKIDENT ( [tbl_Tipos_Organizacion], RESEED, 2);
+--DBCC CHECKIDENT ( [tbl_Encuestas], RESEED, 0);

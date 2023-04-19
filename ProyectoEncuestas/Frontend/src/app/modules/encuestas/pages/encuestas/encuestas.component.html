@@ -151,7 +151,7 @@
                 <div class="col-12 col-md-6">
                   <mat-form-field appearance="outline" class="form-control">
                     <mat-label>Teléfono</mat-label>
-                    <input matInput placeholder="3322-1122" formControlName="txtTelefono" required>
+                    <input type="number" matInput placeholder="9922-2211" formControlName="txtTelefono" required>
                   </mat-form-field>
                 </div>
                 <div class="col-12 col-md-6">
@@ -266,7 +266,7 @@
                 <div class="col-12 col-md-6">
                   <mat-form-field appearance="outline" class="form-control">
                     <mat-label>Representante del Eje</mat-label>
-                    <mat-select #selDep formControlName="selectEje" (valueChange)="changeDep()" required>
+                    <mat-select formControlName="selectEje" required>
                       <mat-option disabled value="">Seleccione</mat-option>
                       <mat-option *ngFor="let eje of ejes" [value]="eje.id">
                         {{eje.eje}}
@@ -343,7 +343,7 @@
                 <div class="col-12 col-md-6">
                   <mat-form-field appearance="outline" class="form-control">
                     <mat-label>Representante del Eje</mat-label>
-                    <mat-select #selDep formControlName="selectEje" (valueChange)="changeDep()" required>
+                    <mat-select #selDep formControlName="selectEje" required>
                       <mat-option disabled value="">Seleccione</mat-option>
                       <mat-option *ngFor="let eje of ejes" [value]="eje.id">
                         {{eje.eje}}
@@ -420,7 +420,7 @@
                 <div class="col-12 col-md-6">
                   <mat-form-field appearance="outline" class="form-control">
                     <mat-label>Representante del Eje</mat-label>
-                    <mat-select #selDep formControlName="selectEje" (valueChange)="changeDep()" required>
+                    <mat-select formControlName="selectEje" required>
                       <mat-option disabled value="">Seleccione</mat-option>
                       <mat-option *ngFor="let eje of ejes" [value]="eje.id">
                         {{eje.eje}}
@@ -497,7 +497,7 @@
                 <div class="col-12 col-md-6">
                   <mat-form-field appearance="outline" class="form-control">
                     <mat-label>Representante del Eje</mat-label>
-                    <mat-select #selDep formControlName="selectEje" (valueChange)="changeDep()" required>
+                    <mat-select formControlName="selectEje" required>
                       <mat-option disabled value="">Seleccione</mat-option>
                       <mat-option *ngFor="let eje of ejes" [value]="eje.id">
                         {{eje.eje}}
@@ -515,7 +515,7 @@
             <ng-template matStepLabel>Confirmar</ng-template>
             <p>Datos listos</p>
             <div>
-              <button (click)="alert()" mat-button matStepperPrevious>Atrás</button>
+              <button mat-button matStepperPrevious>Atrás</button>
             </div>
           </mat-step>
         </mat-stepper>
@@ -593,7 +593,7 @@
               <h2>Ríos</h2>
             </td>
             <td class="example-section">
-              <mat-checkbox formControlName="checkRios" color="primary"></mat-checkbox>
+              <mat-checkbox (change)="ckRiosChange()" formControlName="checkRios" color="primary"></mat-checkbox>
             </td>
             <td>
               <input formControlName="txtCantRios" placeholder="Ingrese la cantidad" type="number"
@@ -605,7 +605,7 @@
               <h2>Bosques</h2>
             </td>
             <td class="example-section">
-              <mat-checkbox formControlName="checkBosques" color="primary"></mat-checkbox>
+              <mat-checkbox (change)="ckBosquesChange()" formControlName="checkBosques" color="primary"></mat-checkbox>
             </td>
             <td>
               <select class="form-select text-center" formControlName="selectBosque">

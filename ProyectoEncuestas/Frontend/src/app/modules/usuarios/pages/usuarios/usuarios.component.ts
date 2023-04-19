@@ -3,6 +3,8 @@ import { UsuariosService } from '@serv/usuarios.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UsersInterface } from '@models/usuarios/users.interface';
 import { Router } from '@angular/router';
+import { InfoComponent } from '@shared/components';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuarios',
@@ -11,9 +13,9 @@ import { Router } from '@angular/router';
 })
 export class UsuariosComponent implements OnInit {
   public usersForm: any;
-  public hide:boolean;
+  public hide: boolean;
   public usuariosTipos: Array<UsersInterface> = [];
-  constructor(private usuariosModel: UsuariosService, private fb: FormBuilder, private router: Router) { }
+  constructor(private usuariosModel: UsuariosService, private fb: FormBuilder, private router: Router, private dialog: MatDialog) { }
   ngOnInit(): void {
     this.usuariosModel.getUsuariosTipos().subscribe((data: UsersInterface[]) => {
       this.usuariosTipos = data;
@@ -35,21 +37,43 @@ export class UsuariosComponent implements OnInit {
     })
   }
   onSubmit() {
-    let body = {
-      nombre: (`${this.usersForm.value.txtNombre} ${this.usersForm.value.txtApellido}`),
-      telefono: this.usersForm.value.txtTelefono,
-      dni: this.usersForm.value.txtDni,
-      correo: this.usersForm.value.txtEmail,
-      contra: this.usersForm.value.txtContra,
-      estado: this.usersForm.value.selectEstado,
-      tipo: parseInt(this.usersForm.value.selectTipo),
-      sexo: this.usersForm.value.selectSexo,
+    try {
+      let body = {
+        nombre: (`${this.usersForm.value.txtNombre} ${this.usersForm.value.txtApellido}`),
+        telefono: this.usersForm.value.txtTelefono,
+        dni: this.usersForm.value.txtDni,
+        correo: this.usersForm.value.txtEmail,
+        contra: this.usersForm.value.txtContra,
+        estado: this.usersForm.value.selectEstado,
+        tipo: parseInt(this.usersForm.value.selectTipo),
+        sexo: this.usersForm.value.selectSexo,
+      }
+      console.log(body)
+      this.usuariosModel.postUsuarios(body).subscribe((data: any) => {
+        if (data.estado == 1) {
+          this.mensaje("Advertencia", `${data.mensaje}`, 1);
+        } else if (data.estado == 2) {
+          this.mensaje("Información", `${data.mensaje}`, 2);
+          this.router.navigate(['/usuarios']);
+        } else {
+          this.mensaje("Error", `${data.mensaje}`, 3);
+        }
+      })
+    } catch (error) {
+      this.mensaje("Error", `${error}`, 3);
     }
-    console.log(body)
-    this.usuariosModel.postUsuarios(body).subscribe()
-    this.router.navigate(['/usuarios']);
   }
   refresh() {
     this.initForm();
+  }
+  mensaje(titulo: string, cuerpo: string, tipo: number): void {
+    try {
+      this.dialog.open(InfoComponent, {
+        width: '500px',
+        data: [titulo, cuerpo, tipo]
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
