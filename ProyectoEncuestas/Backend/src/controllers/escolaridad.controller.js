@@ -63,4 +63,22 @@ const ctrPutGradoEstado = async (req, res) => {
     handleHttpError(res, 'Error al actualizar grado de escolaridad');
   }
 }
-module.exports = {ctrGetGrados,ctrGetGradosDesactivados,ctrPostGrado,ctrPutGradoEstado,ctrGetGradoByID}
+const putNombreGrado = async (req, res) => {	
+  try {
+    const {id, grado} = req.body;
+    const resultado= await escolaridadModel.putGradoNombre(id,grado);
+    if(resultado=="exito"){
+      res.json({ results: { mensaje: "Grado de escolaridad actualizado exitosamente", estado: 2 } });
+    }else if(resultado=="ambiguo"){
+      res.json({ results: { mensaje: "Ya existe un grado de escolaridad con ese nombre", estado: 1 } });
+    }else{
+      res.json({
+        results: {mensaje: "Ha ocurrido un error al actualizar grado de escolaridad", estado: 3}
+      })
+    }
+  } catch (error) {
+   handleHttpError(res, 'Error al actualizar grado de escolaridad'); 
+   console.log(error);
+  }
+}
+module.exports = {ctrGetGrados,ctrGetGradosDesactivados,ctrPostGrado,ctrPutGradoEstado,ctrGetGradoByID,putNombreGrado}

@@ -18,14 +18,14 @@ router.get('/nivel',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrGetTecn
 router.post('/',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostEncuesta)
 router.post('/geoubicacion',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostGeoUbicacion)
 router.post('/junta',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostJunta);
-router.post('/servicio/basico',authMiddleware,checkTipo(["Admin","Encuest"]),ctrPostServBasico);
-router.post('/servicio/local',authMiddleware,checkTipo(["Admin","Encuest"]),ctrPostServLocal);
+router.post('/servicio/basico',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostServBasico);
+router.post('/servicio/local',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostServLocal);
 
-router.post('/detalle/org',authMiddleware,checkTipo(["Admin","Encuest"]),ctrPostDetalleOrg);
-router.post('/detalle/importacion',authMiddleware,checkTipo(["Admin","Encuest"]),ctrPostDetalleImportacion);
-router.post('/detalle/exportacion',authMiddleware,checkTipo(["Admin","Encuest"]),ctrPostDetalleExportacion);
-router.post('/detalle/uso',authMiddleware,checkTipo(["Admin","Encuest"]),ctrPostDetalleUsoTierra);
-router.post('/detalle/financiamiento',authMiddleware,checkTipo(["Admin","Encuest"]),ctrPostDetalleFinanciamiento);
-router.post('/detalle/requerimiento',authMiddleware,checkTipo(["Admin","Encuest"]),ctrPostDetalleRequerimiento);
+router.post('/detalle/org',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostDetalleOrg);
+router.post('/detalle/importacion',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostDetalleImportacion);
+router.post('/detalle/exportacion',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostDetalleExportacion);
+router.post('/detalle/uso',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostDetalleUsoTierra);
+router.post('/detalle/financiamiento',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostDetalleFinanciamiento);
+router.post('/detalle/requerimiento',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrPostDetalleRequerimiento);
 
 module.exports=router;

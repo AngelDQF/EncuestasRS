@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-12 d-flex p-0">
       <div class="btnRegresar col-2">
-        <a routerLink="../" class="text-start iconoRegresar btn ps-0"><i class="bi bi-arrow-left"></i></a>
+        <a *ngIf="showBoton" routerLink="../" class="text-start iconoRegresar btn ps-0"><i
+            class="bi bi-arrow-left"></i></a>
+        <a *ngIf="!showBoton" routerLink="/" class="text-start iconoRegresar btn ps-0"><i
+            class="bi bi-arrow-left"></i></a>
       </div>
       <div class="col-8 align-items-center text-center d-flex">
         <h1 class="text-center col-12 titulo">Encuesta Mesas Solidarias</h1>
@@ -140,6 +143,7 @@
                   <mat-form-field appearance="outline" class="form-control">
                     <mat-label>DNI</mat-label>
                     <input matInput placeholder="0704190121100" formControlName="txtDNI" required>
+                    <mat-error *ngIf="txtDNI.invalid">{{getErrorMessage()}}</mat-error>
                   </mat-form-field>
                 </div>
                 <div class="col-12 col-md-6">
@@ -151,7 +155,7 @@
                 <div class="col-12 col-md-6">
                   <mat-form-field appearance="outline" class="form-control">
                     <mat-label>Teléfono</mat-label>
-                    <input type="number" matInput placeholder="9922-2211" formControlName="txtTelefono" required>
+                    <input type="tel" matInput placeholder="9922-2211" formControlName="txtTelefono" required>
                   </mat-form-field>
                 </div>
                 <div class="col-12 col-md-6">
@@ -804,7 +808,8 @@
     </div>
     <div class="col-12 mt-3 mb-3 row">
       <div class="col-6 px-1 px-md-3">
-        <button routerLink="../" type="button" class="btn btnSize btnEliminar form-control">Cancelar</button>
+        <button *ngIf="showBoton" routerLink="../" type="button" class="btn btnSize btnEliminar form-control">Cancelar</button>
+        <button *ngIf="!showBoton" routerLink="/" type="button" class="btn btnSize btnEliminar form-control">Cancelar</button>
       </div>
       <div class="col-6 px-1 px-md-3">
         <button [disabled]=" frmM1.invalid || frmM2.invalid || frmM3.invalid || frmM4.invalid || frmM5.invalid"

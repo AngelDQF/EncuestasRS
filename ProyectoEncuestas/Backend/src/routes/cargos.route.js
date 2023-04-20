@@ -4,7 +4,7 @@ const { ctrGetCargos,ctrGetCargosDesactivados,ctrGetCargoById, ctrPostCargo} = r
 const { checkTipo } = require("../middleware/role");
 const {authMiddleware}=require("../middleware/session")
 const {validatorCreateCargo}=require("../validators/cargos.validator")
-router.get('/',authMiddleware,checkTipo(["Admin"]),ctrGetCargos);//TODO: Creamos la ruta de tipo get para listar todos Cargos
+router.get('/',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrGetCargos);//TODO: Creamos la ruta de tipo get para listar todos Cargos
 router.get('/desactivados',authMiddleware,checkTipo(["Admin"]), ctrGetCargosDesactivados);//TODO: Creamos la ruta de tipo get para listar todos Cargos
 router.post('/',validatorCreateCargo, authMiddleware,checkTipo(["Admin"]), ctrPostCargo);//TODO: Creamos la ruta de tipo post para crear 
 

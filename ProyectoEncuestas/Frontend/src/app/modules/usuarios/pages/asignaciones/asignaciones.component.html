@@ -35,9 +35,9 @@
         <ng-container matColumnDef="opciones">
           <th mat-header-cell *matHeaderCellDef> Opciones </th>
           <td mat-cell *matCellDef="let element">
-            <a class="botonDesactivarTabla" matTooltip="Desactivar" matTooltipPosition="above"><i
+            <a *ngIf="show" class="botonDesactivarTabla" matTooltip="Desactivar" matTooltipPosition="above"><i
                 class="bi bi-trash3-fill" style="color:(--btn2);"> </i></a>
-            <a class="botonGuardarTabla" matTooltip="Ver Encuestas" matTooltipPosition="above"><i
+            <a *ngIf="show" class="botonGuardarTabla" matTooltip="Ver Encuestas" matTooltipPosition="above"><i
                 class="bi bi-eye-fill"></i></a>
           </td>
         </ng-container>

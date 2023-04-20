@@ -37,6 +37,19 @@ export class EscolaridadComponent implements OnInit {
     try {
       const dialogRef = this.dialog.open(AgregarEscolaridadComponent, {
         width: '500px',
+        data:[1]
+      });
+      dialogRef.afterClosed().subscribe(exc => { this.obtenerGrados() });
+
+    } catch (error) {
+      this.mensaje("Error", "Ha Ocurrido un Error al Crear el Eje", 3);
+    }
+  }
+  editar(id:number): void {
+    try {
+      const dialogRef = this.dialog.open(AgregarEscolaridadComponent, {
+        width: '500px',
+        data:[2,id]
       });
       dialogRef.afterClosed().subscribe(exc => { this.obtenerGrados() });
 

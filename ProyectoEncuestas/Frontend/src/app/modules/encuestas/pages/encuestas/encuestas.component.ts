@@ -36,6 +36,7 @@ export class EncuestasComponent implements OnInit {
   icon: boolean = true;
   organizaciones: any;
   token = this.cookieToken.get('token');
+  tokenTipo: any;
   EncuestasForm: FormGroup;
   //Todo: Variables para los select de Ubicaciones
   departamentos: DepartamentosUsersInterface[] = [];
@@ -75,12 +76,27 @@ export class EncuestasComponent implements OnInit {
   usosTierra: any;
   //TODO: Variables para los tipos de suelos
   suelos: any;
+  showBoton: boolean = true;
   ngOnInit(): void {
     this.datosIniciales();
   }
   //TODO: Variables para Organizaciones Sociales Productivas
   sociales: any;
-  constructor(private fb: FormBuilder, private encuestasModel: EncuestasService, private cookieToken: CookieService, private dialog: MatDialog) { }
+  constructor(private fb: FormBuilder, private encuestasModel: EncuestasService, private cookieToken: CookieService, private dialog: MatDialog) {
+    this.tokenTipo = (this.getDecodedAccessTokenTipo(this.cookieToken.get('token'))).tipo;
+    if (this.tokenTipo == 2) {
+      this.showBoton = true;
+    } else if (this.tokenTipo == 1) {
+      this.showBoton = false;
+    }
+  }
+  getDecodedAccessTokenTipo(tok: string): any {
+    try {
+      return jwt_decode(tok);
+    } catch (Error) {
+      return null;
+    }
+  }
   datosIniciales() {
     this.EncuestasForm = this.initForm();
     this.tokenString = this.getDecodedAccessToken(this.token);
@@ -177,7 +193,7 @@ export class EncuestasComponent implements OnInit {
   initFrmM(): FormGroup {
     return this.fb.group({
       txtNombre: ['', [Validators.required]],
-      txtDNI: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+      txtDNI: this.fb.control('', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]),
       txtEdad: ['', [Validators.required]],
       txtTelefono: ['', [Validators.required]],
       selectSexo: ['', [Validators.required]],
@@ -185,6 +201,19 @@ export class EncuestasComponent implements OnInit {
       selectNivel: ['', [Validators.required]],
       selectEje: ['', [Validators.required]],
     });
+  }
+  get txtDNI(): FormControl {
+    return this.frmM1.get('txtDNI') as FormControl;;
+  }
+  getErrorMessage() {
+    if (this.txtDNI.hasError('required')) {
+      return 'No puede estar vacío';
+    }
+    else if (this.txtDNI.hasError('minLength')) {
+      return 'El mínimo de caracteres es 13'
+    } else {
+      return this.txtDNI.hasError('maxLength') ? '' : 'No puede exceder los 13 caracteres';
+    }
   }
   //Metodos para los select de Ubicacion Change
   @ViewChild('selDep') selDep: MatSelect;
@@ -462,65 +491,39 @@ export class EncuestasComponent implements OnInit {
 
   async enviarEncuesta() {
     try {
-      let { txtLongitud, txtLatitud, selectOrgs, txtExportacion, txtImportacion, selectBasicos, selectLocales, selectActividades, identificadores, financiamientos } = this.EncuestasForm.value
-
+      let { } = this.EncuestasForm.value
       this.crearEncuesta();
-      setTimeout(() => {
-        alert(`Codigo Generado: ${this.idEncuesta}`)
-        if (this.idEncuesta !== "error") {
-          this.agregarJuntaDirectiva(this.idEncuesta);
-          this.encuestasModel.postGeoUbicacion$(this.idEncuesta, txtLongitud, txtLatitud).subscribe();
-          selectOrgs.forEach((element: number) => {
-            this.encuestasModel.postOrgs$(this.idEncuesta, element).subscribe()
-          });
-
-          this.encuestasModel.postImportacion$(this.idEncuesta, txtImportacion).subscribe();
-          this.encuestasModel.postExportacion$(this.idEncuesta, txtExportacion).subscribe();
-
-          selectLocales.forEach((element: number) => {
-            this.encuestasModel.postServiciosLocales$(this.idEncuesta, element).subscribe()
-          });
-          selectBasicos.forEach((element: number) => {
-            this.encuestasModel.postServiciosBasicos$(this.idEncuesta, element).subscribe()
-          });
-          selectActividades.forEach((element: number) => {
-            this.encuestasModel.postUsosTierra$(this.idEncuesta, element).subscribe();
-          });
-          identificadores.forEach((element: any) => {
-            this.encuestasModel.postRequerimientos$(this.idEncuesta, element.selectEstructura, element.selectEstado, element.observacion).subscribe();
-          });
-          financiamientos.forEach((element: any) => {
-            this.encuestasModel.postFinanciamiento$(this.idEncuesta, element.selectTipo, element.selectFuente, element.txtMarco).subscribe();
-          });
-
-        } else {
-          this.mensaje("Error", "Error al crear la encuesta", 3);
-        }
-      }, 2000);
     } catch (error) {
       this.mensaje("Error", `${error}`, 3);
     }
   }
   crearEncuesta() {
-    let { txtAddress, selectOrgReunion, txtHombres, txtMujeres, checkRios, txtCantRios, checkBosques, selectBosque, selectSuelos, selectTenencia, selectNivelTec, selectMercado } = this.EncuestasForm.value
-    let total = parseInt(txtHombres) + parseInt(txtMujeres);
-    let estRios: string;
-    let estBosques: string;
-    if (checkRios) {
-      estRios = 'Si';
-    } else {
-      estRios = 'No';
+    try {
+      let { txtAddress, selectOrgReunion, txtHombres, txtMujeres, checkRios, txtCantRios, checkBosques, selectBosque, selectSuelos, selectTenencia, selectNivelTec, selectMercado } = this.EncuestasForm.value
+      let total = parseInt(txtHombres) + parseInt(txtMujeres);
+      let estRios: string;
+      let estBosques: string;
+      if (checkRios) {
+        estRios = 'Si';
+      } else {
+        estRios = 'No';
+      }
+      if (checkBosques) {
+        estBosques = 'Si';
+      } else {
+        estBosques = 'No';
+      }
+      this.encuestasModel.postEncuesta$(txtHombres, txtMujeres, total, this.selDep.value, this.selMun.value, this.selAldea.value, this.selCaserio.value, txtAddress, selectOrgReunion, estRios, txtCantRios, estBosques, selectBosque, selectSuelos, selectTenencia, selectMercado, selectNivelTec, this.tokenString.id).subscribe((data: any) => {
+        this.idEncuesta = data.mensaje;
+        if (this.idEncuesta !== "error") {
+          this.agregarDetalles();
+        } else {
+          this.mensaje("Error", "Error al crear la encuesta", 3);
+        }
+      })
+    } catch (error) {
+      console.log(error);
     }
-    if (checkBosques) {
-      estBosques = 'Si';
-    } else {
-      estBosques = 'No';
-    }
-
-    this.encuestasModel.postEncuesta$(txtHombres, txtMujeres, total, this.selDep.value, this.selMun.value, this.selAldea.value, this.selCaserio.value, txtAddress, selectOrgReunion, estRios, txtCantRios, estBosques, selectBosque, selectSuelos, selectTenencia, selectMercado, selectNivelTec, this.tokenString.id).subscribe((data: any) => {
-      this.idEncuesta = data.mensaje;
-
-    })
   }
   agregarJuntaDirectiva(id: any): void {
     try {
@@ -529,6 +532,38 @@ export class EncuestasComponent implements OnInit {
       this.encuestasModel.postJunta$(id, this.frmM3.value.selectCargo, this.frmM3.value.selectEje, this.frmM3.value.txtDNI, this.frmM3.value.txtNombre, this.frmM3.value.txtTelefono, this.frmM3.value.selectSexo, this.frmM3.value.txtEdad, this.frmM3.value.selectNivel).subscribe();
       this.encuestasModel.postJunta$(id, this.frmM4.value.selectCargo, this.frmM4.value.selectEje, this.frmM4.value.txtDNI, this.frmM4.value.txtNombre, this.frmM4.value.txtTelefono, this.frmM4.value.selectSexo, this.frmM4.value.txtEdad, this.frmM4.value.selectNivel).subscribe();
       this.encuestasModel.postJunta$(id, this.frmM5.value.selectCargo, this.frmM5.value.selectEje, this.frmM5.value.txtDNI, this.frmM5.value.txtNombre, this.frmM5.value.txtTelefono, this.frmM5.value.selectSexo, this.frmM5.value.txtEdad, this.frmM5.value.selectNivel).subscribe();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  agregarDetalles() {
+    try {
+      let { txtLongitud, txtLatitud, selectOrgs, txtExportacion, txtImportacion, selectBasicos, selectLocales, selectActividades, identificadores, financiamientos } = this.EncuestasForm.value;
+      this.agregarJuntaDirectiva(this.idEncuesta);
+      this.encuestasModel.postGeoUbicacion$(this.idEncuesta, txtLongitud, txtLatitud).subscribe();
+      selectOrgs.forEach((element: number) => {
+        this.encuestasModel.postOrgs$(this.idEncuesta, element).subscribe()
+      });
+      this.encuestasModel.postImportacion$(this.idEncuesta, txtImportacion).subscribe();
+      this.encuestasModel.postExportacion$(this.idEncuesta, txtExportacion).subscribe();
+
+      selectLocales.forEach((element: number) => {
+        this.encuestasModel.postServiciosLocales$(this.idEncuesta, element).subscribe()
+      });
+      selectBasicos.forEach((element: number) => {
+        this.encuestasModel.postServiciosBasicos$(this.idEncuesta, element).subscribe()
+      });
+      selectActividades.forEach((element: number) => {
+        this.encuestasModel.postUsosTierra$(this.idEncuesta, element).subscribe();
+      });
+      identificadores.forEach((element: any) => {
+        this.encuestasModel.postRequerimientos$(this.idEncuesta, element.selectEstructura, element.selectEstado, element.observacion).subscribe();
+      });
+      financiamientos.forEach((element: any) => {
+        this.encuestasModel.postFinanciamiento$(this.idEncuesta, element.selectTipo, element.selectFuente, element.txtMarco).subscribe();
+      });
+      this.mensaje("Información","Encuesta Agregada Exitosamente",2);
+      this.datosIniciales(); 
     } catch (error) {
       console.log(error);
     }

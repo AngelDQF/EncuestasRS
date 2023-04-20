@@ -33,10 +33,10 @@ export class JuntaService {
         })
       )
   }
-  getEjeByID(id:number): Observable<any> {
-    const body={id};
+  getEjeByID(id: number): Observable<any> {
+    const body = { id };
     return this.http.post(`${this.URL}/ejes/buscar`, body).pipe(
-      map(({results}: any) => {
+      map(({ results }: any) => {
         return results;
       })
     )
@@ -44,15 +44,15 @@ export class JuntaService {
   getEjesDesactivados(): Observable<any> {
     return this.http.get(`${this.URL}/ejes/desactivados`)
       .pipe(
-        map(({results}: any) => {
+        map(({ results }: any) => {
           return results;
         })
       )
   }
-  putEje(id:number,eje:string): Observable<any> {
-    const body={id,eje}
+  putEje(id: number, eje: string): Observable<any> {
+    const body = { id, eje }
     return this.http.put(`${this.URL}/ejes/editar`, body).pipe(
-      map(({results}: any) => {
+      map(({ results }: any) => {
         return results;
       })
     )
@@ -72,10 +72,10 @@ export class JuntaService {
         })
       )
   }
-  getEscolaridadByID(id:number): Observable<any> {
-    const body={id};
+  getEscolaridadByID(id: number): Observable<any> {
+    const body = { id };
     return this.http.post(`${this.URL}/escolaridad/buscar`, body).pipe(
-      map(({results}: any) => {
+      map(({ results }: any) => {
         return results;
       })
     )
@@ -88,18 +88,26 @@ export class JuntaService {
         })
       )
   }
-  postGrado(grado:string): Observable<any> {
-    const body={grado,estado:1}
+  postGrado$(grado: string): Observable<any> {
+    const body = { grado, estado: 1 }
     return this.http.post(`${this.URL}/escolaridad/agregar`, body).pipe(
-      map(({results}: any) => {
+      map(({ results }: any) => {
         return results;
       })
     )
   }
-  putGradoEstado(id:number,estado:boolean): Observable<any> {
-    const body={id,estado}
+  putGradoNombre$(id: number, grado: string): Observable<any> {
+    const body = { id, grado }
+    return this.http.put(`${this.URL}/escolaridad/editar/nombre`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  putGradoEstado(id: number, estado: boolean): Observable<any> {
+    const body = { id, estado }
     return this.http.put(`${this.URL}/escolaridad/editar/estado`, body).pipe(
-      map(({results}: any) => {
+      map(({ results }: any) => {
         return results;
       })
     )

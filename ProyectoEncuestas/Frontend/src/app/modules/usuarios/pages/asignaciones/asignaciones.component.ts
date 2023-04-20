@@ -19,6 +19,7 @@ export class AsignacionesComponent implements OnInit {
   //TODO: Variables para los datos generales
   usuarios: any;
   nameTitle: any;
+  show:boolean;
   //Datos para la tabla
   displayedColumns: string[] = ['id', 'opciones', 'mun', 'dep'];
   dataSource: any;
@@ -45,6 +46,11 @@ export class AsignacionesComponent implements OnInit {
   obtenerAsignaciones() {
     try {
       this.userModel.getAsignaciones(this.idUser).subscribe((data: AsignacionesInterface[]) => {
+        if(data[0].id==undefined){
+          this.show=false;
+        }else{
+          this.show=true;
+        }
         this.dataSource = new MatTableDataSource<AsignacionesInterface>(data);
         this.dataSource.paginator = this.paginator;
       });

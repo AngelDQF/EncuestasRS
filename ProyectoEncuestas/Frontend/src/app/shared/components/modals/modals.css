@@ -2,6 +2,9 @@ mat-form-field{
   width: 100%;
 
 }
+.btnGuardar,.btnEditar,.btnEliminar{
+  font-size: 20px !important;
+}
 .bordeD{
   border:5px solid var(--color1);
 }
@@ -21,11 +24,20 @@ mat-label{
 mat-form-field{
   background-color: #fff;
 }
+#externa{
+  font-size: 20px !important;
+}
+.expandir{
+  width: 100%;
+}
 .color1{
   color: var(--color1) !important;
 }
 .color2{
   color: var(--color2) !important;
+}
+.color3{
+  color:var(--btn2) !important;
 }
 .h1Desactivar, .h1Desactivar p{
   font-size: 20px;

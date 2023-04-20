@@ -5,7 +5,7 @@ const { validatorCreateEje, validatorGetEje, validatorUpdateEje, validatorUpdate
 const {authMiddleware}=require("../middleware/session")
 const { checkTipo } = require("../middleware/role");
 
-router.get('/',authMiddleware,checkTipo(["Admin"]), ctrGetEjes);//TODO: Creamos la ruta de tipo get para listar todos los usuarios
+router.get('/',authMiddleware,checkTipo(["Admin","Encuestador"]), ctrGetEjes);//TODO: Creamos la ruta de tipo get para listar todos los usuarios
 router.post('/buscar',authMiddleware,checkTipo(["Admin"]), ctrBuscarEjeByID);
 router.get('/desactivados', authMiddleware,checkTipo(["Admin"]),ctrGetEjesDesactivados);//TODO: Creamos la ruta de tipo get para listar todos los usuarios
 router.post('/', authMiddleware,checkTipo(["Admin"]),validatorCreateEje, ctrPostEje);//TODO: Creamos la ruta de tipo post para crear 
