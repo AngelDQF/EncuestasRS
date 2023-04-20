@@ -60,7 +60,7 @@ as begin
  WHERE id_Usuario=@id
 end
 --Procedimiento Almacenado para restablecer la contraseña de un usuario
-Create Procedure prc_Usuarios_Cambiar_Restablecer_Passsword
+Create Procedure prc_Usuarios_Restablecer_Passsword
 @id int,
 @password nvarchar(60)
 as begin
@@ -770,5 +770,8 @@ create procedure prc_Crear_Admin
            ,2
            ,'Hombre/Mujer')
  end
+
+--Proceso almacenado para crear una fuente de financiamiento
+
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Encuestas], RESEED, 0);
