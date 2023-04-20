@@ -21,4 +21,6 @@ export * from './modals/put-eje/put-eje.component'
 export * from './modals/agregar-asignacion/agregar-asignacion.component'
 export * from './modals/agregar-cargo/agregar-cargo.component'
 export * from './modals/agregar-escolaridad/agregar-escolaridad.component'
-
+export * from './modals/cambiar-estado/cambiar-estado.component'
+export * from './modals/estado-asig/estado-asig.component'
+export * from './modals/put-cargo/put-cargo.component'

@@ -3,19 +3,18 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { EscolaridadInterface } from '@models/administrar/junta/escolaridad.interface';
 import { JuntaService } from '@serv/junta.service';
 import { InfoComponent } from '../info/info.component';
-
 @Component({
-  selector: 'app-estado-escolaridad',
-  templateUrl: './estado-escolaridad.component.html',
+  selector: 'app-cambiar-estado',
+  templateUrl: './cambiar-estado.component.html',
   styleUrls: ['../modals.css', '../../../../app.component.css']
 })
-export class EstadoEscolaridadComponent implements OnInit {
+export class CambiarEstadoComponent implements OnInit {
   grados: any;
   grado: any;
   titulo: any
   color:string ="";
   color2:string ="";
-  constructor(private dialogoRef: MatDialogRef<EstadoEscolaridadComponent>, private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: Array<any>, private juntaModel: JuntaService) {
+  constructor(private dialogoRef: MatDialogRef<CambiarEstadoComponent>, private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: Array<any>, private juntaModel: JuntaService) {
   }
   ngOnInit(): void {
     this.obtenerEscolaridad(this.data[0]);

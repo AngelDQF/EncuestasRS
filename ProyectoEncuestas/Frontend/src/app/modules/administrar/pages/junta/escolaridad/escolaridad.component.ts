@@ -4,8 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { EscolaridadInterface } from '@models/administrar/junta/escolaridad.interface';
 import { JuntaService } from '@serv/junta.service';
-import { AgregarEscolaridadComponent, InfoComponent } from '@shared/components';
-import { EstadoEscolaridadComponent } from '@shared/components/modals/estado-escolaridad/estado-escolaridad.component';
+import { AgregarEscolaridadComponent, CambiarEstadoComponent, InfoComponent } from '@shared/components';
+
 
 @Component({
   selector: 'app-escolaridad',
@@ -60,9 +60,9 @@ export class EscolaridadComponent implements OnInit {
   desactivar(id:number) {
     try {
       if(id!==undefined){
-      const dialogRef= this.dialog.open(EstadoEscolaridadComponent, {
+      const dialogRef= this.dialog.open(CambiarEstadoComponent, {
         width: '400px',
-        data: [id,"Desactivar",0],
+        data: [id,"Desactivar",0,],
       });
       dialogRef.afterClosed().subscribe(exc=>{this.obtenerGrados()})
     }else{

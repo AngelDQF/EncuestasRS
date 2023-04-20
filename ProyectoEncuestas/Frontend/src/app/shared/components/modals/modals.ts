@@ -7,8 +7,10 @@ import { EstadoAsigComponent } from "./estado-asig/estado-asig.component";
 import { InfoComponent } from "./info/info.component";
 import { PutEjeComponent } from "./put-eje/put-eje.component";
 import { RestablecerPasswordComponent } from "./restablecer-password/restablecer-password.component";
+import { CambiarEstadoComponent } from "./cambiar-estado/cambiar-estado.component";
+import { PutCargoComponent } from "./put-cargo/put-cargo.component";
 
-export const modals:any =[
+export const modals: any = [
   CerrarSesionComponent,
   DesactivarUserComponent,
   EstadoAsigComponent,
@@ -17,5 +19,8 @@ export const modals:any =[
   PutEjeComponent,
   AgregarAsignacionComponent,
   AgregarCargoComponent,
-  AgregarEscolaridadComponent
+  AgregarEscolaridadComponent,
+  CambiarEstadoComponent,
+  EstadoAsigComponent, 
+  PutCargoComponent
 ]

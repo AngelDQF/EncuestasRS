@@ -4,8 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { EscolaridadInterface } from '@models/administrar/junta/escolaridad.interface';
 import { JuntaService } from '@serv/junta.service';
-import { InfoComponent } from '@shared/components';
-import { EstadoEscolaridadComponent } from '@shared/components/modals/estado-escolaridad/estado-escolaridad.component';
+import { CambiarEstadoComponent, InfoComponent } from '@shared/components';
 
 @Component({
   selector: 'app-escolaridad-desactivadas',
@@ -34,7 +33,7 @@ export class EscolaridadDesactivadasComponent implements OnInit {
   desactivar(id:number) {
     try {
       if(id!==undefined){
-      const dialogRef= this.dialog.open(EstadoEscolaridadComponent, {
+      const dialogRef= this.dialog.open(CambiarEstadoComponent, {
         width: '400px',
         data: [id,"Activar",1],
       });
