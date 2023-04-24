@@ -27,7 +27,7 @@
       </mat-list-item>
       <mat-list-item *ngIf="!mostrar" routerLink="/encuestas/formato" [matTooltip]="btn3" matTooltipPosition="right">
         <div class="align-items-center d-flex">
-          <mat-icon mat-list-icon class="menu-item col-6"><i class="bi bi-clipboard2-check-fill mr-2 lead"
+          <mat-icon mat-list-icon class="menu-item col-6"><i class="bi bi-clipboard2-plus-fill mr-2 lead"
               style="color:darkgreen;"></i></mat-icon>
           <span *ngIf="isExpanded" class="col-6">Encuestas</span>
         </div>
@@ -53,6 +53,13 @@
           <span *ngIf="isExpanded">Exportar</span>
         </div>
       </mat-list-item>
+      <mat-list-item *ngIf="!mostrar" routerLink="/encuestas/user" [matTooltip]="btn8" matTooltipPosition="right">
+        <div class="align-items-center d-flex">
+          <mat-icon mat-list-icon class="menu-item"><i style="color:#5e0be3" class="bi bi-clipboard2-data-fill  mr-2 lead"></i></mat-icon>
+          <span *ngIf="isExpanded">Mis Encuestas</span>
+        </div>
+      </mat-list-item>
+      
       <mat-list-item (click)="cerrarSesion()" class="botonCerrar" [matTooltip]="btn7" matTooltipPosition="right">
         <div class="align-items-center d-flex">
           <mat-icon mat-list-icon class="menu-item"><i class="bi bi-power" style="color:white;"></i></mat-icon>

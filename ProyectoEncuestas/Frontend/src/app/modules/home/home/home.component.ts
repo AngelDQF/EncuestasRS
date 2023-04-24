@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   btn5: string = "Administrar Encuestas";
   btn6: string = "Exportar";
   btn7: string = "Cerrar Sesión";
+  btn8:string="Mis Encuestas"
   token: any;
   mostrar: boolean;
   constructor(private cerrar: MatDialog, private cookie: CookieService) {
@@ -51,6 +52,7 @@ export class HomeComponent implements OnInit {
       this.btn5 = "";
       this.btn6 = "";
       this.btn7 = "";
+      this.btn8 = "";
     } else {
       this.btn1 = "Mi Usuario";
       this.btn2 = "Usuarios";
@@ -59,6 +61,7 @@ export class HomeComponent implements OnInit {
       this.btn5 = "Administrar Encuestas";
       this.btn6 = "Exportar";
       this.btn7 = "Cerrar Sesión";
+      this.btn8 = "Mis Encuestas";
     }
   }
   getDecodedAccessToken(tok: string): any {

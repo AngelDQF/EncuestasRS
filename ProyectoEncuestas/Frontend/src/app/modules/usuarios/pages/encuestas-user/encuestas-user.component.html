@@ -16,7 +16,7 @@
         <mat-form-field appearance="fill" class="form-control">
           <mat-label>Departamento</mat-label>
           <mat-select #selDep (valueChange)="changeDep($event)" required>
-            <mat-option value="">--</mat-option>
+            <mat-option value="" disabled>Seleccione</mat-option>
             <mat-option *ngFor="let dep of departamentos" [value]="dep.id_dep">
               {{dep.dep}}
             </mat-option>
@@ -27,7 +27,7 @@
         <mat-form-field appearance="fill" class="form-control">
           <mat-label>Municipio</mat-label>
           <mat-select #selMun (valueChange)="changeMun()" required>
-            <mat-option value="">--</mat-option>
+            <mat-option value="" disabled>Seleccione</mat-option>
             <mat-option *ngFor="let mun of municipios" [value]="mun.id_mun">
               {{mun.mun}}
             </mat-option>

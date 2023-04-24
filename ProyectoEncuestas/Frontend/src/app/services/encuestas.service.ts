@@ -15,6 +15,14 @@ export class EncuestasService {
       })
     )
   }
+  getUsuarioEncuestas$(id: number): Observable<any> {
+    const body = { id }
+    return this.http.post(`${this.URL}/administrar/encuestas`, body).pipe(
+      map((dataRaw: any) => {
+        return dataRaw.results
+      })
+    )
+  }
   getDepartamentosUser$(id: number): Observable<any> {
     const body = [
       { id }
@@ -30,6 +38,22 @@ export class EncuestasService {
       { id, dep }
     ];
     return this.http.post(`${this.URL}/encuestas/municipios`, body[0]).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getEncuestasDepUser$(id: string, idUser: number) {
+    const body = { id, idUser };
+    return this.http.post(`${this.URL}/administrar/encuestas/dep`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getEncuestasMunUser$(id: string, idUser: number) {
+    const body = { id, idUser };
+    return this.http.post(`${this.URL}/administrar/encuestas/mun`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -137,20 +161,21 @@ export class EncuestasService {
       })
     )
   }
-  getTiposFinanciamiento$():Observable<any> {
-    return this.http.get(`${this.URL}/financiamientos/tipos`)  .pipe(
+  getTiposFinanciamiento$(): Observable<any> {
+    return this.http.get(`${this.URL}/financiamientos/tipos`).pipe(
       map(({ results }: any) => {
         return results;
       })
     )
   }
-  getFuentesFinanciamiento$():Observable<any> {
-    return this.http.get(`${this.URL}/financiamientos/fuentes`)  .pipe(
+  getFuentesFinanciamiento$(): Observable<any> {
+    return this.http.get(`${this.URL}/financiamientos/fuentes`).pipe(
       map(({ results }: any) => {
         return results;
       })
     )
   }
+
   getTiposBosques$(): Observable<any> {
     return this.http.get(`${this.URL}/naturales/bosques`).pipe(
       map(({ results }: any) => {
@@ -196,45 +221,45 @@ export class EncuestasService {
       })
     );
   }
-  postGeoUbicacion$(id: number, lon: string, lat: string):Observable<any> {
+  postGeoUbicacion$(id: number, lon: string, lat: string): Observable<any> {
     const body = { id, lon, lat }
     return this.http.post(`${this.URL}/encuestas/geoubicacion`, body)
   }
-  postJunta$(id:number,cargo:number,eje:number,dni:string,name:string,tel:string,sexo:string,edad:number,esc:number):Observable<any> {
-    const body = { id, cargo, eje, dni, name, tel, sexo, edad, esc}
+  postJunta$(id: number, cargo: number, eje: number, dni: string, name: string, tel: string, sexo: string, edad: number, esc: number): Observable<any> {
+    const body = { id, cargo, eje, dni, name, tel, sexo, edad, esc }
     console.log(body);
     return this.http.post(`${this.URL}/encuestas/junta`, body);
   }
-  postOrgs$(id:number,idOrg:number):Observable<any> {
+  postOrgs$(id: number, idOrg: number): Observable<any> {
     const body = { id, idOrg }
     return this.http.post(`${this.URL}/encuestas/detalle/org`, body);
   }
-  postImportacion$(id:number,importacion:string):Observable<any>{
+  postImportacion$(id: number, importacion: string): Observable<any> {
     const body = { id, importacion }
     return this.http.post(`${this.URL}/encuestas/detalle/importacion`, body);
   }
-  postExportacion$(id:number,exportacion:string):Observable<any>{
+  postExportacion$(id: number, exportacion: string): Observable<any> {
     const body = { id, exportacion }
     return this.http.post(`${this.URL}/encuestas/detalle/exportacion`, body);
   }
-  postServiciosBasicos$(id:number,idServ:number):Observable<any>{
-    const body={id,idServ}
+  postServiciosBasicos$(id: number, idServ: number): Observable<any> {
+    const body = { id, idServ }
     return this.http.post(`${this.URL}/encuestas/servicio/basico`, body);
   }
-  postServiciosLocales$(id:number,idServ:number):Observable<any>{
-    const body={id,idServ}
+  postServiciosLocales$(id: number, idServ: number): Observable<any> {
+    const body = { id, idServ }
     return this.http.post(`${this.URL}/encuestas/servicio/local`, body);
   }
-  postUsosTierra$(id:number,uso:number):Observable<any>{
-    const body={id,uso}
+  postUsosTierra$(id: number, uso: number): Observable<any> {
+    const body = { id, uso }
     return this.http.post(`${this.URL}/encuestas/detalle/uso`, body);
   }
-  postFinanciamiento$(id:number, tipo:number,fuente:number,observacion:string):Observable<any>{
-    const body={id,tipo,fuente,observacion}
+  postFinanciamiento$(id: number, tipo: number, fuente: number, observacion: string): Observable<any> {
+    const body = { id, tipo, fuente, observacion }
     return this.http.post(`${this.URL}/encuestas/detalle/financiamiento`, body);
   }
-  postRequerimientos$(id:number, estructura:number,estado:number,observacion:string):Observable<any>{
-    const body={id, estructura,estado,observacion}
+  postRequerimientos$(id: number, estructura: number, estado: number, observacion: string): Observable<any> {
+    const body = { id, estructura, estado, observacion }
     return this.http.post(`${this.URL}/encuestas/detalle/requerimiento`, body);
   }
 }

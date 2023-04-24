@@ -771,7 +771,38 @@ create procedure prc_Crear_Admin
            ,'Hombre/Mujer')
  end
 
---Proceso almacenado para crear una fuente de financiamiento
+--Proceso almacenado para crear una nueva referencia
+Create procedure prc_Referencia_Crear
+@uid nvarchar(40),
+@name nvarchar(255),
+@ext nvarchar(20),
+@tipo int,
+@id int
+as begin
+	INSERT INTO [dbo].[tbl_Referencias]
+           ([uid_Referencia]
+           ,[nombre_Archivo]
+           ,[extension]
+           ,[id_Tipo_Archivo]
+           ,[id_Encuesta])
+	output inserted.id_Referencia
+	VALUES
+           (@uid,@name,@ext,@tipo,@id)
+
+end
+--Creacion de procedimiento almacenado para crear la referencia de la junta directiva
+create procedure prc_Referencia_Junta_Crear
+@id_Ref int,
+@miembro int,
+@uid nvarchar(40)
+as begin
+INSERT INTO [dbo].[tbl_Referencias_Junta]
+           ([id_Referencia]
+           ,[id_Miembro_Junta]
+           ,[uid_Referencia])
+     VALUES
+           (@id_Ref,@miembro,@uid)	
+end
 
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Encuestas], RESEED, 0);

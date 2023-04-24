@@ -49,9 +49,7 @@ export class UsuariosService {
     )
   }
   getUsuarioEncuestas(id: number): Observable<any> {
-    const body = {
-      id: id
-    }
+    const body = { id }
     return this.http.post(`${this.URL}/administrar/encuestas`, body).pipe(
       map((dataRaw: any) => {
         return dataRaw.results

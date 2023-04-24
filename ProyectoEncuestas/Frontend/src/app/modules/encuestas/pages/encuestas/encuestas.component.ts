@@ -43,7 +43,7 @@ export class EncuestasComponent implements OnInit {
   municipios: MunicipiosUserInterface[] = [];
   aldeas: AldeasUserInterface[] = [];
   caserios: CaseriosUserInterface[] = [];
-  isLinear: boolean = true;
+  isLinear: boolean = false;
   //TODO: Variables para la junta directiva
   frmM1: FormGroup;
   frmM2: FormGroup;

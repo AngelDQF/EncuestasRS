@@ -6,16 +6,16 @@ async function getEncuestasUser(id) {//TODO: Creamos la función que se encargar
     if (result.recordset.length !== 0) {
       pool.close();//TODO: Cerramos la conexión
       return result.recordset;//TODO: Retornamos los datos
-    }
-    else {
+    } else {
       pool.close();//TODO: Cerramos la conexión
-      return "No hay Encuestas agregadas"
+      return "vacio";
     }
   } catch (error) {
     console.log(error);
+    return "error";
   }
 }
-async function getEncuestasUserDep(id,idUser) {//TODO: Creamos la función que se encargará de listar todos los ejes
+async function getEncuestasUserDep(id, idUser) {//TODO: Creamos la función que se encargará de listar todos los ejes
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query(`Exec prc_Encuestas_Departamento_User '${id}','${idUser}'`);//TODO: Ejecutamos la consulta

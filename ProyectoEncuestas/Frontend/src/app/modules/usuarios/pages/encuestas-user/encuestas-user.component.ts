@@ -20,7 +20,6 @@ export class EncuestasUserComponent implements OnInit {
   municipios: any;
   displayedColumns: string[] = ['id', 'dep', 'mun', 'aldea', 'caserio', 'address', 'hombres', 'mujeres', 'asistencia', 'org', 'exRios', 'cantRios', 'extBosques', 'tipoBosque', 'tipoSuelo', 'tenencia', 'mercado', 'tecno', 'mercado', 'fecha', 'hora', 'user'];
   dataSource: any;
-  txtBusqueda: string = "";
   selectDep: any;
   selectMun: any;
   idUser: any;
@@ -32,7 +31,6 @@ export class EncuestasUserComponent implements OnInit {
     this.obtenerID();
     this.obtenerEncuestas();
     this.departamentosUser();
-    this.selDep.value = "";
   }
 
   obtenerID() {
@@ -52,9 +50,6 @@ export class EncuestasUserComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.usuario = data[0].user;
       })
-      this.txtBusqueda = "";
-      this.selDep.value = "";
-      this.selMun.value = "";
     } catch (error) {
       console.log(error);
     }
@@ -82,7 +77,6 @@ export class EncuestasUserComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.usuario = data[0].user;
       })
-      this.txtBusqueda = "";
     } catch (error) {
       console.log(error);
     }
@@ -94,7 +88,6 @@ export class EncuestasUserComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.usuario = data[0].user;
       })
-      this.txtBusqueda = "";
     } catch (error) {
       console.log(error);
     }

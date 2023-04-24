@@ -9,8 +9,9 @@ import { ListadoEncuestasComponent } from './pages/listado-encuestas/listado-enc
 import { IndexEncuestasComponent } from './pages/index-encuestas.component';
 import { UbicacionesService } from '@serv/ubicaciones.service';
 import { MaterialExampleModule } from '@AM/*';
+import { MisEncuestasComponent } from './pages/mis-encuestas/mis-encuestas.component';
 @NgModule({
-  declarations: [EncuestasComponent, ListadoEncuestasComponent, IndexEncuestasComponent],
+  declarations: [EncuestasComponent, ListadoEncuestasComponent, IndexEncuestasComponent, MisEncuestasComponent],
   imports: [
     CommonModule,
     EncuestasRoutingModule,

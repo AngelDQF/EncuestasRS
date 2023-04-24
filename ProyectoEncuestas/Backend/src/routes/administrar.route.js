@@ -4,7 +4,7 @@ const {ctrGetEncuestasUser,ctrGetEncuestasDep,ctrGetEncuestasMun} = require('../
 const { checkTipo } = require("../middleware/role");
 const {authMiddleware}=require("../middleware/session");
 
-router.post('/encuestas',authMiddleware,checkTipo(["Admin"]),ctrGetEncuestasUser);
+router.post('/encuestas',authMiddleware,checkTipo(["Admin","Encuestador"]),ctrGetEncuestasUser);
 router.post('/encuestas/dep',authMiddleware,ctrGetEncuestasDep);
 router.post('/encuestas/mun',authMiddleware,ctrGetEncuestasMun);
 

@@ -1,0 +1,9 @@
+.row{
+  --bs-gutter-x: 0px !important;
+}
+.tabla_width {
+  min-width: 200px; /* Ajusta el ancho máximo de la celda según tus necesidades */
+}
+td a{
+  cursor: pointer !important;
+}

@@ -341,3 +341,34 @@ References tbl_Estados(id_Estado),
 Constraint fk_ID_Estructura Foreign Key (id_Estructura)
 References tbl_Estructuras(id_Estructura)
 );
+
+--Creación de las tablas para las referencias de los archivos
+--Creación de la Tabla para los tipos de archivos
+Create Table tbl_Tipo_Archivos(
+id_Tipo_Archivo int primary key identity(1,1),
+descripcion nvarchar(50) not null
+);
+--Creación de tabla para las referencias
+Create table tbl_Referencias(
+id_Referencia Int Primary key identity(1,1),
+uid_Referencia nvarchar(40) not null,
+nombre_Archivo nvarchar(255) not null,
+extension nvarchar(20) not null,
+id_Tipo_Archivo Int not null,
+id_Encuesta int not null,
+Constraint fk_Tipo_Archivo Foreign Key (id_Tipo_Archivo)
+References tbl_Tipo_Archivos(id_Tipo_Archivo),
+Constraint fk_Encuesta_RS Foreign Key (id_Encuesta)
+References tbl_Encuestas(id_Encuesta)
+);
+--Creación de tabla para los miembros de junta
+create table tbl_Referencias_Junta(
+id_Junta_Referencia int primary key identity(1,1),
+id_Referencia int not null,
+id_Miembro_Junta int not null,
+uid_Referencia nvarchar(40) not null,
+Constraint fk_Junta Foreign Key (id_Miembro_Junta)
+References tbl_Detalle_Junta_Directiva(id_Miembro_Junta),
+Constraint fk_Referencias Foreign Key (id_Referencia)
+References tbl_Referencias(id_Referencia)
+);
