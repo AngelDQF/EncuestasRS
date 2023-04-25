@@ -501,7 +501,7 @@ UPDATE [dbo].[tbl_Cargos]
    SET [estado_Cargo] = @estado
  WHERE id_Cargo=@id
 end
---Procedimiento Almacenado para Buscar un Cargo
+--Procedimiento Almacenado para Verificar la Existencia de un Cargo
 create procedure prc_Cargos_Verificcar_Cargo
 @cargo nvarchar(30)
 as begin

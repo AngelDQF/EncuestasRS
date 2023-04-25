@@ -69,7 +69,7 @@ async function putCargo(id, cargo) {
   try {
     const consulta1 = await verificarCargoByID(id);
     const consulta2 = await verificarCargo(cargo);
-    if (consulta1) {
+    if (!consulta1) {
       if (consulta2) {
         await pool.connect()
         await pool.request().query(`Exec prc_Cargos_Editar ${id}, '${cargo}'`);
@@ -87,6 +87,22 @@ async function putCargo(id, cargo) {
     return "error"
   }
 }
+async function putCargoEstado(id, estado) {
+  try {
+    const consulta1 = await verificarCargoByID(id);
+    if (!consulta1) {
+        await pool.connect()
+        await pool.request().query(`Exec prc_Cargos_Estado_Editar ${id}, '${estado}'`);
+        pool.close();
+        return "exito";
+    } else {
+      return "vacio";
+    }
+  } catch (error) {
+    console.log(error)
+    return "error"
+  }
+}
 async function verificarCargo(cargo) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -98,7 +114,7 @@ async function verificarCargo(cargo) {
     console.log(error);
   }
 }
-async function verificarCargoByID(cargo) {//TODO: Creamos la función que se encargará de verificar si un eje existe en base a su nombre
+async function verificarCargoByID(id) {//TODO: Creamos la función que se encargará de verificar si un eje existe en base a su nombre
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Cargos_Buscar ${id}`);
@@ -109,4 +125,4 @@ async function verificarCargoByID(cargo) {//TODO: Creamos la función que se enc
     console.log(error);
   }
 }
-module.exports = { getCargos, getCargo, getCargosDesactivados, postCargos };//TODO: Exportamos las funcionessss
+module.exports = { getCargos, getCargo,putCargo,putCargoEstado, getCargosDesactivados, postCargos };//TODO: Exportamos las funcionessss
