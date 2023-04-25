@@ -149,6 +149,15 @@ Create Table tbl_Tecnologico_General(
 id_Tecno int primary key identity(1,1),
 nivel nvarchar(15) not null
 );
+--Creación Tabla Mesas Solidarias
+/*
+Create Table tbl_Mesas_Solidarias(
+id_Mesa int primary key identity (1,1),
+id_Caserio int not null,
+nombre_Junta nvarchar(100),
+dni_Junta nvarchar(20),
+fecha datetime,
+);*/
 --Creación Tabla Encuestas
 Create Table tbl_Encuestas(
 id_Encuesta INT Primary Key Identity(1,1),
@@ -171,6 +180,7 @@ id_Mercado INT Not Null,
 id_Tecno INT Not Null,
 fecha_Encuesta DATETIME,
 id_Usuario INT Not Null,
+--id_Mesa int not null,
 Constraint fk_DepartamentosE Foreign Key (id_Departamento)
 References tbl_Departamentos(id_Departamento),
 Constraint fk_MunicipiosE Foreign Key (id_Municipio)
@@ -193,6 +203,8 @@ Constraint fk_MercadosE Foreign Key (id_Mercado)
 References tbl_Mercados(id_Mercado),
 Constraint fk_UsuariosE Foreign Key (id_Usuario)
 References tbl_Usuarios(id_Usuario)
+--Constraint fk_Mesas Foreign Key (id_Mesa)
+--References tbl_Mesas_Solidarias(id_Mesa)
 );
 --Creación Tabla Financiamiento
 Create Table tbl_Detalle_Financiamientos(
@@ -307,7 +319,7 @@ id_Encuesta INT Not Null,
 id_Cargo INT Not Null,
 id_Eje INT Not Null,
 dni_Cargo nvarchar(20) Not Null,
-nombre_Junta nvarchar(40) Not Null,
+nombre_Junta nvarchar(100) Not Null,
 telefono_Junta nvarchar(20) Not Null,
 sexo nvarchar(20) Not Null,
 edad int not null,

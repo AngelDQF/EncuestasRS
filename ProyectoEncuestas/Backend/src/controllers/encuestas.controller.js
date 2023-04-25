@@ -2,26 +2,26 @@ const { encuestasModel } = require('../models/index.model');//TODO: Importamos e
 const { naturalesModel } = require('../models/index.model');
 const { handleHttpError } = require('../utils/handleError');//TODO: Importamos el metodo handleHttpError
 
-const ctrGetEncuestas = async (req, res) => {//TODO: Controlador para hacer get a los Tipos de Financiamientos
+const ctrGetEncuestas = async (req, res) => {
   try {
-    encuestasModel.getEncuestas().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    encuestasModel.getEncuestas().then(result => {
+      res.json({ results: result })
     });
   } catch {
-    handleHttpError(res, 'ERROR_LISTAR_ENCUESTAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'ERROR_LISTAR_ENCUESTAS');
   }
 }
-const ctrGetDepartamentosUsuario = async (req, res) => {//TODO: Creamos la función que se encargará de obtener los usuarios
+const ctrGetDepartamentosUsuario = async (req, res) => {
   try {
     const { id } = req.body
     if (id === "") {
       return
     }
-    encuestasModel.getDepartamentosUsuario(id).then(result => {//TODO: Llamamos a la función del modelo para obtener los usuarios
-      res.json({ results: result });//TODO: Mostramos el resultado en un json
+    encuestasModel.getDepartamentosUsuario(id).then(result => {
+      res.json({ results: result });
     });
   } catch (error) {
-    handleHttpError(res, 'ERROR_LISTAR_DEPARTAMENTOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'ERROR_LISTAR_DEPARTAMENTOS');
     console.log(error);
   }
 };

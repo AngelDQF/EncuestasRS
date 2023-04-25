@@ -1,10 +1,4 @@
 const { handleHttpError } = require('../utils/handleError');
-
-/**
- * TODO: 
- * @param {*} rol 
- * @returns 
- */
 const checkTipo = (tipo) => (req, res, next) => {
   try {
     const {user}=req;
@@ -22,5 +16,6 @@ const checkTipo = (tipo) => (req, res, next) => {
   }
 }
 
-
 module.exports = { checkTipo };
+
+

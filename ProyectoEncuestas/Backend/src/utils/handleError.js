@@ -3,3 +3,6 @@ const handleHttpError = (res,message='Algo Sucedio',code=403) => {//TODO: Funcio
   res.send({results:{mensaje:message,estado:3}});//TODO: Enviamos un mensaje de error
 }
 module.exports={handleHttpError}
+
+
+

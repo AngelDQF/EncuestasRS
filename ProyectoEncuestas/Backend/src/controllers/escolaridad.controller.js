@@ -63,6 +63,7 @@ const ctrPutGradoEstado = async (req, res) => {
     handleHttpError(res, 'Error al actualizar grado de escolaridad');
   }
 }
+
 const putNombreGrado = async (req, res) => {	
   try {
     const {id, grado} = req.body;

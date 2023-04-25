@@ -12,6 +12,6 @@ const customHeader=(req,res,next)=>{//TODO: Middleware para validar el header
     res.status(403);//TODO: Enviamos un codigo de error
     res.send({error:"ALGO_OCURRIO_EN_EL_HEADER"})//TODO: Enviamos un mensaje de error
   }
-
 }
 module.exports={customHeader};
+

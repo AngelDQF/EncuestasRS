@@ -21,3 +21,7 @@ const authMiddleware = async (req, res, next) => {
   }
 }
 module.exports = { authMiddleware };//TODO: Exportamos las funciones
+
+
+
+
