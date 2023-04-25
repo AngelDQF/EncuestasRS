@@ -4,6 +4,7 @@
   overflow-y: scroll;
   padding: 10px;
 }
+
 #Formulario {
   background-color: #fff;
   padding: 10px;
@@ -13,6 +14,9 @@
   color: var(--color2);
   cursor: pointer;
   font-size: 40px;
+}
+::ng-deep .mat-vertical-content {
+  padding: 0px 10px 0px 0px !important;
 }
 .encabezado {
   text-align: center;
@@ -108,6 +112,18 @@ h2 {
   margin: 0px;
   color: #616161c8;
 }
+::ng-deep .mat-step-header,.mat-step-header:hover{
+  background-color: #aadbff !important;
+  font-size: 20px !important;
+}
+#h1{
+  margin: 0px;
+  font-size: 20px;
+  width: 100%;
+}
+span{
+  font-size: 20px !important;
+}
 .btnEliminar,
 .btnGuardar {
   height: 60px;
@@ -116,6 +132,9 @@ h2 {
   font-size: 20px !important;
 }
 @media screen and (max-width: 767px) {
+  #h1{
+    font-size: 15px !important;
+  }
   .btnEliminarItem {
     font-size: 15px;
   }

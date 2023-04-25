@@ -45,11 +45,6 @@ export class EncuestasComponent implements OnInit {
   caserios: CaseriosUserInterface[] = [];
   isLinear: boolean = false;
   //TODO: Variables para la junta directiva
-  frmM1: FormGroup;
-  frmM2: FormGroup;
-  frmM3: FormGroup;
-  frmM4: FormGroup;
-  frmM5: FormGroup;
   cargos: any;
   grados: any;
   ejes: any;
@@ -105,11 +100,6 @@ export class EncuestasComponent implements OnInit {
     this.aldeas = [];
     this.caserios = [];
     this.organizacionOrganizadora();
-    this.frmM1 = this.initFrmM();
-    this.frmM2 = this.initFrmM();
-    this.frmM3 = this.initFrmM();
-    this.frmM4 = this.initFrmM();
-    this.frmM5 = this.initFrmM();
     this.getCargos();
     this.getGrados();
     this.getEjes();
@@ -188,32 +178,8 @@ export class EncuestasComponent implements OnInit {
       selectMercado: ["", [Validators.required]],
       identificadores: this.fb.array([]),
       financiamientos: this.fb.array([]),
+      junta: this.fb.array([]),
     });
-  }
-  initFrmM(): FormGroup {
-    return this.fb.group({
-      txtNombre: ['', [Validators.required]],
-      txtDNI: this.fb.control('', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]),
-      txtEdad: ['', [Validators.required]],
-      txtTelefono: ['', [Validators.required]],
-      selectSexo: ['', [Validators.required]],
-      selectCargo: ['', [Validators.required]],
-      selectNivel: ['', [Validators.required]],
-      selectEje: ['', [Validators.required]],
-    });
-  }
-  get txtDNI(): FormControl {
-    return this.frmM1.get('txtDNI') as FormControl;;
-  }
-  getErrorMessage() {
-    if (this.txtDNI.hasError('required')) {
-      return 'No puede estar vacío';
-    }
-    else if (this.txtDNI.hasError('minLength')) {
-      return 'El mínimo de caracteres es 13'
-    } else {
-      return this.txtDNI.hasError('maxLength') ? '' : 'No puede exceder los 13 caracteres';
-    }
   }
   //Metodos para los select de Ubicacion Change
   @ViewChild('selDep') selDep: MatSelect;
@@ -464,6 +430,26 @@ export class EncuestasComponent implements OnInit {
   get financiamientos(): FormArray {
     return this.EncuestasForm.get('financiamientos') as FormArray;
   }
+  get junta(): FormArray {
+    return this.EncuestasForm.get('junta') as FormArray;
+  }
+  agregarJunta() {
+    // Agregar un FormGroup con los campos requeridos como controles
+    this.junta.push(this.fb.group({
+      txtNombre: ['', [Validators.required]],
+      txtDNI: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+      txtEdad: ['', [Validators.required]],
+      txtTelefono: ['', [Validators.required]],
+      selectSexo: ['', [Validators.required]],
+      selectCargo: ['', [Validators.required]],
+      selectNivel: ['', [Validators.required]],
+      selectEje: ['', [Validators.required]],
+    }));
+  }
+  eliminarJunta(index: number) {
+    // Eliminar el miembro en el índice especificado
+    this.junta.removeAt(index);
+  }
   agregarIdentificador() {
     // Agregar un FormGroup con los campos requeridos como controles
     this.identificadores.push(this.fb.group({
@@ -525,21 +511,10 @@ export class EncuestasComponent implements OnInit {
       console.log(error);
     }
   }
-  agregarJuntaDirectiva(id: any): void {
-    try {
-      this.encuestasModel.postJunta$(id, this.frmM1.value.selectCargo, this.frmM1.value.selectEje, this.frmM1.value.txtDNI, this.frmM1.value.txtNombre, this.frmM1.value.txtTelefono, this.frmM1.value.selectSexo, this.frmM1.value.txtEdad, this.frmM1.value.selectNivel).subscribe();
-      this.encuestasModel.postJunta$(id, this.frmM2.value.selectCargo, this.frmM2.value.selectEje, this.frmM2.value.txtDNI, this.frmM2.value.txtNombre, this.frmM2.value.txtTelefono, this.frmM2.value.selectSexo, this.frmM2.value.txtEdad, this.frmM2.value.selectNivel).subscribe();
-      this.encuestasModel.postJunta$(id, this.frmM3.value.selectCargo, this.frmM3.value.selectEje, this.frmM3.value.txtDNI, this.frmM3.value.txtNombre, this.frmM3.value.txtTelefono, this.frmM3.value.selectSexo, this.frmM3.value.txtEdad, this.frmM3.value.selectNivel).subscribe();
-      this.encuestasModel.postJunta$(id, this.frmM4.value.selectCargo, this.frmM4.value.selectEje, this.frmM4.value.txtDNI, this.frmM4.value.txtNombre, this.frmM4.value.txtTelefono, this.frmM4.value.selectSexo, this.frmM4.value.txtEdad, this.frmM4.value.selectNivel).subscribe();
-      this.encuestasModel.postJunta$(id, this.frmM5.value.selectCargo, this.frmM5.value.selectEje, this.frmM5.value.txtDNI, this.frmM5.value.txtNombre, this.frmM5.value.txtTelefono, this.frmM5.value.selectSexo, this.frmM5.value.txtEdad, this.frmM5.value.selectNivel).subscribe();
-    } catch (error) {
-      console.log(error);
-    }
-  }
   agregarDetalles() {
     try {
-      let { txtLongitud, txtLatitud, selectOrgs, txtExportacion, txtImportacion, selectBasicos, selectLocales, selectActividades, identificadores, financiamientos } = this.EncuestasForm.value;
-      this.agregarJuntaDirectiva(this.idEncuesta);
+      let { txtLongitud, txtLatitud, selectOrgs, txtExportacion, txtImportacion, selectBasicos, selectLocales, selectActividades, identificadores, junta, financiamientos } = this.EncuestasForm.value;
+      //this.agregarJuntaDirectiva(this.idEncuesta);
       this.encuestasModel.postGeoUbicacion$(this.idEncuesta, txtLongitud, txtLatitud).subscribe();
       selectOrgs.forEach((element: number) => {
         this.encuestasModel.postOrgs$(this.idEncuesta, element).subscribe()
@@ -559,11 +534,14 @@ export class EncuestasComponent implements OnInit {
       identificadores.forEach((element: any) => {
         this.encuestasModel.postRequerimientos$(this.idEncuesta, element.selectEstructura, element.selectEstado, element.observacion).subscribe();
       });
+      junta.forEach((element: any) => {
+        this.encuestasModel.postJunta$(this.idEncuesta, element.selectCargo, element.selectEje, element.txtDNI, element.txtNombre, element.txtTelefono, element.selectSexo, element.txtEdad, element.selectNivel).subscribe();
+      });
       financiamientos.forEach((element: any) => {
         this.encuestasModel.postFinanciamiento$(this.idEncuesta, element.selectTipo, element.selectFuente, element.txtMarco).subscribe();
       });
-      this.mensaje("Información","Encuesta Agregada Exitosamente",2);
-      this.datosIniciales(); 
+      this.mensaje("Información", "Encuesta Agregada Exitosamente", 2);
+      this.datosIniciales();
     } catch (error) {
       console.log(error);
     }

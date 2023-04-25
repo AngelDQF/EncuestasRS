@@ -1,5 +1,4 @@
 import { EncuestasService } from '@serv/encuestas.service';
-import { PruebasComponent } from './../pruebas/prueba/prueba.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +10,6 @@ import { MaterialExampleModule } from '@AM/*';
 @NgModule({
   declarations: [
     HomeComponent,
-    PruebasComponent
   ],
   imports: [
     CommonModule,

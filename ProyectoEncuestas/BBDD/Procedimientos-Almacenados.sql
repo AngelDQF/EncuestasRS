@@ -371,8 +371,6 @@ as begin
                   dbo.tbl_Municipios M ON A.id_Municipio =M.id_Municipio
 	where A.id_Usuario=@user
 end
---Procedimientos Almacenados para el Modulo de Junta Directiva
---Procedimientos Almacenados para los Cargos
 --Procedimiento Almacenado para Buscar un cargo por su id
 create procedure prc_Cargos_Buscar
 @id int
@@ -645,7 +643,7 @@ as begin
 end
 --Procedimiento almacenado para crear un miembro de la junta directiva
 Create Procedure prc_Junta_Crear
-@id int, @cargo int, @eje int, @dni nvarchar(20),@name nvarchar(40),
+@id int, @cargo int, @eje int, @dni nvarchar(20),@name nvarchar(100),
 @tel nvarchar(20),@sexo nvarchar(20), @edad int, @esc int
 as begin
 INSERT INTO [dbo].[tbl_Detalle_Junta_Directiva]
@@ -803,6 +801,16 @@ INSERT INTO [dbo].[tbl_Referencias_Junta]
      VALUES
            (@id_Ref,@miembro,@uid)	
 end
+--Creacion de procedimiento almacenado para listar la junta directiva
+create procedure prc_Junta_Listar
+@id int as begin
+SELECT dbo.tbl_Detalle_Junta_Directiva.id_Miembro_Junta AS id, dbo.tbl_Detalle_Junta_Directiva.nombre_Junta AS name, dbo.tbl_Detalle_Junta_Directiva.dni_Cargo AS dni, dbo.tbl_Detalle_Junta_Directiva.telefono_Junta AS tel, 
+                  dbo.tbl_Detalle_Junta_Directiva.sexo, dbo.tbl_Detalle_Junta_Directiva.edad, dbo.tbl_Cargos.descripcion_Cargo AS cargo, dbo.tbl_Grado_Escolaridad.grado_Escolaridad AS grado, dbo.tbl_Ejes.descripcion_Eje AS eje
+FROM     dbo.tbl_Detalle_Junta_Directiva INNER JOIN
+                  dbo.tbl_Cargos ON dbo.tbl_Detalle_Junta_Directiva.id_Cargo = dbo.tbl_Cargos.id_Cargo INNER JOIN
+                  dbo.tbl_Ejes ON dbo.tbl_Detalle_Junta_Directiva.id_Eje = dbo.tbl_Ejes.id_Eje INNER JOIN
+                  dbo.tbl_Grado_Escolaridad ON dbo.tbl_Detalle_Junta_Directiva.id_Escolaridad = dbo.tbl_Grado_Escolaridad.id_Escolaridad
+where id_Encuesta=id
 
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Encuestas], RESEED, 0);

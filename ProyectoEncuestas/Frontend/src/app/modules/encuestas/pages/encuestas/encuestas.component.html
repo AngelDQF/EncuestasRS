@@ -16,804 +16,584 @@
     </div>
   </div>
   <form [formGroup]="EncuestasForm" class="mt-2">
-    <div id="Formulario" class="row">
-      <div class="encabezado mt-2 col-12">
-        <h1>Datos Generales</h1>
-      </div>
-      <div class="col-12 col-md-6 col-lg-3">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Departamento</mat-label>
-          <mat-select #selDep formControlName="selectDep" (valueChange)="changeDep()" required>
-            <mat-option disabled value="">Seleccione</mat-option>
-            <mat-option *ngFor="let dep of departamentos" [value]="dep.id_dep">
-              {{dep.dep}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-12 col-md-6 col-lg-3">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Municipio</mat-label>
-          <mat-select #selMun formControlName="selectMun" (valueChange)="changeMun()" required>
-            <mat-option value="" disabled>Seleccione</mat-option>
-            <mat-option *ngFor="let mun of municipios" [value]="mun.id_mun">
-              {{mun.mun}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-12 col-md-6 col-lg-3">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Aldea</mat-label>
-          <mat-select #selAldea formControlName="selectAldea" (valueChange)="changeAldea()" required>
-            <mat-option value="" disabled>Seleccione</mat-option>
-            <mat-option *ngFor="let aldea of aldeas" [value]="aldea.id">
-              {{aldea.aldea}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-12 col-md-6 col-lg-3">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Caserio</mat-label>
-          <mat-select #selCaserio formControlName="selectCaserio" required>
-            <mat-option value="" disabled>Seleccione</mat-option>
-            <mat-option *ngFor="let cas of caserios" [value]="cas.id">
-              {{cas.caserio}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-12">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Dirección detallada</mat-label>
-          <textarea formControlName="txtAddress" matInput placeholder="Enfrente de la inglesia..."></textarea>
-        </mat-form-field>
-      </div>
-      <div class="col-12 col-md-6">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Total de Hombres</mat-label>
-          <input type="number" class="text-center" matInput placeholder="0" formControlName="txtHombres" required>
-        </mat-form-field>
-      </div>
-      <div class="col-12 col-md-6">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Total de Mujeres</mat-label>
-          <input type="number" class="text-center" matInput placeholder="0" formControlName="txtMujeres" required>
-        </mat-form-field>
-      </div>
-      <div class="col-12 d-flex align-items-center">
-        <div class="col-2 text-center pb-3">
-          <button (click)="obtenerUbicacion()" matTooltip="Obtener Ubicación" matTooltipPosition="above" mat-fab
-            class="botonColor botonLocation1" aria-label="Obtener locación">
-            <mat-icon><i class="bi bi-geo-alt-fill"></i></mat-icon>
-          </button>
-          <button (click)="obtenerUbicacion()" matTooltip="Obtener Ubicación" matTooltipPosition="above" mat-mini-fab
-            class="botonColor botonLocation2" aria-label="Example icon button with a delete icon">
-            <mat-icon><i class="bi bi-geo-alt-fill"></i></mat-icon>
-          </button>
-        </div>
-        <div class="col-10 row">
-          <div class="col-12 col-lg-6">
+    <mat-stepper orientation="vertical" #stepper>
+      <mat-step>
+        <div id="Formulario" class="row form-control d-flex">
+          <ng-template matStepLabel>
+            <h1 id="h1">Datos Generales</h1>
+          </ng-template>
+          <div class="col-12 col-md-6 col-lg-3">
             <mat-form-field appearance="outline" class="form-control">
-              <mat-label>Latitud</mat-label>
-              <input readonly matInput formControlName="txtLatitud">
+              <mat-label>Departamento</mat-label>
+              <mat-select #selDep formControlName="selectDep" (valueChange)="changeDep()" required>
+                <mat-option disabled value="">Seleccione</mat-option>
+                <mat-option *ngFor="let dep of departamentos" [value]="dep.id_dep">
+                  {{dep.dep}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
-          <div class="col-12 col-lg-6">
+          <div class="col-12 col-md-6 col-lg-3">
             <mat-form-field appearance="outline" class="form-control">
-              <mat-label>Longitud</mat-label>
-              <input readonly matInput formControlName="txtLongitud">
+              <mat-label>Municipio</mat-label>
+              <mat-select #selMun formControlName="selectMun" (valueChange)="changeMun()" required>
+                <mat-option value="" disabled>Seleccione</mat-option>
+                <mat-option *ngFor="let mun of municipios" [value]="mun.id_mun">
+                  {{mun.mun}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
-        </div>
-      </div>
-      <div class="col-12 row align-items-center borde pt-2">
-        <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
-          <h2>Organización que realiza la reunión:</h2>
-        </div>
-        <div class="col-12 col-md-6">
-          <mat-form-field appearance="outline" class="form-control">
-            <mat-label>Organización</mat-label>
-            <mat-select #selOrg formControlName="selectOrgReunion" required>
-              <mat-option disabled value="">Seleccione</mat-option>
-              <mat-option *ngFor="let org of organizaciones" [value]="org.id">
-                {{org.org}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Datos Junta Directiva</h1>
-      </div>
-      <div class="col-12">
-        <mat-stepper orientation="vertical" #stepper [linear]="isLinear" class="form-control">
-          <mat-step [stepControl]="frmM1">
-            <form [formGroup]="frmM1">
-              <ng-template matStepLabel>Datos del Miembro #1</ng-template>
-              <div class="row w-100">
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput placeholder="Nombre Completo" formControlName="txtNombre" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>DNI</mat-label>
-                    <input matInput placeholder="0704190121100" formControlName="txtDNI" required>
-                    <mat-error *ngIf="txtDNI.invalid">{{getErrorMessage()}}</mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Edad</mat-label>
-                    <input matInput placeholder="Edad" type="number" formControlName="txtEdad" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Teléfono</mat-label>
-                    <input type="tel" matInput placeholder="9922-2211" formControlName="txtTelefono" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Sexo</mat-label>
-                    <mat-select #selSex formControlName="selectSexo" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option value="Hombre">Hombre</mat-option>
-                      <mat-option value="Mujer">Mujer</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Cargo</mat-label>
-                    <mat-select #selCargo formControlName="selectCargo" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
-                        {{cargo.cargo}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Escolaridad</mat-label>
-                    <mat-select #selEsc formControlName="selectNivel" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let grado of grados" [value]="grado.id">
-                        {{grado.grado}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Representante del Eje</mat-label>
-                    <mat-select #selEje formControlName="selectEje" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let eje of ejes" [value]="eje.id">
-                        {{eje.eje}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div>
-                <button mat-button matStepperNext>Siguiente</button>
-              </div>
-            </form>
-          </mat-step>
-          <mat-step [stepControl]="frmM2">
-            <form [formGroup]="frmM2">
-              <ng-template matStepLabel>Datos del Miembro #2</ng-template>
-              <div class="row w-100">
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput placeholder="Nombre Completo" formControlName="txtNombre" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>DNI</mat-label>
-                    <input matInput placeholder="0704200011100" formControlName="txtDNI" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Edad</mat-label>
-                    <input matInput placeholder="Edad" type="number" formControlName="txtEdad" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Teléfono</mat-label>
-                    <input matInput placeholder="3322-1122" formControlName="txtTelefono" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Sexo</mat-label>
-                    <mat-select #selSex formControlName="selectSexo" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option value="Hombre">Hombre</mat-option>
-                      <mat-option value="Mujer">Mujer</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Cargo</mat-label>
-                    <mat-select #selDep formControlName="selectCargo" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
-                        {{cargo.cargo}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Escolaridad</mat-label>
-                    <mat-select #selDep formControlName="selectNivel" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let grado of grados" [value]="grado.id">
-                        {{grado.grado}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Representante del Eje</mat-label>
-                    <mat-select formControlName="selectEje" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let eje of ejes" [value]="eje.id">
-                        {{eje.eje}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div>
-                <button mat-button matStepperNext>Siguiente</button>
-              </div>
-            </form>
-          </mat-step>
-          <mat-step [stepControl]="frmM3">
-            <form [formGroup]="frmM3">
-              <ng-template matStepLabel>Datos del Miembro #3</ng-template>
-              <div class="row w-100">
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput placeholder="Nombre Completo" formControlName="txtNombre" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>DNI</mat-label>
-                    <input matInput placeholder="0704200011100" formControlName="txtDNI" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Edad</mat-label>
-                    <input matInput placeholder="Edad" type="number" formControlName="txtEdad" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Teléfono</mat-label>
-                    <input matInput placeholder="3322-1122" formControlName="txtTelefono" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Sexo</mat-label>
-                    <mat-select #selSex formControlName="selectSexo" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option value="Hombre">Hombre</mat-option>
-                      <mat-option value="Mujer">Mujer</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Cargo</mat-label>
-                    <mat-select #selDep formControlName="selectCargo" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
-                        {{cargo.cargo}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Escolaridad</mat-label>
-                    <mat-select #selDep formControlName="selectNivel" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let grado of grados" [value]="grado.id">
-                        {{grado.grado}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Representante del Eje</mat-label>
-                    <mat-select #selDep formControlName="selectEje" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let eje of ejes" [value]="eje.id">
-                        {{eje.eje}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div>
-                <button mat-button matStepperNext>Siguiente</button>
-              </div>
-            </form>
-          </mat-step>
-          <mat-step [stepControl]="frmM4">
-            <form [formGroup]="frmM4">
-              <ng-template matStepLabel>Datos del Miembro #4</ng-template>
-              <div class="row w-100">
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput placeholder="Nombre Completo" formControlName="txtNombre" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>DNI</mat-label>
-                    <input matInput placeholder="0704200011100" formControlName="txtDNI" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Edad</mat-label>
-                    <input matInput placeholder="Edad" type="number" formControlName="txtEdad" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Teléfono</mat-label>
-                    <input matInput placeholder="3322-1122" formControlName="txtTelefono" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Sexo</mat-label>
-                    <mat-select #selSex formControlName="selectSexo" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option value="Hombre">Hombre</mat-option>
-                      <mat-option value="Mujer">Mujer</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Cargo</mat-label>
-                    <mat-select #selDep formControlName="selectCargo" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
-                        {{cargo.cargo}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Escolaridad</mat-label>
-                    <mat-select #selDep formControlName="selectNivel" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let grado of grados" [value]="grado.id">
-                        {{grado.grado}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Representante del Eje</mat-label>
-                    <mat-select formControlName="selectEje" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let eje of ejes" [value]="eje.id">
-                        {{eje.eje}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div>
-                <button mat-button matStepperNext>Siguiente</button>
-              </div>
-            </form>
-          </mat-step>
-          <mat-step [stepControl]="frmM5">
-            <form [formGroup]="frmM5">
-              <ng-template matStepLabel>Datos del Miembro #5</ng-template>
-              <div class="row w-100">
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput placeholder="Nombre Completo" formControlName="txtNombre" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>DNI</mat-label>
-                    <input matInput placeholder="0704200011100" formControlName="txtDNI" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Edad</mat-label>
-                    <input matInput placeholder="Edad" type="number" formControlName="txtEdad" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Teléfono</mat-label>
-                    <input matInput placeholder="3322-1122" formControlName="txtTelefono" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Sexo</mat-label>
-                    <mat-select #selSex formControlName="selectSexo" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option value="Hombre">Hombre</mat-option>
-                      <mat-option value="Mujer">Mujer</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Cargo</mat-label>
-                    <mat-select #selDep formControlName="selectCargo" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
-                        {{cargo.cargo}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Escolaridad</mat-label>
-                    <mat-select #selDep formControlName="selectNivel" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let grado of grados" [value]="grado.id">
-                        {{grado.grado}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-6">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Representante del Eje</mat-label>
-                    <mat-select formControlName="selectEje" required>
-                      <mat-option disabled value="">Seleccione</mat-option>
-                      <mat-option *ngFor="let eje of ejes" [value]="eje.id">
-                        {{eje.eje}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div>
-                <button mat-button matStepperNext>Siguiente</button>
-              </div>
-            </form>
-          </mat-step>
-          <mat-step>
-            <ng-template matStepLabel>Confirmar</ng-template>
-            <p>Datos listos</p>
-            <div>
-              <button mat-button matStepperPrevious>Atrás</button>
+          <div class="col-12 col-md-6 col-lg-3">
+            <mat-form-field appearance="outline" class="form-control">
+              <mat-label>Aldea</mat-label>
+              <mat-select #selAldea formControlName="selectAldea" (valueChange)="changeAldea()" required>
+                <mat-option value="" disabled>Seleccione</mat-option>
+                <mat-option *ngFor="let aldea of aldeas" [value]="aldea.id">
+                  {{aldea.aldea}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <mat-form-field appearance="outline" class="form-control">
+              <mat-label>Caserio</mat-label>
+              <mat-select #selCaserio formControlName="selectCaserio" required>
+                <mat-option value="" disabled>Seleccione</mat-option>
+                <mat-option *ngFor="let cas of caserios" [value]="cas.id">
+                  {{cas.caserio}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="outline" class="form-control">
+              <mat-label>Dirección detallada</mat-label>
+              <textarea formControlName="txtAddress" matInput placeholder="Enfrente de la inglesia..."></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="form-control">
+              <mat-label>Total de Hombres</mat-label>
+              <input type="number" class="text-center" matInput placeholder="0" formControlName="txtHombres" required>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="form-control">
+              <mat-label>Total de Mujeres</mat-label>
+              <input type="number" class="text-center" matInput placeholder="0" formControlName="txtMujeres" required>
+            </mat-form-field>
+          </div>
+          <div class="col-12 d-flex align-items-center">
+            <div class="col-4 text-center pb-3">
+              <button (click)="obtenerUbicacion()" matTooltip="Obtener Ubicación" matTooltipPosition="above" mat-fab
+                class="botonColor botonLocation1" aria-label="Obtener locación">
+                <mat-icon><i class="bi bi-geo-alt-fill"></i></mat-icon>
+              </button>
+              <button (click)="obtenerUbicacion()" matTooltip="Obtener Ubicación" matTooltipPosition="above"
+                mat-mini-fab class="botonColor botonLocation2" aria-label="Example icon button with a delete icon">
+                <mat-icon><i class="bi bi-geo-alt-fill"></i></mat-icon>
+              </button>
             </div>
-          </mat-step>
-        </mat-stepper>
-
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Identificación de Necesidades</h1>
-      </div>
-      <div class="col-12">
-        <div class="text-center">
-          <button type="button" class="btn btn-info text-light fw-bold" (click)="agregarIdentificador()">Agregar
-            Nueva</button>
-        </div>
-        <div formArrayName="identificadores">
-          <div *ngFor="let ide of identificadores.controls; let i = index">
-            <div [formGroupName]="i" class="row borde2 mt-2">
-              <div class="col-10 col-md-11 row pt-3">
-                <div class="col-12 col-md-4">
-                  <mat-form-field appearance="outline" class="form-control ">
-                    <mat-label>Estructura</mat-label>
-                    <mat-select #selMun formControlName="selectEstructura" required>
-                      <mat-option value="" disabled>Seleccione</mat-option>
-                      <mat-option *ngFor="let estructura of estructuras" [value]="estructura.id">
-                        {{estructura.estructura}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-4">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Estado</mat-label>
-                    <mat-select #selMun formControlName="selectEstado" required>
-                      <mat-option value="" disabled>Seleccione</mat-option>
-                      <mat-option *ngFor="let est of estados" [value]="est.id">
-                        {{est.estado}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-4">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Observaciones</mat-label>
-                    <textarea formControlName="observacion" matInput
-                      placeholder="Enfrente de la inglesia..."></textarea>
-                  </mat-form-field>
-                </div>
+            <div class="col-8 row">
+              <div class="col-12 col-lg-6">
+                <mat-form-field appearance="outline" class="form-control">
+                  <mat-label>Latitud</mat-label>
+                  <input readonly matInput formControlName="txtLatitud">
+                </mat-form-field>
               </div>
-              <div class="col-2 col-md-1 align-items-center justify-content-center text-center d-flex">
-                <a class="btnEliminarItem" (click)="eliminarIdentificador(i)"><i class="bi bi-x-octagon"></i></a>
+              <div class="col-12 col-lg-6">
+                <mat-form-field appearance="outline" class="form-control">
+                  <mat-label>Longitud</mat-label>
+                  <input readonly matInput formControlName="txtLongitud">
+                </mat-form-field>
               </div>
             </div>
           </div>
+          <div class="col-12 row align-items-center borde pt-2">
+            <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
+              <h2>Organización que realiza la reunión:</h2>
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field appearance="outline" class="form-control">
+                <mat-label>Organización</mat-label>
+                <mat-select #selOrg formControlName="selectOrgReunion" required>
+                  <mat-option disabled value="">Seleccione</mat-option>
+                  <mat-option *ngFor="let org of organizaciones" [value]="org.id">
+                    {{org.org}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="mt-3 btn">
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
         </div>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Recursos Naturales</h1>
-      </div>
-      <table class="table table-striped">
-        <thead class="bg-dark text-light">
-          <tr class="text-center">
-            <th>
-              <h3>Recurso</h3>
-            </th>
-            <th>
-              <h3>Existe</h3>
-            </th>
-            <th>
-              <h3>Cantidad/Tipo</h3>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="text-center">
-            <td>
-              <h2>Ríos</h2>
-            </td>
-            <td class="example-section">
-              <mat-checkbox (change)="ckRiosChange()" formControlName="checkRios" color="primary"></mat-checkbox>
-            </td>
-            <td>
-              <input formControlName="txtCantRios" placeholder="Ingrese la cantidad" type="number"
-                class="form-control text-center">
-            </td>
-          </tr>
-          <tr class="text-center">
-            <td class="align-items-center">
-              <h2>Bosques</h2>
-            </td>
-            <td class="example-section">
-              <mat-checkbox (change)="ckBosquesChange()" formControlName="checkBosques" color="primary"></mat-checkbox>
-            </td>
-            <td>
-              <select class="form-select text-center" formControlName="selectBosque">
-                <option selected value="">Tipo de Bosque</option>
-                <option *ngFor="let tipo of tipoBosque" [value]="tipo.id">{{tipo.tipo}}</option>
-              </select>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="col-12 row align-items-center borde pt-2">
-        <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
-          <h2>Tipo de suelo de la comunidad:</h2>
-        </div>
-        <div class="col-12 col-md-6">
-          <mat-form-field appearance="outline" class="form-control">
-            <mat-label>Suelo</mat-label>
-            <mat-select #selOrg formControlName="selectSuelos" required>
-              <mat-option disabled value="">Seleccione</mat-option>
-              <mat-option *ngFor="let suelo of suelos" [value]="suelo.id">
-                {{suelo.tipo}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Servicios Básicos</h1>
-      </div>
-      <div class="col-12">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Seleccione los Servicios Básicos</mat-label>
-          <mat-select formControlName="selectBasicos" #selBasicos multiple>
-            <mat-option *ngFor="let element of servBasicos" [value]="element.id">{{element.servicio}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Organizacies que estan presentes</h1>
-      </div>
-      <div class="col-12">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Seleccione las organizaciones</mat-label>
-          <mat-select #selOrg formControlName="selectOrgs" multiple>
-            <mat-option *ngFor="let element of sociales" [value]="element.id">{{element.org}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Flujo Comercial</h1>
-      </div>
-      <div class="col-12 col-md-6">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Principales Productos Exportados</mat-label>
-          <textarea formControlName="txtExportacion" matInput placeholder="Frijoles, maíz, artesanías..."></textarea>
-        </mat-form-field>
-      </div>
-      <div class="col-12 col-md-6">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Principales Productos Importados</mat-label>
-          <textarea formControlName="txtImportacion" matInput placeholder="Textiles, papa, yuca..."></textarea>
-        </mat-form-field>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Tenencia de la Tierra</h1>
-      </div>
-      <div class="col-12 row align-items-center borde pt-2">
-        <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
-          <h2>Tipo de tenencia de la tierra:</h2>
-        </div>
-        <div class="col-12 col-md-6">
-          <mat-form-field appearance="outline" class="form-control">
-            <mat-label>Tipo de Tenencia</mat-label>
-            <mat-select #selNTec formControlName="selectTenencia" required>
-              <mat-option disabled value="">Seleccione</mat-option>
-              <mat-option *ngFor="let ten of tenencia" [value]="ten.id">
-                {{ten.tenencia}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Resumen de Actividades Productivas de la Tierra</h1>
-      </div>
-      <div class="col-12 row align-items-center borde pt-2">
-        <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
-          <h2>Usos de la tierra:</h2>
-        </div>
-        <div class="col-12 col-md-6">
-          <mat-form-field appearance="outline" class="form-control">
-            <mat-label>Usos:</mat-label>
-            <mat-select #selActividades formControlName="selectActividades" multiple>
-              <mat-option *ngFor="let element of usosTierra" [value]="element.id">{{element.uso}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Servicios Locales</h1>
-      </div>
-      <div class="col-12">
-        <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Seleccione los Servicios Locales</mat-label>
-          <mat-select #selLocales multiple formControlName="selectLocales">
-            <mat-option *ngFor="let element of servLocales" [value]="element.id">{{element.servicio}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Aspectos Generales del Financiamiento</h1>
-      </div>
-      <div class="col-12">
-        <div class="text-center">
-          <button type="button" class="btn btn-info text-light fw-bold" (click)="agregarFinanciamiento()">Agregar
-            Nueva</button>
-        </div>
-        <div formArrayName="financiamientos">
-          <div *ngFor="let ide of financiamientos.controls; let i = index">
-            <div [formGroupName]="i" class="row borde2 mt-2">
-              <div class="col-10 col-md-11 row pt-3">
-                <div class="col-12 col-md-4">
-                  <mat-form-field appearance="outline" class="form-control ">
-                    <mat-label>Tipo</mat-label>
-                    <mat-select #selTipo formControlName="selectTipo" required>
-                      <mat-option value="" disabled>Seleccione</mat-option>
-                      <mat-option *ngFor="let tipo of tiposF" [value]="tipo.id">
-                        {{tipo.tipo}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-4">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Fuente</mat-label>
-                    <mat-select #selFuente formControlName="selectFuente" required>
-                      <mat-option value="" disabled>Seleccione</mat-option>
-                      <mat-option *ngFor="let fuente of fuentes" [value]="fuente.id">
-                        {{fuente.fuente}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-12 col-md-4">
-                  <mat-form-field appearance="outline" class="form-control">
-                    <mat-label>Marco Legal Aplicable</mat-label>
-                    <textarea formControlName="txtMarco" matInput placeholder="Enfrente de la inglesia..."></textarea>
-                  </mat-form-field>
+      </mat-step>
+      <mat-step>
+        <div id="Formulario" class="row form-control d-flex">
+          <ng-template matStepLabel>
+            <h1 id="h1">Datos Junta Directiva</h1>
+          </ng-template>
+          <div class="col-12">
+            <div formArrayName="junta">
+              <div *ngFor="let ide of junta.controls; let i = index">
+                <div [formGroupName]="i" class="row borde2 mt-2">
+                  <div class="col-12 align-items-center pt-2 justify-content-center text-center d-flex">
+                    <a class="btnEliminarItem" (click)="eliminarJunta(i)"><i class="bi bi-x-octagon"></i></a>
+                  </div>
+                  <div class="col-10 col-md-12 row pt-3">
+                    <div class="col-12 col-md-6">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Nombre Completo" formControlName="txtNombre" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>DNI</mat-label>
+                        <input matInput placeholder="0704190121100" formControlName="txtDNI" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Edad</mat-label>
+                        <input matInput placeholder="Edad" type="number" formControlName="txtEdad" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Teléfono</mat-label>
+                        <input type="tel" matInput placeholder="9922-2211" formControlName="txtTelefono" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Sexo</mat-label>
+                        <mat-select #selSex formControlName="selectSexo" required>
+                          <mat-option disabled value="">Seleccione</mat-option>
+                          <mat-option value="Hombre">Hombre</mat-option>
+                          <mat-option value="Mujer">Mujer</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Cargo</mat-label>
+                        <mat-select #selCargo formControlName="selectCargo" required>
+                          <mat-option disabled value="">Seleccione</mat-option>
+                          <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
+                            {{cargo.cargo}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Escolaridad</mat-label>
+                        <mat-select #selEsc formControlName="selectNivel" required>
+                          <mat-option disabled value="">Seleccione</mat-option>
+                          <mat-option *ngFor="let grado of grados" [value]="grado.id">
+                            {{grado.grado}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Representante del Eje</mat-label>
+                        <mat-select #selEje formControlName="selectEje" required>
+                          <mat-option disabled value="">Seleccione</mat-option>
+                          <mat-option *ngFor="let eje of ejes" [value]="eje.id">
+                            {{eje.eje}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="col-2 col-md-1 align-items-center justify-content-center text-center d-flex">
-                <a class="btnEliminarItem" (click)="eliminarFinanciamiento(i)"><i class="bi bi-x-octagon"></i></a>
+            </div>
+            <div class="text-center mt-2">
+              <button type="button" class="btn btn-info text-light fw-bold" (click)="agregarJunta()">Agregar
+                Nueva</button>
+            </div>
+          </div>
+          <div class="mt-3 btn">
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step>
+        <div id="Formulario" class="row form-control d-flex">
+          <ng-template matStepLabel>
+            <h1 id="h1">Identificación de Necesidades</h1>
+          </ng-template>
+          <div class="col-12">
+            <div class="text-center">
+              <button type="button" class="btn btn-info text-light fw-bold" (click)="agregarIdentificador()">Agregar
+                Nueva</button>
+            </div>
+            <div formArrayName="identificadores">
+              <div *ngFor="let ide of identificadores.controls; let i = index">
+                <div [formGroupName]="i" class="row borde2 mt-2">
+                  <div class="col-10 col-md-11 row pt-3">
+                    <div class="col-12 col-md-4">
+                      <mat-form-field appearance="outline" class="form-control ">
+                        <mat-label>Estructura</mat-label>
+                        <mat-select #selMun formControlName="selectEstructura" required>
+                          <mat-option value="" disabled>Seleccione</mat-option>
+                          <mat-option *ngFor="let estructura of estructuras" [value]="estructura.id">
+                            {{estructura.estructura}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Estado</mat-label>
+                        <mat-select #selMun formControlName="selectEstado" required>
+                          <mat-option value="" disabled>Seleccione</mat-option>
+                          <mat-option *ngFor="let est of estados" [value]="est.id">
+                            {{est.estado}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea formControlName="observacion" matInput
+                          placeholder="Enfrente de la inglesia..."></textarea>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-2 col-md-1 align-items-center justify-content-center text-center d-flex">
+                    <a class="btnEliminarItem" (click)="eliminarIdentificador(i)"><i class="bi bi-x-octagon"></i></a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <div class="mt-3 btn">
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
         </div>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Nivel Tecnológico General</h1>
-      </div>
-      <div class="col-12 row align-items-center borde pt-2">
-        <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
-          <h2>Seleccione el nivel tecnológico general de la zona</h2>
+      </mat-step>
+      <mat-step>
+        <div id="Formulario" class="row form-control d-flex">
+          <ng-template matStepLabel>
+            <h1 id="h1">Recursos Naturales</h1>
+          </ng-template>
+          <table class="table table-striped">
+            <thead class="bg-dark text-light">
+              <tr class="text-center">
+                <th>
+                  <h3>Recurso</h3>
+                </th>
+                <th>
+                  <h3>Existe</h3>
+                </th>
+                <th>
+                  <h3>Cantidad/Tipo</h3>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-center">
+                <td>
+                  <h2>Ríos</h2>
+                </td>
+                <td class="example-section">
+                  <mat-checkbox (change)="ckRiosChange()" formControlName="checkRios" color="primary"></mat-checkbox>
+                </td>
+                <td>
+                  <input formControlName="txtCantRios" placeholder="Ingrese la cantidad" type="number"
+                    class="form-control text-center">
+                </td>
+              </tr>
+              <tr class="text-center">
+                <td class="align-items-center">
+                  <h2>Bosques</h2>
+                </td>
+                <td class="example-section">
+                  <mat-checkbox (change)="ckBosquesChange()" formControlName="checkBosques"
+                    color="primary"></mat-checkbox>
+                </td>
+                <td>
+                  <select class="form-select text-center" formControlName="selectBosque">
+                    <option selected value="">Tipo de Bosque</option>
+                    <option *ngFor="let tipo of tipoBosque" [value]="tipo.id">{{tipo.tipo}}</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-12 row align-items-center borde pt-2">
+            <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
+              <h2>Tipo de suelo de la comunidad:</h2>
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field appearance="outline" class="form-control">
+                <mat-label>Suelo</mat-label>
+                <mat-select #selOrg formControlName="selectSuelos" required>
+                  <mat-option disabled value="">Seleccione</mat-option>
+                  <mat-option *ngFor="let suelo of suelos" [value]="suelo.id">
+                    {{suelo.tipo}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="mt-3 btn">
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
         </div>
-        <div class="col-12 col-md-6">
-          <mat-form-field appearance="outline" class="form-control">
-            <mat-label>Nivel Tecnológico</mat-label>
-            <mat-select #selNTec formControlName="selectNivelTec" required>
-              <mat-option disabled value="">Seleccione</mat-option>
-              <mat-option *ngFor="let tec of nivel" [value]="tec.id">
-                {{tec.nivel}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+      </mat-step>
+      <mat-step>
+        <div id="Formulario" class="row form-control d-flex">
+          <ng-template matStepLabel>
+            <h1 id="h1">Servicios</h1>
+          </ng-template>
+          <div class="encabezado mt-3 col-12">
+            <h1>Servicios Básicos</h1>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="outline" class="form-control">
+              <mat-label>Seleccione los Servicios Básicos</mat-label>
+              <mat-select formControlName="selectBasicos" #selBasicos multiple>
+                <mat-option *ngFor="let element of servBasicos" [value]="element.id">{{element.servicio}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="encabezado mt-3 col-12">
+            <h1>Servicios Locales</h1>
+          </div>
+          <div class="col-12">
+            <mat-form-field appearance="outline" class="form-control">
+              <mat-label>Seleccione los Servicios Locales</mat-label>
+              <mat-select #selLocales multiple formControlName="selectLocales">
+                <mat-option *ngFor="let element of servLocales" [value]="element.id">{{element.servicio}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="mt-3 btn">
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
         </div>
-      </div>
-      <div class="encabezado mt-3 col-12">
-        <h1>Estudio de Mercado</h1>
-      </div>
-      <div class="col-12 row align-items-center borde pt-2">
-        <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
-          <h2>Seleccione el tipo de mercado de la zona</h2>
+      </mat-step>
+      <mat-step>
+        <div id="Formulario" class="row form-control d-flex">
+          <ng-template matStepLabel>
+            <h1 id="h1">Organizaciones Presentes</h1>
+          </ng-template>
+          <div class="col-12">
+            <mat-form-field appearance="outline" class="form-control">
+              <mat-label>Seleccione las organizaciones</mat-label>
+              <mat-select #selOrg formControlName="selectOrgs" multiple>
+                <mat-option *ngFor="let element of sociales" [value]="element.id">{{element.org}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="mt-3 btn">
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
         </div>
-        <div class="col-12 col-md-6">
-          <mat-form-field appearance="outline" class="form-control">
-            <mat-label>Mercado</mat-label>
-            <mat-select #selNTec formControlName="selectMercado" required>
-              <mat-option disabled value="">Seleccione</mat-option>
-              <mat-option *ngFor="let mer of mercados" [value]="mer.id">
-                {{mer.mercado}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+      </mat-step>
+      <mat-step>
+        <div id="Formulario" class="row form-control d-flex">
+          <ng-template matStepLabel>
+            <h1 id="h1">Flujo Comercial</h1>
+          </ng-template>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="form-control">
+              <mat-label>Principales Productos Exportados</mat-label>
+              <textarea formControlName="txtExportacion" matInput
+                placeholder="Frijoles, maíz, artesanías..."></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="form-control">
+              <mat-label>Principales Productos Importados</mat-label>
+              <textarea formControlName="txtImportacion" matInput placeholder="Textiles, papa, yuca..."></textarea>
+            </mat-form-field>
+          </div>
+          <div class="mt-3 btn">
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
         </div>
-      </div>
-    </div>
+      </mat-step>
+      <mat-step>
+        <div id="Formulario" class="row form-control d-flex">
+          <ng-template matStepLabel>
+            <h1 id="h1">Requerimientos</h1>
+          </ng-template>
+          <div class="encabezado mt-3 col-12">
+            <h1>Tenencia de la Tierra</h1>
+          </div>
+          <div class="col-12 row align-items-center borde pt-2">
+            <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
+              <h2>Tipo de tenencia de la tierra:</h2>
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field appearance="outline" class="form-control">
+                <mat-label>Tipo de Tenencia</mat-label>
+                <mat-select #selNTec formControlName="selectTenencia" required>
+                  <mat-option disabled value="">Seleccione</mat-option>
+                  <mat-option *ngFor="let ten of tenencia" [value]="ten.id">
+                    {{ten.tenencia}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="encabezado mt-3 col-12">
+            <h1>Resumen de Actividades Productivas de la Tierra</h1>
+          </div>
+          <div class="col-12 row align-items-center borde pt-2">
+            <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
+              <h2>Usos de la tierra:</h2>
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field appearance="outline" class="form-control">
+                <mat-label>Usos:</mat-label>
+                <mat-select #selActividades formControlName="selectActividades" multiple>
+                  <mat-option *ngFor="let element of usosTierra" [value]="element.id">{{element.uso}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="mt-3 btn">
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step>
+        <div id="Formulario" class="row form-control d-flex">
+          <ng-template matStepLabel>
+            <h1 id="h1">Aspectos del Financiamiento</h1>
+          </ng-template>
+          <div class="col-12">
+            <div class="text-center">
+              <button type="button" class="btn btn-info text-light fw-bold" (click)="agregarFinanciamiento()">Agregar
+                Nueva</button>
+            </div>
+            <div formArrayName="financiamientos">
+              <div *ngFor="let ide of financiamientos.controls; let i = index">
+                <div [formGroupName]="i" class="row borde2 mt-2">
+                  <div class="col-10 col-md-11 row pt-3">
+                    <div class="col-12 col-md-4">
+                      <mat-form-field appearance="outline" class="form-control ">
+                        <mat-label>Tipo</mat-label>
+                        <mat-select #selTipo formControlName="selectTipo" required>
+                          <mat-option value="" disabled>Seleccione</mat-option>
+                          <mat-option *ngFor="let tipo of tiposF" [value]="tipo.id">
+                            {{tipo.tipo}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Fuente</mat-label>
+                        <mat-select #selFuente formControlName="selectFuente" required>
+                          <mat-option value="" disabled>Seleccione</mat-option>
+                          <mat-option *ngFor="let fuente of fuentes" [value]="fuente.id">
+                            {{fuente.fuente}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <mat-form-field appearance="outline" class="form-control">
+                        <mat-label>Marco Legal Aplicable</mat-label>
+                        <textarea formControlName="txtMarco" matInput
+                          placeholder="Enfrente de la inglesia..."></textarea>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-2 col-md-1 align-items-center justify-content-center text-center d-flex">
+                    <a class="btnEliminarItem" (click)="eliminarFinanciamiento(i)"><i class="bi bi-x-octagon"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 btn">
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step>
+        <div id="Formulario" class="row form-control d-flex">
+          <ng-template matStepLabel>
+            <h1 id="h1">Datos Finales</h1>
+          </ng-template>
+          <div class="encabezado mt-3 col-12">
+            <h1>Nivel Tecnológico General</h1>
+          </div>
+          <div class="col-12 row align-items-center borde pt-2">
+            <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
+              <h2>Seleccione el nivel tecnológico general de la zona</h2>
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field appearance="outline" class="form-control">
+                <mat-label>Nivel Tecnológico</mat-label>
+                <mat-select #selNTec formControlName="selectNivelTec" required>
+                  <mat-option disabled value="">Seleccione</mat-option>
+                  <mat-option *ngFor="let tec of nivel" [value]="tec.id">
+                    {{tec.nivel}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="encabezado mt-3 col-12">
+            <h1>Estudio de Mercado</h1>
+          </div>
+          <div class="col-12 row align-items-center borde pt-2">
+            <div class="col-12 col-md-6 text-center mb-2 mb-md-0">
+              <h2>Seleccione el tipo de mercado de la zona</h2>
+            </div>
+            <div class="col-12 col-md-6">
+              <mat-form-field appearance="outline" class="form-control">
+                <mat-label>Mercado</mat-label>
+                <mat-select #selNTec formControlName="selectMercado" required>
+                  <mat-option disabled value="">Seleccione</mat-option>
+                  <mat-option *ngFor="let mer of mercados" [value]="mer.id">
+                    {{mer.mercado}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="mt-3 btn">
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+        </div>
+      </mat-step>
+    </mat-stepper>
     <div class="col-12 mt-3 mb-3 row">
       <div class="col-6 px-1 px-md-3">
-        <button *ngIf="showBoton" routerLink="../" type="button" class="btn btnSize btnEliminar form-control">Cancelar</button>
-        <button *ngIf="!showBoton" routerLink="/" type="button" class="btn btnSize btnEliminar form-control">Cancelar</button>
+        <button *ngIf="showBoton" routerLink="../" type="button"
+          class="btn btnSize btnEliminar form-control">Cancelar</button>
+        <button *ngIf="!showBoton" routerLink="/" type="button"
+          class="btn btnSize btnEliminar form-control">Cancelar</button>
       </div>
       <div class="col-6 px-1 px-md-3">
-        <button [disabled]=" frmM1.invalid || frmM2.invalid || frmM3.invalid || frmM4.invalid || frmM5.invalid"
-          (click)="enviarEncuesta()" type="button" class="btn btnSize btnGuardar form-control">Enviar</button>
+        <button [disabled]="EncuestasForm.invalid" (click)="enviarEncuesta()" type="button"
+          class="btn btnSize btnGuardar form-control">Enviar</button>
       </div>
     </div>
   </form>

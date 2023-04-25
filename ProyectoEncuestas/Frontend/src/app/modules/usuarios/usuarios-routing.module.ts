@@ -7,16 +7,17 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { MyuserComponent } from './pages/myuser/myuser.component';
 import { EditarUsuariosComponent } from './pages/editar-usuarios/editar-usuarios.component';
 import { EncuestasUserComponent } from './pages/encuestas-user/encuestas-user.component';
+import { TipoGuard } from '@guards/tipo.guard';
 
 const routes: Routes = [
   {path:'',children:[
     {path:'',component:ListarUsuariosComponent},
-    {path:'desactivados',component:UsuariosDeactivadosComponent},
-    {path:'agregar',component:UsuariosComponent},
-    {path:'asignaciones/:id',component:AsignacionesComponent},
+    {path:'desactivados',component:UsuariosDeactivadosComponent,canActivate:[TipoGuard]},
+    {path:'agregar',component:UsuariosComponent,canActivate:[TipoGuard]},
+    {path:'asignaciones/:id',component:AsignacionesComponent,canActivate:[TipoGuard]},
     {path:'miuser',component:MyuserComponent},
-    {path:'editar/:id',component:EditarUsuariosComponent},
-    {path:'user/:id',component:EncuestasUserComponent}
+    {path:'editar/:id',component:EditarUsuariosComponent,canActivate:[TipoGuard]},
+    {path:'user/:id',component:EncuestasUserComponent,canActivate:[TipoGuard]}
   ]},
 ];
 

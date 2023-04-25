@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.token = (this.getDecodedAccessToken(this.cookie.get('token'))).tipo;
     if (this.token == 2) {
       this.mostrar=true;
-    } else if (this.token == 2) {
+    } else if (this.token == 1) {
       this.mostrar=false;
     }
   }
