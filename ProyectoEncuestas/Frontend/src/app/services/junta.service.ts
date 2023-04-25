@@ -16,12 +16,19 @@ export class JuntaService {
         })
       )
   }
-
+  getCargoByID(id:number): Observable<any> {
+    const body={id}
+    return this.http.post(`${this.URL}/cargos/buscar`,body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
   getCargosDesactivados(): Observable<any> {
     return this.http.get(`${this.URL}/cargos/desactivados`)
       .pipe(
-        map((dataRaw: any) => {
-          return dataRaw.results;
+        map(({results}: any) => {
+          return results;
         })
       )
   }
@@ -57,12 +64,16 @@ export class JuntaService {
       })
     )
   }
-  postCargo(cargo: string, estado: string): Observable<any> {
+  postCargo(cargo: string): Observable<any> {
     let body = {
       cargo,
-      estado
+      estado:1
     }
-    return this.http.post(`${this.URL}/cargos`, body);
+    return this.http.post(`${this.URL}/cargos`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    );
   }
   getGrados(): Observable<any> {
     return this.http.get(`${this.URL}/escolaridad`)

@@ -128,7 +128,7 @@ const ctrPostEncuesta = async (req, res) => {
       res.json({ "results": { mensaje: results[0].id_Encuesta, estado: 1 } })
 
     });
-  } catch(error){
+  } catch (error) {
     console.log(error);
     handleHttpError(res, 'error');
   }
@@ -272,4 +272,21 @@ const ctrPostDetalleRequerimiento = async (req, res) => {
     handleHttpError(res, 'ERROR_POST_DETALLE_REQUERIMIENTO');
   }
 }
-module.exports = { ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetOrganizacion, ctrGetSuelos, ctrGetOrganizacionesSociales, ctrGetMunicipiosUsuario, ctrPostEncuesta, ctrGetAldeasUsuario, ctrGetCaseriosUsuario, ctrGetEstructurasEncuestas, ctrGetEstadosEncuestas, ctrGetTecnologicoEncuestas, ctrGetOrgLocales, ctrPostGeoUbicacion, ctrPostJunta, ctrPostServBasico, ctrPostServLocal, ctrPostDetalleOrg, ctrPostDetalleImportacion, ctrPostDetalleExportacion, ctrPostDetalleUsoTierra, ctrPostDetalleFinanciamiento, ctrPostDetalleRequerimiento };//TODO: Exportamos las funciones del controlador
+const ctrGetJuntaByID = async (req, res) => {
+  try {
+    const {id}=req.body
+    encuestasModel.getJuntaByID(id).then(results => {
+      if(results==="error"){
+        res.json({results:[{mensaje:"Ha ocurrido un error",state:3}]})
+      }else if(results==="vacio"){
+        res.json({results:[{mensaje:"No hay junta directiva agregada",state:1}]})
+      }else{
+                res.json({results});
+      }
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_JUNTA_DIRECTIVA');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
+
+module.exports = { ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetOrganizacion, ctrGetSuelos, ctrGetOrganizacionesSociales, ctrGetMunicipiosUsuario, ctrPostEncuesta, ctrGetAldeasUsuario, ctrGetCaseriosUsuario, ctrGetEstructurasEncuestas, ctrGetEstadosEncuestas, ctrGetTecnologicoEncuestas, ctrGetOrgLocales, ctrPostGeoUbicacion, ctrPostJunta, ctrPostServBasico, ctrPostServLocal, ctrPostDetalleOrg, ctrPostDetalleImportacion, ctrPostDetalleExportacion, ctrPostDetalleUsoTierra, ctrPostDetalleFinanciamiento, ctrPostDetalleRequerimiento,ctrGetJuntaByID };//TODO: Exportamos las funciones del controlador

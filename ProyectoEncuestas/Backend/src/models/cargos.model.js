@@ -56,16 +56,38 @@ async function postCargos(cargo, estado) {//TODO: Creamos la función que se enc
       await pool.connect()//TODO: Conectamos a la base de datos
       await pool.request().query(`Exec prc_Cargos_Agregar '${cargo}', '${estado}'`);//TODO: Ejecutamos la consulta
       pool.close();//TODO: Cerramos la conexión
-      return true;//TODO: Retornamos el eje creado
+      return "exito";//TODO: Retornamos el eje creado
     } else {//TODO: Si el eje existe
-      return false;//TODO: Retornamos un mensaje
+      return "ambiguo";//TODO: Retornamos un mensaje
     }
   } catch (error) {//TODO: Si hay un error
     console.log(error);// TODO: Mostramos el error
+    return "error"
   }
 }
+async function putCargo(id, cargo) {
+  try {
+    const consulta1 = await verificarCargoByID(id);
+    const consulta2 = await verificarCargo(cargo);
+    if (consulta1) {
+      if (consulta2) {
+        await pool.connect()
+        await pool.request().query(`Exec prc_Cargos_Editar ${id}, '${cargo}'`);
+        pool.close();
+        return "exito";
+      } else {
+        return "ambiguo"
+      }
+    } else {
+      return "vacio";
+    }
 
-async function verificarCargo(cargo) {//TODO: Creamos la función que se encargará de verificar si un eje existe en base a su nombre
+  } catch (error) {
+    console.log(error)
+    return "error"
+  }
+}
+async function verificarCargo(cargo) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Cargos_Verificcar_Cargo '${cargo}'`);
@@ -74,7 +96,17 @@ async function verificarCargo(cargo) {//TODO: Creamos la función que se encarga
   }
   catch (error) {
     console.log(error);
-
+  }
+}
+async function verificarCargoByID(cargo) {//TODO: Creamos la función que se encargará de verificar si un eje existe en base a su nombre
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    const result = await pool.request().query(`Exec prc_Cargos_Buscar ${id}`);
+    pool.close();//TODO: Cerramos la conexión
+    return result.recordset.length === 0;
+  }
+  catch (error) {
+    console.log(error);
   }
 }
 module.exports = { getCargos, getCargo, getCargosDesactivados, postCargos };//TODO: Exportamos las funcionessss

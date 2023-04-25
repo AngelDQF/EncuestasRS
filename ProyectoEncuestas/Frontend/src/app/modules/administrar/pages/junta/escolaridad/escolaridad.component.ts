@@ -62,7 +62,7 @@ export class EscolaridadComponent implements OnInit {
       if(id!==undefined){
       const dialogRef= this.dialog.open(CambiarEstadoComponent, {
         width: '400px',
-        data: [id,"Desactivar",0,],
+        data: [id,"Desactivar",0,'grado'],
       });
       dialogRef.afterClosed().subscribe(exc=>{this.obtenerGrados()})
     }else{

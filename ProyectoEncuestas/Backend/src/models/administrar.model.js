@@ -50,8 +50,9 @@ async function getEncuestasUserMun(id, idUser) {//TODO: Creamos la función que 
     console.log(error);
   }
 }
+
 module.exports = {
   getEncuestasUser,
   getEncuestasUserDep,
-  getEncuestasUserMun
+  getEncuestasUserMun,
 }

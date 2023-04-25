@@ -12,7 +12,7 @@ const ctrGetCargos = async (req, res) => {//TODO: Funcion para hacer get a los e
 }
 const ctrGetCargoById = async (req, res) => {//TODO: Funcion para hacer get a los ejes
   try {
-    const {id}=req.params;
+    const {id}=req.body;
     cargoModel.getCargo(id).then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
       res.json({results:result})//TODO: Mostramos el resultado en un json
     });
@@ -35,14 +35,14 @@ const ctrPostCargo = async (req, res) => {//TODO: Funcion para hacer post a un e
 
     const { cargo, estado } = req.body;//TODO: Extraemos los datos del body
     const resultado = await cargoModel.postCargos(cargo, estado);//TODO: Llamamos a la función del modelo para crear un usuario
-    if (resultado == true) {
-      res.json({ info: "Cargo Agregado", estado: resultado });//TODO: Mostramos el resultado en un json
-    } else if (resultado == false) {
-      res.json({ info: "Ya Existe un Cargo con ese nombre", estado: resultado });//TODO: Mostramos el resultado en un json
+    if (resultado == 'exito') {
+      res.json({results:{ mensaje: "Cargo Agregado", estado: 2 }});//TODO: Mostramos el resultado en un json
+    } else if (resultado == "ambiguo") {
+      res.json({results:{ mensaje: "Ya Existe un Cargo con ese nombre", estado: 1 }});//TODO: Mostramos el resultado en un json
     } else {
-      res.json({
-        error: "Ha Ocurrido un error"
-      })
+      res.json({results:{
+        mensaje: "Ha Ocurrido un error",estado:3
+      }})
     }
   } catch {
     handleHttpError(res, 'ERROR_POST_CARGO');//TODO: Si surge un error hacemos uso del metodo handleHttpError

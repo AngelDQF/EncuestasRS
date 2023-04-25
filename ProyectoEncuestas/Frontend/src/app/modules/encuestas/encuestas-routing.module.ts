@@ -5,6 +5,7 @@ import { IndexEncuestasComponent } from './pages/index-encuestas.component';
 import { ListadoEncuestasComponent } from './pages/listado-encuestas/listado-encuestas.component';
 import { MisEncuestasComponent } from './pages/mis-encuestas/mis-encuestas.component';
 import { TipoGuard } from '@guards/tipo.guard';
+import { DocumentosComponent } from './pages/documentos/documentos.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,10 @@ const routes: Routes = [
       { path: '', component: IndexEncuestasComponent,canActivate:[TipoGuard] },
       { path: 'listado', component: ListadoEncuestasComponent,canActivate:[TipoGuard] },
       { path: 'formato', component: EncuestasComponent },
-      {path:'user',component:MisEncuestasComponent}
+      {path:'user',children:[
+        {path:'',component:MisEncuestasComponent},
+        {path:'documentos/:id',component:DocumentosComponent},
+      ]}
     ]
   },
 ];

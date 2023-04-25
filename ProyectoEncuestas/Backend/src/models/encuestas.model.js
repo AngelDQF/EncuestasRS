@@ -78,6 +78,22 @@ async function getAldeasUsuario(id) {//TODO: Creamos la función que se encargar
     console.log(error);
   }
 }
+async function getJuntaByID(id) {//TODO: Creamos la función que se encargará de listar todos los ejes
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query(`Exec prc_Junta_Listar_ID ${id}`);//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "vacio"
+    }
+    //console.log(result.recordsets);
+  } catch (error) {
+    console.log(error);
+    return "error"
+  }
+}
 async function getCaseriosUsuario(id) {//TODO: Creamos la función que se encargará de listar todos los ejes
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -324,4 +340,4 @@ async function postDetalleRequerimiento(id, estructura,estado,obser) {
   }
 }
 
-module.exports = { getEncuestas, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun, getOrgLocales, postEncuesta, postGeoUbicacion, postJunta, postServBasico, postServLocal, postDetalleOrg, postDetalleImportacion, postDetalleExportacion,postDetalleUsoTierra,postDetalleFinanciamiento,postDetalleRequerimiento };//TODO: Exportamos las funcionessss
+module.exports = { getEncuestas, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun, getOrgLocales, postEncuesta, postGeoUbicacion, postJunta, postServBasico, postServLocal, postDetalleOrg, postDetalleImportacion, postDetalleExportacion,postDetalleUsoTierra,postDetalleFinanciamiento,postDetalleRequerimiento,getJuntaByID };//TODO: Exportamos las funcionessss

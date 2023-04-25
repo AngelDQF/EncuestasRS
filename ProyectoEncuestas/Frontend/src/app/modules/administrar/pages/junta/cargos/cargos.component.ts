@@ -4,7 +4,7 @@ import { EjesInterface } from '@models/administrar/junta/ejes.interface';
 import { MatPaginator } from '@angular/material/paginator';
 import { CargosInterface } from '@models/administrar/junta/cargos.interface';
 import { MatTableDataSource } from '@angular/material/table';
-import { AgregarEscolaridadComponent, CambiarEstadoComponent, InfoComponent } from '@shared/components';
+import { AgregarCargoComponent, AgregarEscolaridadComponent, CambiarEstadoComponent, InfoComponent } from '@shared/components';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -32,6 +32,8 @@ export class CargosComponent implements OnInit {
     //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
     this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
+   desactivar(s:any){}
+  /*
   desactivar(id:number) {
     try {
       if(id!==undefined){
@@ -46,7 +48,22 @@ export class CargosComponent implements OnInit {
     } catch (error) {
       this.mensaje("Error", "Ha Ocurrido un Error al Desactivar el Grado de Escolaridad", 3);
     }
+  }*/
+  newCargo(): void {
+    try {
+      const dialogRef = this.dialog.open(AgregarCargoComponent, {
+        width: '500px',
+        data:[1]
+      });
+      dialogRef.afterClosed().subscribe(exc => { this.obtenerCargos() });
+
+    } catch (error) {
+      this.mensaje("Error", "Ha Ocurrido un Error al Crear el Cargo", 3);
+    }
   }
+
+
+
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {
       this.dialog.open(InfoComponent, {

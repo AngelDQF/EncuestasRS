@@ -23,6 +23,14 @@ export class EncuestasService {
       })
     )
   }
+  getJunta$(id: number): Observable<any> {
+    const body = { id }
+    return this.http.post(`${this.URL}/encuestas/junta/buscar`, body).pipe(
+      map((dataRaw: any) => {
+        return dataRaw.results
+      })
+    )
+  }
   getDepartamentosUser$(id: number): Observable<any> {
     const body = [
       { id }

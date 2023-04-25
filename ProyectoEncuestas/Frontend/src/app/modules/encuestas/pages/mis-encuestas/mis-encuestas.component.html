@@ -46,7 +46,7 @@
         <ng-container matColumnDef="opciones">
           <th mat-header-cell *matHeaderCellDef> Opciones </th>
           <td mat-cell *matCellDef="let element">
-            <a [routerLink]="['/documentos',element.id]" matTooltip="Agregar PDF" matTooltipPosition="above" class="botonCambiarTabla"><i class="bi bi-folder-fill"></i></a>
+            <a [routerLink]="['documentos',element.id]" matTooltip="Agregar PDF" matTooltipPosition="above" class="botonCambiarTabla"><i class="bi bi-folder-fill"></i></a>
           </td>
         </ng-container>
         <ng-container matColumnDef="caserio">

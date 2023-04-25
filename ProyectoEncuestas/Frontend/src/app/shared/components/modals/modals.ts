@@ -22,5 +22,5 @@ export const modals: any = [
   AgregarEscolaridadComponent,
   CambiarEstadoComponent,
   EstadoAsigComponent, 
-  PutCargoComponent
+  PutCargoComponent,
 ]

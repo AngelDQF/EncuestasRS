@@ -1,0 +1,65 @@
+input{
+  font-size: 15px;
+}
+h2{
+  cursor: auto !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  font-size: 20px;
+}
+.row {
+  --bs-gutter-x: 0px !important;
+}
+.card-header{
+  background-color: var(--color1-2);
+  color:#fff;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+.form-control input,.acta{
+  background-color: rgb(204, 255, 243);
+}
+label{
+  color:var(--color1);
+  font-weight: bold;
+  font-size: 20px;
+}
+.btnGuardar{
+  width: 300px;
+}
+p b{
+  color: var(--color1-2);
+}
+p{
+  color: var(--btn1);
+  font-size: 20px;
+}
+@media screen and (max-width: 767px) {
+  input{
+    font-size: 10px !important;
+  }
+  p{
+    font-size: 12px;
+  }
+  .card-header{
+  font-size: 15px;
+  }
+  label{
+  font-size: 15px;    
+  }
+}
+@media screen and (max-width: 991px) {
+  input{
+    font-size: 14px !important;
+  }
+  p{
+    font-size: 15px;
+  }
+  .card-header{
+  font-size: 18px;
+  }
+  label{
+  font-size: 15px;    
+  }
+}

@@ -483,6 +483,24 @@ as begin
            ,[estado_Cargo])
     VALUES (@cargo,@estado)
 end
+--Procedimiento Almacenado para editar el nombre de un Cargo
+create procedure prc_Cargos_Editar
+@id int,
+@cargo nvarchar(30)
+as begin
+UPDATE [dbo].[tbl_Cargos]
+   SET [descripcion_Cargo] = @cargo
+ WHERE id_Cargo=@id
+end
+--Procedimiento Almacenado para editar el Estado de un Cargo
+create procedure prc_Cargos_Estado_Editar
+@id int,
+@estado bit
+as begin
+UPDATE [dbo].[tbl_Cargos]
+   SET [estado_Cargo] = @estado
+ WHERE id_Cargo=@id
+end
 --Procedimiento Almacenado para Buscar un Cargo
 create procedure prc_Cargos_Verificcar_Cargo
 @cargo nvarchar(30)
@@ -802,7 +820,7 @@ INSERT INTO [dbo].[tbl_Referencias_Junta]
            (@id_Ref,@miembro,@uid)	
 end
 --Creacion de procedimiento almacenado para listar la junta directiva
-create procedure prc_Junta_Listar
+create procedure prc_Junta_Listar_ID
 @id int as begin
 SELECT dbo.tbl_Detalle_Junta_Directiva.id_Miembro_Junta AS id, dbo.tbl_Detalle_Junta_Directiva.nombre_Junta AS name, dbo.tbl_Detalle_Junta_Directiva.dni_Cargo AS dni, dbo.tbl_Detalle_Junta_Directiva.telefono_Junta AS tel, 
                   dbo.tbl_Detalle_Junta_Directiva.sexo, dbo.tbl_Detalle_Junta_Directiva.edad, dbo.tbl_Cargos.descripcion_Cargo AS cargo, dbo.tbl_Grado_Escolaridad.grado_Escolaridad AS grado, dbo.tbl_Ejes.descripcion_Eje AS eje
@@ -810,7 +828,8 @@ FROM     dbo.tbl_Detalle_Junta_Directiva INNER JOIN
                   dbo.tbl_Cargos ON dbo.tbl_Detalle_Junta_Directiva.id_Cargo = dbo.tbl_Cargos.id_Cargo INNER JOIN
                   dbo.tbl_Ejes ON dbo.tbl_Detalle_Junta_Directiva.id_Eje = dbo.tbl_Ejes.id_Eje INNER JOIN
                   dbo.tbl_Grado_Escolaridad ON dbo.tbl_Detalle_Junta_Directiva.id_Escolaridad = dbo.tbl_Grado_Escolaridad.id_Escolaridad
-where id_Encuesta=id
-
+where id_Encuesta=@id
+order by dbo.tbl_Detalle_Junta_Directiva.id_Cargo
+end
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Encuestas], RESEED, 0);

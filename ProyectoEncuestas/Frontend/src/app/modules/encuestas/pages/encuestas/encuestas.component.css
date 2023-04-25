@@ -69,9 +69,7 @@ h3 {
   font-weight: bold;
   margin: 0px;
 }
-.row {
-  --bs-gutter-x: 0px !important;
-}
+
 /*Selects*/
 mat-form-field {
   border: none;

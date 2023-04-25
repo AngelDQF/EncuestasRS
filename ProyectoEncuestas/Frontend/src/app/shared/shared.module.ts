@@ -6,16 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JuntaService } from '@serv/junta.service';
 import * as components from './components/index';
 import { MaterialExampleModule } from '@AM/*';
-import { DesactivarUserComponent } from './components/modals/desactivar-user/desactivar-user.component';
-import { AgregarAsignacionComponent } from './components/modals/agregar-asignacion/agregar-asignacion.component';
 import { EncuestasService } from '@serv/encuestas.service';
-import { CambiarEstadoComponent } from './components/modals/cambiar-estado/cambiar-estado.component';
 @NgModule({
   declarations: [
     ...components.components,
-    DesactivarUserComponent,
-    AgregarAsignacionComponent,
-    CambiarEstadoComponent,
+
   ],
   imports: [
     CommonModule,

@@ -1,1 +1,51 @@
-<p>documentos works!</p>
+<div class="contenido">
+  <div class="headerListar pb-3 mb-2">
+    <div class="col-12 d-flex p-0 align-items-center">
+      <div class=" col-2 align-items-center">
+        <a routerLink="../../" class="text-start iconoRegresar btn p-0"><i class="bi bi-arrow-left"></i></a>
+      </div>
+      <div class="col-8 align-items-center text-center">
+        <h1 class="text-center  titulo">Documentos</h1>
+      </div>
+      <div class="col-2 align-items-end text-end">
+        <a class="iconoRefrescar btn p-0"><i class="bi bi-arrow-clockwise"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="pt-2 pb-2 titulo">
+      <h2>Acta de Compromiso</h2>
+    </div>
+    <div class="card col-12 mt-2">
+      <h5 class="card-header">Ingresar PDF del Acta</h5>
+      <div class="card-body row ">
+        <div class="mb-3 mt-2">
+          <input class="form-control acta" type="file" id="formFile" (change)="actaChange($event)">
+        </div>
+        <div class="mt-2 text-center">
+          <button type="button" class="btn btnGuardar w-20">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-2 pb-2 titulo">
+    <h2>Junta Directiva</h2>
+  </div>
+  <div class="row form-control" *ngFor="let element of junta; let i = index">
+    <div class="card col-12 mt-2" [matBadge]="i+1" matBadgePosition="before" matBadgeColor="accent">
+      <h5 class="card-header">{{element.name}}</h5>
+      <div class="card-body row ">
+        <p class="card-text text-start text-lg-start col-12 col-lg-4"><b>DNI:</b> {{element.dni}}</p>
+        <p class="card-text text-start text-lg-center col-12 col-lg-4"><b>Cargo:</b> {{element.cargo}}</p>
+        <p class="card-text text-start text-lg-end col-12 col-lg-4"><b>Eje:</b> {{element.eje}}</p>
+        <div class="mb-3 mt-2">
+          <label for="formFile" class="form-label">Ingrese PDF del DNI</label>
+          <input class="form-control" type="file" id="formFile">
+        </div>
+        <div class="mt-2 text-center">
+          <button type="button" class="btn btnGuardar w-20">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
