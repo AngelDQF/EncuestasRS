@@ -30,12 +30,12 @@ export class EscolaridadDesactivadasComponent implements OnInit {
   buscarTabla() {
     this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
-  desactivar(id:number) {
+  activar(id:number) {
     try {
       if(id!==undefined){
       const dialogRef= this.dialog.open(CambiarEstadoComponent, {
         width: '400px',
-        data: [id,"Activar",1],
+        data: [id,"Activar",1,'grado'],
       });
       dialogRef.afterClosed().subscribe(exc=>{this.obtenerGradosDesactivados()})
     }else{

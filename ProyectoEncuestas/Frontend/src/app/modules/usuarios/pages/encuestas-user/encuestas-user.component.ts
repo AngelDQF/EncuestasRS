@@ -50,8 +50,10 @@ export class EncuestasUserComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.usuario = data[0].user;
       })
+      this.selDep.value="";
+      this.selMun.value="";
     } catch (error) {
-      console.log(error);
+      console.log("Sin datos para mostrar");
     }
   }
 

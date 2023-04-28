@@ -34,7 +34,7 @@
       <ng-container matColumnDef="opciones">
         <th mat-header-cell *matHeaderCellDef> Opciones </th>
         <td mat-cell *matCellDef="let element" class="">
-          <a class="botonGuardarTabla"><i class="bi bi-unlock-fill"></i></a>
+          <a (click)="activar(element.id)" class="botonGuardarTabla"><i class="bi bi-unlock-fill"></i></a>
         </td>
       </ng-container>
 

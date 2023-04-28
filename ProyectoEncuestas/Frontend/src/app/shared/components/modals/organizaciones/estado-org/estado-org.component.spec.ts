@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PutCargoComponent } from './put-cargo.component';
+import { EstadoOrgComponent } from './estado-org.component';
 
-describe('PutCargoComponent', () => {
-  let component: PutCargoComponent;
-  let fixture: ComponentFixture<PutCargoComponent>;
+describe('EstadoOrgComponent', () => {
+  let component: EstadoOrgComponent;
+  let fixture: ComponentFixture<EstadoOrgComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PutCargoComponent ]
+      declarations: [ EstadoOrgComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PutCargoComponent);
+    fixture = TestBed.createComponent(EstadoOrgComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

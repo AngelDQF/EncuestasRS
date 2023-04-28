@@ -16,9 +16,9 @@ export class JuntaService {
         })
       )
   }
-  getCargoByID(id:number): Observable<any> {
-    const body={id}
-    return this.http.post(`${this.URL}/cargos/buscar`,body).pipe(
+  getCargoByID(id: number): Observable<any> {
+    const body = { id }
+    return this.http.post(`${this.URL}/cargos/buscar`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -27,7 +27,7 @@ export class JuntaService {
   getCargosDesactivados(): Observable<any> {
     return this.http.get(`${this.URL}/cargos/desactivados`)
       .pipe(
-        map(({results}: any) => {
+        map(({ results }: any) => {
           return results;
         })
       )
@@ -67,9 +67,17 @@ export class JuntaService {
   postCargo(cargo: string): Observable<any> {
     let body = {
       cargo,
-      estado:1
+      estado: 1
     }
     return this.http.post(`${this.URL}/cargos`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    );
+  }
+  putCargo(id: number, cargo: string): Observable<any> {
+    let body = { id, cargo };
+    return this.http.put(`${this.URL}/cargos`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -118,6 +126,14 @@ export class JuntaService {
   putGradoEstado(id: number, estado: boolean): Observable<any> {
     const body = { id, estado }
     return this.http.put(`${this.URL}/escolaridad/editar/estado`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  putCargoEstado(id: number, estado: boolean): Observable<any> {
+    const body = { id, estado };
+    return this.http.put(`${this.URL}/cargos/estado`, body).pipe(
       map(({ results }: any) => {
         return results;
       })

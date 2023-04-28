@@ -2,13 +2,13 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { JuntaService } from '@serv/junta.service';
-import { InfoComponent } from '../info/info.component';
 import { EjesInterface } from '@models/administrar/junta/ejes.interface';
+import { InfoComponent } from '../../info/info.component';
 
 @Component({
   selector: 'app-put-eje',
   templateUrl: './put-eje.component.html',
-  styleUrls: ['../modals.css','../../../../app.component.css']
+  styleUrls: ['../../modals.css','../../../../../app.component.css']
 })
 export class PutEjeComponent implements OnInit {
   eje: FormControl;

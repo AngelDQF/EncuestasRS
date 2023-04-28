@@ -32,14 +32,12 @@ export class CargosComponent implements OnInit {
     //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
     this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
-   desactivar(s:any){}
-  /*
   desactivar(id:number) {
     try {
       if(id!==undefined){
       const dialogRef= this.dialog.open(CambiarEstadoComponent, {
         width: '400px',
-        data: [id,"Desactivar",0,],
+        data: [id,"Desactivar",0,'cargo'],
       });
       dialogRef.afterClosed().subscribe(exc=>{this.obtenerCargos()})
     }else{
@@ -48,7 +46,7 @@ export class CargosComponent implements OnInit {
     } catch (error) {
       this.mensaje("Error", "Ha Ocurrido un Error al Desactivar el Grado de Escolaridad", 3);
     }
-  }*/
+  }
   newCargo(): void {
     try {
       const dialogRef = this.dialog.open(AgregarCargoComponent, {
@@ -62,8 +60,18 @@ export class CargosComponent implements OnInit {
     }
   }
 
+  editar(id:number): void {
+    try {
+      const dialogRef = this.dialog.open(AgregarCargoComponent, {
+        width: '500px',
+        data:[2,id]
+      });
+      dialogRef.afterClosed().subscribe(exc => { this.obtenerCargos() });
 
-
+    } catch (error) {
+      this.mensaje("Error", "Ha Ocurrido un Error al Editar el Cargo", 3);
+    }
+  }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {
       this.dialog.open(InfoComponent, {

@@ -46,11 +46,11 @@
           <span *ngIf="isExpanded">Administrar</span>
         </div>
       </mat-list-item>
-      <mat-list-item *ngIf="false" routerLink="/" [matTooltip]="btn6" matTooltipPosition="right">
+      <mat-list-item *ngIf="mostrar" routerLink="/" [matTooltip]="btn6" matTooltipPosition="right">
         <div class="align-items-center d-flex">
           <mat-icon mat-list-icon class="menu-item"><i class="bi bi-clipboard2-data-fill mr-2 lead"
               style="color:darkblue;"></i></mat-icon>
-          <span *ngIf="isExpanded">Exportar</span>
+          <span *ngIf="isExpanded">Documentos</span>
         </div>
       </mat-list-item>
       <mat-list-item *ngIf="!mostrar" routerLink="/encuestas/user" [matTooltip]="btn8" matTooltipPosition="right">

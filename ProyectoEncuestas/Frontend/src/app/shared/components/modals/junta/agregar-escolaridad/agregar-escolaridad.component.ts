@@ -2,13 +2,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { JuntaService } from '@serv/junta.service';
-import { InfoComponent } from '../info/info.component';
+import { InfoComponent } from '../../info/info.component';
 import { EscolaridadInterface } from '@models/administrar/junta/escolaridad.interface';
 
 @Component({
   selector: 'app-agregar-escolaridad',
   templateUrl: './agregar-escolaridad.component.html',
-  styleUrls: ['../modals.css', '../../../../app.component.css']
+  styleUrls: ['../../modals.css', '../../../../../app.component.css']
 })
 export class AgregarEscolaridadComponent implements OnInit {
   grado: FormControl;

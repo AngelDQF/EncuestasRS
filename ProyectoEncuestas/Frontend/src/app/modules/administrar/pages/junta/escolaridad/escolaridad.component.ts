@@ -42,7 +42,7 @@ export class EscolaridadComponent implements OnInit {
       dialogRef.afterClosed().subscribe(exc => { this.obtenerGrados() });
 
     } catch (error) {
-      this.mensaje("Error", "Ha Ocurrido un Error al Crear el Eje", 3);
+      this.mensaje("Error", "Ha Ocurrido un Error al Crear el Grado de Escolaridad", 3);
     }
   }
   editar(id:number): void {
@@ -54,7 +54,7 @@ export class EscolaridadComponent implements OnInit {
       dialogRef.afterClosed().subscribe(exc => { this.obtenerGrados() });
 
     } catch (error) {
-      this.mensaje("Error", "Ha Ocurrido un Error al Crear el Eje", 3);
+      this.mensaje("Error", "Ha Ocurrido un Error al Editar el Grado de Escolaridad", 3);
     }
   }
   desactivar(id:number) {
