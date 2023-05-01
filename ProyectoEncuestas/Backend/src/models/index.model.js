@@ -4,7 +4,7 @@ const model = {//TODO: Exportamos todos los modelos hijos
   usuariosModel: require('./usuarios.model'),//TODO: Exportamos el modelo de usuarios
   ejesModel: require('./ejes.model'),//TODO: Exportamos el modelo de ejes
   cargoModel:require('./cargos.model'),//TODO: Exportamos el modelo de Cargos
-  organizacionesModel:require('./organizaciones'),//TODO: Exportamos el modelo de Organizaciones
+  organizacionesModel:require('./organizaciones.model'),//TODO: Exportamos el modelo de Organizaciones
   serviciosModel:require('./servicios.model'),//TODO: Exportamos el modelo de Servicios
   naturalesModel:require('./naturales.model'),//TODO: Exportamos el modelo de Naturales
   financiamientosModel:require('./financiamientos.model'),//TODO: Exportamos el modelo de Financiamientos

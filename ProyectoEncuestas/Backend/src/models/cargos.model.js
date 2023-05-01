@@ -114,7 +114,7 @@ async function verificarCargo(cargo) {
     console.log(error);
   }
 }
-async function verificarCargoByID(id) {//TODO: Creamos la función que se encargará de verificar si un eje existe en base a su nombre
+async function verificarCargoByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Cargos_Buscar ${id}`);

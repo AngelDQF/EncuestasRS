@@ -831,5 +831,117 @@ FROM     dbo.tbl_Detalle_Junta_Directiva INNER JOIN
 where id_Encuesta=@id
 order by dbo.tbl_Detalle_Junta_Directiva.id_Cargo
 end
+----------------------------------------------------------------------------------------------------------------------------------------------
+--Procedimiento almacenado para crear un tipo de organización
+create procedure prc_Tipo_Org_Crear
+@tipo nvarchar(30),@estado bit
+as begin
+INSERT INTO [dbo].[tbl_Tipos_Organizacion]
+           ([tipo_Organizacion]
+           ,[estado_Tipo_Organizacion])
+     VALUES
+           (@tipo,@estado)
+end
+--Procedimiento almacenado para buscar un tipo de organización por ID
+create procedure prc_Tipo_Org_Buscar_Nombre
+@tipo nvarchar(30)
+as begin
+	SELECT id_Tipo_Organizacion AS id, tipo_Organizacion AS tipo, estado_Tipo_Organizacion AS estado
+	FROM     dbo.tbl_Tipos_Organizacion
+	Where id_Tipo_Organizacion=@tipo
+end
+--Procedimiento Almacenado para buscar un tipo de organización por nombre
+create procedure prc_Tipo_Org_Buscar
+@id int
+as begin
+	SELECT id_Tipo_Organizacion AS id, tipo_Organizacion AS tipo, estado_Tipo_Organizacion AS estado
+	FROM     dbo.tbl_Tipos_Organizacion
+	Where id_Tipo_Organizacion=@id
+end
+--Procedimiento Almacenado para editar un tipo de organización
+Create Procedure prc_Tipo_Org_Editar
+@id int, @tipo nvarchar(30)
+as begin
+	UPDATE [dbo].[tbl_Tipos_Organizacion]
+	   SET [tipo_Organizacion] = @tipo
+	 WHERE  id_Tipo_Organizacion=@id
+end
+--Procedimiento Almacenado para editar el estado de un tipo de organización
+Create Procedure prc_Tipo_Org_Editar_Estado
+@id int, @estado bit
+as begin
+	UPDATE [dbo].[tbl_Tipos_Organizacion]
+	Set	  [estado_Tipo_Organizacion] = @estado
+	WHERE  id_Tipo_Organizacion=@id
+end
+----------------------------------------------------------------------------------------------------------------------------------------------
+--Proceso almacenado para agregar una organizacion
+create procedure prc_Organizaciones_Crear
+@tipo int,
+@social bit,
+@org nvarchar(70),
+@estado bit
+as begin
+INSERT INTO [dbo].[tbl_Organizaciones]
+           ([id_Tipo_Organizacion]
+           ,[social_productiva]
+           ,[descripcion_Organizacion]
+           ,[estado_Organizacion])
+     VALUES
+           (@tipo,@social,@org,@estado)
+end
+--Proceso almacenado para buscar una organizacion por ID
+create procedure prc_Organizaciones_Buscar
+@id int
+as begin
+	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo, dbo.tbl_Organizaciones.social_productiva AS social, 
+					  dbo.tbl_Organizaciones.estado_Organizacion AS estado
+	FROM     dbo.tbl_Organizaciones INNER JOIN
+					  dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
+	Where dbo.tbl_Organizaciones.id_Organizacion=@id
+end
+--Proceso almacenado para buscar una organización por nombre
+create procedure prc_Organizaciones_Buscar_Org
+@org nvarchar(70)
+as begin
+	SELECT dbo.tbl_Organizaciones.id_Organizacion AS id, dbo.tbl_Organizaciones.descripcion_Organizacion AS org, dbo.tbl_Tipos_Organizacion.tipo_Organizacion AS tipo, dbo.tbl_Organizaciones.social_productiva AS social, 
+					  dbo.tbl_Organizaciones.estado_Organizacion AS estado
+	FROM     dbo.tbl_Organizaciones INNER JOIN
+					  dbo.tbl_Tipos_Organizacion ON dbo.tbl_Organizaciones.id_Tipo_Organizacion = dbo.tbl_Tipos_Organizacion.id_Tipo_Organizacion
+	Where dbo.tbl_Organizaciones.descripcion_Organizacion=@org
+end
+--Procedimiento Almacenado para editar una organizacion
+create procedure prc_Organizaciones_Editar
+@id int, @org nvarchar(70)
+as begin
+	UPDATE [dbo].[tbl_Organizaciones]
+	Set	   [descripcion_Organizacion] = @org
+	WHERE dbo.tbl_Organizaciones.id_Organizacion=@id
+end
+--Procedimiento Almacenado para editar los datos de una organizacion
+create procedure prc_Organizaciones_Editar_Datos
+@id int,@tipo bit,@social bit
+as begin
+	UPDATE [dbo].[tbl_Organizaciones]
+	   SET [id_Tipo_Organizacion] = @tipo
+		  ,[social_productiva] = @social
+	 WHERE dbo.tbl_Organizaciones.id_Organizacion=@id
+end
+--Procedimiento Almacenado para cambiar el estado de una organizacion
+create procedure prc_Organizaciones_Editar_Estado
+@id int,@estado bit
+as begin
+	UPDATE [dbo].[tbl_Organizaciones]
+	   SET [estado_Organizacion] = @estado
+	 WHERE dbo.tbl_Organizaciones.id_Organizacion=@id
+end
+
+
+
+
+
+
+
+
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Encuestas], RESEED, 0);

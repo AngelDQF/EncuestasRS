@@ -1,1 +1,54 @@
-<p>agregar-org works!</p>
+<div mat-dialog-content class="bordeD">
+  <div mat-dialog-actions>
+    <div class="row">
+      <div class="col-12 mb-2">
+        <h1 class="w-100 m-0 titulo">{{botonName}} Cargo</h1>
+      </div>
+      <hr>
+      <div *ngIf="showTitle" class="row expandir text-center justify-content-center">
+        <div class="ps-2 expandir color1 align-items-center col-12 d-flex">
+          <h2 class="d-flex text-center">Nombre Actual:&nbsp;
+            <div class="color3">{{nombre}}</div>
+          </h2>
+        </div>
+      </div>
+      <form class="col-12 row" [formGroup]="frmOrganizaciones">
+        <div class="col-12">
+          <mat-form-field appearance="outline" class="form-control">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="tipo" required>
+              <mat-option disabled value="">Seleccione</mat-option>
+              <mat-option *ngFor="let element of tipos" [value]="element.id">
+                {{element.tipo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12">
+          <mat-form-field appearance="outline" class="form-control">
+            <mat-label>¿Es social productiva?</mat-label>
+            <mat-select formControlName="social" required>
+              <mat-option disabled value="">Seleccione</mat-option>
+              <mat-option value="1">Si</mat-option>
+              <mat-option value="0">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12 mb-2">
+          <mat-form-field appearance="outline" class="form-control">
+            <mat-label>{{label}}</mat-label>
+            <input matInput placeholder="Primaria" formControlName="org" required>
+            <!-- <mat-error *ngIf="org.invalid">{{getErrorMessage()}}</mat-error> -->
+          </mat-form-field>
+        </div>
+      </form>
+      <div class="col-6">
+        <button type="button" class="btnEliminar form-control me-1" (click)="onClickNo()">Cancelar</button>
+      </div>
+      <div class="col-6">
+        <button (click)="ejecutar()" type="submit" class="form-control ms-1" [ngClass]="btnClass"
+          [disabled]="frmOrganizaciones.invalid">{{botonName}}</button>
+      </div>
+    </div>
+  </div>
+</div>

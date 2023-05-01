@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-estado-org',
   templateUrl: './estado-org.component.html',
-  styleUrls: ['./estado-org.component.css']
+  styleUrls: ['../../modals.css', '../../../../../app.component.css']
 })
-export class EstadoOrgComponent {
+export class EstadoOrgComponent implements OnInit{
 
+  ngOnInit(): void {
+    
+  }
 }

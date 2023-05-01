@@ -70,7 +70,7 @@ const ctrPutCargo = async (req, res) => {//TODO: Funcion para hacer post a un ej
       })
     }
   } catch {
-    handleHttpError(res, 'ERROR_POST_CARGO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'ERROR_PUT_CARGO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
 const ctrPutCargoEstado = async (req, res) => {//TODO: Funcion para hacer post a un eje
@@ -91,7 +91,7 @@ const ctrPutCargoEstado = async (req, res) => {//TODO: Funcion para hacer post a
       })
     }
   } catch {
-    handleHttpError(res, 'ERROR_POST_CARGO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'ERROR_PUT_CARGO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
 module.exports = { ctrGetCargos, ctrPutCargo, ctrGetCargosDesactivados, ctrGetCargoById, ctrPostCargo,ctrPutCargoEstado };//TODO: Exportamos las funciones del controlador
