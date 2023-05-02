@@ -2,7 +2,7 @@
   <div mat-dialog-actions>
     <div class="row">
       <div class="col-12 mb-2">
-        <h1 class="w-100 m-0 titulo">{{botonName}} Cargo</h1>
+        <h1 class="w-100 m-0 titulo">{{title}}</h1>
       </div>
       <hr>
       <div *ngIf="showTitle" class="row expandir text-center justify-content-center">
@@ -12,8 +12,9 @@
           </h2>
         </div>
       </div>
+      <h2 *ngIf="showSelects" class="col-12 color3 text-center">{{nombre}}</h2>
       <form class="col-12 row" [formGroup]="frmOrganizaciones">
-        <div class="col-12">
+        <div *ngIf="showSelects" class="col-12">
           <mat-form-field appearance="outline" class="form-control">
             <mat-label>Tipo</mat-label>
             <mat-select formControlName="tipo" required>
@@ -24,7 +25,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col-12">
+        <div *ngIf="showSelects" class="col-12">
           <mat-form-field appearance="outline" class="form-control">
             <mat-label>¿Es social productiva?</mat-label>
             <mat-select formControlName="social" required>
@@ -34,11 +35,10 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col-12 mb-2">
+        <div *ngIf="showInput" class="col-12 mb-2">
           <mat-form-field appearance="outline" class="form-control">
             <mat-label>{{label}}</mat-label>
             <input matInput placeholder="Primaria" formControlName="org" required>
-            <!-- <mat-error *ngIf="org.invalid">{{getErrorMessage()}}</mat-error> -->
           </mat-form-field>
         </div>
       </form>

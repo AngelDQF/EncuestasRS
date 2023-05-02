@@ -32,17 +32,37 @@ export class OrganizacionesComponent implements OnInit {
     //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
     this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
-
+  editar(id:any){
+    try {
+      const dialogRef = this.dialog.open(AgregarOrgComponent, {
+        width: '500px',
+        data:[2,id,'org']
+      });
+      dialogRef.afterClosed().subscribe(exc => { this.obtenerOrg() });
+    } catch (error) {
+      this.mensaje("Error","Ha ocurrido un error al editar",3);
+    }
+  }
+  editarDatos(id:any){
+    try {
+      const dialogRef = this.dialog.open(AgregarOrgComponent, {
+        width: '500px',
+        data:[3,id,'org']
+      });
+      dialogRef.afterClosed().subscribe(exc => { this.obtenerOrg() });
+    } catch (error) {
+      this.mensaje("Error","Ha ocurrido un error al editar",3);
+    }
+  }
   agregar(){
     try {
       const dialogRef = this.dialog.open(AgregarOrgComponent, {
         width: '500px',
-        data:[1]
+        data:[1,'','org']
       });
       dialogRef.afterClosed().subscribe(exc => { this.obtenerOrg() });
-
     } catch (error) {
-      this.mensaje("Error", "Ha Ocurrido un Error al Crear el Cargo", 3);
+      this.mensaje("Error", "Ha Ocurrido un Error al Crear la organización", 3);
     }
   }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {

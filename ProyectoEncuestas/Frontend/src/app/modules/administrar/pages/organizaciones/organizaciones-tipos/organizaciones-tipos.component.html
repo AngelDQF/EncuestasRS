@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="col-12 col-md-4 p-0 pe-2">
-        <a routerLink="agregar" class=" btn btnEditar form-control"><i class="bi bi-stack"></i>Nuevo Tipo de
+        <a (click)="agregar()"  class=" btn btnEditar form-control"><i class="bi bi-stack"></i>Nuevo Tipo de
           Organizacion</a>
       </div>
       <div class="col-12  col-md-8 text-bold text-center text-sm-center text-md-center text-lg-end btnPrincipal p-0">
@@ -36,8 +36,8 @@
         <ng-container matColumnDef="opciones">
           <th mat-header-cell *matHeaderCellDef> Opciones </th>
           <td mat-cell *matCellDef="let element" class="">
-            <a class="botonEditarTabla"><i class="bi bi-pencil-square"></i></a>
-            <a class="botonDesactivarTabla"><i class="bi bi-trash3-fill"> </i></a>
+            <a (click)="editar(element.id)" matTooltip="Editar" matTooltipPosition="above" class="botonEditarTabla"><i class="bi bi-pencil-square"></i></a>
+            <a matTooltip="Desactivar" matTooltipPosition="above" class="botonDesactivarTabla"><i class="bi bi-trash3-fill"> </i></a>
           </td>
         </ng-container>
         <ng-container matColumnDef="tipo">

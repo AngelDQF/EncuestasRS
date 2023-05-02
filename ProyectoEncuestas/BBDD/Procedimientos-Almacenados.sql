@@ -641,8 +641,7 @@ as begin
 			@mercado,
 			@tecno,
 			GETDATE(),
-			@user
-			)
+			@user)
 end
 --Procedimiento almacenado para insertar tipo de organizacion
 
@@ -940,8 +939,47 @@ end
 
 
 
-
-
-
+--Procedimiento almacenado para crear una Mesa Solidaria
+Create Procedure prc_Mesa_Crear
+@id nvarchar(10) as begin
+	INSERT INTO [dbo].[tbl_Mesas_Solidarias]
+           ([id_Caserio]
+           ,[fecha_creacion])
+	output inserted.id_Mesa
+     VALUES
+           (@id,getdate())
+end
+--Procedimiento Almacenado para crear una Junta de la Mesa Solidaria
+Create Procedure prc_Mesa_Junta_Crear
+@id int, @cargo int, @eje int, @dni nvarchar(20),@name nvarchar(100),
+@tel nvarchar(20),@sexo nvarchar(20), @edad int, @esc int
+as begin
+INSERT INTO [dbo].[tbl_Junta_Mesa]
+           ([id_Mesa]
+           ,[nombre_Junta]
+           ,[dni_Cargo]
+           ,[telefono_Junta]
+           ,[sexo]
+           ,[edad]
+           ,[id_Cargo]
+           ,[id_Eje]
+           ,[id_Escolaridad])
+     VALUES
+           (@id,@name,@dni, @tel, @sexo, @edad, @cargo, @eje, @esc)
+end
+--Procedimiento almacenado para obtener una mesa por el ID del caserio
+create procedure prc_Mesa_Buscar
+@id nvarchar(10)
+as begin
+	SELECT dbo.tbl_Mesas_Solidarias.id_Mesa AS id, dbo.tbl_Mesas_Solidarias.id_Caserio AS id_caserio, dbo.tbl_Caserios.caserio, dbo.tbl_Mesas_Solidarias.nombre_Junta AS nombre, dbo.tbl_Mesas_Solidarias.dni_Cargo AS dni, 
+				  dbo.tbl_Mesas_Solidarias.edad, dbo.tbl_Mesas_Solidarias.telefono_Junta AS tel, dbo.tbl_Mesas_Solidarias.sexo, dbo.tbl_Cargos.descripcion_Cargo AS cargo, dbo.tbl_Ejes.descripcion_Eje AS eje, 
+				  dbo.tbl_Grado_Escolaridad.grado_Escolaridad AS grado, dbo.tbl_Mesas_Solidarias.fecha_creacion AS creado, dbo.tbl_Mesas_Solidarias.fecha_actualizacion AS editado
+	FROM     dbo.tbl_Mesas_Solidarias INNER JOIN
+                  dbo.tbl_Caserios ON dbo.tbl_Mesas_Solidarias.id_Caserio = dbo.tbl_Caserios.id_Caserio INNER JOIN
+                  dbo.tbl_Cargos ON dbo.tbl_Mesas_Solidarias.id_Cargo = dbo.tbl_Cargos.id_Cargo INNER JOIN
+                  dbo.tbl_Ejes ON dbo.tbl_Mesas_Solidarias.id_Eje = dbo.tbl_Ejes.id_Eje INNER JOIN
+                  dbo.tbl_Grado_Escolaridad ON dbo.tbl_Mesas_Solidarias.id_Escolaridad = dbo.tbl_Grado_Escolaridad.id_Escolaridad
+	where id_Mesa=@id
+end
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Encuestas], RESEED, 0);

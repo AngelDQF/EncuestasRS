@@ -15,5 +15,6 @@ const model = {//TODO: Exportamos todos los modelos hijos
   administrarModel:require('./administrar.model'),//TODO: Exportamos el modelo de Administrar
   configModel:require('./config.model'),//TODO: Exportamos el modelo de Configuración
   sesionModel:require('./sesion.model'),//TODO: Exportamos el modelo de Sesión
+  mesasModel:require('./mesas.model'),//TODO: Exportamos el modelo de las Mesas Solidarias
 };
 module.exports = model;//TODO: Exportamos el modelo padre

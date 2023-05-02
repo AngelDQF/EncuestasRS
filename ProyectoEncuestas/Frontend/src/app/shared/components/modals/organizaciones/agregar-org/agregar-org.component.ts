@@ -18,61 +18,96 @@ export class AgregarOrgComponent implements OnInit {
   showTitle: boolean;
   label: string;
   nombre: any;
-  tipos:any;
+  showSelects: boolean;
+  showInput: boolean;
+  title: any;
+  tipos: any;
   frmOrganizaciones: FormGroup;
   constructor(private dialogoRef: MatDialogRef<AgregarOrgComponent>, private dialog: MatDialog, private orgService: OrganizacionesService, @Inject(MAT_DIALOG_DATA) public data: Array<any>, private fb: FormBuilder) {
     if (this.data[0] == 1) {
-      this.showTitle = false;
-      this.botonName = "Agregar";
-      this.btnClass = "btnGuardar";
-      this.label = "Ingrese la Organización";
-    } else {
+      if (this.data[2] = "org") {
+        this.showSelects = true;
+        this.showInput = true;
+        this.showTitle = false;
+        this.title = "Agregar Organización";
+        this.botonName = "Guardar";
+        this.btnClass = "btnGuardar";
+        this.label = "Ingrese la Organización";
+      } else {
+        this.botonName = "Agregar Tipo de Organización";
+      }
+    } else if (this.data[0] == 2) {
       this.getOrganizacion(data[1]);
       this.showTitle = true;
+      this.showInput = true;
+      this.title = "Editar Organización";
       this.botonName = "Editar";
       this.btnClass = "btnEditar";
+      this.showSelects = false;
       this.label = "Nuevo nombre";
+    } else {
+      this.title = "Editar Datos Organización";
+      this.getOrganizacion(data[1]);
+      this.showTitle = false;
+      this.btnClass = "btnEditar";
+      this.botonName = "Editar";
+      this.showSelects = true;
+      this.showInput = false;
     }
   }
 
   ngOnInit() {
     this.getTiposOrg();
-    this.frmOrganizaciones=this.initForm();
+    this.frmOrganizaciones = this.initForm();
   }
   initForm(): FormGroup {
+    if (this.data[2] == "org") {
+      if (this.data[0] == 1) {
+        return this.fb.group({
+          tipo: ['', [Validators.required]],
+          social: ['', [Validators.required]],
+          org: ['', [Validators.required, Validators.maxLength(30)]]
+        })
+      } else if (this.data[0] == 2) {
+        return this.fb.group({
+          org: ['', [Validators.required, Validators.maxLength(30)]]
+        })
+      } else {
+        return this.fb.group({
+          tipo: ['', [Validators.required]],
+          social: ['', [Validators.required]],
+        })
+      }
+    } else {
       return this.fb.group({
-        tipo: ['', [Validators.required]],
-        social: ['', [Validators.required]],
-        org: ['', [Validators.required, Validators.maxLength(30)]]
+        tipo: ['', [Validators.required, Validators.maxLength(30)]],
       })
-  }
-  /*
-  get org ():FormControlName{
-    return this.frmOrganizaciones.get('org')?.value;
-  }
-  getErrorMessage() {
-    if (this.org.hasError('required')) {
-      return 'No puede estar vacío';
     }
-    return this.org.hasError('maxLength') ? '' : 'No puede exceder los 30 caracteres';
-  }*/
+  }
+
   onClickNo(): void {
     this.dialogoRef.close();
   }
   ejecutar(): void {
     try {
-      if (this.data[0] == 1) {
-        this.postOrg();
+      if (this.data[2] == "org") {
+        if (this.data[0] == 1) {
+          this.postOrg();
+        } else if (this.data[0] == 2) {
+          this.putOrg();
+        }
+        else {
+          this.putDatosOrg();
+        }
       } else {
-        
-      }
 
+      }
     } catch (error) {
       this.mensaje("Error", `${error}`, 3);
     }
   }
   getOrganizacion(id: number) {
-    this.orgService.getTipoOrganizacionByID(id).subscribe((data: OrganizacionesInterface[]) => {
+    this.orgService.getOrganizacionByID(id).subscribe((data: OrganizacionesInterface[]) => {
       this.nombre = data[0].org;
     })
   }
@@ -93,9 +128,9 @@ export class AgregarOrgComponent implements OnInit {
       this.mensaje("Error", "Error al agregar organización", 3);
     }
   }
-  putOrg():void{
-    try{
-      let{org}=this.frmOrganizaciones.value
+  putOrg(): void {
+    try {
+      let { org } = this.frmOrganizaciones.value
       this.orgService.putOrganizacion(this.data[1], org).subscribe((data: any) => {
         if (data.estado == 1) {
           this.mensaje("Advertencia", `${data.mensaje}`, 1);
@@ -106,8 +141,25 @@ export class AgregarOrgComponent implements OnInit {
           this.mensaje("Error", `${data.mensaje}`, 3);
         }
       });
-    }catch(error){
-      this.mensaje("Error","Error al cambiar el nombre",3);
+    } catch (error) {
+      this.mensaje("Error", "Error al cambiar el nombre", 3);
+    }
+  }
+  putDatosOrg() {
+    try {
+      let { tipo, social } = this.frmOrganizaciones.value
+      this.orgService.putOrganizacionDatos(this.data[1], tipo, social).subscribe((data: any) => {
+        if (data.estado == 1) {
+          this.mensaje("Advertencia", `${data.mensaje}`, 1);
+        } else if (data.estado == 2) {
+          this.mensaje("Información", `${data.mensaje}`, 2);
+          this.dialogoRef.close();
+        } else {
+          this.mensaje("Error", `${data.mensaje}`, 3);
+        }
+      });
+    } catch (error) {
+      this.mensaje("Error", "Error al editar los datos de la Organización", 3);
     }
   }
   postTipo(): void {
@@ -127,15 +179,14 @@ export class AgregarOrgComponent implements OnInit {
       this.mensaje("Error", "Error al agregar tipo de organización", 3);
     }
   }
-  getTiposOrg(){
+  getTiposOrg() {
     try {
-      this.orgService.getTiposOrganizacion().subscribe((data: TiposOrgInterface[])=>{
-        this.tipos=data;
+      this.orgService.getTiposOrganizacion().subscribe((data: TiposOrgInterface[]) => {
+        this.tipos = data;
       })
     } catch (error) {
-      
+      this.mensaje("Error", "Error al obtener los tipos de organización", 3);
     }
-    
   }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {

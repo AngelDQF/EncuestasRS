@@ -150,14 +150,35 @@ id_Tecno int primary key identity(1,1),
 nivel nvarchar(15) not null
 );
 --Creación Tabla Mesas Solidarias
-/*
 Create Table tbl_Mesas_Solidarias(
 id_Mesa int primary key identity (1,1),
-id_Caserio int not null,
-nombre_Junta nvarchar(100),
-dni_Junta nvarchar(20),
-fecha datetime,
-);*/
+id_Caserio nvarchar(10) not null,
+fecha_creacion datetime,
+fecha_actualizacion datetime,
+Constraint fk_CaseriosMS Foreign Key (id_Caserio)
+References tbl_Caserios(id_Caserio),
+);
+--Creacion Junta Directiva de la Mesa Solidaria
+Create table tbl_Junta_Mesa(
+id_Miembro INT Primary Key Identity(1,1),
+id_Mesa int Not null,
+nombre_Junta nvarchar(100) Not Null,
+dni_Cargo nvarchar(20) Not Null,
+telefono_Junta nvarchar(20) Not Null,
+sexo nvarchar(20) Not Null,
+edad int not null,
+id_Cargo INT Not Null,
+id_Eje INT Not Null,
+id_Escolaridad int Not Null,
+Constraint fk_Mesas Foreign Key (id_Mesa)
+References tbl_Mesas_Solidarias(id_Mesa),
+Constraint fk_CargosMS Foreign Key (id_Cargo)
+References tbl_Cargos(id_Cargo),
+Constraint fk_EjesMS Foreign Key (id_Eje)
+References tbl_Ejes(id_Eje),
+Constraint fk_EscolaridadMS Foreign Key(id_Escolaridad)
+References tbl_Grado_Escolaridad(id_Escolaridad)
+);
 --Creación Tabla Encuestas
 Create Table tbl_Encuestas(
 id_Encuesta INT Primary Key Identity(1,1),
@@ -180,7 +201,6 @@ id_Mercado INT Not Null,
 id_Tecno INT Not Null,
 fecha_Encuesta DATETIME,
 id_Usuario INT Not Null,
---id_Mesa int not null,
 Constraint fk_DepartamentosE Foreign Key (id_Departamento)
 References tbl_Departamentos(id_Departamento),
 Constraint fk_MunicipiosE Foreign Key (id_Municipio)
@@ -202,9 +222,7 @@ References tbl_Tecnologico_General(id_Tecno),
 Constraint fk_MercadosE Foreign Key (id_Mercado)
 References tbl_Mercados(id_Mercado),
 Constraint fk_UsuariosE Foreign Key (id_Usuario)
-References tbl_Usuarios(id_Usuario)
---Constraint fk_Mesas Foreign Key (id_Mesa)
---References tbl_Mesas_Solidarias(id_Mesa)
+References tbl_Usuarios(id_Usuario),
 );
 --Creación Tabla Financiamiento
 Create Table tbl_Detalle_Financiamientos(
