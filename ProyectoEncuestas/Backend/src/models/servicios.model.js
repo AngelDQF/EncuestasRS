@@ -64,16 +64,24 @@ async function getServiciosBasicosDesactivados() {//TODO: Función para obtener 
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Basicos_Listar_Desactivados");//TODO: Ejecutamos la consulta
     if (result.recordset.length !== 0) {
+      pool.close();//TODO: Cerramos la conexiónsss
       return result.recordset;//TODO: Retornamos los datos
     }
     else {
+      pool.close();//TODO: Cerramos la conexiónsss
       return "No hay Servicios Basicos Desactivados"
     }
-    pool.close();//TODO: Cerramos la conexiónsss
 
   } catch (error) {
     console.log(error);
     throw error;
+  }
+}
+async function postServicio(tipo,servicio,estado){
+  try{
+
+  }catch(error){
+    
   }
 }
 module.exports = {

@@ -18,14 +18,16 @@ export class AgregarOrgComponent implements OnInit {
   showTitle: boolean;
   label: string;
   nombre: any;
+  showInputTipo: boolean;
   showSelects: boolean;
   showInput: boolean;
   title: any;
   tipos: any;
   frmOrganizaciones: FormGroup;
   constructor(private dialogoRef: MatDialogRef<AgregarOrgComponent>, private dialog: MatDialog, private orgService: OrganizacionesService, @Inject(MAT_DIALOG_DATA) public data: Array<any>, private fb: FormBuilder) {
-    if (this.data[0] == 1) {
-      if (this.data[2] = "org") {
+    if (this.data[2] === "org") {
+      if (this.data[0] == 1) {
+        this.showInputTipo = false;
         this.showSelects = true;
         this.showInput = true;
         this.showTitle = false;
@@ -33,26 +35,34 @@ export class AgregarOrgComponent implements OnInit {
         this.botonName = "Guardar";
         this.btnClass = "btnGuardar";
         this.label = "Ingrese la Organización";
+      } else if (this.data[0] == 2) {
+        this.getOrganizacion(data[1]);
+        this.showTitle = true;
+        this.showInputTipo = false;
+        this.showInput = true;
+        this.title = "Editar Organización";
+        this.botonName = "Editar";
+        this.btnClass = "btnEditar";
+        this.showSelects = false;
+        this.label = "Nuevo nombre";
       } else {
-        this.botonName = "Agregar Tipo de Organización";
+        this.title = "Editar Datos Organización";
+        this.getOrganizacion(data[1]);
+        this.showInputTipo = false;
+        this.showTitle = false;
+        this.btnClass = "btnEditar";
+        this.botonName = "Editar";
+        this.showSelects = true;
+        this.showInput = false;
       }
-    } else if (this.data[0] == 2) {
-      this.getOrganizacion(data[1]);
-      this.showTitle = true;
-      this.showInput = true;
-      this.title = "Editar Organización";
-      this.botonName = "Editar";
-      this.btnClass = "btnEditar";
-      this.showSelects = false;
-      this.label = "Nuevo nombre";
-    } else {
-      this.title = "Editar Datos Organización";
-      this.getOrganizacion(data[1]);
-      this.showTitle = false;
-      this.btnClass = "btnEditar";
-      this.botonName = "Editar";
-      this.showSelects = true;
+    } else if (this.data[2] === "tipo") {
+      this.title = "Agregar Tipo de Organización";
+      this.label = "Nuevo Tipo de Organización";
       this.showInput = false;
+      this.showSelects = false;
+      this.showInputTipo = true;
+      this.botonName = "Editar";
+      this.btnClass = "btnEditar";
     }
   }
 
@@ -80,7 +90,7 @@ export class AgregarOrgComponent implements OnInit {
       }
     } else {
       return this.fb.group({
-        tipo: ['', [Validators.required, Validators.maxLength(30)]],
+        txtTipo: ['', [Validators.required, Validators.maxLength(30)]],
       })
     }
   }
@@ -99,8 +109,8 @@ export class AgregarOrgComponent implements OnInit {
         else {
           this.putDatosOrg();
         }
-      } else {
-
+      } else if(this.data[2] == "tipo") {
+        this.postTipo();
       }
     } catch (error) {
       this.mensaje("Error", `${error}`, 3);
@@ -164,8 +174,8 @@ export class AgregarOrgComponent implements OnInit {
   }
   postTipo(): void {
     try {
-      let { tipo } = this.frmOrganizaciones.value;
-      this.orgService.postTipoOrganizacion(tipo).subscribe((data: any) => {
+      let { txtTipo } = this.frmOrganizaciones.value;
+      this.orgService.postTipoOrganizacion(txtTipo).subscribe((data: any) => {
         if (data.estado == 1) {
           this.mensaje("Advertencia", `${data.mensaje}`, 1);
         } else if (data.estado == 2) {

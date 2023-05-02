@@ -38,7 +38,13 @@
         <div *ngIf="showInput" class="col-12 mb-2">
           <mat-form-field appearance="outline" class="form-control">
             <mat-label>{{label}}</mat-label>
-            <input matInput placeholder="Primaria" formControlName="org" required>
+            <input matInput placeholder="Red Solidaria" formControlName="org" required>
+          </mat-form-field>
+        </div>
+        <div *ngIf="showInputTipo" class="col-12 mb-2">
+          <mat-form-field appearance="outline" class="form-control">
+            <mat-label>{{label}}</mat-label>
+            <input matInput placeholder="Estatal" formControlName="txtTipo" required>
           </mat-form-field>
         </div>
       </form>

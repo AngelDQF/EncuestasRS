@@ -477,39 +477,37 @@ export class EncuestasComponent implements OnInit {
 
   async enviarEncuesta() {
     try {
-      let { } = this.EncuestasForm.value
-      this.crearEncuesta();
+      this.encuestasModel.postMesa$(this.selCaserio.value).subscribe((data: any) => {
+        this.agregarJuntaMesa(data[0].id);
+        this.postEncuesta(data[0].id);
+      })
     } catch (error) {
       this.mensaje("Error", `${error}`, 3);
     }
   }
-  crearEncuesta() {
-    try {
-      let { txtAddress, selectOrgReunion, txtHombres, txtMujeres, checkRios, txtCantRios, checkBosques, selectBosque, selectSuelos, selectTenencia, selectNivelTec, selectMercado } = this.EncuestasForm.value
-      let total = parseInt(txtHombres) + parseInt(txtMujeres);
-      let estRios: string;
-      let estBosques: string;
-      if (checkRios) {
-        estRios = 'Si';
-      } else {
-        estRios = 'No';
-      }
-      if (checkBosques) {
-        estBosques = 'Si';
-      } else {
-        estBosques = 'No';
-      }
-      this.encuestasModel.postEncuesta$(txtHombres, txtMujeres, total, this.selDep.value, this.selMun.value, this.selAldea.value, this.selCaserio.value, txtAddress, selectOrgReunion, estRios, txtCantRios, estBosques, selectBosque, selectSuelos, selectTenencia, selectMercado, selectNivelTec, this.tokenString.id).subscribe((data: any) => {
-        this.idEncuesta = data.mensaje;
-        if (this.idEncuesta !== "error") {
-          this.agregarDetalles();
-        } else {
-          this.mensaje("Error", "Error al crear la encuesta", 3);
-        }
-      })
-    } catch (error) {
-      console.log(error);
+  postEncuesta(mesa: number) {
+    let { txtAddress, selectOrgReunion, txtHombres, txtMujeres, checkRios, txtCantRios, checkBosques, selectBosque, selectSuelos, selectTenencia, selectNivelTec, selectMercado } = this.EncuestasForm.value
+    let total = parseInt(txtHombres) + parseInt(txtMujeres);
+    let estRios: string;
+    let estBosques: string;
+    if (checkRios) {
+      estRios = 'Si';
+    } else {
+      estRios = 'No';
     }
+    if (checkBosques) {
+      estBosques = 'Si';
+    } else {
+      estBosques = 'No';
+    }
+    this.encuestasModel.postEncuesta$(txtHombres, txtMujeres, total, this.selDep.value, this.selMun.value, this.selAldea.value, this.selCaserio.value, txtAddress, selectOrgReunion, estRios, txtCantRios, estBosques, selectBosque, selectSuelos, selectTenencia, selectMercado, selectNivelTec, this.tokenString.id, mesa).subscribe((data: any) => {
+      this.idEncuesta = data.mensaje;
+      if (this.idEncuesta !== "error") {
+        this.agregarDetalles();
+      } else {
+        this.mensaje("Error", "Error al crear la encuesta", 3);
+      }
+    })
   }
   agregarDetalles() {
     try {
@@ -545,6 +543,12 @@ export class EncuestasComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+  agregarJuntaMesa(id:number){
+    let { junta } = this.EncuestasForm.value;
+    junta.forEach((element: any) => {
+      this.encuestasModel.postJuntaMesa$(id, element.selectCargo, element.selectEje, element.txtDNI, element.txtNombre, element.txtTelefono, element.selectSexo, element.txtEdad, element.selectNivel).subscribe();
+    });
   }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {

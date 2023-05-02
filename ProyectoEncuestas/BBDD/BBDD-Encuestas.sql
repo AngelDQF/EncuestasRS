@@ -201,6 +201,7 @@ id_Mercado INT Not Null,
 id_Tecno INT Not Null,
 fecha_Encuesta DATETIME,
 id_Usuario INT Not Null,
+id_Mesa int not null,
 Constraint fk_DepartamentosE Foreign Key (id_Departamento)
 References tbl_Departamentos(id_Departamento),
 Constraint fk_MunicipiosE Foreign Key (id_Municipio)
@@ -223,6 +224,8 @@ Constraint fk_MercadosE Foreign Key (id_Mercado)
 References tbl_Mercados(id_Mercado),
 Constraint fk_UsuariosE Foreign Key (id_Usuario)
 References tbl_Usuarios(id_Usuario),
+Constraint fk_MesaEncuesta Foreign Key (id_Mesa)
+References tbl_Mesas_Solidarias(id_Mesa),
 );
 --Creación Tabla Financiamiento
 Create Table tbl_Detalle_Financiamientos(
@@ -371,7 +374,6 @@ References tbl_Estados(id_Estado),
 Constraint fk_ID_Estructura Foreign Key (id_Estructura)
 References tbl_Estructuras(id_Estructura)
 );
-
 --Creación de las tablas para las referencias de los archivos
 --Creación de la Tabla para los tipos de archivos
 Create Table tbl_Tipo_Archivos(

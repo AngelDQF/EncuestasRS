@@ -219,9 +219,9 @@ export class EncuestasService {
       })
     )
   }
-  postEncuesta$(hombres: number, mujeres: number, total: number, dep: string, mun: string, aldea: string, caserio: string, address: string, org: number, rios: string, cant_rios: number, bosques: string, tipo_bosque: number, suelo: number, tenencia: number, mercado: number, tecno: number, user: number): Observable<any> {
+  postEncuesta$(hombres: number, mujeres: number, total: number, dep: string, mun: string, aldea: string, caserio: string, address: string, org: number, rios: string, cant_rios: number, bosques: string, tipo_bosque: number, suelo: number, tenencia: number, mercado: number, tecno: number, user: number,mesa:number): Observable<any> {
     const body = {
-      hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user
+      hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user, mesa
     }
     return this.http.post(`${this.URL}/encuestas`, body).pipe(
       map(({ results }: any) => {
@@ -269,5 +269,17 @@ export class EncuestasService {
   postRequerimientos$(id: number, estructura: number, estado: number, observacion: string): Observable<any> {
     const body = { id, estructura, estado, observacion }
     return this.http.post(`${this.URL}/encuestas/detalle/requerimiento`, body);
+  }
+  postMesa$(id: string): Observable<any> {
+    const body = { id }
+    return this.http.post(`${this.URL}/mesas/crear`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  postJuntaMesa$(id: number, name: string, dni: string, tel: string, sexo: string, edad: number, cargo: number, eje: number, esc: number): Observable<any> {
+    const body = { id, name, dni, tel, sexo, edad, cargo, eje, esc }
+    return this.http.post(`${this.URL}/mesas/junta`, body);
   }
 }

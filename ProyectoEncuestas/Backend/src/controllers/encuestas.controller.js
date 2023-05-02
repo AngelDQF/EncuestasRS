@@ -123,8 +123,8 @@ const ctrGetTecnologicoEncuestas = async (req, res) => {//TODO: Controlador para
 }
 const ctrPostEncuesta = async (req, res) => {
   try {
-    const { hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user } = req.body;
-    await encuestasModel.postEncuesta(hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user).then(results => {
+    const { hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user, mesa} = req.body;
+    await encuestasModel.postEncuesta(hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user,mesa).then(results => {
       res.json({ "results": { mensaje: results[0].id_Encuesta, estado: 1 } })
 
     });

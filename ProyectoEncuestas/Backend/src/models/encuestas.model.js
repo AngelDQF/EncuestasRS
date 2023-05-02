@@ -20,10 +20,10 @@ async function getEncuestas() {//TODO: Creamos la función que se encargará de 
     console.log(error);
   }
 }
-async function postEncuesta(hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user) {
+async function postEncuesta(hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user,mesa) {
   try {
     await pool.connect()
-    const consulta = await pool.request().query(`Exec prc_Encuestas_Crear '${hombres}', '${mujeres}', '${total}', '${dep}', '${mun}', '${aldea}', '${caserio}', '${address}', '${org}', '${rios}', '${cant_rios}','${bosques}', '${tipo_bosque}', '${suelo}', '${tenencia}', '${mercado}', '${tecno}', '${user}'`);
+    const consulta = await pool.request().query(`Exec prc_Encuestas_Crear '${hombres}', '${mujeres}', '${total}', '${dep}', '${mun}', '${aldea}', '${caserio}', '${address}', '${org}', '${rios}', '${cant_rios}','${bosques}', '${tipo_bosque}', '${suelo}', '${tenencia}', '${mercado}', '${tecno}', '${user}', ${mesa}`);
     return consulta.recordset;
   } catch {
     return "error"

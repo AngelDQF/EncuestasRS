@@ -600,6 +600,7 @@ create procedure prc_Encuestas_Crear
  ,@mercado int
  ,@tecno int
  ,@user int
+ ,@mesa int
 as begin
 	INSERT INTO [dbo].[tbl_Encuestas]
            ([total_Hombres]
@@ -620,7 +621,8 @@ as begin
            ,[id_Mercado]
            ,[id_Tecno]
            ,[fecha_Encuesta]
-           ,[id_Usuario])
+           ,[id_Usuario]
+		   ,[id_Mesa])
 	output inserted.id_Encuesta
 	VALUES
            (@hombres,
@@ -641,7 +643,8 @@ as begin
 			@mercado,
 			@tecno,
 			GETDATE(),
-			@user)
+			@user,
+			@mesa)
 end
 --Procedimiento almacenado para insertar tipo de organizacion
 
@@ -786,38 +789,6 @@ create procedure prc_Crear_Admin
            ,'Hombre/Mujer')
  end
 
---Proceso almacenado para crear una nueva referencia
-Create procedure prc_Referencia_Crear
-@uid nvarchar(40),
-@name nvarchar(255),
-@ext nvarchar(20),
-@tipo int,
-@id int
-as begin
-	INSERT INTO [dbo].[tbl_Referencias]
-           ([uid_Referencia]
-           ,[nombre_Archivo]
-           ,[extension]
-           ,[id_Tipo_Archivo]
-           ,[id_Encuesta])
-	output inserted.id_Referencia
-	VALUES
-           (@uid,@name,@ext,@tipo,@id)
-
-end
---Creacion de procedimiento almacenado para crear la referencia de la junta directiva
-create procedure prc_Referencia_Junta_Crear
-@id_Ref int,
-@miembro int,
-@uid nvarchar(40)
-as begin
-INSERT INTO [dbo].[tbl_Referencias_Junta]
-           ([id_Referencia]
-           ,[id_Miembro_Junta]
-           ,[uid_Referencia])
-     VALUES
-           (@id_Ref,@miembro,@uid)	
-end
 --Creacion de procedimiento almacenado para listar la junta directiva
 create procedure prc_Junta_Listar_ID
 @id int as begin
@@ -847,7 +818,7 @@ create procedure prc_Tipo_Org_Buscar_Nombre
 as begin
 	SELECT id_Tipo_Organizacion AS id, tipo_Organizacion AS tipo, estado_Tipo_Organizacion AS estado
 	FROM     dbo.tbl_Tipos_Organizacion
-	Where id_Tipo_Organizacion=@tipo
+	Where tipo_Organizacion=@tipo
 end
 --Procedimiento Almacenado para buscar un tipo de organización por nombre
 create procedure prc_Tipo_Org_Buscar
@@ -945,7 +916,7 @@ Create Procedure prc_Mesa_Crear
 	INSERT INTO [dbo].[tbl_Mesas_Solidarias]
            ([id_Caserio]
            ,[fecha_creacion])
-	output inserted.id_Mesa
+	output inserted.id_Mesa as id
      VALUES
            (@id,getdate())
 end
@@ -971,15 +942,430 @@ end
 create procedure prc_Mesa_Buscar
 @id nvarchar(10)
 as begin
-	SELECT dbo.tbl_Mesas_Solidarias.id_Mesa AS id, dbo.tbl_Mesas_Solidarias.id_Caserio AS id_caserio, dbo.tbl_Caserios.caserio, dbo.tbl_Mesas_Solidarias.nombre_Junta AS nombre, dbo.tbl_Mesas_Solidarias.dni_Cargo AS dni, 
-				  dbo.tbl_Mesas_Solidarias.edad, dbo.tbl_Mesas_Solidarias.telefono_Junta AS tel, dbo.tbl_Mesas_Solidarias.sexo, dbo.tbl_Cargos.descripcion_Cargo AS cargo, dbo.tbl_Ejes.descripcion_Eje AS eje, 
-				  dbo.tbl_Grado_Escolaridad.grado_Escolaridad AS grado, dbo.tbl_Mesas_Solidarias.fecha_creacion AS creado, dbo.tbl_Mesas_Solidarias.fecha_actualizacion AS editado
+	SELECT dbo.tbl_Mesas_Solidarias.id_Mesa AS id, dbo.tbl_Mesas_Solidarias.id_Caserio AS id_cas, dbo.tbl_Caserios.caserio
 	FROM     dbo.tbl_Mesas_Solidarias INNER JOIN
-                  dbo.tbl_Caserios ON dbo.tbl_Mesas_Solidarias.id_Caserio = dbo.tbl_Caserios.id_Caserio INNER JOIN
-                  dbo.tbl_Cargos ON dbo.tbl_Mesas_Solidarias.id_Cargo = dbo.tbl_Cargos.id_Cargo INNER JOIN
-                  dbo.tbl_Ejes ON dbo.tbl_Mesas_Solidarias.id_Eje = dbo.tbl_Ejes.id_Eje INNER JOIN
-                  dbo.tbl_Grado_Escolaridad ON dbo.tbl_Mesas_Solidarias.id_Escolaridad = dbo.tbl_Grado_Escolaridad.id_Escolaridad
-	where id_Mesa=@id
+                  dbo.tbl_Caserios ON dbo.tbl_Mesas_Solidarias.id_Caserio = dbo.tbl_Caserios.id_Caserio
+	where dbo.tbl_Mesas_Solidarias.id_Caserio=@id
+end
+
+-----------------------------------------------------------------------------------------------------------------------------------
+--Creación de Proceso Alamacenado para crear los Servicios
+Create Procedure prc_Servicios_Crear
+@tipo int, @servicio nvarchar(150),@estado bit
+as begin
+INSERT INTO [dbo].[tbl_Servicios]
+           ([id_Tipo_Servicio]
+           ,[servicio]
+           ,[estado_Servicio])
+     VALUES
+           (@tipo,@servicio,@estado)
+end
+
+Create Procedure prc_Servicios_Buscar
+@id int
+as begin
+	SELECT dbo.tbl_Servicios.id_Servicio AS id, dbo.tbl_Servicios.id_Tipo_Servicio AS id_tipo, dbo.tbl_Tipo_Servicios.tipo_Servicio AS tipo, dbo.tbl_Servicios.servicio, dbo.tbl_Servicios.estado_Servicio AS estado
+	FROM     dbo.tbl_Servicios INNER JOIN
+             dbo.tbl_Tipo_Servicios ON dbo.tbl_Servicios.id_Tipo_Servicio = dbo.tbl_Tipo_Servicios.id_Tipo_Servicio
+	where dbo.tbl_Servicios.id_Servicio=@id
+end
+
+Create Procedure prc_Servicios_Buscar_Nombre
+@servicio nvarchar(150)
+as begin
+	SELECT dbo.tbl_Servicios.id_Servicio AS id, dbo.tbl_Servicios.id_Tipo_Servicio AS id_tipo, dbo.tbl_Tipo_Servicios.tipo_Servicio AS tipo, dbo.tbl_Servicios.servicio, dbo.tbl_Servicios.estado_Servicio AS estado
+	FROM     dbo.tbl_Servicios INNER JOIN
+             dbo.tbl_Tipo_Servicios ON dbo.tbl_Servicios.id_Tipo_Servicio = dbo.tbl_Tipo_Servicios.id_Tipo_Servicio
+	where dbo.tbl_Servicios.servicio=@servicio
+end
+
+Create Procedure prc_Servicios_Editar
+@id int, @tipo int, @servicio nvarchar(150)
+as begin
+UPDATE [dbo].[tbl_Servicios]
+   SET [id_Tipo_Servicio] = @tipo
+      ,[servicio] = @servicio
+ WHERE id_Servicio=@id
+end
+
+Create Procedure prc_Servicios_Editar_Estado
+@id int, @estado bit
+as begin
+UPDATE [dbo].[tbl_Servicios]
+   SET [estado_Servicio] = @estado
+ WHERE id_Servicio=@id
+end
+--Creacion Procedimientos almacenados para los recursos naturales
+--Creacion Procedimientos almacenados para los Bosques
+Create Procedure prc_Bosques_Crear
+@tipo nvarchar(30), @estado bit
+as begin
+INSERT INTO [dbo].[tbl_Tipos_Bosque]
+           ([tipo_Bosque]
+           ,[estado_Tipo_Bosque])
+     VALUES
+           (@tipo,@estado)
+end
+
+Create Procedure prc_Bosques_Buscar
+@id int
+as begin
+	SELECT id_Tipo_Bosque AS id, tipo_Bosque AS tipo, estado_Tipo_Bosque AS estado
+	FROM     dbo.tbl_Tipos_Bosque
+	where id_Tipo_Bosque=@id
+end
+
+Create Procedure prc_Bosques_Buscar_Nombre
+@tipo nvarchar(30)
+as begin
+	SELECT id_Tipo_Bosque AS id, tipo_Bosque AS tipo, estado_Tipo_Bosque AS estado
+	FROM     dbo.tbl_Tipos_Bosque
+	where tipo_Bosque=@tipo
+end
+
+Create Procedure prc_Bosques_Editar
+@id int,@tipo nvarchar(30)
+as begin
+UPDATE [dbo].[tbl_Tipos_Bosque]
+   SET [tipo_Bosque] = @tipo
+ WHERE id_Tipo_Bosque=@id
+end
+
+Create Procedure prc_Bosques_Estado
+@id int,@estado bit
+as begin
+UPDATE [dbo].[tbl_Tipos_Bosque]
+   SET [estado_Tipo_Bosque] = @estado
+ WHERE id_Tipo_Bosque=@id
+end
+--Creacion Procedimientos almacenados para los Suelos
+Create Procedure prc_Suelos_Crear
+@suelo nvarchar(30), @estado bit
+as begin
+INSERT INTO [dbo].[tbl_Suelos]
+           ([descripcion_Suelo]
+           ,[estado_Suelo])
+     VALUES
+           (@suelo,@estado)
+end
+
+Create Procedure prc_Suelos_Buscar
+@id int
+as begin
+	SELECT id_Suelo AS id, descripcion_Suelo AS suelo, estado_Suelo AS estado
+	FROM     dbo.tbl_Suelos
+	where id_Suelo=@id
+end
+
+Create Procedure prc_Suelos_Buscar_Nombre
+@suelo nvarchar(30)
+as begin
+	SELECT id_Suelo AS id, descripcion_Suelo AS suelo, estado_Suelo AS estado
+	FROM     dbo.tbl_Suelos
+	where descripcion_Suelo=@suelo
+end
+
+Create Procedure prc_Suelos_Editar
+@id int,@suelo nvarchar(30)
+as begin
+UPDATE [dbo].[tbl_Suelos]
+   SET [descripcion_Suelo] = @suelo
+ WHERE [id_Suelo]=@id
+end
+
+Create Procedure prc_Suelos_Estado
+@id int,@estado bit
+as begin
+UPDATE [dbo].[tbl_Suelos]
+   SET [estado_Suelo] = @estado
+ WHERE [id_Suelo]=@id
+end
+--Creacion Procedimientos almacenados para los financiamientos
+--Creacion Procedimientos almacenados para los tipos
+Create Procedure prc_Tipo_Financiamiento_Crear
+@tipo nvarchar(30), @estado bit
+as begin
+INSERT INTO [dbo].[tbl_Tipos_Financiamiento]
+           ([financiamiento]
+           ,[estado_Tipo_Financiamiento])
+     VALUES
+           (@tipo,@estado)
+end
+
+Create Procedure prc_Tipo_Financiamiento_Buscar
+@id int
+as begin
+	SELECT id_Tipo_Financiamiento AS id, financiamiento AS tipo, estado_Tipo_Financiamiento AS estado
+	FROM     dbo.tbl_Tipos_Financiamiento
+	where id_Tipo_Financiamiento=@id
+end
+
+Create Procedure prc_Tipo_Financiamiento_Buscar_Nombre
+@tipo nvarchar(30)
+as begin
+	SELECT id_Tipo_Financiamiento AS id, financiamiento AS tipo, estado_Tipo_Financiamiento AS estado
+	FROM     dbo.tbl_Tipos_Financiamiento
+	where financiamiento=@tipo
+end
+
+Create Procedure prc_Tipo_Financiamiento_Editar
+@id int,@tipo nvarchar(30)
+as begin
+UPDATE [dbo].[tbl_Tipos_Financiamiento]
+   SET [financiamiento] = @tipo
+ WHERE [id_Tipo_Financiamiento]=@id
+end
+
+Create Procedure prc_Tipo_Financiamiento_Estado
+@id int,@estado bit
+as begin
+UPDATE [dbo].[tbl_Tipos_Financiamiento]
+   SET [estado_Tipo_Financiamiento] = @estado
+ WHERE [id_Tipo_Financiamiento]=@id
+end
+--Creacion Procedimientos almacenados para las fuentes
+Create Procedure prc_Fuente_Financiamiento_Crear
+@fuente nvarchar(50), @estado bit
+as begin
+INSERT INTO [dbo].[tbl_Fuentes_Financiamiento]
+           ([fuente_Financiamiento]
+           ,[estado_Fuente_Financiamiento])
+     VALUES
+           (@fuente,@estado)
+end
+
+Create Procedure prc_Fuente_Financiamiento_Buscar
+@id int
+as begin
+	SELECT id_Fuente_Financiamiento AS id, fuente_Financiamiento AS fuente, estado_Fuente_Financiamiento AS estado
+	FROM     dbo.tbl_Fuentes_Financiamiento
+	where id_Fuente_Financiamiento=@id
+end
+
+Create Procedure prc_Fuente_Financiamiento_Buscar_Nombre
+@fuente nvarchar(50), @estado bit
+as begin
+	SELECT id_Fuente_Financiamiento AS id, fuente_Financiamiento AS fuente, estado_Fuente_Financiamiento AS estado
+	FROM     dbo.tbl_Fuentes_Financiamiento
+	where fuente_Financiamiento=@fuente
+end
+
+Create Procedure prc_Fuente_Financiamiento_Editar
+@id int,@fuente nvarchar(50)
+as begin
+UPDATE [dbo].[tbl_Fuentes_Financiamiento]
+   SET [fuente_Financiamiento] = @fuente
+ WHERE [id_Fuente_Financiamiento]=@id
+end
+
+Create Procedure prc_Fuente_Financiamiento_Editar_Estado
+@id int,@estado bit
+as begin
+UPDATE [dbo].[tbl_Fuentes_Financiamiento]
+      Set [estado_Fuente_Financiamiento] = @estado
+ WHERE [id_Fuente_Financiamiento]=@id
+end
+--Creacion Procedimientos almacenados para los Requerimientos
+--Creacion Procedimientos almacenados para los mercados
+Create Procedure prc_Mercados_Crear
+@mercado nvarchar(30), @estado bit
+as begin
+INSERT INTO [dbo].[tbl_Mercados]
+           ([descripcion_Mercado]
+           ,[estado_Mercado])
+     VALUES
+           (@mercado,@estado)
+end
+
+Create Procedure prc_Mercados_Buscar
+@id int
+as begin
+	SELECT id_Mercado AS id, descripcion_Mercado AS mercado, estado_Mercado AS estado
+	FROM     dbo.tbl_Mercados
+	where id_Mercado=@id
+end
+
+Create Procedure prc_Mercados_Buscar_Nombre
+@mercado nvarchar(30)
+as begin
+	SELECT id_Mercado AS id, descripcion_Mercado AS mercado, estado_Mercado AS estado
+	FROM     dbo.tbl_Mercados
+	where descripcion_Mercado=@mercado
+end
+
+Create Procedure prc_Mercados_Editar
+@id int,@mercado nvarchar(30)
+as begin
+UPDATE [dbo].[tbl_Mercados]
+   SET [descripcion_Mercado] = @mercado
+ WHERE [id_Mercado]=@id
+end
+
+Create Procedure prc_Mercados_Editar_Estado
+@id int,@estado bit
+as begin
+UPDATE [dbo].[tbl_Mercados]
+   SET [estado_Mercado] = @estado
+ WHERE [id_Mercado]=@id
+end
+--Creacion Procedimientos almacenados para los usos
+Create Procedure prc_Usos_Tierra_Crear
+@uso nvarchar(50), @estado bit
+as begin
+INSERT INTO [dbo].[tbl_Usos_Tierra]
+           ([uso_Tierra]
+           ,[estado_Uso_Tierra])
+     VALUES
+           (@uso,@estado)
+end
+
+Create Procedure prc_Usos_Tierra_Buscar
+@id int
+as begin
+	SELECT id_Uso_Tierra AS id, uso_Tierra AS uso, estado_Uso_Tierra AS estado
+	FROM     dbo.tbl_Usos_Tierra
+	where id_Uso_Tierra=@id
+end
+
+Create Procedure prc_Usos_Tierra_Buscar_Nombre
+@uso nvarchar(50)
+as begin
+	SELECT id_Uso_Tierra AS id, uso_Tierra AS uso, estado_Uso_Tierra AS estado
+	FROM     dbo.tbl_Usos_Tierra
+	where uso_Tierra=@uso
+end
+
+Create Procedure prc_Usos_Tierra_Editar
+@id int,@uso nvarchar(50)
+as begin
+UPDATE [dbo].[tbl_Usos_Tierra]
+   SET [uso_Tierra] = @uso
+ WHERE [id_Uso_Tierra]=@id
+end
+
+Create Procedure prc_Usos_Tierra_Editar_Estado
+@id int,@estado bit
+as begin
+UPDATE [dbo].[tbl_Usos_Tierra]
+   SET [estado_Uso_Tierra] = @estado
+ WHERE [id_Uso_Tierra]=@id
+end
+--Creacion Procedimientos almacenados para los estructuras
+Create Procedure prc_Estructuras_Crear
+@estructura nvarchar(150), @estado bit
+as begin
+INSERT INTO [dbo].[tbl_Estructuras]
+           ([estructura]
+           ,[estado_Estructura])
+     VALUES
+           (@estructura,@estado)
+end
+
+Create Procedure prc_Estructuras_Buscar
+@id int
+as begin
+	SELECT id_Estructura AS id, estructura, estado_Estructura AS estado
+	FROM     dbo.tbl_Estructuras
+	where id_Estructura=@id
+end
+
+Create Procedure prc_Estructuras_Buscar_Nombre
+@estructura nvarchar(150)
+as begin
+	SELECT id_Estructura AS id, estructura, estado_Estructura AS estado
+	FROM     dbo.tbl_Estructuras
+	where estructura=@estructura
+end
+
+Create Procedure prc_Estructuras_Editar
+@id int,@estructura nvarchar(150)
+as begin
+UPDATE [dbo].[tbl_Estructuras]
+   SET [estructura] = @estructura
+ WHERE [id_Estructura]=@id
+end
+
+Create Procedure prc_Estructuras_Editar_Estado
+@id int,@estado bit
+as begin
+UPDATE [dbo].[tbl_Estructuras]
+   SET [estado_Estructura] = @estado
+ WHERE [id_Estructura]=@id
+end
+--Creacion Procedimientos almacenados para los tenencias
+Create Procedure prc_Tenencia_Tierra_Crear
+@tenencia nvarchar(30), @estado bit
+as begin
+INSERT INTO [dbo].[tbl_Tenencia_Tierra]
+           ([descripcion_Tenencia]
+           ,[estado_Tenencia_Tierra])
+     VALUES
+           (@tenencia,@estado)
+end
+
+Create Procedure prc_Tenencia_Tierra_Buscar
+@id int
+as begin
+	SELECT id_Tenencia AS id, descripcion_Tenencia AS tenencia, estado_Tenencia_Tierra AS estado
+	FROM     dbo.tbl_Tenencia_Tierra
+	where id_Tenencia=@id
+end
+
+Create Procedure prc_Tenencia_Tierra_Buscar_Nombre
+@tenencia nvarchar(30)
+as begin
+	SELECT id_Tenencia AS id, descripcion_Tenencia AS tenencia, estado_Tenencia_Tierra AS estado
+	FROM     dbo.tbl_Tenencia_Tierra
+	where descripcion_Tenencia=@tenencia
+end
+
+Create Procedure prc_Tenencia_Tierra_Editar
+@id int,@tenencia nvarchar(30)
+as begin
+UPDATE [dbo].[tbl_Tenencia_Tierra]
+   SET [descripcion_Tenencia] = @tenencia
+ WHERE [id_Tenencia]=@id
+end
+
+Create Procedure prc_Tenencia_Tierra_Editar_Estado
+@id int,@estado bit
+as begin
+UPDATE [dbo].[tbl_Tenencia_Tierra]
+   SET [estado_Tenencia_Tierra] = @estado	
+ WHERE [id_Tenencia]=@id
+end
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+--Proceso almacenado para crear una nueva referencia
+Create procedure prc_Referencia_Crear
+@uid nvarchar(40),
+@name nvarchar(255),
+@ext nvarchar(20),
+@tipo int,
+@id int
+as begin
+	INSERT INTO [dbo].[tbl_Referencias]
+           ([uid_Referencia]
+           ,[nombre_Archivo]
+           ,[extension]
+           ,[id_Tipo_Archivo]
+           ,[id_Encuesta])
+	output inserted.id_Referencia
+	VALUES
+           (@uid,@name,@ext,@tipo,@id)
+
+end
+--Creacion de procedimiento almacenado para crear la referencia de la junta directiva
+create procedure prc_Referencia_Junta_Crear
+@id_Ref int,
+@miembro int,
+@uid nvarchar(40)
+as begin
+INSERT INTO [dbo].[tbl_Referencias_Junta]
+           ([id_Referencia]
+           ,[id_Miembro_Junta]
+           ,[uid_Referencia])
+     VALUES
+           (@id_Ref,@miembro,@uid)	
 end
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Encuestas], RESEED, 0);
