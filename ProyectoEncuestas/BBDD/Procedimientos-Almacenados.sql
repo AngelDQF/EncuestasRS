@@ -971,12 +971,12 @@ as begin
 end
 
 Create Procedure prc_Servicios_Buscar_Nombre
-@servicio nvarchar(150)
+@servicio nvarchar(150),@tipo int
 as begin
 	SELECT dbo.tbl_Servicios.id_Servicio AS id, dbo.tbl_Servicios.id_Tipo_Servicio AS id_tipo, dbo.tbl_Tipo_Servicios.tipo_Servicio AS tipo, dbo.tbl_Servicios.servicio, dbo.tbl_Servicios.estado_Servicio AS estado
 	FROM     dbo.tbl_Servicios INNER JOIN
              dbo.tbl_Tipo_Servicios ON dbo.tbl_Servicios.id_Tipo_Servicio = dbo.tbl_Tipo_Servicios.id_Tipo_Servicio
-	where dbo.tbl_Servicios.servicio=@servicio
+	where dbo.tbl_Servicios.servicio=@servicio and  dbo.tbl_Servicios.id_Tipo_Servicio=@tipo
 end
 
 Create Procedure prc_Servicios_Editar

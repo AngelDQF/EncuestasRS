@@ -83,8 +83,7 @@ async function getTipoOrganizacionesDesactivadas() {//TODO: Función para obtene
     }
     else {
       return "No hay Tipos de Organizaciones Desactivados"
-    } pool.close();//TODO: Cerramos la conexiónsss
-
+    } 
   } catch (error) {
     console.log(error);
     throw error;

@@ -77,16 +77,64 @@ async function getServiciosBasicosDesactivados() {//TODO: Función para obtener 
     throw error;
   }
 }
-async function postServicio(tipo,servicio,estado){
-  try{
-
-  }catch(error){
-    
+async function postServicio(tipo, servicio, estado) {
+  try {
+    const consulta = await verificarServicio(servicio, tipo);
+    if (consulta) {
+      await pool.connect()
+      await pool.request().query(`Exec prc_Servicios_Crear '${tipo}', '${servicio}',  '${estado}'`);
+      pool.close();
+      return "exito";
+    } else {
+      return "ambiguo"
+    }
+  } catch (error) {
+    console.log(error);
+    return "error";
   }
 }
-module.exports = {
-  getServiciosLocales,
-  getServiciosLocalesDesactivadas,
-  getServiciosBasicos,
-  getServiciosBasicosDesactivados, putEstadoServicioLocal
-};//TODO: Exportamos las Funciones
+async function putServicio(id, servicio) {
+  try {
+    const consulta = await verificarServicio(id);
+    if (consulta) {
+
+    }
+  } catch (error) {
+    console.log(eroor);
+  }
+
+}
+async function putServicioEstado(id, estado) {
+  try {
+    const consulta = await verificarServicio(id);
+    if (consulta) {
+    }
+  } catch (error) {
+    console.log(eroor);
+  }
+
+}
+
+async function verificarServicio(servicio, tipo) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    const result = await pool.request().query(`Exec prc_Servicios_Buscar_Nombre '${servicio}','${tipo}'`);
+    pool.close();//TODO: Cerramos la conexión
+    return result.recordset.length === 0;
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+async function verificarServicioByID(id) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    const result = await pool.request().query(`Exec prc_Servicios_Buscar '${id}'`);
+    pool.close();//TODO: Cerramos la conexión
+    return result.recordset.length === 0;
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+module.exports = { getServiciosLocales, getServiciosLocalesDesactivadas, getServiciosBasicos, getServiciosBasicosDesactivados, putEstadoServicioLocal, postServicio, putServicio, putServicioEstado };//TODO: Exportamos las Funciones
