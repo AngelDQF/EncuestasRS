@@ -20,7 +20,7 @@
       <h5 class="card-header">Ingresar PDF del Acta</h5>
       <div class="card-body row ">
         <div class="mb-3 mt-2">
-          <input class="form-control acta" type="file" id="formFile" (change)="actaChange($event)">
+          <input class="form-control acta" type="file" accept=".pdf" id="formFile" (change)="actaChange($event)">
         </div>
         <div class="mt-2 text-center">
           <button (click)="enviarActa()" type="button" class="btn btnGuardar form-control">Enviar</button>
@@ -32,7 +32,7 @@
     <h2>Junta Directiva</h2>
   </div>
   <div class="row form-control" *ngFor="let element of junta; let i = index">
-    <div class="card col-12 mt-2" [matBadge]="i+1" matBadgePosition="before" matBadgeColor="accent">
+    <div class="card col-12 mt-2" [matBadge]="i+1" matBadgePosition="before" matBadgeSize="medium" matBadgeColor="accent">
       <h5 class="card-header">{{element.name}}</h5>
       <div class="card-body row ">
         <p class="card-text text-start text-lg-start col-12 col-lg-4"><b>DNI:</b> {{element.dni}}</p>
@@ -40,7 +40,7 @@
         <p class="card-text text-start text-lg-end col-12 col-lg-4"><b>Eje:</b> {{element.eje}}</p>
         <div class="mb-3 mt-2">
           <label for="formFile" class="form-label">Ingrese PDF del DNI</label>
-          <input class="form-control" type="file" id="formFile">
+          <input class="form-control" type="file" accept=".pdf">
         </div>
         <div class="mt-2 text-center">
           <button type="button" class="btn form-control btnGuardar w-20">Enviar</button>

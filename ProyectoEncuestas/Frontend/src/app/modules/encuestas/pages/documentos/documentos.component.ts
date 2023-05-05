@@ -7,7 +7,7 @@ import { EncuestasService } from '@serv/encuestas.service';
 import { ReferenciasService } from '@serv/referencias.service';
 import { InfoComponent } from '@shared/components';
 import { v4 as uuid } from 'uuid';
-import {utils} from '@env/utils';
+import { utils } from '@env/utils';
 @Component({
   selector: 'app-documentos',
   templateUrl: './documentos.component.html',
@@ -17,8 +17,8 @@ export class DocumentosComponent implements OnInit {
   documentos: RegistrarDocumento[] = [];
   parametro: any;
   junta: any;
-  idEncuesta:any;
-  constructor(private router: ActivatedRoute, private dialog: MatDialog, private encuestaModel: EncuestasService,private refModel:ReferenciasService) {
+  idEncuesta: any;
+  constructor(private router: ActivatedRoute, private dialog: MatDialog, private encuestaModel: EncuestasService, private refModel: ReferenciasService) {
     this.router.params.subscribe(params => {
       this.parametro = params['id'];
     })
@@ -50,40 +50,54 @@ export class DocumentosComponent implements OnInit {
   }
 
   actaChange(files: any) {
-    this.documentos = []
+    this.documentos = [];
     for (var i = 0; i < files.target.files.length; i++) {
       let reader = new FileReader();
       reader.readAsDataURL(files.target.files[i]);
-      let doc = new RegistrarDocumento()
-      doc.name = files.target.files[i]?.name
-      doc.code=uuid();
-      doc.extension = files.target.files[i]?.type
+      let doc = new RegistrarDocumento();
+      doc.name = files.target.files[i]?.name;
+      doc.code = uuid();
+      doc.extension = files.target.files[i]?.type;
       reader.onload = () => {
-        doc.file = reader?.result?.toString()
+        doc.file = reader?.result?.toString();
       };
       this.documentos.push(doc)
     }
     console.log(this.documentos);
   }
-  enviarActa(){
+  enviarActa() {
     try {
-      this.documentos.forEach((element)=>{
-        let extension=utils.obtenerExtension(element.extension)
-        let file=element.file?.replace('data:image/jpeg;base64,','');
-        file=element.file?.replace('data:application/pdf;base64,','');
+      this.documentos.forEach((element) => {
+        let extension = utils.obtenerExtension(element.extension);
+        console.log(extension);
+        let file = element.file?.replace('data:image/jpeg;base64,', '');
+        file = element.file?.replace('data:application/pdf;base64,', '');
         console.log(file);
-        this.refModel.postDocumentos(file,element.code,element.name,extension).subscribe((data:any)=>{
-          this.mensaje("Exito","Documento Enviado",2)
+        this.refModel.postDocumentos(file, element.code, element.name, extension).subscribe((data: any) => {
+          console.log(data);
+          if(data.isSuccess==false){
+            this.mensaje("Error",`${data.message}`,3);
+            return
+          }
+          this.enviarReferencia(element.code,element.name,extension,1,this.idEncuesta);
+          this.mensaje("Exito", "Documento Enviado", 2)
           console.log(data);
         });
       })
     } catch (error) {
-      this.mensaje("Error","Error al enviar acta",3)
+      this.mensaje("Error", "Error al enviar acta", 3)
     }
   }
   obtenerID() {
     this.router.params.subscribe(params => {
       this.idEncuesta = params['id'];
     })
+  }
+  enviarReferencia(uid: string, name: string, ext: any, tipo: number, id: number) {
+    try {
+      this.refModel.postReferencia(uid, name, ext, tipo, id).subscribe();
+    } catch (error) {
+      this.mensaje("Error", "Error al enviar referencia", 3);
+    }
   }
 }

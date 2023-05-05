@@ -19,15 +19,15 @@ export class HomeComponent implements OnInit {
   btn5: string = "Administrar Encuestas";
   btn6: string = "Exportar";
   btn7: string = "Cerrar Sesión";
-  btn8:string="Mis Encuestas"
+  btn8: string = "Mis Encuestas"
   token: any;
   mostrar: boolean;
   constructor(private cerrar: MatDialog, private cookie: CookieService) {
     this.token = (this.getDecodedAccessToken(this.cookie.get('token'))).tipo;
     if (this.token == 2) {
-      this.mostrar=true;
+      this.mostrar = true;
     } else if (this.token == 1) {
-      this.mostrar=false;
+      this.mostrar = false;
     }
   }
   ngOnInit(): void {

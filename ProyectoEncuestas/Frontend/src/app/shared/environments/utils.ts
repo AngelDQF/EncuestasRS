@@ -1,9 +1,9 @@
-export class utils{
-  static obtenerExtension(tipo:string){
-    const extensiones=[
-      { tipo:"image/jpeg",extension:".jpg" },
-      { tipo:"application/pdf",extension:".pdf" }
+export class utils {
+  static obtenerExtension(tipo: string) {
+    const extensiones = [
+      { tipo: "application/pdf", extension: ".pdf" }, 
+      { tipo: "image/jpeg", extension: ".jpg" }
     ]
-    return extensiones.find(x=>x.tipo=tipo)?.extension;
+    return extensiones?.find(x => x.tipo == tipo)?.extension
   }
 }

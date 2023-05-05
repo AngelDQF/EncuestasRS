@@ -3,7 +3,7 @@ let pool = require('./config.model');// TODO: Importamos el archivo de configura
 async function postReferencia(uid, name, ext, tipo, id) {
   try {
     await pool.connect()
-    await pool.request().query(`Exec prc_Referencia_Crear '${uid}', '${name}', '${ext}', '${tipo}', '${id}'`);
+    await pool.request().query(`Exec prc_Referencia_Crear '${uid}', '${name}', '${ext}', ${tipo}, ${id}`);
     pool.close();
     return "exito";
   } catch (error) {

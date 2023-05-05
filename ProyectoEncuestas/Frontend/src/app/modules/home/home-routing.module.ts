@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'usuarios', loadChildren: () => import('@modules/usuarios/usuarios.module').then(m => m.UsuariosModule) },
   { path: 'administrar', loadChildren: () => import('@modules/administrar/administrar.module').then(m => m.AdministrarModule),canActivate:[TipoGuard] },
   { path: 'encuestas', loadChildren: () => import('@modules/encuestas/encuestas.module').then(m => m.EncuestasModule) },
+  { path: 'exportar', loadChildren: () => import('@modules/exportar/exportar.module').then(m => m.ExportarModule) },
 
   { path: '**', component: ErrorComponent },
 
