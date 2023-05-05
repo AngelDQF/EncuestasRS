@@ -21,7 +21,7 @@ export class AsignacionesComponent implements OnInit {
   nameTitle: any;
   show:boolean;
   //Datos para la tabla
-  displayedColumns: string[] = ['id', 'opciones', 'mun', 'dep'];
+  displayedColumns: string[] = ['id', 'mun', 'dep'];
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public page!: number;

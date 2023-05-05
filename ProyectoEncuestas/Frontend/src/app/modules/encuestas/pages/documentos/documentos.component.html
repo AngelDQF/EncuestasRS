@@ -23,7 +23,7 @@
           <input class="form-control acta" type="file" id="formFile" (change)="actaChange($event)">
         </div>
         <div class="mt-2 text-center">
-          <button type="button" class="btn btnGuardar form-control">Enviar</button>
+          <button (click)="enviarActa()" type="button" class="btn btnGuardar form-control">Enviar</button>
         </div>
       </div>
     </div>

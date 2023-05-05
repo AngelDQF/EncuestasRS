@@ -3,7 +3,7 @@ const { handleHttpError } = require('../utils/handleError');//TODO: Importamos e
 
 const ctrGetCargos = async (req, res) => {//TODO: Funcion para hacer get a los ejes
   try {
-    cargoModel.getCargos().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+    cargoModel.getCargos().then(result => {//TODO: Ejecutamos la funcion getCargos del modelo
       res.json({ results: result })//TODO: Mostramos el resultado en un json
     });
   } catch {
@@ -13,7 +13,7 @@ const ctrGetCargos = async (req, res) => {//TODO: Funcion para hacer get a los e
 const ctrGetCargoById = async (req, res) => {//TODO: Funcion para hacer get a los ejes
   try {
     const { id } = req.body;
-    cargoModel.getCargo(id).then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+    cargoModel.getCargo(id).then(result => {//TODO: Ejecutamos la funcion getCargos del modelo
       res.json({ results: result })//TODO: Mostramos el resultado en un json
     });
   } catch {
@@ -22,7 +22,7 @@ const ctrGetCargoById = async (req, res) => {//TODO: Funcion para hacer get a lo
 }
 const ctrGetCargosDesactivados = async (req, res) => {//TODO: Funcion para hacer get a los ejes
   try {
-    cargoModel.getCargosDesactivados().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+    cargoModel.getCargosDesactivados().then(result => {//TODO: Ejecutamos la funcion getCargos del modelo
       res.json({ results: result })//TODO: Mostramos el resultado en un json
     });
   } catch {

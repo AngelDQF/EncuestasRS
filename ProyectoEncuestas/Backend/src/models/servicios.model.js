@@ -95,19 +95,34 @@ async function postServicio(tipo, servicio, estado) {
 }
 async function putServicio(id, servicio) {
   try {
-    const consulta = await verificarServicio(id);
-    if (consulta) {
-
+    const consulta1 = await verificarServicioByID(id);
+    const consulta2 = await verificarServicio(servicio);
+    if (!consulta1) {
+      if (consulta2) {
+        await pool.connect()
+        await pool.request().query(`Exec prc_Organizaciones_Editar ${id}, '${org}'`);
+        pool.close();
+        return "exito";
+      } else {
+        return "ambiguo"
+      }
+    } else {
+      return "vacio";
     }
   } catch (error) {
     console.log(eroor);
   }
-
 }
 async function putServicioEstado(id, estado) {
   try {
-    const consulta = await verificarServicio(id);
-    if (consulta) {
+    const consulta = await verificarServicioByID(id);
+    if (!consulta) {
+      await pool.connect()
+      await pool.request().query(`Exec prc_Servicios_Editar_Estado ${id}, '${estado}'`);
+      pool.close();
+      return "exito";
+    }else{
+      return "vacio"
     }
   } catch (error) {
     console.log(eroor);
