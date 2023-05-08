@@ -143,8 +143,8 @@ const ctrPostSuelo = async (req, res) => {
 }
 const ctrPutSuelo = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
-    const { id, bosque } = req.body;//TODO: Extraemos los datos del body
-    const resultado = await naturalesModel.putSuelo(id, bosque);
+    const { id, suelo } = req.body;//TODO: Extraemos los datos del body
+    const resultado = await naturalesModel.putSuelo(id, suelo);
     if (resultado == 'exito') {
       res.json({ results: { mensaje: "Tipo de Suelo editado exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
     } else if (resultado == "ambiguo") {
