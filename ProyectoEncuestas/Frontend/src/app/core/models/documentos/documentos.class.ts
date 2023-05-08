@@ -1,4 +1,4 @@
-export class RegistrarDocumento{
+export class Documento{
   file?:string;
   code:string;
   systemName:string;

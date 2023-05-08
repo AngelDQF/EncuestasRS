@@ -298,3 +298,16 @@ as
 	SELECT id_Estado AS id, descripcion_Estado AS estado
 	FROM     dbo.tbl_Estados
 go
+
+create view vew_Referencias_Actas
+as
+	SELECT dbo.tbl_Referencias.id_Referencia AS id, dbo.tbl_Referencias.uid_Referencia AS uid, dbo.tbl_Encuestas.id_Departamento AS id_dep, dbo.tbl_Encuestas.id_Municipio AS id_mun, dbo.tbl_Encuestas.id_Aldea AS id_aldea, 
+					  dbo.tbl_Encuestas.id_Caserio AS id_caserio, dbo.tbl_Departamentos.departamento AS dep, dbo.tbl_Municipios.municipio AS mun, dbo.tbl_Aldeas.aldea, dbo.tbl_Caserios.caserio
+	FROM     dbo.tbl_Referencias INNER JOIN
+					  dbo.tbl_Encuestas ON dbo.tbl_Referencias.id_Encuesta = dbo.tbl_Encuestas.id_Encuesta INNER JOIN
+					  dbo.tbl_Aldeas ON dbo.tbl_Encuestas.id_Aldea = dbo.tbl_Aldeas.id_Aldea INNER JOIN
+					  dbo.tbl_Municipios ON dbo.tbl_Encuestas.id_Municipio = dbo.tbl_Municipios.id_Municipio AND dbo.tbl_Aldeas.id_Municipio = dbo.tbl_Municipios.id_Municipio INNER JOIN
+					  dbo.tbl_Caserios ON dbo.tbl_Encuestas.id_Caserio = dbo.tbl_Caserios.id_Caserio AND dbo.tbl_Aldeas.id_Aldea = dbo.tbl_Caserios.id_Aldea INNER JOIN
+					  dbo.tbl_Departamentos ON dbo.tbl_Encuestas.id_Departamento = dbo.tbl_Departamentos.id_Departamento AND dbo.tbl_Municipios.id_Departamento = dbo.tbl_Departamentos.id_Departamento
+	where dbo.tbl_Referencias.id_Tipo_Archivo=1
+go

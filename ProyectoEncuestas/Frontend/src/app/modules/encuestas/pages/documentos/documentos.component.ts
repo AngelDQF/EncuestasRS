@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { RegistrarDocumento } from '@models/documentos/documentos.class';
+import { Documento } from '@models/documentos/documentos.class';
 import { JuntaInterface } from '@models/encuesta/junta.interface';
 import { EncuestasService } from '@serv/encuestas.service';
 import { ReferenciasService } from '@serv/referencias.service';
@@ -14,7 +14,7 @@ import { utils } from '@env/utils';
   styleUrls: ['./documentos.component.css', '../../../../app.component.css', '../../../card.css']
 })
 export class DocumentosComponent implements OnInit {
-  documentos: RegistrarDocumento[] = [];
+  documentos: Documento[] = [];
   parametro: any;
   junta: any;
   idEncuesta: any;
@@ -54,7 +54,7 @@ export class DocumentosComponent implements OnInit {
     for (var i = 0; i < files.target.files.length; i++) {
       let reader = new FileReader();
       reader.readAsDataURL(files.target.files[i]);
-      let doc = new RegistrarDocumento();
+      let doc = new Documento();
       doc.name = files.target.files[i]?.name;
       doc.code = uuid();
       doc.extension = files.target.files[i]?.type;

@@ -5,13 +5,13 @@ async function getOrganizaciones() {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Organizaciones_Listar");//TODO: Ejecutamos la consulta
     if (result.recordset.length !== 0) {
+      await pool.close();//TODO: Cerramos la conexión
       return result.recordset;//TODO: Retornamos los datos
     }
     else {
+      await pool.close();//TODO: Cerramos la conexión
       return "No hay Organizaciones Agregadas"
     }
-    pool.close();//TODO: Cerramos la conexión
-
   } catch (error) {
     console.log(error);
   }
@@ -21,8 +21,10 @@ async function getOrganizacion(id) {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Organizaciones_Buscar ${id}`);
     if (result.recordset.length !== 0) {
+      await pool.close();//TODO: Cerramos la conexión
       return await result.recordset
     } else {
+      await pool.close();//TODO: Cerramos la conexión
       return "Organización no encontrada"
     }
   }
@@ -35,12 +37,13 @@ async function getOrganizacionesDesactivadas() {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Organizaciones_Listar_Desactivados");//TODO: Ejecutamos la consulta
     if (result.recordset.length !== 0) {
+      await pool.close();//TODO: Cerramos la conexión
       return result.recordset;//TODO: Retornamos los datos
     }
     else {
+      await pool.close();//TODO: Cerramos la conexión
       return "No hay Organizaciones Desactivados"
-    } pool.close();//TODO: Cerramos la conexión
-
+    }
   } catch (error) {
     console.log(error);
   }
@@ -50,12 +53,13 @@ async function getTipoOrganizaciones() {//TODO: Función para obtener todos los 
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Tipos_Organizaciones_Listar");//TODO: Ejecutamos la consulta
     if (result.recordset.length !== 0) {
+      await pool.close();//TODO: Cerramos la conexión
       return result.recordset;//TODO: Retornamos los datos
     }
     else {
+      await pool.close();//TODO: Cerramos la conexión
       return "No hay Tipos de Organizaciones Agregadas"
-    } pool.close();//TODO: Cerramos la conexión
-
+    }
   } catch (error) {
     console.log(error);
   }
@@ -65,8 +69,10 @@ async function getTipoOrganizacion(id) {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Tipo_Org_Buscar ${id}`);
     if (result.recordset.length !== 0) {
-      return await result.recordset
+      await pool.close();//TODO: Cerramos la conexión
+      return result.recordset
     } else {
+      await pool.close();//TODO: Cerramos la conexión
       return "Tipo de organización no encontrada"
     }
   }
@@ -79,14 +85,15 @@ async function getTipoOrganizacionesDesactivadas() {//TODO: Función para obtene
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Tipos_Organizaciones_Listar_Desactivados");//TODO: Ejecutamos la consulta
     if (result.recordset.length !== 0) {
+      await pool.close();//TODO: Cerramos la conexión
       return result.recordset;//TODO: Retornamos los datos
     }
     else {
+      await pool.close();//TODO: Cerramos la conexión
       return "No hay Tipos de Organizaciones Desactivados"
-    } 
+    }
   } catch (error) {
     console.log(error);
-    throw error;
   }
 }
 async function postOrg(tipo, social, org, estado) {//TODO: Creamos la función que se encargará de crear un eje
@@ -95,9 +102,10 @@ async function postOrg(tipo, social, org, estado) {//TODO: Creamos la función q
     if (consulta) {//TODO: Si el eje no existe
       await pool.connect()//TODO: Conectamos a la base de datos
       await pool.request().query(`Exec prc_Organizaciones_Crear ${tipo}, '${social}', '${org}', '${estado}'`);//TODO: Ejecutamos la consulta
-      pool.close();//TODO: Cerramos la conexión
+      await pool.close();//TODO: Cerramos la conexión
       return "exito";//TODO: Retornamos la Org creada
     } else {
+      await pool.close();//TODO: Cerramos la conexión
       return "ambiguo";
     }
   } catch (error) {//TODO: Si hay un error
@@ -116,9 +124,11 @@ async function putOrg(id, org) {
         pool.close();
         return "exito";
       } else {
+        await pool.close();//TODO: Cerramos la conexión
         return "ambiguo"
       }
     } else {
+      await pool.close();//TODO: Cerramos la conexión
       return "vacio";
     }
   } catch (error) {
@@ -135,6 +145,7 @@ async function putOrgEstado(id, estado) {
       pool.close();
       return "exito";
     } else {
+      await pool.close();//TODO: Cerramos la conexión
       return "vacio";
     }
   } catch (error) {
@@ -151,6 +162,7 @@ async function putOrgDatos(id, tipo, social) {
       pool.close();
       return "exito";
     } else {
+      await pool.close();//TODO: Cerramos la conexión
       return "vacio";
     }
   } catch (error) {
@@ -162,7 +174,7 @@ async function verificarOrgByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Organizaciones_Buscar ${id}`);
-    pool.close();//TODO: Cerramos la conexión
+    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -173,7 +185,7 @@ async function verificarOrg(org) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Organizaciones_Buscar_Org '${org}'`);
-    pool.close();//TODO: Cerramos la conexión
+    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -186,7 +198,7 @@ async function postTipoOrg(tipo, estado) {//TODO: Creamos la función que se enc
     if (consulta) {//TODO: Si el eje no existe
       await pool.connect()//TODO: Conectamos a la base de datos
       await pool.request().query(`Exec prc_Tipo_Org_Crear '${tipo}', '${estado}'`);//TODO: Ejecutamos la consulta
-      pool.close();//TODO: Cerramos la conexión
+      await pool.close();//TODO: Cerramos la conexión
       return "exito";//TODO: Retornamos la Org creada
     } else {
       return "ambiguo";
@@ -237,7 +249,7 @@ async function verificarTipoOrgByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Tipo_Org_Buscar ${id}`);
-    pool.close();//TODO: Cerramos la conexión
+    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -248,11 +260,11 @@ async function verificarTipoOrg(tipo) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Tipo_Org_Buscar_Nombre '${tipo}'`);
-    pool.close();//TODO: Cerramos la conexión
+    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
     console.log(error);
   }
 }
-module.exports = { getTipoOrganizaciones, getOrganizacionesDesactivadas, getTipoOrganizacionesDesactivadas, getOrganizaciones, postOrg, putOrg, putOrgEstado, putOrgDatos, postTipoOrg, putTipoOrg, putTipoOrgEstado,getOrganizacion,getTipoOrganizacion };//TODO: Exportamos las Funciones
+module.exports = { getTipoOrganizaciones, getOrganizacionesDesactivadas, getTipoOrganizacionesDesactivadas, getOrganizaciones, postOrg, putOrg, putOrgEstado, putOrgDatos, postTipoOrg, putTipoOrg, putTipoOrgEstado, getOrganizacion, getTipoOrganizacion };//TODO: Exportamos las Funciones

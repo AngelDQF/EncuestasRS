@@ -983,8 +983,15 @@ Create Procedure prc_Servicios_Editar
 @id int, @tipo int, @servicio nvarchar(150)
 as begin
 UPDATE [dbo].[tbl_Servicios]
+   SET [servicio] = @servicio
+ WHERE id_Servicio=@id
+end
+
+Create Procedure prc_Servicios_Editar_Tipo
+@id int, @tipo int
+as begin
+UPDATE [dbo].[tbl_Servicios]
    SET [id_Tipo_Servicio] = @tipo
-      ,[servicio] = @servicio
  WHERE id_Servicio=@id
 end
 
@@ -1116,13 +1123,14 @@ UPDATE [dbo].[tbl_Tipos_Financiamiento]
  WHERE [id_Tipo_Financiamiento]=@id
 end
 
-Create Procedure prc_Tipo_Financiamiento_Estado
+Create Procedure prc_Tipo_Financiamiento_Editar_Estado
 @id int,@estado bit
 as begin
 UPDATE [dbo].[tbl_Tipos_Financiamiento]
    SET [estado_Tipo_Financiamiento] = @estado
  WHERE [id_Tipo_Financiamiento]=@id
 end
+
 --Creacion Procedimientos almacenados para las fuentes
 Create Procedure prc_Fuente_Financiamiento_Crear
 @fuente nvarchar(50), @estado bit
@@ -1367,5 +1375,7 @@ INSERT INTO [dbo].[tbl_Referencias_Junta]
      VALUES
            (@id_Ref,@miembro,@uid)	
 end
+
+
 --Reiniciar id en 1
 --DBCC CHECKIDENT ( [tbl_Encuestas], RESEED, 0);

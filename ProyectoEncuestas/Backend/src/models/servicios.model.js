@@ -6,13 +6,13 @@ async function getServiciosLocales() {
     let result = await pool.request().query("Exec prc_Servicios_Locales_Listar");//TODO: Ejecutamos la consulta
 
     if (result.recordset.length !== 0) {
+      pool.close();//TODO: Cerramos la conexión
       return result.recordset;//TODO: Retornamos los datos
     }
     else {
+      pool.close();//TODO: Cerramos la conexión
       return "No hay Servicios Locales Agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
-
   } catch (error) {
     console.log(error);
   }
@@ -21,6 +21,7 @@ async function putEstadoServicioLocal(id, est) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     await pool.request().query(`Exec prc_Servicio_Put_Estado ${id}, ${est}`);
+    pool.close();//TODO: Cerramos la conexión
     return "Registro Actualizado"
   }
   catch (error) {
@@ -32,13 +33,13 @@ async function getServiciosLocalesDesactivadas() {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Locales_Listar_Desactivados");//TODO: Ejecutamos la consulta
     if (result.recordset.length !== 0) {
+      pool.close();//TODO: Cerramos la conexión
       return result.recordset;//TODO: Retornamos los datos
     }
     else {
+      pool.close();//TODO: Cerramos la conexión
       return "No hay Servicios Locales Desactivados"
     }
-    pool.close();//TODO: Cerramos la conexión
-
   } catch (error) {
     console.log(error);
   }
@@ -48,13 +49,13 @@ async function getServiciosBasicos() {//TODO: Función para obtener todos los us
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("Exec prc_Servicios_Basicos_Listar");//TODO: Ejecutamos la consulta
     if (result.recordset.length !== 0) {
+      pool.close();//TODO: Cerramos la conexión
       return result.recordset;//TODO: Retornamos los datos
     }
     else {
+      pool.close();//TODO: Cerramos la conexión
       return "No hay Servicios Basicos Agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
-
   } catch (error) {
     console.log(error);
   }
@@ -77,6 +78,22 @@ async function getServiciosBasicosDesactivados() {//TODO: Función para obtener 
     throw error;
   }
 }
+async function getServicio(id) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    const result = await pool.request().query(`Exec prc_Servicios_Buscar ${id}`);
+    if (result.recordset.length !== 0) {
+      await pool.close();//TODO: Cerramos la conexión
+      return result.recordset
+    } else {
+      await pool.close();//TODO: Cerramos la conexión
+      return "Servicio no encontrado"
+    }
+  }
+  catch (error) {
+    console.log(error);
+  }
+};
 async function postServicio(tipo, servicio, estado) {
   try {
     const consulta = await verificarServicio(servicio, tipo);
@@ -93,6 +110,21 @@ async function postServicio(tipo, servicio, estado) {
     return "error";
   }
 }
+async function putServicioTipo(id, tipo) {
+  try {
+    const consulta1 = await verificarServicioByID(id);
+    if (!consulta1) {
+      await pool.connect()
+      await pool.request().query(`Exec prc_Servicios_Editar_Tipo ${id}, '${tipo}'`);
+      pool.close();
+      return "exito";
+    } else {
+      return "vacio";
+    }
+  } catch (error) {
+    console.log(eroor);
+  }
+}
 async function putServicio(id, servicio) {
   try {
     const consulta1 = await verificarServicioByID(id);
@@ -100,7 +132,7 @@ async function putServicio(id, servicio) {
     if (!consulta1) {
       if (consulta2) {
         await pool.connect()
-        await pool.request().query(`Exec prc_Organizaciones_Editar ${id}, '${org}'`);
+        await pool.request().query(`Exec prc_Servicios_Editar ${id}, '${servicio}'`);
         pool.close();
         return "exito";
       } else {
@@ -121,13 +153,12 @@ async function putServicioEstado(id, estado) {
       await pool.request().query(`Exec prc_Servicios_Editar_Estado ${id}, '${estado}'`);
       pool.close();
       return "exito";
-    }else{
+    } else {
       return "vacio"
     }
   } catch (error) {
     console.log(eroor);
   }
-
 }
 
 async function verificarServicio(servicio, tipo) {
@@ -152,4 +183,4 @@ async function verificarServicioByID(id) {
     console.log(error);
   }
 }
-module.exports = { getServiciosLocales, getServiciosLocalesDesactivadas, getServiciosBasicos, getServiciosBasicosDesactivados, putEstadoServicioLocal, postServicio, putServicio, putServicioEstado };//TODO: Exportamos las Funciones
+module.exports = { getServiciosLocales, getServiciosLocalesDesactivadas, getServiciosBasicos, getServiciosBasicosDesactivados, getServicio, putEstadoServicioLocal, postServicio, putServicio, putServicioEstado,putServicioTipo };//TODO: Exportamos las Funciones

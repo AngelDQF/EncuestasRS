@@ -1,6 +1,16 @@
 const { refModel } = require('../models/index.model');
 const { handleHttpError } = require('../utils/handleError');//TODO: Importamos el metodo handleHttpError
 
+const ctrGetActas = async (req, res) => {//TODO: Funcion para hacer get a las referencias de las actas
+  try {
+    refModel.getReferenciasActas().then(result => {//TODO: Ejecutamos la funcion del modelo
+      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_REFERENCIAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
+
 const ctrPostReferencia = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
     const { uid, name, ext, tipo, id } = req.body;//TODO: Extraemos los datos del body
@@ -29,4 +39,4 @@ const ctrPostReferenciaJunta = async (req, res) => {
   }
 }
 
-module.exports = { ctrPostReferencia,ctrPostReferenciaJunta }
+module.exports = { ctrGetActas, ctrPostReferencia,ctrPostReferenciaJunta }
