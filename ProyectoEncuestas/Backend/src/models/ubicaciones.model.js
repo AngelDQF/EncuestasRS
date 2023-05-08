@@ -10,8 +10,6 @@ async function getDepartamentos() {
     else {
       return "No hay Departamentos Agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
-
   } catch (error) {
     console.log(error);
   }
@@ -26,7 +24,6 @@ async function getMunicipios() {
     else {
       return "No hay Municipios Agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -42,7 +39,6 @@ async function getMunicipiosByDepartamento(id) {
     else {
       return "No hay Municipios Agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -59,7 +55,6 @@ async function getAldeas() {
     else {
       return "No hay Aldeas Agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -77,7 +72,6 @@ async function getCaserios() {
     else {
       return "No hay Aldeas Agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -93,7 +87,6 @@ async function getCaserioByName(caserio) {
     else {
       return "No hay Caserios Agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -104,11 +97,9 @@ async function getMunicipiosSinAsignar(dep, id) {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query(`Exec prc_Usuarios_Asignaciones_Sin_Asignar '${dep}','${id}'`);//TODO: Ejecutamos la consulta
     if (result.recordset.length !== 0) {
-      pool.close();//TODO: Cerramos la conexión
       return result.recordset;//TODO: Retornamos los datos
     }
     else {
-      pool.close();//TODO: Cerramos la conexión
       return "advertencia"
     }
   } catch {

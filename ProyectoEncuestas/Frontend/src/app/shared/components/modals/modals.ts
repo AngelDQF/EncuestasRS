@@ -8,26 +8,16 @@ import { InfoComponent } from "./info/info.component";
 import { PutEjeComponent } from "./junta/put-eje/put-eje.component";
 import { RestablecerPasswordComponent } from "./restablecer-password/restablecer-password.component";
 import { CambiarEstadoComponent } from "./junta/cambiar-estado/cambiar-estado.component";
-import { AgregarFuenteComponent } from "./financiamientos/agregar-fuente/agregar-fuente.component";
-import { AgregarTipoComponent } from "./financiamientos/agregar-tipo/agregar-tipo.component";
-import { EstadoFuenteComponent } from "./financiamientos/estado-fuente/estado-fuente.component";
-import { EstadoTipoComponent } from "./financiamientos/estado-tipo/estado-tipo.component";
-import { AgregarBosqueComponent } from "./naturales/agregar-bosque/agregar-bosque.component";
-import { AgregarSueloComponent } from "./naturales/agregar-suelo/agregar-suelo.component";
-import { EstadoBosqueComponent } from "./naturales/estado-bosque/estado-bosque.component";
-import { EstadoSueloComponent } from "./naturales/estado-suelo/estado-suelo.component";
 import { AgregarOrgComponent } from "./organizaciones/agregar-org/agregar-org.component";
 import { EstadoOrgComponent } from "./organizaciones/estado-org/estado-org.component";
-import { AgregarEstructuraComponent } from "./requerimientos/estructuras/agregar-estructura/agregar-estructura.component";
-import { EstadoEstructuraComponent } from "./requerimientos/estructuras/estado-estructura/estado-estructura.component";
-import { AgregarMercadoComponent } from "./requerimientos/mercados/agregar-mercado/agregar-mercado.component";
-import { EstadoMercadoComponent } from "./requerimientos/mercados/estado-mercado/estado-mercado.component";
-import { AgregarTenenciaTierraComponent } from "./requerimientos/tenencia-tierra/agregar-tenencia-tierra/agregar-tenencia-tierra.component";
-import { EstadoTenenciaTierraComponent } from "./requerimientos/tenencia-tierra/estado-tenencia-tierra/estado-tenencia-tierra.component";
-import { AgregarUsosTierraComponent } from "./requerimientos/usos-tierra/agregar-usos-tierra/agregar-usos-tierra.component";
-import { EstadoUsosTierraComponent } from "./requerimientos/usos-tierra/estado-usos-tierra/estado-usos-tierra.component";
 import { EstadoServicioComponent } from "./servicios/estado-servicio/estado-servicio.component";
 import { AgregarServicioComponent } from "./servicios/agregar-servicio/agregar-servicio.component";
+import { AgregarRecursoComponent } from "./naturales/agregar-recurso/agregar-recurso.component";
+import { EstadoRecursoComponent } from "./naturales/estado-recurso/estado-recurso.component";
+import { AgregarFinanciamientoComponent } from "./financiamientos/agregar-financiamiento/agregar-financiamiento.component";
+import { EstadoFinanciamientoComponent } from "./financiamientos/estado-financiamiento/estado-financiamiento.component";
+import { AgregarRequerimientoComponent } from "./requerimientos/agregar-requerimiento/agregar-requerimiento.component";
+import { EstadoRequerimientoComponent } from "./requerimientos/estado-requerimiento/estado-requerimiento.component";
 
 export const modals: any = [
   CerrarSesionComponent,
@@ -45,20 +35,10 @@ export const modals: any = [
   EstadoOrgComponent,
   AgregarServicioComponent,
   EstadoServicioComponent,
-  EstadoBosqueComponent,
-  AgregarBosqueComponent,
-  AgregarFuenteComponent,
-  AgregarTipoComponent,
-  EstadoTipoComponent,
-  EstadoFuenteComponent,
-  AgregarSueloComponent,
-  EstadoSueloComponent,
-  AgregarMercadoComponent,
-  EstadoMercadoComponent,
-  EstadoUsosTierraComponent,
-  AgregarUsosTierraComponent,
-  EstadoEstructuraComponent,
-  AgregarEstructuraComponent,
-  AgregarTenenciaTierraComponent,
-  EstadoTenenciaTierraComponent,
+  AgregarRecursoComponent,
+  EstadoRecursoComponent,
+  AgregarFinanciamientoComponent,
+  EstadoFinanciamientoComponent,
+  AgregarRequerimientoComponent,
+  EstadoRequerimientoComponent
 ]

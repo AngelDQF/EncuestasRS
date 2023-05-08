@@ -13,7 +13,6 @@ async function getCargos() {//TODO: Función para obtener todos los usuarios
     else {
       return "No hay Cargos agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -43,7 +42,6 @@ async function getCargosDesactivados() {//TODO: Función para obtener todos los 
     else {
       return "No hay Tipos de Cargos Desactivados"
     }
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -55,7 +53,7 @@ async function postCargos(cargo, estado) {//TODO: Creamos la función que se enc
     if (consulta) {//TODO: Si el eje no existe
       await pool.connect()//TODO: Conectamos a la base de datos
       await pool.request().query(`Exec prc_Cargos_Agregar '${cargo}', '${estado}'`);//TODO: Ejecutamos la consulta
-      pool.close();//TODO: Cerramos la conexión
+
       return "exito";//TODO: Retornamos el eje creado
     } else {//TODO: Si el eje existe
       return "ambiguo";//TODO: Retornamos un mensaje
@@ -73,7 +71,7 @@ async function putCargo(id, cargo) {
       if (consulta2) {
         await pool.connect()
         await pool.request().query(`Exec prc_Cargos_Editar ${id}, '${cargo}'`);
-        pool.close();
+      
         return "exito";
       } else {
         return "ambiguo"
@@ -93,7 +91,7 @@ async function putCargoEstado(id, estado) {
     if (!consulta1) {
         await pool.connect()
         await pool.request().query(`Exec prc_Cargos_Estado_Editar ${id}, '${estado}'`);
-        pool.close();
+    
         return "exito";
     } else {
       return "vacio";
@@ -107,7 +105,6 @@ async function verificarCargo(cargo) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Cargos_Verificcar_Cargo '${cargo}'`);
-    pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -118,7 +115,6 @@ async function verificarCargoByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Cargos_Buscar ${id}`);
-    pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {

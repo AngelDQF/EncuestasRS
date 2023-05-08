@@ -4,10 +4,8 @@ async function getMesaByID(id) {//TODO: Creamos la función que se encargará de
     await pool.connect()//TODO: Conectamos a la base de datos
     let consulta = await pool.request().query(`Exec prc_Mesa_Buscar '${id}'`);//TODO: Ejecutamos la consulta
     if (consulta.recordset.length === 0) {//TODO: Si no hay resultados
-      pool.close();//TODO: Cerramos la conexión
       return "vacio";//TODO: Retornamos un mensaje
     } else {//TODO: Si hay resultados
-      pool.close();//TODO: Cerramos la conexión
       return consulta.recordset;//TODO: Retornamos los datos
     }
   } catch (error) {//TODO: Si hay un error
@@ -45,7 +43,6 @@ async function verificarMesa(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Mesa_Buscar '${id}'`);
-    pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {

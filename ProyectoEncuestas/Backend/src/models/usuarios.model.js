@@ -8,7 +8,6 @@ async function getUsuarios() {//TODO: Función para obtener todos los usuarios
     let result = await pool.request().query("SELECT * FROM vew_Usuarios_Listar");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
     return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -45,7 +44,6 @@ async function putUsuarioEstado(id, estado) {
     if (!consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Usuarios_Cambiar_Estado '${id}', '${estado}'`);
-      pool.close();
       return "exito";
     } else {
       return "ambiguo";
@@ -71,7 +69,6 @@ async function getUsuariosDesactivados() {//TODO: Función para obtener todos lo
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * FROM vew_Usuarios_Listar_Desactivados");//TODO: Ejecutamos la consulta
     return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -83,7 +80,6 @@ async function getUsuariosTipos() {
     let result = await pool.request().query("SELECT * FROM vew_Usuarios_Tipos_Listar");//TODO: Ejecutamos la consulta
     //console.log(result.recordset);
     return result.recordset;//TODO: Retornamos los datos
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -124,7 +120,6 @@ async function postUsuario(nombre, telefono, dni, correo, contra, estado, tipo, 
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     await pool.request().query(`Exec prc_Usuarios_Crear '${nombre}', '${telefono}', '${dni}', '${correo}', '${contra}', ${estado}, ${tipo}, ${sexo}`);
-    pool.close();//TODO: Cerramos la conexión
     return "Usuario creado";
   } catch (error) {
     console.log(error);

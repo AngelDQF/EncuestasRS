@@ -10,8 +10,6 @@ async function getMercados() {//TODO: Creamos la función que se encargará de l
     else {
       return "No hay Tipos de Mercados agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
-
   } catch (error) {
     console.log(error);
   }
@@ -26,7 +24,6 @@ async function getMercadosDesactivados() {//TODO: Función para obtener todos lo
     else {
       return "No hay Tipos de Mercados Desactivados"
     }
-    pool.close();//TODO: Cerramos la conexión
   } catch (error) {
     console.log(error);
   }
@@ -41,7 +38,6 @@ async function getUsosTierra() {//TODO: Creamos la función que se encargará de
     else {
       return "No hay Usos de Tierra agregados"
     }
-    pool.close();//TODO: Cerramos la conexión
 
   } catch (error) {
     console.log(error);
@@ -57,7 +53,6 @@ async function getUsosTierraDesactivados() {//TODO: Función para obtener todos 
     else {
       return "No hay Usos de Tierra Desactivados"
     }
-    pool.close();//TODO: Cerramos la conexión
   } catch (error) {
     console.log(error);
   }
@@ -72,7 +67,6 @@ async function getEstructuras() {//TODO: Función para obtener todos los usuario
     else {
       return "No hay Estructuras Agregadas"
     }
-    pool.close();//TODO: Cerramos la conexión
   } catch (error) {
     console.log(error);
   }
@@ -87,7 +81,6 @@ async function getEstructurasDesactivados() {//TODO: Función para obtener todos
     else {
       return "No hay Estructuras Desactivados"
     }
-    pool.close();//TODO: Cerramos la conexión
   } catch (error) {
     console.log(error);
   }
@@ -102,7 +95,6 @@ async function getTenenciaTierra() {//TODO: Función para obtener todos los usua
     else {
       return "No hay Tipos de Tenencia Tierra Agregadas"
     }
-    pool.close();//TODO: Cerramos la conexión
   } catch (error) {
     console.log(error);
   }
@@ -117,7 +109,6 @@ async function getTenenciaTierraDesactivados() {//TODO: Función para obtener to
     else {
       return "No hay Tipos de Tenencia Tierra Desactivados"
     }
-    pool.close();//TODO: Cerramos la conexión
   } catch (error) {
     console.log(error);
   }
@@ -128,10 +119,10 @@ async function getMercado(id) {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Mercados_Buscar ${id}`);
     if (result.recordset.length !== 0) {
-      await pool.close();//TODO: Cerramos la conexión
+
       return result.recordset
     } else {
-      await pool.close();//TODO: Cerramos la conexión
+
       return "Tipo de Mercado no encontrado"
     }
   }
@@ -145,7 +136,7 @@ async function postMercado(mercado, estado) {
     if (consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Mercados_Crear '${mercado}',  '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+
       return "exito";
     } else {
       await pool.connect()//TODO: Cerramos la conexión
@@ -164,7 +155,7 @@ async function putMercado(id, mercado) {
       if (consulta2) {
         await pool.connect()
         await pool.request().query(`Exec prc_Mercados_Editar ${id}, '${mercado}'`);
-        await pool.close();//TODO: Cerramos la conexión
+
         return "exito";
       } else {
         return "ambiguo"
@@ -182,7 +173,7 @@ async function putMercadoEstado(id, estado) {
     if (!consulta) {
       await pool.connect()//TODO: Cerramos la conexión
       await pool.request().query(`Exec prc_Mercados_Editar_Estado ${id}, '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+
       return "exito";
     } else {
       return "vacio"
@@ -195,7 +186,6 @@ async function verificarMercado(mercado) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Fuente_Financiamiento_Buscar_Nombre '${mercado}'`);
-    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -206,7 +196,6 @@ async function verificarMercadoByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Fuente_Financiamiento_Buscar ${id}`);
-    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -219,10 +208,10 @@ async function getUsoTierra(id) {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Usos_Tierra_Buscar ${id}`);
     if (result.recordset.length !== 0) {
-      await pool.close();//TODO: Cerramos la conexión
+
       return result.recordset
     } else {
-      await pool.close();//TODO: Cerramos la conexión
+
       return "Uso de la tierra no encontrado"
     }
   }
@@ -236,7 +225,7 @@ async function postUsoTierra(uso, estado) {
     if (consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Usos_Tierra_Crear '${uso}',  '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+
       return "exito";
     } else {
       await pool.connect()//TODO: Cerramos la conexión
@@ -255,7 +244,7 @@ async function putUsoTierra(id, uso) {
       if (consulta2) {
         await pool.connect()
         await pool.request().query(`Exec prc_Usos_Tierra_Editar ${id}, '${uso}'`);
-        await pool.close();//TODO: Cerramos la conexión
+
         return "exito";
       } else {
         return "ambiguo"
@@ -273,7 +262,7 @@ async function putUsoTierraEstado(id, estado) {
     if (!consulta) {
       await pool.connect()//TODO: Cerramos la conexión
       await pool.request().query(`Exec prc_Usos_Tierra_Editar_Estado ${id}, '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+
       return "exito";
     } else {
       return "vacio"
@@ -286,7 +275,6 @@ async function verificarUsoTierra(uso) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Usos_Tierra_Buscar_Nombre '${uso}'`);
-    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -297,7 +285,6 @@ async function verificarUsoTierraByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Usos_Tierra_Buscar ${id}`);
-    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -310,10 +297,10 @@ async function getEstructura(id) {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Estructuras_Buscar ${id}`);
     if (result.recordset.length !== 0) {
-      await pool.close();//TODO: Cerramos la conexión
+
       return result.recordset
     } else {
-      await pool.close();//TODO: Cerramos la conexión
+
       return "Estructura no encontrada"
     }
   }
@@ -327,7 +314,7 @@ async function postEstructura(estructura, estado) {
     if (consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Estructuras_Crear '${estructura}', '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+
       return "exito";
     } else {
       await pool.connect()//TODO: Cerramos la conexión
@@ -346,7 +333,7 @@ async function putEstructura(id, estructura) {
       if (consulta2) {
         await pool.connect()
         await pool.request().query(`Exec prc_Estructuras_Editar ${id}, '${estructura}'`);
-        await pool.close();//TODO: Cerramos la conexión
+
         return "exito";
       } else {
         return "ambiguo"
@@ -364,7 +351,7 @@ async function putEstructuraEstado(id, estado) {
     if (!consulta) {
       await pool.connect()//TODO: Cerramos la conexión
       await pool.request().query(`Exec prc_Estructuras_Editar_Estado ${id}, '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+
       return "exito";
     } else {
       return "vacio"
@@ -377,7 +364,6 @@ async function verificarEstructura(estructura) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Estructuras_Buscar_Nombre '${estructura}'`);
-    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -388,7 +374,6 @@ async function verificarEstructuraByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Estructuras_Buscar ${id}`);
-    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -401,10 +386,10 @@ async function getTenencia(id) {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Tenencia_Tierra_Buscar ${id}`);
     if (result.recordset.length !== 0) {
-      await pool.close();//TODO: Cerramos la conexión
+
       return result.recordset
     } else {
-      await pool.close();//TODO: Cerramos la conexión
+
       return "Tenencia de la Tierra no encontrada"
     }
   }
@@ -418,7 +403,7 @@ async function postTenenciaTierra(tenencia, estado) {
     if (consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Tenencia_Tierra_Crear '${tenencia}',  '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+
       return "exito";
     } else {
       await pool.connect()//TODO: Cerramos la conexión
@@ -437,7 +422,7 @@ async function putTenenciaTierra(id, tenencia) {
       if (consulta2) {
         await pool.connect()
         await pool.request().query(`Exec prc_Tenencia_Tierra_Editar ${id}, '${tenencia}'`);
-        await pool.close();//TODO: Cerramos la conexión
+
         return "exito";
       } else {
         return "ambiguo"
@@ -455,7 +440,7 @@ async function putTenenciaTierraEstado(id, estado) {
     if (!consulta) {
       await pool.connect()//TODO: Cerramos la conexión
       await pool.request().query(`Exec prc_Tenencia_Tierra_Editar_Estado ${id}, '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+
       return "exito";
     } else {
       return "vacio"
@@ -468,7 +453,6 @@ async function verificarTenenciaTierra(tenencia) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Tenencia_Tierra_Buscar_Nombre '${tenencia}'`);
-    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -479,7 +463,6 @@ async function verificarTenenciaTierraByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Tenencia_Tierra_Buscar ${id}`);
-    await pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {

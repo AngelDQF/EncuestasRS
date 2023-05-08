@@ -14,8 +14,8 @@ router.put('/bosques/editar/estado', authMiddleware, checkTipo(["Admin"]), ctrPu
 //Suelos
 router.get('/suelos', authMiddleware, checkTipo(["Admin", "Encuestador"]), ctrGetSuelos);//TODO: Creamos la ruta de tipo get para listar todos los Bosques
 router.get('/suelos/desactivados', authMiddleware, checkTipo(["Admin"]), ctrGetSuelosDesactivados);//TODO: Creamos la ruta de tipo get para listar todos los Bosques Desactivados
-router.post('/suelos', authMiddleware, checkTipo(["Admin", "Encuestador"]), ctrGetSueloById);
-router.post('/suelos/crear', authMiddleware, checkTipo(["Admin", "Encuestador"]), ctrPostSuelo);
-router.put('/suelos/editar', authMiddleware, checkTipo(["Admin", "Encuestador"]), ctrPutSuelo);
-router.put('/suelos/editar/estado', authMiddleware, checkTipo(["Admin", "Encuestador"]), ctrPutSueloEstado);
+router.post('/suelos', authMiddleware, checkTipo(["Admin"]), ctrGetSueloById);
+router.post('/suelos/crear', authMiddleware, checkTipo(["Admin"]), ctrPostSuelo);
+router.put('/suelos/editar', authMiddleware, checkTipo(["Admin"]), ctrPutSuelo);
+router.put('/suelos/editar/estado', authMiddleware, checkTipo(["Admin"]), ctrPutSueloEstado);
 module.exports = router;//TODO: Exportamos las rutas que hemos creados

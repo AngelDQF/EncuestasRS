@@ -13,9 +13,6 @@ async function getEncuestas() {//TODO: Creamos la función que se encargará de 
     else {
       return "No hay Encuestas agregadas"
     }
-    //console.log(result.recordsets);
-    pool.close();//TODO: Cerramos la conexión
-
   } catch (error) {
     console.log(error);
   }
@@ -40,8 +37,7 @@ async function getDepartamentosUsuario(id) {//TODO: Creamos la función que se e
       return "El usuario no tiene departamentos agregados"
     }
     //console.log(result.recordsets);
-    pool.close();//TODO: Cerramos la conexión
-
+  
   } catch (error) {
     console.log(error);
   }
@@ -57,8 +53,7 @@ async function getMunicipiosUsuario(user, dep) {//TODO: Creamos la función que 
       return "El usuario no tiene Municipios agregados"
     }
     //console.log(result.recordsets);
-    pool.close();//TODO: Cerramos la conexión
-
+  
   } catch (error) {
     console.log(error);
   }
@@ -105,8 +100,7 @@ async function getCaseriosUsuario(id) {//TODO: Creamos la función que se encarg
       return "El usuario no tiene caserios agregados"
     }
     //console.log(result.recordsets);
-    pool.close();//TODO: Cerramos la conexión
-
+  
   } catch (error) {
     console.log(error);
   }
@@ -122,8 +116,7 @@ async function getOrganizacion() {//TODO: Creamos la función que se encargará 
       return "No hay Organizaciones Agregadas"
     }
     //console.log(result.recordsets);
-    pool.close();//TODO: Cerramos la conexión
-
+  
   } catch (error) {
     console.log(error);
   }
@@ -154,8 +147,7 @@ async function getOrganizacionesSociales() {//TODO: Creamos la función que se e
       return "No hay Organizaciones Agregadas"
     }
     //console.log(result.recordsets);
-    pool.close();//TODO: Cerramos la conexión
-
+  
   } catch (error) {
     console.log(error);
   }
@@ -170,8 +162,7 @@ async function getEstructurasEncuestas() {//TODO: Función para obtener todos lo
     else {
       return "No hay Estructuras Agregadas"
     }
-    pool.close();//TODO: Cerramos la conexión
-  } catch (error) {
+    } catch (error) {
     console.log(error);
   }
 }
@@ -185,8 +176,7 @@ async function getEstadosEncuestas() {//TODO: Función para obtener todos los us
     else {
       return "No hay Estados Agregadas"
     }
-    pool.close();//TODO: Cerramos la conexión
-  } catch (error) {
+    } catch (error) {
     console.log(error);
   }
 }
@@ -200,8 +190,7 @@ async function getTecnologicoEncuestas() {//TODO: Función para obtener todos lo
     else {
       return "No hay Nivel Tecnologico Agregado"
     }
-    pool.close();//TODO: Cerramos la conexión
-  } catch (error) {
+    } catch (error) {
     console.log(error);
   }
 }
@@ -217,8 +206,7 @@ async function getEncuestasDep(id) {//TODO: Creamos la función que se encargar�
       return "No hay Encuestas agregadas"
     }
     //console.log(result.recordsets);
-    pool.close();//TODO: Cerramos la conexión
-
+  
   } catch (error) {
     console.log(error);
   }

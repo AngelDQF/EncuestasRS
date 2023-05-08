@@ -38,7 +38,7 @@ export class RecursosService {
 
   getBosque(id: number): Observable<any> {
     let body = { id };
-    return this.http.post(`${this.URL}/bosques`, body).pipe(
+    return this.http.post(`${this.URL}/naturales/bosques`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -46,7 +46,7 @@ export class RecursosService {
   }
   postBosque(bosque: string): Observable<any> {
     let body = { bosque, estado: 1 };
-    return this.http.post(`${this.URL}/bosques/crear`, body).pipe(
+    return this.http.post(`${this.URL}/naturales/bosques/crear`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -54,7 +54,7 @@ export class RecursosService {
   }
   putBosque(id: number, bosque: string): Observable<any> {
     let body = { id, bosque };
-    return this.http.put(`${this.URL}/bosques/editar`, body).pipe(
+    return this.http.put(`${this.URL}/naturales/bosques/editar`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -62,7 +62,7 @@ export class RecursosService {
   }
   putBosqueEstado(id: number, estado: boolean): Observable<any> {
     let body = { id, estado };
-    return this.http.put(`${this.URL}/bosques/editar/estado`, body).pipe(
+    return this.http.put(`${this.URL}/naturales/bosques/editar/estado`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -71,7 +71,7 @@ export class RecursosService {
 
   getSuelo(id: number): Observable<any> {
     let body = { id };
-    return this.http.post(`${this.URL}/suelos`, body).pipe(
+    return this.http.post(`${this.URL}/naturales/suelos`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -79,7 +79,7 @@ export class RecursosService {
   }
   postSuelo(suelo: string): Observable<any> {
     let body = { suelo, estado: 1 };
-    return this.http.post(`${this.URL}/suelos/crear`, body).pipe(
+    return this.http.post(`${this.URL}/naturales/suelos/crear`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -87,7 +87,7 @@ export class RecursosService {
   }
   putSuelo(id: number, suelo: string): Observable<any> {
     let body = { id, suelo };
-    return this.http.put(`${this.URL}/suelos/editar`, body).pipe(
+    return this.http.put(`${this.URL}/naturales/suelos/editar`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -95,7 +95,7 @@ export class RecursosService {
   }
   putSueloEstado(id: number, estado: boolean): Observable<any> {
     let body = { id, estado };
-    return this.http.put(`${this.URL}/suelos/editar/estado`, body).pipe(
+    return this.http.put(`${this.URL}/naturales/suelos/editar/estado`, body).pipe(
       map(({ results }: any) => {
         return results;
       })

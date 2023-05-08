@@ -69,10 +69,10 @@ async function getFuenteFin(id) {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Fuentes_Buscar ${id}`);
     if (result.recordset.length !== 0) {
-      await pool.close();//TODO: Cerramos la conexión
+      
       return result.recordset
     } else {
-      await pool.close();//TODO: Cerramos la conexión
+      
       return "Fuente de Financiamiento no encontrado"
     }
   }
@@ -86,7 +86,7 @@ async function postFuenteFin(fuente, estado) {
     if (consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Fuente_Financiamiento_Crear '${fuente}', '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+      
       return "exito";
     } else {
       await pool.connect()//TODO: Cerramos la conexión
@@ -105,7 +105,7 @@ async function putFuenteFin(id, fuente) {
       if (consulta2) {
         await pool.connect()
         await pool.request().query(`Exec prc_Fuente_Financiamiento_Editar ${id}, '${fuente}'`);
-        await pool.close();//TODO: Cerramos la conexión
+        
         return "exito";
       } else {
         return "ambiguo"
@@ -123,7 +123,7 @@ async function putFuenteFinEstado(id, estado) {
     if (!consulta) {
       await pool.connect()//TODO: Cerramos la conexión
       await pool.request().query(`Exec prc_Fuente_Financiamiento_Editar_Estado ${id}, '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+      
       return "exito";
     } else {
       return "vacio"
@@ -136,7 +136,7 @@ async function verificarFuenteFin(fuente) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Fuente_Financiamiento_Buscar_Nombre '${fuente}'`);
-    await pool.close();//TODO: Cerramos la conexión
+    
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -147,7 +147,7 @@ async function verificarFuenteFinByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Fuente_Financiamiento_Buscar ${id}`);
-    await pool.close();//TODO: Cerramos la conexión
+    
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -160,10 +160,10 @@ async function getTipoFin(id) {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Tipo_Financiamiento_Buscar ${id}`);
     if (result.recordset.length !== 0) {
-      await pool.close();//TODO: Cerramos la conexión
+      
       return result.recordset
     } else {
-      await pool.close();//TODO: Cerramos la conexión
+      
       return "Tipo de Financiamiento no encontrado"
     }
   }
@@ -177,7 +177,7 @@ async function postTipoFin(tipo, estado) {
     if (consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Tipo_Financiamiento_Crear '${tipo}', '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+      
       return "exito";
     } else {
       return "ambiguo"
@@ -195,14 +195,14 @@ async function putTipoFin(id, tipo) {
       if (consulta2) {
         await pool.connect()
         await pool.request().query(`Exec prc_Tipo_Financiamiento_Editar ${id}, '${tipo}'`);
-        await pool.close();//TODO: Cerramos la conexión
+        
         return "exito";
       } else {
-        await pool.close();//TODO: Cerramos la conexión
+        
         return "ambiguo"
       }
     } else {
-      await pool.close();//TODO: Cerramos la conexión
+      
       return "vacio";
     }
   } catch (error) {
@@ -215,10 +215,10 @@ async function putTipoFinEstado(id, estado) {
     if (!consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Tipo_Financiamiento_Editar_Estado ${id}, '${estado}'`);
-      await pool.close();//TODO: Cerramos la conexión
+      
       return "exito";
     } else {
-      await pool.close();//TODO: Cerramos la conexión
+      
       return "vacio"
     }
   } catch (error) {
@@ -229,7 +229,6 @@ async function verificarTipoFin(tipo) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Tipo_Financiamiento_Buscar_Nombre '${tipo}'`);
-    pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -240,7 +239,6 @@ async function verificarTipoFinByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Tipo_Financiamiento_Buscar ${id}`);
-    pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }
   catch (error) {

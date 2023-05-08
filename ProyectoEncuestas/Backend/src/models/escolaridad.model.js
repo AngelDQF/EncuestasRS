@@ -50,7 +50,6 @@ async function postGrado(grado, estado) {
     if (consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Escolaridad_Agregar '${grado}', '${estado}'`);
-      pool.close();
       return "exito";
     } else {
       return "ambiguo";
@@ -85,14 +84,11 @@ async function putGradoEstado(id, estado) {
     if (!consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Escolaridad_Cambiar_Estado '${id}', '${estado}'`);
-      pool.close();
       return "exito";
     } else {
-      pool.close();
       return "ambiguo";
     }
   } catch (error) {
-    pool.close();
     return "error";
   }
 }
@@ -100,7 +96,6 @@ async function verificarGradoByName(grado) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Escolaridad_Buscar '${grado}'`);
-    pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   } catch (error) {
     console.log(error);
@@ -111,7 +106,6 @@ async function verificarGradoByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     const result = await pool.request().query(`Exec prc_Escolaridad_Buscar_ID '${id}'`);
-    pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   } catch (error) {
     console.log(error);

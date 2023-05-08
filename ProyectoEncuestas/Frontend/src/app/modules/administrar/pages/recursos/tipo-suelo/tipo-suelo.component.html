@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="col-12 col-md-3 ps-0 pe-md-2 pe-0">
-        <a routerLink="agregar" class="btn btnEditar form-control"><i class="bi bi-image-alt"></i>Nuevo Suelo</a>
+        <a (click)="agregar()" class="btn btnEditar form-control"><i class="bi bi-image-alt"></i>Nuevo Suelo</a>
       </div>
 
       <div class="col-12 col-md-3 ps-0 pe-0 pe-md-2">
@@ -40,7 +40,7 @@
       <ng-container matColumnDef="opciones">
         <th mat-header-cell *matHeaderCellDef> Opciones </th>
         <td mat-cell *matCellDef="let element" class="">
-          <a class="botonEditarTabla"><i class="bi bi-pencil-square"></i></a>
+          <a (click)="editar(element.id)" class="botonEditarTabla"><i class="bi bi-pencil-square"></i></a>
           <a class="botonDesactivarTabla"><i class="bi bi-trash3-fill"> </i></a>
         </td>
       </ng-container>
