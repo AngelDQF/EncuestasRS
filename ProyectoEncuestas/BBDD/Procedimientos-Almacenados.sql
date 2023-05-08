@@ -1059,7 +1059,7 @@ end
 Create Procedure prc_Suelos_Buscar
 @id int
 as begin
-	SELECT id_Suelo AS id, descripcion_Suelo AS suelo, estado_Suelo AS estado
+	SELECT id_Suelo AS id, descripcion_Suelo AS tipo, estado_Suelo AS estado
 	FROM     dbo.tbl_Suelos
 	where id_Suelo=@id
 end
@@ -1067,7 +1067,7 @@ end
 Create Procedure prc_Suelos_Buscar_Nombre
 @suelo nvarchar(30)
 as begin
-	SELECT id_Suelo AS id, descripcion_Suelo AS suelo, estado_Suelo AS estado
+	SELECT id_Suelo AS id, descripcion_Suelo AS tipo, estado_Suelo AS estado
 	FROM     dbo.tbl_Suelos
 	where descripcion_Suelo=@suelo
 end
