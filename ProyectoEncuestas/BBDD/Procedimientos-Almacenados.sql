@@ -980,7 +980,7 @@ as begin
 end
 
 Create Procedure prc_Servicios_Editar
-@id int, @tipo int, @servicio nvarchar(150)
+@id int, @servicio nvarchar(150)
 as begin
 UPDATE [dbo].[tbl_Servicios]
    SET [servicio] = @servicio

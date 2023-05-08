@@ -80,8 +80,8 @@ const ctrPostServicio = async (req, res) => {
 const ctrPutServicio = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
 
-    const { id, servicio } = req.body;//TODO: Extraemos los datos del body
-    const resultado = await serviciosModel.putServicio(id, servicio);
+    const { id, servicio, tipo } = req.body;//TODO: Extraemos los datos del body
+    const resultado = await serviciosModel.putServicio(id, servicio, tipo);
     if (resultado == 'exito') {
       res.json({ results: { mensaje: "Servicio editado exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
     } else if (resultado == "ambiguo") {

@@ -52,23 +52,23 @@ export class ServiciosService {
       })
     )
   }
-  putServicio(id: number, servicio: string): Observable<any> {
-    let body = { id, servicio};
+  putServicio(id: number, servicio: string, tipo: number): Observable<any> {
+    let body = { id, servicio, tipo };
     return this.http.put(`${this.URL}/servicios/editar`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
     )
   }
-  putTipoServicio(id: number, tipo:number): Observable<any> {
-    let body = { id, tipo};
+  putTipoServicio(id: number, tipo: number): Observable<any> {
+    let body = { id, tipo };
     return this.http.put(`${this.URL}/servicios/editar/tipo`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
     )
   }
-  putServicioEstado(id:number,estado:boolean): Observable<any> {
+  putServicioEstado(id: number, estado: boolean): Observable<any> {
     let body = { id, estado };
     return this.http.put(`${this.URL}/servicios/editar/estado`, body).pipe(
       map(({ results }: any) => {

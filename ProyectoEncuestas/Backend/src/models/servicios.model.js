@@ -122,13 +122,13 @@ async function putServicioTipo(id, tipo) {
       return "vacio";
     }
   } catch (error) {
-    console.log(eroor);
+    console.log(error);
   }
 }
-async function putServicio(id, servicio) {
+async function putServicio(id, servicio,tipo) {
   try {
     const consulta1 = await verificarServicioByID(id);
-    const consulta2 = await verificarServicio(servicio);
+    const consulta2 = await verificarServicio(servicio,tipo);
     if (!consulta1) {
       if (consulta2) {
         await pool.connect()
@@ -142,7 +142,7 @@ async function putServicio(id, servicio) {
       return "vacio";
     }
   } catch (error) {
-    console.log(eroor);
+    console.log(error);
   }
 }
 async function putServicioEstado(id, estado) {
@@ -157,14 +157,14 @@ async function putServicioEstado(id, estado) {
       return "vacio"
     }
   } catch (error) {
-    console.log(eroor);
+    console.log(error);
   }
 }
 
 async function verificarServicio(servicio, tipo) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    const result = await pool.request().query(`Exec prc_Servicios_Buscar_Nombre '${servicio}','${tipo}'`);
+    const result = await pool.request().query(`Exec prc_Servicios_Buscar_Nombre '${servicio}', '${tipo}'`);
     pool.close();//TODO: Cerramos la conexión
     return result.recordset.length === 0;
   }

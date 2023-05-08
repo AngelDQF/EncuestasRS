@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServiciosInterface } from '@models/administrar/servicios/servicios.interface';
+import { AgregarServicioComponent, InfoComponent } from '@shared/components';
 import {ServiciosService } from 'src/app/services/servicios.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class BasicosComponent implements OnInit {
   dataSource: any;
   txtBusqueda:string = "";
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private serviciosModel: ServiciosService) { }
+  constructor(private serviciosModel: ServiciosService,private dialog: MatDialog) { }
   ngOnInit(): void {
     this.obtenerOrg();
   }
@@ -28,5 +30,38 @@ export class BasicosComponent implements OnInit {
   buscarTabla() {
     //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
     this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
+  }
+
+  agregar(){
+    try {
+      const dialogRef = this.dialog.open(AgregarServicioComponent, {
+        width: '500px',
+        data:[1,'','basico']
+      });
+      dialogRef.afterClosed().subscribe(exc => { this.obtenerOrg() });
+    } catch (error) {
+      this.mensaje("Error", "Ha Ocurrido un Error al Crear la organización", 3);
+    }
+  }
+  editar(id:any){
+    try {
+      const dialogRef = this.dialog.open(AgregarServicioComponent, {
+        width: '500px',
+        data:[2,id,'basico']
+      });
+      dialogRef.afterClosed().subscribe(exc => { this.obtenerOrg() });
+    } catch (error) {
+      this.mensaje("Error","Ha ocurrido un error al editar",3);
+    }
+  }
+  mensaje(titulo: string, cuerpo: string, tipo: number): void {
+    try {
+      this.dialog.open(InfoComponent, {
+        width: '500px',
+        data: [titulo, cuerpo, tipo]
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
