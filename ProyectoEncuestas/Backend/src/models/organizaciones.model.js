@@ -211,7 +211,7 @@ async function postTipoOrg(tipo, estado) {//TODO: Creamos la función que se enc
 async function putTipoOrg(id, tipo) {
   try {
     const consulta1 = await verificarTipoOrgByID(id);
-    const consulta2 = await verificarTipoOrg(org);
+    const consulta2 = await verificarTipoOrg(tipo);
     if (!consulta1) {
       if (consulta2) {
         await pool.connect()

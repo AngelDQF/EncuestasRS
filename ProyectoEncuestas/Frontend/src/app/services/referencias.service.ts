@@ -6,10 +6,23 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ReferenciasService {
-  private readonly URL = environment.api;
+  private readonly URLMSol = environment.api;
   private readonly BaseURLApiDocument = environment.apiDocuments;
   constructor(private http: HttpClient) { }
-
+  getReferenciasActas(): Observable<any>{
+    return this.http.get(`${this.URLMSol}/referencias/actas`).pipe(
+      map(({ results }: any)=>{
+        return results;
+      })
+    )
+  }
+  getReferenciasDNI(): Observable<any>{
+    return this.http.get(`${this.URLMSol}/referencias/junta`).pipe(
+      map(({ results }: any)=>{
+        return results;
+      })
+    )
+  }
   postDocumentos(file?: string, code?: string, name?: string, extension?: string): Observable<any> {
     let body = { file, code, name, extension, systemName: 'MesasSolidarias' };
     return this.http.post(`${this.BaseURLApiDocument}/create`, body).pipe(
@@ -27,10 +40,10 @@ export class ReferenciasService {
   }
   postReferencia(uid: string, name: string, ext: any, tipo: number, id: number): Observable<any> {
     let body = { uid, name, ext, tipo, id };
-    return this.http.post(`${this.URL}/referencias`, body);
+    return this.http.post(`${this.URLMSol}/referencias`, body);
   }
   getReferencias(): Observable<any> {
-    return this.http.get(`${this.URL}/referencias`).pipe(
+    return this.http.get(`${this.URLMSol}/referencias`).pipe(
       map(({ results }: any) => {
         return results;
       })

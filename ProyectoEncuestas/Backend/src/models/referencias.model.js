@@ -10,14 +10,30 @@ async function getReferenciasActas() {
     }
     else {
       pool.close();//TODO: Cerramos la conexión
-      return "Vacio"
+      return "No hay referencias agregadas"
     }
   } catch (error) {
     console.log(error);
-    return "Error"
+    return "Error al listar las referencias"
   }
 }
-
+async function getReferenciasDNI() {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query("SELECT * from vew_Referencias_DNI");//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      pool.close();//TODO: Cerramos la conexión
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      pool.close();//TODO: Cerramos la conexión
+      return "No hay referencias agregadas"
+    }
+  } catch (error) {
+    console.log(error);
+    return "Error al listar las referencias"
+  }
+}
 async function postReferencia(uid, name, ext, tipo, id) {
   try {
     await pool.connect()
@@ -40,4 +56,4 @@ async function postReferenciaJunta(id_Ref, miembro, uid) {
     return "error"
   }
 }
-module.exports = { getReferenciasActas,postReferencia, postReferenciaJunta }
+module.exports = { getReferenciasActas, getReferenciasDNI, postReferencia, postReferenciaJunta }

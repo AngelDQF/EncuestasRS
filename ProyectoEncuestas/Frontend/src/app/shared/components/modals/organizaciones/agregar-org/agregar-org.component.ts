@@ -56,13 +56,25 @@ export class AgregarOrgComponent implements OnInit {
         this.showInput = false;
       }
     } else if (this.data[2] === "tipo") {
-      this.title = "Agregar Tipo de Organización";
-      this.label = "Nuevo Tipo de Organización";
-      this.showInput = false;
-      this.showSelects = false;
-      this.showInputTipo = true;
-      this.botonName = "Editar";
-      this.btnClass = "btnEditar";
+      if (this.data[0] == 1) {
+        this.title = "Agregar Tipo de Organización";
+        this.label = "Nuevo Tipo de Organización";
+        this.showInput = false;
+        this.showSelects = false;
+        this.showInputTipo = true;
+        this.botonName = "Guardar";
+        this.btnClass = "btnGuardar";
+      }else{
+        this.getTipoOrg(data[1]);
+        this.title = "Editar Tipo de Organización";
+        this.label = "Nuevo Tipo de Organización";
+        this.showInput = false;
+        this.showSelects = false;
+        this.showTitle=true;
+        this.showInputTipo = true;
+        this.botonName = "Editar";
+        this.btnClass = "btnEditar";
+      }
     }
   }
 
@@ -109,8 +121,12 @@ export class AgregarOrgComponent implements OnInit {
         else {
           this.putDatosOrg();
         }
-      } else if(this.data[2] == "tipo") {
-        this.postTipo();
+      } else if (this.data[2] == "tipo") {
+        if (this.data[0] == 1) {
+          this.postTipo();
+        } else {
+          this.putTipo();
+        }
       }
     } catch (error) {
       this.mensaje("Error", `${error}`, 3);
@@ -119,6 +135,11 @@ export class AgregarOrgComponent implements OnInit {
   getOrganizacion(id: number) {
     this.orgService.getOrganizacionByID(id).subscribe((data: OrganizacionesInterface[]) => {
       this.nombre = data[0].org;
+    })
+  }
+  getTipoOrg(id: number) {
+    this.orgService.getTipoOrganizacionByID(id).subscribe((data: TiposOrgInterface[]) => {
+      this.nombre = data[0].tipo;
     })
   }
   postOrg(): void {
@@ -142,6 +163,23 @@ export class AgregarOrgComponent implements OnInit {
     try {
       let { org } = this.frmOrganizaciones.value
       this.orgService.putOrganizacion(this.data[1], org).subscribe((data: any) => {
+        if (data.estado == 1) {
+          this.mensaje("Advertencia", `${data.mensaje}`, 1);
+        } else if (data.estado == 2) {
+          this.mensaje("Información", `${data.mensaje}`, 2);
+          this.dialogoRef.close();
+        } else {
+          this.mensaje("Error", `${data.mensaje}`, 3);
+        }
+      });
+    } catch (error) {
+      this.mensaje("Error", "Error al cambiar el nombre", 3);
+    }
+  }
+  putTipo(): void {
+    try {
+      let { txtTipo } = this.frmOrganizaciones.value
+      this.orgService.putTipoOrganizacion(this.data[1], txtTipo).subscribe((data: any) => {
         if (data.estado == 1) {
           this.mensaje("Advertencia", `${data.mensaje}`, 1);
         } else if (data.estado == 2) {

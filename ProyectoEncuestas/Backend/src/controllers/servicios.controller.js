@@ -57,7 +57,7 @@ const ctrGetServicioById = async (req, res) => {
     handleHttpError(res, 'ERROR_LISTAR_SERVICIO');
   }
 }
-const ctrPostOrg = async (req, res) => {
+const ctrPostServicio = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
 
     const { tipo, servicio, estado } = req.body;//TODO: Extraemos los datos del body
@@ -141,4 +141,4 @@ const ctrPutServicioEstado = async (req, res) => {
     handleHttpError(res, 'ERROR_PUT_ORGANIZACIÓN_ESTADO');
   }
 }
-module.exports = { ctrGetServiciosLocales, ctrGetServiciosLocalesDesactivados, ctrGetServiciosBasicos, ctrGetServiciosBasicosDesactivados, ctrPutServicioLocal, ctrGetServicioById, ctrPostOrg, ctrPutServicio, ctrPutServicioDatos, ctrPutServicioEstado };//TODO: Exportamos las funciones del controlador
+module.exports = { ctrGetServiciosLocales, ctrGetServiciosLocalesDesactivados, ctrGetServiciosBasicos, ctrGetServiciosBasicosDesactivados, ctrPutServicioLocal, ctrGetServicioById, ctrPostServicio, ctrPutServicio, ctrPutServicioDatos, ctrPutServicioEstado };//TODO: Exportamos las funciones del controlador

@@ -3,14 +3,22 @@ const { handleHttpError } = require('../utils/handleError');//TODO: Importamos e
 
 const ctrGetActas = async (req, res) => {//TODO: Funcion para hacer get a las referencias de las actas
   try {
-    refModel.getReferenciasActas().then(result => {//TODO: Ejecutamos la funcion del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    await refModel.getReferenciasActas().then(results => {//TODO: Ejecutamos la funcion del modelo
+      res.json({ results })//TODO: Mostramos el resultado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_REFERENCIAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-
+const ctrGetDNI = async (req, res) => {//TODO: Funcion para hacer get a las referencias de las actas
+  try {
+    await refModel.getReferenciasDNI().then(results => {//TODO: Ejecutamos la funcion del modelo
+      res.json({ results })//TODO: Mostramos el resultado en un json
+    });
+  } catch {
+    handleHttpError(res, 'ERROR_LISTAR_REFERENCIAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+  }
+}
 const ctrPostReferencia = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
     const { uid, name, ext, tipo, id } = req.body;//TODO: Extraemos los datos del body
@@ -39,4 +47,4 @@ const ctrPostReferenciaJunta = async (req, res) => {
   }
 }
 
-module.exports = { ctrGetActas, ctrPostReferencia,ctrPostReferenciaJunta }
+module.exports = { ctrGetActas, ctrGetDNI, ctrPostReferencia,ctrPostReferenciaJunta }

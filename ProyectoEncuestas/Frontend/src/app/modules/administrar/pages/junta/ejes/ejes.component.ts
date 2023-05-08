@@ -18,7 +18,6 @@ export class EjesComponent implements OnInit {
   constructor(private ejesModel: JuntaService,private dialog: MatDialog) { }
   ngOnInit(): void {
     this.obtenerEjes();
-
   }
   obtenerEjes() {
     this.ejesModel.getEjes().subscribe((data: EjesInterface[]) => {

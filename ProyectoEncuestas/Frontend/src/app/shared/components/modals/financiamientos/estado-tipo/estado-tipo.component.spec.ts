@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DocumentosComponent } from './documentos.component';
+import { EstadoTipoComponent } from './estado-tipo.component';
 
-describe('DocumentosComponent', () => {
-  let component: DocumentosComponent;
-  let fixture: ComponentFixture<DocumentosComponent>;
+describe('EstadoTipoComponent', () => {
+  let component: EstadoTipoComponent;
+  let fixture: ComponentFixture<EstadoTipoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DocumentosComponent ]
+      declarations: [ EstadoTipoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DocumentosComponent);
+    fixture = TestBed.createComponent(EstadoTipoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
