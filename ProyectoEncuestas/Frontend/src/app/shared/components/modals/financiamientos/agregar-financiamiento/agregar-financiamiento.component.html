@@ -1,1 +1,30 @@
-<p>agregar-financiamiento works!</p>
+<div mat-dialog-content class="bordeD">
+  <div mat-dialog-actions>
+    <div class="row">
+      <div class="col-12 mb-2">
+        <h1 class="w-100 m-0 titulo">{{funcion}} {{tipo}}</h1>
+      </div>
+      <hr>
+      <div *ngIf="showTitle" class="row expandir text-center justify-content-center">
+        <div class="ps-2 expandir color1 align-items-center col-12 d-flex">
+          <h2 class="d-flex text-center">Nombre Actual:&nbsp;
+          <div class="color3">{{nombre}}</div></h2>
+        </div>
+      </div>
+      <div class="col-12 mb-2">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>{{label}}</mat-label>
+          <input matInput [placeholder]="placeholder" [formControl]="txtFinanciamiento" required>
+          <mat-error *ngIf="txtFinanciamiento.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <button type="button" class="btnEliminar form-control me-1" (click)="onClickNo()">Cancelar</button>
+      </div>
+      <div class="col-6">
+        <button (click)="ejecutar()" type="submit" class="form-control ms-1" [ngClass]="btnClass"
+          [disabled]="txtFinanciamiento.invalid">{{botonName}}</button>
+      </div>
+    </div>
+  </div>
+</div>

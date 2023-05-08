@@ -39,7 +39,7 @@ export class FinanciamientosService {
 
   getFuenteFin(id: number): Observable<any> {
     let body = { id };
-    return this.http.post(`${this.URL}/fuentes`, body).pipe(
+    return this.http.post(`${this.URL}/financiamientos/fuentes`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -47,7 +47,7 @@ export class FinanciamientosService {
   }
   postFuenteFin(fuente: string): Observable<any> {
     let body = { fuente, estado: 1 };
-    return this.http.post(`${this.URL}/fuentes/crear`, body).pipe(
+    return this.http.post(`${this.URL}/financiamientos/fuentes/crear`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -55,7 +55,7 @@ export class FinanciamientosService {
   }
   putFuenteFin(id: number, fuente: string): Observable<any> {
     let body = { id, fuente };
-    return this.http.put(`${this.URL}/fuentes/editar`, body).pipe(
+    return this.http.put(`${this.URL}/financiamientos/fuentes/editar`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -63,7 +63,7 @@ export class FinanciamientosService {
   }
   putFuenteFinEstado(id: number, estado: boolean): Observable<any> {
     let body = { id, estado };
-    return this.http.put(`${this.URL}/fuentes/editar/estado`, body).pipe(
+    return this.http.put(`${this.URL}/financiamientos/fuentes/editar/estado`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -72,7 +72,7 @@ export class FinanciamientosService {
 
   getTipoFin(id: number): Observable<any> {
     let body = { id };
-    return this.http.post(`${this.URL}/tipos`, body).pipe(
+    return this.http.post(`${this.URL}/financiamientos/tipos`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -80,7 +80,7 @@ export class FinanciamientosService {
   }
   postTipoFin(tipo: string): Observable<any> {
     let body = { tipo, estado: 1 };
-    return this.http.post(`${this.URL}/tipos/crear`, body).pipe(
+    return this.http.post(`${this.URL}/financiamientos/tipos/crear`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -88,7 +88,7 @@ export class FinanciamientosService {
   }
   putTipoFin(id: number, tipo: string): Observable<any> {
     let body = { id, tipo };
-    return this.http.put(`${this.URL}/tipos/editar`, body).pipe(
+    return this.http.put(`${this.URL}/financiamientos/tipos/editar`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -96,7 +96,7 @@ export class FinanciamientosService {
   }
   putTipoFinEstado(id: number, estado: boolean): Observable<any> {
     let body = { id, estado };
-    return this.http.put(`${this.URL}/tipos/editar/estado`, body).pipe(
+    return this.http.put(`${this.URL}/financiamientos/tipos/editar/estado`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
