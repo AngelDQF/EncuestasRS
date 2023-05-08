@@ -1,46 +1,46 @@
-const { organizacionesModel } = require('../models/index.model');//TODO: Importamos el modelo de ejes
+const { organizacionesModel } = require('../models/index.model');//TODO: Importamos el modelo de las organizaciones
 const { handleHttpError } = require('../utils/handleError');//TODO: Importamos el metodo handleHttpError
-const ctrGetOrganizaciones = async (req, res) => {//TODO: Funcion para hacer get a los ejes
+const ctrGetOrganizaciones = async (req, res) => {
   try {
-    organizacionesModel.getOrganizaciones().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+    organizacionesModel.getOrganizaciones().then(result => {
       res.json({ results: result })//TODO: Mostramos el resultado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_ORGANIZACIONES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-const ctrGetOrganizacionById = async (req, res) => {//TODO: Funcion para hacer get a los ejes
+const ctrGetOrganizacionById = async (req, res) => {
   try {
     const { id } = req.body;
-    organizacionesModel.getOrganizacion(id).then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    organizacionesModel.getOrganizacion(id).then(results => {
+      res.json({ results })
     });
   } catch {
-    handleHttpError(res, 'ERROR_LISTAR_ORGANIZACIÓN');//TODO: Si surge un error hacemos uso del metodo handleHttpError
+    handleHttpError(res, 'ERROR_LISTAR_ORGANIZACIÓN');
   }
 }
-const ctrGetOrganizacionesDesactivadas = async (req, res) => {//TODO: Funcion para hacer get a los ejes
+const ctrGetOrganizacionesDesactivadas = async (req, res) => {
   try {
-    organizacionesModel.getOrganizacionesDesactivadas().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    organizacionesModel.getOrganizacionesDesactivadas().then(result => {
+      res.json({ results: result })
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_ORGANIZACIONES_DESACTIVADAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-const ctrGetTiposOrganizaciones = async (req, res) => {//TODO: Funcion para hacer get a los ejes
+const ctrGetTiposOrganizaciones = async (req, res) => {
   try {
-    organizacionesModel.getTipoOrganizaciones().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+    organizacionesModel.getTipoOrganizaciones().then(result => {
       res.json({ results: result })//TODO: Mostramos el resultado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_TIPOS_ORGANIZACIONES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-const ctrGetTipoOrganizacionById = async (req, res) => {//TODO: Funcion para hacer get a los ejes
+const ctrGetTipoOrganizacionById = async (req, res) => {
   try {
     const { id } = req.body;
-    organizacionesModel.getTipoOrganizacion(id).then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+    organizacionesModel.getTipoOrganizacion(id).then(result => {
       res.json({ results: result })//TODO: Mostramos el resultado en un json
     });
   } catch {
@@ -49,14 +49,14 @@ const ctrGetTipoOrganizacionById = async (req, res) => {//TODO: Funcion para hac
 }
 const ctrGetTiposOrgDes = async (req, res) => {//TODO: Funcion para hacer get a las Organizaciones Desactivadas
   try {
-    organizacionesModel.getTipoOrganizacionesDesactivadas().then(result => {//TODO: Ejecutamos la funcion getEjes del modelo
+    organizacionesModel.getTipoOrganizacionesDesactivadas().then(result => {
       res.json({ results: result })//TODO: Mostramos el resultado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_TIPOS_ORGANIZACIONES_DESACTIVADAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-const ctrPostOrg = async (req, res) => {//TODO: Funcion para hacer post a un eje
+const ctrPostOrg = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
 
     const { tipo, social, org, estado } = req.body;//TODO: Extraemos los datos del body
@@ -76,7 +76,7 @@ const ctrPostOrg = async (req, res) => {//TODO: Funcion para hacer post a un eje
     handleHttpError(res, 'ERROR_POST_ORGANIZACIÓN');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-const ctrPutOrg = async (req, res) => {//TODO: Funcion para hacer post a un eje
+const ctrPutOrg = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
 
     const { id, org } = req.body;//TODO: Extraemos los datos del body
@@ -140,7 +140,7 @@ const ctrPutOrgEstado = async (req, res) => {
     handleHttpError(res, 'ERROR_PUT_ORGANIZACIÓN_ESTADO');
   }
 }
-const ctrPostTipoOrg = async (req, res) => {//TODO: Funcion para hacer post a un eje
+const ctrPostTipoOrg = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
 
     const { tipo, estado } = req.body;//TODO: Extraemos los datos del body
@@ -160,7 +160,7 @@ const ctrPostTipoOrg = async (req, res) => {//TODO: Funcion para hacer post a un
     handleHttpError(res, 'ERROR_POST_ORGANIZACIÓN');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-const ctrPutTipoOrg = async (req, res) => {//TODO: Funcion para hacer post a un eje
+const ctrPutTipoOrg = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
 
     const { id, tipo } = req.body;//TODO: Extraemos los datos del body
