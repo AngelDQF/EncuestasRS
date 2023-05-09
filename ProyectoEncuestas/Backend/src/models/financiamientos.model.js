@@ -67,7 +67,7 @@ async function getFuentesFinanciamientosDesactivados() {//TODO: Función para ob
 async function getFuenteFin(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    const result = await pool.request().query(`Exec prc_Fuentes_Buscar ${id}`);
+    const result = await pool.request().query(`Exec prc_Fuente_Financiamiento_Buscar ${id}`);
     if (result.recordset.length !== 0) {
       
       return result.recordset
