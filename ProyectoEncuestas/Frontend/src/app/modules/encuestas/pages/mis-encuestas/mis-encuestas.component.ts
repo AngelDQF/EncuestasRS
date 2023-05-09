@@ -19,7 +19,7 @@ export class MisEncuestasComponent implements OnInit {
   usuario: string = "";
   departamentos: any;
   municipios: any;
-  displayedColumns: string[] = ['id','opciones','caserio', 'mun'];
+  displayedColumns: string[] = ['id','opciones','caserio', 'mun','dep'];
   dataSource: any;
   txtBusqueda: string = "";
   selectDep: any;

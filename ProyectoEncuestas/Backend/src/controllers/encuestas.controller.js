@@ -4,21 +4,51 @@ const { handleHttpError } = require('../utils/handleError');//TODO: Importamos e
 
 const ctrGetEncuestas = async (req, res) => {
   try {
-    encuestasModel.getEncuestas().then(result => {
-      res.json({ results: result })
+    encuestasModel.getEncuestas().then(results => {
+      res.json({ results })
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_ENCUESTAS');
   }
 }
+const ctrGetEncuestasByDep = async (req, res) => {
+  try {
+    const { id } = req.body
+    if (id === "") {
+      console.log("Vacio")
+      return
+    }
+    encuestasModel.getEncuestasByDep(id).then(results => {
+      res.json({ results });
+    });
+  } catch (error) {
+    handleHttpError(res, 'ERROR_LISTAR_ENCUESTAS');
+    console.log(error);
+  }
+};
+const ctrGetEncuestasByMun = async (req, res) => {
+  try {
+    const { id } = req.body
+    if (id === "") {
+      console.log("Vacio")
+      return
+    }
+    encuestasModel.getEncuestasByMun(id).then(results => {
+      res.json({ results });
+    });
+  } catch (error) {
+    handleHttpError(res, 'ERROR_LISTAR_ENCUESTAS');
+    console.log(error);
+  }
+};
 const ctrGetDepartamentosUsuario = async (req, res) => {
   try {
     const { id } = req.body
     if (id === "") {
       return
     }
-    encuestasModel.getDepartamentosUsuario(id).then(result => {
-      res.json({ results: result });
+    encuestasModel.getDepartamentosUsuario(id).then(results => {
+      res.json({ results });
     });
   } catch (error) {
     handleHttpError(res, 'ERROR_LISTAR_DEPARTAMENTOS');
@@ -28,8 +58,8 @@ const ctrGetDepartamentosUsuario = async (req, res) => {
 const ctrGetMunicipiosUsuario = async (req, res) => {//TODO: Creamos la función que se encargará de obtener los usuarios
   try {
     const { id, dep } = await req.body
-    encuestasModel.getMunicipiosUsuario(id, dep).then(result => {//TODO: Llamamos a la función del modelo para obtener los usuarios
-      res.json({ results: result });//TODO: Mostramos el resultado en un json
+    encuestasModel.getMunicipiosUsuario(id, dep).then(results => {//TODO: Llamamos a la función del modelo para obtener los usuarios
+      res.json({ results });//TODO: Mostramos el resultsado en un json
     });
   } catch (error) {
     handleHttpError(res, 'ERROR_LISTAR_MUNICIPIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -39,8 +69,8 @@ const ctrGetMunicipiosUsuario = async (req, res) => {//TODO: Creamos la función
 const ctrGetAldeasUsuario = async (req, res) => {//TODO: Creamos la función que se encargará de obtener los usuarios
   try {
     const { id } = await req.body
-    encuestasModel.getAldeasUsuario(id).then(result => {//TODO: Llamamos a la función del modelo para obtener los usuarios
-      res.json({ results: result });//TODO: Mostramos el resultado en un json
+    encuestasModel.getAldeasUsuario(id).then(results => {//TODO: Llamamos a la función del modelo para obtener los usuarios
+      res.json({ results });//TODO: Mostramos el resultsado en un json
     });
   } catch (error) {
     handleHttpError(res, 'ERROR_LISTAR_ALDEAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -50,8 +80,8 @@ const ctrGetAldeasUsuario = async (req, res) => {//TODO: Creamos la función que
 const ctrGetCaseriosUsuario = async (req, res) => {//TODO: Creamos la función que se encargará de obtener los usuarios
   try {
     const { id } = await req.body
-    encuestasModel.getCaseriosUsuario(id).then(result => {//TODO: Llamamos a la función del modelo para obtener los usuarios
-      res.json({ results: result });//TODO: Mostramos el resultado en un json
+    encuestasModel.getCaseriosUsuario(id).then(results => {//TODO: Llamamos a la función del modelo para obtener los usuarios
+      res.json({ results });//TODO: Mostramos el resultsado en un json
     });
   } catch (error) {
     handleHttpError(res, 'ERROR_LISTAR_CASERIOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -60,8 +90,8 @@ const ctrGetCaseriosUsuario = async (req, res) => {//TODO: Creamos la función q
 };
 const ctrGetOrganizacion = async (req, res) => {//TODO: Controlador para hacer get a los Tipos de Financiamientos
   try {
-    encuestasModel.getOrganizacion().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    encuestasModel.getOrganizacion().then(results => {//TODO: Ejecutamos la funcion getBosuqes del modelo
+      res.json({ results })//TODO: Mostramos el resultsado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_ORGANIZACION');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -69,8 +99,8 @@ const ctrGetOrganizacion = async (req, res) => {//TODO: Controlador para hacer g
 }
 const ctrGetOrgLocales = async (req, res) => {//TODO: Controlador para hacer get a los Tipos de Financiamientos
   try {
-    encuestasModel.getOrgLocales().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    encuestasModel.getOrgLocales().then(results => {//TODO: Ejecutamos la funcion getBosuqes del modelo
+      res.json({ results })//TODO: Mostramos el resultsado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_ORGANIZACIONES');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -78,8 +108,8 @@ const ctrGetOrgLocales = async (req, res) => {//TODO: Controlador para hacer get
 }
 const ctrGetOrganizacionesSociales = async (req, res) => {//TODO: Controlador para hacer get a los Tipos de Financiamientos
   try {
-    encuestasModel.getOrganizacionesSociales().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    encuestasModel.getOrganizacionesSociales().then(results => {//TODO: Ejecutamos la funcion getBosuqes del modelo
+      res.json({ results })//TODO: Mostramos el resultsado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_ORGANIZACION');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -87,8 +117,8 @@ const ctrGetOrganizacionesSociales = async (req, res) => {//TODO: Controlador pa
 }
 const ctrGetSuelos = async (req, res) => {//TODO: Controlador para hacer get a los Tipos de Financiamientos
   try {
-    naturalesModel.getSuelos().then(result => {//TODO: Ejecutamos la funcion getSuelosDesactivados del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    naturalesModel.getSuelos().then(results => {//TODO: Ejecutamos la funcion getSuelosDesactivados del modelo
+      res.json({ results })//TODO: Mostramos el resultsado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_SUELOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -96,8 +126,8 @@ const ctrGetSuelos = async (req, res) => {//TODO: Controlador para hacer get a l
 }
 const ctrGetEstructurasEncuestas = async (req, res) => {//TODO: Controlador para hacer get a los Fuentes de Financiamientos
   try {
-    encuestasModel.getEstructurasEncuestas().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    encuestasModel.getEstructurasEncuestas().then(results => {//TODO: Ejecutamos la funcion getBosuqes del modelo
+      res.json({ results })//TODO: Mostramos el resultsado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_ESTRUCTURAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -105,8 +135,8 @@ const ctrGetEstructurasEncuestas = async (req, res) => {//TODO: Controlador para
 }
 const ctrGetEstadosEncuestas = async (req, res) => {//TODO: Controlador para hacer get a los Fuentes de Financiamientos
   try {
-    encuestasModel.getEstadosEncuestas().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    encuestasModel.getEstadosEncuestas().then(results => {//TODO: Ejecutamos la funcion getBosuqes del modelo
+      res.json({ results })//TODO: Mostramos el resultsado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_ESTADOS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -114,8 +144,8 @@ const ctrGetEstadosEncuestas = async (req, res) => {//TODO: Controlador para hac
 }
 const ctrGetTecnologicoEncuestas = async (req, res) => {//TODO: Controlador para hacer get a los Fuentes de Financiamientos
   try {
-    encuestasModel.getTecnologicoEncuestas().then(result => {//TODO: Ejecutamos la funcion getBosuqes del modelo
-      res.json({ results: result })//TODO: Mostramos el resultado en un json
+    encuestasModel.getTecnologicoEncuestas().then(results => {//TODO: Ejecutamos la funcion getBosuqes del modelo
+      res.json({ results })//TODO: Mostramos el resultsado en un json
     });
   } catch {
     handleHttpError(res, 'ERROR_LISTAR_NIVEL_TECNOLOGICO');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -123,8 +153,8 @@ const ctrGetTecnologicoEncuestas = async (req, res) => {//TODO: Controlador para
 }
 const ctrPostEncuesta = async (req, res) => {
   try {
-    const { hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user, mesa} = req.body;
-    await encuestasModel.postEncuesta(hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user,mesa).then(results => {
+    const { hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user, mesa } = req.body;
+    await encuestasModel.postEncuesta(hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user, mesa).then(results => {
       res.json({ "results": { mensaje: results[0].id_Encuesta, estado: 1 } })
 
     });
@@ -149,8 +179,8 @@ const ctrPostGeoUbicacion = async (req, res) => {
 const ctrPostJunta = async (req, res) => {
   try {
     const { id, cargo, eje, dni, name, tel, sexo, edad, esc } = req.body;
-    const resultado = await encuestasModel.postJunta(id, cargo, eje, dni, name, tel, sexo, edad, esc);
-    if (resultado === "exito") {
+    const resultsado = await encuestasModel.postJunta(id, cargo, eje, dni, name, tel, sexo, edad, esc);
+    if (resultsado === "exito") {
       res.json({ results: { mensaje: "Miembro Agregado Exitosamente", estado: 2 } })
     } else {
       res.json({ results: { mensaje: "Error al Agregar Miembro", estado: 3 } })
@@ -163,8 +193,8 @@ const ctrPostJunta = async (req, res) => {
 const ctrPostServBasico = async (req, res) => {
   try {
     const { id, idServ } = req.body;
-    const resultado = await encuestasModel.postServBasico(id, idServ);
-    if (resultado === "exito") {
+    const resultsado = await encuestasModel.postServBasico(id, idServ);
+    if (resultsado === "exito") {
       res.json({ results: { mensaje: "Servicio Basico Agregado Exitosamente", estado: 2 } })
     } else {
       res.json({ results: { mensaje: "Error al Agregar Servicio Basico", estado: 3 } })
@@ -177,8 +207,8 @@ const ctrPostServBasico = async (req, res) => {
 const ctrPostServLocal = async (req, res) => {
   try {
     const { id, idServ } = req.body;
-    const resultado = await encuestasModel.postServLocal(id, idServ);
-    if (resultado === "exito") {
+    const resultsado = await encuestasModel.postServLocal(id, idServ);
+    if (resultsado === "exito") {
       res.json({ results: { mensaje: "Servicio Local Agregado Exitosamente", estado: 2 } })
     } else {
       res.json({ results: { mensaje: "Error al Agregar Servicio Local", estado: 3 } })
@@ -191,8 +221,8 @@ const ctrPostServLocal = async (req, res) => {
 const ctrPostDetalleOrg = async (req, res) => {
   try {
     const { id, idOrg } = req.body;
-    const resultado = await encuestasModel.postDetalleOrg(id, idOrg);
-    if (resultado === "exito") {
+    const resultsado = await encuestasModel.postDetalleOrg(id, idOrg);
+    if (resultsado === "exito") {
       res.json({ results: { mensaje: "Organización Agregado Exitosamente", estado: 2 } })
     } else {
       res.json({ results: { mensaje: "Error al Agregar Organización", estado: 3 } })
@@ -205,8 +235,8 @@ const ctrPostDetalleOrg = async (req, res) => {
 const ctrPostDetalleImportacion = async (req, res) => {
   try {
     const { id, importacion } = req.body;
-    const resultado = await encuestasModel.postDetalleImportacion(id, importacion);
-    if (resultado === "exito") {
+    const resultsado = await encuestasModel.postDetalleImportacion(id, importacion);
+    if (resultsado === "exito") {
       res.json({ results: { mensaje: "Importación Agregado Exitosamente", estado: 2 } })
     } else {
       res.json({ results: { mensaje: "Error al Agregar Importación", estado: 3 } })
@@ -219,8 +249,8 @@ const ctrPostDetalleImportacion = async (req, res) => {
 const ctrPostDetalleExportacion = async (req, res) => {
   try {
     const { id, exportacion } = req.body;
-    const resultado = await encuestasModel.postDetalleExportacion(id, exportacion);
-    if (resultado === "exito") {
+    const resultsado = await encuestasModel.postDetalleExportacion(id, exportacion);
+    if (resultsado === "exito") {
       res.json({ results: { mensaje: "Exportación Agregado Exitosamente", estado: 2 } })
     } else {
       res.json({ results: { mensaje: "Error al Agregar Exportación", estado: 3 } })
@@ -233,8 +263,8 @@ const ctrPostDetalleExportacion = async (req, res) => {
 const ctrPostDetalleUsoTierra = async (req, res) => {
   try {
     const { id, uso } = req.body;
-    const resultado = await encuestasModel.postDetalleUsoTierra(id, uso);
-    if (resultado === "exito") {
+    const resultsado = await encuestasModel.postDetalleUsoTierra(id, uso);
+    if (resultsado === "exito") {
       res.json({ results: { mensaje: "Detalle de Uso de la Tierra Agregado Exitosamente", estado: 2 } })
     } else {
       res.json({ results: { mensaje: "Error al Agregar Detalle de Uso de la Tierra", estado: 3 } })
@@ -247,8 +277,8 @@ const ctrPostDetalleUsoTierra = async (req, res) => {
 const ctrPostDetalleFinanciamiento = async (req, res) => {
   try {
     const { id, tipo, fuente, observacion } = req.body;
-    const resultado = await encuestasModel.postDetalleFinanciamiento(id, tipo, fuente, observacion);
-    if (resultado === "exito") {
+    const resultsado = await encuestasModel.postDetalleFinanciamiento(id, tipo, fuente, observacion);
+    if (resultsado === "exito") {
       res.json({ results: { mensaje: "Detalla de Financiamiento Agregado Exitosamente", estado: 2 } })
     } else {
       res.json({ results: { mensaje: "Error al Agregar Detalla de Financiamiento", estado: 3 } })
@@ -261,8 +291,8 @@ const ctrPostDetalleFinanciamiento = async (req, res) => {
 const ctrPostDetalleRequerimiento = async (req, res) => {
   try {
     const { id, estructura, estado, observacion } = req.body;
-    const resultado = await encuestasModel.postDetalleRequerimiento(id, estructura, estado, observacion);
-    if (resultado === "exito") {
+    const resultsado = await encuestasModel.postDetalleRequerimiento(id, estructura, estado, observacion);
+    if (resultsado === "exito") {
       res.json({ results: { mensaje: "Detalla de Requerimiento de inversión Social Agregado Exitosamente", estado: 2 } })
     } else {
       res.json({ results: { mensaje: "Error al Agregar Detalla de Requerimiento de inversión Social", estado: 3 } })
@@ -274,14 +304,14 @@ const ctrPostDetalleRequerimiento = async (req, res) => {
 }
 const ctrGetJuntaByID = async (req, res) => {
   try {
-    const {id}=req.body
+    const { id } = req.body
     encuestasModel.getJuntaByID(id).then(results => {
-      if(results==="error"){
-        res.json({results:[{mensaje:"Ha ocurrido un error",state:3}]})
-      }else if(results==="vacio"){
-        res.json({results:[{mensaje:"No hay junta directiva agregada",state:1}]})
-      }else{
-                res.json({results});
+      if (results === "error") {
+        res.json({ results: [{ mensaje: "Ha ocurrido un error", state: 3 }] })
+      } else if (results === "vacio") {
+        res.json({ results: [{ mensaje: "No hay junta directiva agregada", state: 1 }] })
+      } else {
+        res.json({ results });
       }
     });
   } catch {
@@ -289,4 +319,4 @@ const ctrGetJuntaByID = async (req, res) => {
   }
 }
 
-module.exports = { ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetOrganizacion, ctrGetSuelos, ctrGetOrganizacionesSociales, ctrGetMunicipiosUsuario, ctrPostEncuesta, ctrGetAldeasUsuario, ctrGetCaseriosUsuario, ctrGetEstructurasEncuestas, ctrGetEstadosEncuestas, ctrGetTecnologicoEncuestas, ctrGetOrgLocales, ctrPostGeoUbicacion, ctrPostJunta, ctrPostServBasico, ctrPostServLocal, ctrPostDetalleOrg, ctrPostDetalleImportacion, ctrPostDetalleExportacion, ctrPostDetalleUsoTierra, ctrPostDetalleFinanciamiento, ctrPostDetalleRequerimiento,ctrGetJuntaByID };//TODO: Exportamos las funciones del controlador
+module.exports = { ctrGetEncuestas, ctrGetEncuestasByDep, ctrGetEncuestasByMun, ctrGetDepartamentosUsuario, ctrGetOrganizacion, ctrGetSuelos, ctrGetOrganizacionesSociales, ctrGetMunicipiosUsuario, ctrPostEncuesta, ctrGetAldeasUsuario, ctrGetCaseriosUsuario, ctrGetEstructurasEncuestas, ctrGetEstadosEncuestas, ctrGetTecnologicoEncuestas, ctrGetOrgLocales, ctrPostGeoUbicacion, ctrPostJunta, ctrPostServBasico, ctrPostServLocal, ctrPostDetalleOrg, ctrPostDetalleImportacion, ctrPostDetalleExportacion, ctrPostDetalleUsoTierra, ctrPostDetalleFinanciamiento, ctrPostDetalleRequerimiento, ctrGetJuntaByID };//TODO: Exportamos las funciones del controlador

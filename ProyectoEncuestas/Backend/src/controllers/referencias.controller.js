@@ -10,6 +10,21 @@ const ctrGetActas = async (req, res) => {//TODO: Funcion para hacer get a las re
     handleHttpError(res, 'ERROR_LISTAR_REFERENCIAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
+const ctrGetActasByDep = async (req, res) => {
+  try {
+    const { id } = req.body
+    if (id === "") {
+      console.log("Vacio")
+      return
+    }
+    refModel.getReferenciasActasByDep(id).then(results => {
+      res.json({ results });
+    });
+  } catch (error) {
+    handleHttpError(res, 'ERROR_LISTAR_REFERENCIAS');
+    console.log(error);
+  }
+};
 const ctrGetDNI = async (req, res) => {//TODO: Funcion para hacer get a las referencias de las actas
   try {
     await refModel.getReferenciasDNI().then(results => {//TODO: Ejecutamos la funcion del modelo
@@ -19,13 +34,16 @@ const ctrGetDNI = async (req, res) => {//TODO: Funcion para hacer get a las refe
     handleHttpError(res, 'ERROR_LISTAR_REFERENCIAS');//TODO: Si surge un error hacemos uso del metodo handleHttpError
   }
 }
-const ctrPostReferencia = async (req, res) => {
+const ctrPostReferenciaActa = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
     const { uid, name, ext, tipo, id } = req.body;//TODO: Extraemos los datos del body
-    const resultado = await refModel.postReferencia(uid, name, ext, tipo, id);
-    if (resultado == 'exito') {
+    const resultado = await refModel.postReferenciaActa(uid, name, ext, tipo, id);
+    if (resultado == 'exito-post') {
       res.json({ results: { mensaje: "Referencia Agregada Exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
-    } else {
+    } else if (resultado == 'exito-put') {
+      res.json({ results: { mensaje: "Referencia Actualizada Exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
+    }
+    else {
       res.json({ results: { mensaje: "Ha Ocurrido un error", estado: 3 } })
     }
   } catch {
@@ -35,10 +53,12 @@ const ctrPostReferencia = async (req, res) => {
 
 const ctrPostReferenciaJunta = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
-    const { id,miembro,uid } = req.body;//TODO: Extraemos los datos del body
-    const resultado = await refModel.postReferenciaJunta(id,miembro,uid);
-    if (resultado == 'exito') {
+    const { miembro, uid, name, ext, tipo, id } = req.body;//TODO: Extraemos los datos del body
+    const resultado = await refModel.postReferenciaJunta(miembro, uid, name, ext, tipo, id);
+    if (resultado == 'exito-post') {
       res.json({ results: { mensaje: "Referencia Agregada Exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
+    } else if (resultado == 'exito-post') {
+      res.json({ results: { mensaje: "Referencia Actualizada Exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
     } else {
       res.json({ results: { mensaje: "Ha Ocurrido un error", estado: 3 } })
     }
@@ -47,4 +67,4 @@ const ctrPostReferenciaJunta = async (req, res) => {
   }
 }
 
-module.exports = { ctrGetActas, ctrGetDNI, ctrPostReferencia,ctrPostReferenciaJunta }
+module.exports = { ctrGetActas, ctrGetActasByDep, ctrGetDNI, ctrPostReferenciaActa, ctrPostReferenciaJunta }

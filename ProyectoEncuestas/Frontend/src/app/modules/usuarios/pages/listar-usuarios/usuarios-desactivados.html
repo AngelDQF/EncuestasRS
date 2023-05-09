@@ -24,21 +24,16 @@
   </div>
   <div class="mat-elevation-z8 table-responsive">
     <table mat-table [dataSource]="dataSource" class="tabla">
-      <!-- Position Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container>
-
-      <!-- Name Column -->
       <ng-container matColumnDef="opciones">
         <th mat-header-cell *matHeaderCellDef> Opciones </th>
         <td mat-cell *matCellDef="let element" class="">
           <a (click)="activar(element.id)" class="botonGuardarTabla" matTooltip="Activar" matTooltipPosition="right"><i class="bi bi-unlock-fill"></i></a>
         </td>
       </ng-container>
-
-      <!-- Weight Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nombre </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
@@ -47,12 +42,10 @@
         <th mat-header-cell *matHeaderCellDef> Teléfono </th>
         <td mat-cell *matCellDef="let element"> {{element.tel}} </td>
       </ng-container>
-      <!-- Symbol Column -->
       <ng-container matColumnDef="dni">
         <th mat-header-cell *matHeaderCellDef> Identidad </th>
         <td mat-cell *matCellDef="let element" class="fw-bold"> <a [routerLink]="['../asignaciones',element.id]" style="color:var(--color1);">{{element.dni}}</a> </td>
       </ng-container>
-
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef> Correo </th>
         <td mat-cell *matCellDef="let element"> {{element.email}} </td>
@@ -76,7 +69,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="seleccione">
     </mat-paginator>
   </div>

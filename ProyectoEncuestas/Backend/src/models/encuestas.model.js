@@ -1,8 +1,5 @@
 const pool = require('./config.model');// TODO: Importamos el archivo de configuración
-/**
- * TODO: Funcion para obtener todos los ejes de la base de datos
- * @returns 
- */
+
 async function getEncuestas() {//TODO: Creamos la función que se encargará de listar todos los ejes
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
@@ -17,7 +14,36 @@ async function getEncuestas() {//TODO: Creamos la función que se encargará de 
     console.log(error);
   }
 }
-async function postEncuesta(hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user,mesa) {
+async function getEncuestasByDep(id) {
+  try {
+    await pool.connect()
+    let result = await pool.request().query(`Exec prc_Encuestas_Departamento '${id}'`);
+    if (result.recordset.length !== 0) {
+      return result.recordset;
+    }
+    else {
+      return "No hay Encuestas agregadas"
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function getEncuestasByMun(id) {
+  try {
+    await pool.connect()
+    let result = await pool.request().query(`Exec prc_Encuestas_Municipio '${id}'`);
+    if (result.recordset.length !== 0) {
+      return result.recordset;
+    }
+    else {
+      return "No hay Encuestas agregadas"
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function postEncuesta(hombres, mujeres, total, dep, mun, aldea, caserio, address, org, rios, cant_rios, bosques, tipo_bosque, suelo, tenencia, mercado, tecno, user, mesa) {
   try {
     await pool.connect()
     const consulta = await pool.request().query(`Exec prc_Encuestas_Crear '${hombres}', '${mujeres}', '${total}', '${dep}', '${mun}', '${aldea}', '${caserio}', '${address}', '${org}', '${rios}', '${cant_rios}','${bosques}', '${tipo_bosque}', '${suelo}', '${tenencia}', '${mercado}', '${tecno}', '${user}', ${mesa}`);
@@ -36,8 +62,7 @@ async function getDepartamentosUsuario(id) {//TODO: Creamos la función que se e
     else {
       return "El usuario no tiene departamentos agregados"
     }
-    //console.log(result.recordsets);
-  
+
   } catch (error) {
     console.log(error);
   }
@@ -53,7 +78,7 @@ async function getMunicipiosUsuario(user, dep) {//TODO: Creamos la función que 
       return "El usuario no tiene Municipios agregados"
     }
     //console.log(result.recordsets);
-  
+
   } catch (error) {
     console.log(error);
   }
@@ -100,7 +125,7 @@ async function getCaseriosUsuario(id) {//TODO: Creamos la función que se encarg
       return "El usuario no tiene caserios agregados"
     }
     //console.log(result.recordsets);
-  
+
   } catch (error) {
     console.log(error);
   }
@@ -116,7 +141,7 @@ async function getOrganizacion() {//TODO: Creamos la función que se encargará 
       return "No hay Organizaciones Agregadas"
     }
     //console.log(result.recordsets);
-  
+
   } catch (error) {
     console.log(error);
   }
@@ -147,7 +172,7 @@ async function getOrganizacionesSociales() {//TODO: Creamos la función que se e
       return "No hay Organizaciones Agregadas"
     }
     //console.log(result.recordsets);
-  
+
   } catch (error) {
     console.log(error);
   }
@@ -162,7 +187,7 @@ async function getEstructurasEncuestas() {//TODO: Función para obtener todos lo
     else {
       return "No hay Estructuras Agregadas"
     }
-    } catch (error) {
+  } catch (error) {
     console.log(error);
   }
 }
@@ -176,7 +201,7 @@ async function getEstadosEncuestas() {//TODO: Función para obtener todos los us
     else {
       return "No hay Estados Agregadas"
     }
-    } catch (error) {
+  } catch (error) {
     console.log(error);
   }
 }
@@ -190,7 +215,7 @@ async function getTecnologicoEncuestas() {//TODO: Función para obtener todos lo
     else {
       return "No hay Nivel Tecnologico Agregado"
     }
-    } catch (error) {
+  } catch (error) {
     console.log(error);
   }
 }
@@ -205,8 +230,6 @@ async function getEncuestasDep(id) {//TODO: Creamos la función que se encargar�
     else {
       return "No hay Encuestas agregadas"
     }
-    //console.log(result.recordsets);
-  
   } catch (error) {
     console.log(error);
   }
@@ -307,7 +330,7 @@ async function postDetalleUsoTierra(id, uso) {
     return "error"
   }
 }
-async function postDetalleFinanciamiento(id, tipo,fuente,obser) {
+async function postDetalleFinanciamiento(id, tipo, fuente, obser) {
   try {
     await pool.connect();
     await pool.request().query(`Exec prc_Detalle_Financiamiento_Crear ${id}, ${tipo}, ${fuente}, '${obser}'`);
@@ -317,7 +340,7 @@ async function postDetalleFinanciamiento(id, tipo,fuente,obser) {
     return "error"
   }
 }
-async function postDetalleRequerimiento(id, estructura,estado,obser) {
+async function postDetalleRequerimiento(id, estructura, estado, obser) {
   try {
     await pool.connect();
     await pool.request().query(`Exec prc_Requerimiento_Crear ${id}, ${estructura}, ${estado}, '${obser}'`);
@@ -328,4 +351,4 @@ async function postDetalleRequerimiento(id, estructura,estado,obser) {
   }
 }
 
-module.exports = { getEncuestas, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun, getOrgLocales, postEncuesta, postGeoUbicacion, postJunta, postServBasico, postServLocal, postDetalleOrg, postDetalleImportacion, postDetalleExportacion,postDetalleUsoTierra,postDetalleFinanciamiento,postDetalleRequerimiento,getJuntaByID };//TODO: Exportamos las funcionessss
+module.exports = { getEncuestas, getEncuestasByDep, getEncuestasByMun, getDepartamentosUsuario, getOrganizacion, getOrganizacionesSociales, getMunicipiosUsuario, getAldeasUsuario, getCaseriosUsuario, getEstructurasEncuestas, getEstadosEncuestas, getTecnologicoEncuestas, getEncuestasDep, getEncuestasMun, getOrgLocales, postEncuesta, postGeoUbicacion, postJunta, postServBasico, postServLocal, postDetalleOrg, postDetalleImportacion, postDetalleExportacion, postDetalleUsoTierra, postDetalleFinanciamiento, postDetalleRequerimiento, getJuntaByID };//TODO: Exportamos las funcionessss

@@ -122,7 +122,7 @@ export class AgregarFinanciamientoComponent implements OnInit {
   }
   putFinanciamiento() {
     try {
-      if (this.data[2] == "bosque") {
+      if (this.data[2] == "tipo") {
         this.finModel.putTipoFin(this.data[1], this.txtFinanciamiento.value).subscribe((data): any => {
           if (data.estado == 1) {
             this.mensaje("Advertencia", `${data.mensaje}`, 1);

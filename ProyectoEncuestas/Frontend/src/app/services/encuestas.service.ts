@@ -13,7 +13,23 @@ export class EncuestasService {
       map(({ results }: any) => {
         return results;
       })
-    )
+    );
+  }
+  getEncuestasByDep(id:number):Observable<any> {
+    let body={id};
+    return this.http.post(`${this.URL}/encuestas/listar/departamento`,body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    );
+  }
+  getEncuestasByMun(id:number):Observable<any> {
+    let body={id};
+    return this.http.post(`${this.URL}/encuestas/listar/municipio`,body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    );
   }
   getUsuarioEncuestas$(id: number): Observable<any> {
     const body = { id }

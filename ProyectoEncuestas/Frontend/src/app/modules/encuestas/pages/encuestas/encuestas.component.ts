@@ -1,7 +1,6 @@
 import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DepartamentosUsersInterface } from '@models/encuesta/departamentos-users.interface';
 import { EncuestasService } from '@serv/encuestas.service';
 import jwt_decode from 'jwt-decode';

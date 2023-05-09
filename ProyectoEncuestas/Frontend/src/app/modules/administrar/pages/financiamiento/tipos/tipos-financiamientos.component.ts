@@ -23,7 +23,7 @@ export class TiposFinanciamientosComponent implements OnInit {
     this.obtenerTipos();
   }
   obtenerTipos() {
-    this.finanModel.getTiposFinanciamientoDesactivados().subscribe((data: TiposOrgInterface[]) => {
+    this.finanModel.getTiposFinanciamiento().subscribe((data: TiposOrgInterface[]) => {
       this.dataSource = new MatTableDataSource<TiposOrgInterface>(data);
       this.dataSource.paginator = this.paginator;
     })

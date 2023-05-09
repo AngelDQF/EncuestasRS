@@ -1,11 +1,13 @@
 const express = require("express"); //TODO: Importamos express para poder usar el metodo de Router
 const router = express.Router();//TODO: Creamos una instancia de Router para poder crear rutas
 const { 
-  ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetMunicipiosUsuario, ctrGetOrganizacion, ctrGetOrganizacionesSociales, ctrGetSuelos, ctrGetAldeasUsuario, ctrGetCaseriosUsuario, ctrGetEstructurasEncuestas, ctrGetEstadosEncuestas, ctrGetTecnologicoEncuestas, ctrGetOrgLocales, ctrPostEncuesta, ctrPostGeoUbicacion, ctrPostJunta, ctrPostServBasico, ctrPostServLocal, ctrPostDetalleOrg, ctrPostDetalleImportacion, ctrPostDetalleExportacion, ctrPostDetalleUsoTierra, ctrGetJuntaByID, ctrPostDetalleFinanciamiento, ctrPostDetalleRequerimiento 
+  ctrGetEncuestas, ctrGetDepartamentosUsuario, ctrGetMunicipiosUsuario, ctrGetOrganizacion, ctrGetOrganizacionesSociales, ctrGetSuelos, ctrGetAldeasUsuario, ctrGetCaseriosUsuario, ctrGetEstructurasEncuestas, ctrGetEstadosEncuestas, ctrGetTecnologicoEncuestas, ctrGetOrgLocales, ctrPostEncuesta, ctrPostGeoUbicacion, ctrPostJunta, ctrPostServBasico, ctrPostServLocal, ctrPostDetalleOrg, ctrPostDetalleImportacion, ctrPostDetalleExportacion, ctrPostDetalleUsoTierra, ctrGetJuntaByID, ctrPostDetalleFinanciamiento, ctrPostDetalleRequerimiento, ctrGetEncuestasByDep, ctrGetEncuestasByMun
 } = require('../controllers/encuestas.controller')
 const { authMiddleware } = require("../middleware/session")
 const { checkTipo } = require("../middleware/role");
-router.get('/listar', authMiddleware, checkTipo(["Admin"]), ctrGetEncuestas);//Creamos ruta para listar las aldeas
+router.get('/listar', authMiddleware, checkTipo(["Admin"]), ctrGetEncuestas);
+router.post('/listar/departamento', authMiddleware, checkTipo(["Admin"]), ctrGetEncuestasByDep);
+router.post('/listar/municipio', authMiddleware, checkTipo(["Admin"]), ctrGetEncuestasByMun);
 router.post('/departamentos', authMiddleware, checkTipo(["Admin", "Encuestador"]), ctrGetDepartamentosUsuario);//Creamos ruta para listar los departamentos del usuario
 router.get('/org', authMiddleware, checkTipo(["Admin", "Encuestador"]), ctrGetOrganizacion);//Creamos ruta para listar las organizaciones que realizan la reunion
 router.get('/org/locales', authMiddleware, checkTipo(["Admin", "Encuestador"]), ctrGetOrgLocales);

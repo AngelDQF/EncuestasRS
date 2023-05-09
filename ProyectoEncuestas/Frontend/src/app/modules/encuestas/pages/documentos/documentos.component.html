@@ -40,10 +40,10 @@
         <p class="card-text text-start text-lg-end col-12 col-lg-4"><b>Eje:</b> {{element.eje}}</p>
         <div class="mb-3 mt-2">
           <label for="formFile" class="form-label">Ingrese PDF del DNI</label>
-          <input class="form-control" type="file" accept=".pdf">
+          <input (change)="actaChange($event)" class="form-control" type="file" accept=".pdf" id="formDNI">
         </div>
         <div class="mt-2 text-center">
-          <button type="button" class="btn form-control btnGuardar w-20">Enviar</button>
+          <button (click)="enviarDNI(element.id)" type="button" class="btn form-control btnGuardar w-20" >Enviar</button>
         </div>
       </div>
     </div>

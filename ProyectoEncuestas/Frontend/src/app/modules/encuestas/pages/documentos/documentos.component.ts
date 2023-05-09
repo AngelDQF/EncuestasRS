@@ -39,7 +39,7 @@ export class DocumentosComponent implements OnInit {
 
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {
-      const dialogRef = this.dialog.open(InfoComponent, {
+      this.dialog.open(InfoComponent, {
         width: '500px',
         data: [titulo, cuerpo, tipo]
       });
@@ -69,17 +69,38 @@ export class DocumentosComponent implements OnInit {
     try {
       this.documentos.forEach((element) => {
         let extension = utils.obtenerExtension(element.extension);
-        console.log(extension);
         let file = element.file?.replace('data:image/jpeg;base64,', '');
         file = element.file?.replace('data:application/pdf;base64,', '');
-        console.log(file);
         this.refModel.postDocumentos(file, element.code, element.name, extension).subscribe((data: any) => {
           console.log(data);
           if(data.isSuccess==false){
             this.mensaje("Error",`${data.message}`,3);
             return
           }
-          this.enviarReferencia(element.code,element.name,extension,1,this.idEncuesta);
+          this.postActa(element.code,element.name,extension,1,this.idEncuesta);
+          this.mensaje("Exito", "Documento Enviado", 2)
+          console.log(data);
+        });
+      })
+    } catch (error) {
+      this.mensaje("Error", "Error al enviar acta", 3)
+    }
+  }
+  enviarDNI(id_miembro:number) {
+    try {
+      this.documentos.forEach((element) => {
+        let extension = `${utils.obtenerExtension(element.extension)}`;
+        let file = element.file?.replace('data:image/jpeg;base64,', '');
+        file = element.file?.replace('data:application/pdf;base64,', '');
+        let code=element.code
+        let name=element.name
+        console.log({file, code,name, extension})
+        this.refModel.postDocumentos(file, element.code, element.name, extension).subscribe((data: any) => {
+          if(data.isSuccess==false){
+            this.mensaje("Error",`${data.message}`,3);
+            return
+          }
+          this.postDNI(id_miembro,element.code,element.name,extension,2,this.idEncuesta);
           this.mensaje("Exito", "Documento Enviado", 2)
           console.log(data);
         });
@@ -93,9 +114,24 @@ export class DocumentosComponent implements OnInit {
       this.idEncuesta = params['id'];
     })
   }
-  enviarReferencia(uid: string, name: string, ext: any, tipo: number, id: number) {
+  postActa(uid: string, name: string, ext: any, tipo: number, id: number) {
     try {
       this.refModel.postReferencia(uid, name, ext, tipo, id).subscribe();
+    } catch (error) {
+      this.mensaje("Error", "Error al enviar referencia", 3);
+    }
+  }
+  postDNI(miembro: number, uid: string, name: string, ext: string, tipo: number, id: number) {
+    try {
+      this.refModel.postReferenciaJunta(miembro, uid, name, ext, tipo, id).subscribe((data:any)=>{
+        if(data[0].estado==1){
+          this.mensaje("Advertencia",`${data[0].mensaje}`,1)
+        }else if(data[0].estado==2){
+          this.mensaje("Información",`${data[0].mensaje}`,2)
+        }else{
+          this.mensaje("Error",`${data[0].mensaje}`,3)
+        }
+      });
     } catch (error) {
       this.mensaje("Error", "Error al enviar referencia", 3);
     }

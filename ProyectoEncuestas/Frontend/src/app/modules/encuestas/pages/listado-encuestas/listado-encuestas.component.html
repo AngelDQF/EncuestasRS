@@ -21,9 +21,9 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="col-6">
+      <div class="col-6" [ariaDisabled]="false">
         <mat-form-field appearance="outline" class="form-control">
-          <mat-label>Departamento</mat-label>
+          <mat-label>Municipio</mat-label>
           <mat-select #selMun (valueChange)="changeMun()" required>
             <mat-option disabled value="">Seleccione</mat-option>
             <mat-option *ngFor="let element of municipios" [value]="element.id_mun">

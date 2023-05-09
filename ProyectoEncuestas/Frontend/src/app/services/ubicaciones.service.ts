@@ -17,30 +17,8 @@ export class UbicacionesService {
         })
       )
   }
-  getSearchDepartamentos$(term: string): Observable<any> {
-    const body = [
-      { "dep": term }
-    ]
-    return this.http.post(`${this.URL}/ubicaciones/departamentos/buscar`, body[0])
-      .pipe(
-        map(({ results }: any) => {
-          return results;
-        })
-      )
-  }
   getMunicipios$(): Observable<any> {
     return this.http.get(`${this.URL}/ubicaciones/municipios`)
-      .pipe(
-        map(({ results }: any) => {
-          return results;
-        })
-      )
-  }
-  getSearchMunicipios$(term: string): Observable<any> {
-    const body = [
-      { "mun": term }
-    ]
-    return this.http.post(`${this.URL}/ubicaciones/municipios/buscar`, body[0])
       .pipe(
         map(({ results }: any) => {
           return results;
@@ -55,17 +33,6 @@ export class UbicacionesService {
         })
       )
   }
-  getSearchAldeas$(term: string): Observable<any> {
-    const body = [
-      { "aldea": term }
-    ]
-    return this.http.post(`${this.URL}/ubicaciones/aldeas/buscar`, body[0])
-      .pipe(
-        map(({ results }: any) => {
-          return results;
-        })
-      )
-  }
   getCaserios(): Observable<any> {
     return this.http.get(`${this.URL}/ubicaciones/caserios`)
       .pipe(
@@ -74,16 +41,11 @@ export class UbicacionesService {
         })
       )
   }
-  getSearchCaserios$(term: string): Observable<any> {
-    const body = [
-      { "caserio": term }
-    ]
-    return this.http.post(`${this.URL}/ubicaciones/caserios/buscar`, body[0])
-      .pipe(
-        map(({ results }: any) => {
-          return results;
-        })
-      )
+  getMunicipiosByDep$(id:number): Observable<any> {
+    return this.http.post(`${this.URL}/ubicaciones/departamentos/mun`,{id}).pipe(
+      map(({results}:any)=>{
+        return results;
+      })
+    )
   }
-
 }

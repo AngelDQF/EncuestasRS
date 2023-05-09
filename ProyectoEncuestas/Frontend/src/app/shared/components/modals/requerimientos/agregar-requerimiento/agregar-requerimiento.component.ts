@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-agregar-requerimiento',
   templateUrl: './agregar-requerimiento.component.html',
-  styleUrls: ['./agregar-requerimiento.component.css']
+  styleUrls: ['../../modals.css', '../../../../../app.component.css']
 })
-export class AgregarRequerimientoComponent {
+export class AgregarRequerimientoComponent implements OnInit {
 
+  ngOnInit(): void {
+    
+  }
 }
