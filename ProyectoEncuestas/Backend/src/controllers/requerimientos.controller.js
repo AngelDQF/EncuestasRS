@@ -88,6 +88,7 @@ const ctrPostMercado = async (req, res) => {
   try {//TODO: Intentamos ejecutar el codigo
     const { mercado, estado } = req.body;//TODO: Extraemos los datos del body
     const resultado = await requerimientosModel.postMercado(mercado, estado);
+    console.log(resultado);
     if (resultado == 'exito') {
       res.json({ results: { mensaje: "Mercado Agregado Exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
     } else if (resultado == "ambiguo") {

@@ -65,7 +65,7 @@ export class RequerimientosService {
 
   getMercado(id: number): Observable<any> {
     let body = { id };
-    return this.http.post(`${this.URL}/mercados`, body).pipe(
+    return this.http.post(`${this.URL}/requerimientos/mercados`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -73,7 +73,7 @@ export class RequerimientosService {
   }
   postMercado(mercado: string): Observable<any> {
     let body = { mercado, estado: 1 };
-    return this.http.post(`${this.URL}/mercados/crear`, body).pipe(
+    return this.http.post(`${this.URL}/requerimientos/mercados/crear`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -81,7 +81,7 @@ export class RequerimientosService {
   }
   putMercado(id: number, mercado: string): Observable<any> {
     let body = { id, mercado };
-    return this.http.put(`${this.URL}/mercados/editar`, body).pipe(
+    return this.http.put(`${this.URL}/requerimientos/mercados/editar`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -89,7 +89,7 @@ export class RequerimientosService {
   }
   putMercadoEstado(id: number, estado: boolean): Observable<any> {
     let body = { id, estado };
-    return this.http.put(`${this.URL}/mercados/editar/estado`, body).pipe(
+    return this.http.put(`${this.URL}/requerimientos/mercados/editar/estado`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -98,7 +98,7 @@ export class RequerimientosService {
 
   getUsoTierra(id: number): Observable<any> {
     let body = { id };
-    return this.http.post(`${this.URL}/tierras/usos`, body).pipe(
+    return this.http.post(`${this.URL}/requerimientos/tierras/usos`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -106,7 +106,7 @@ export class RequerimientosService {
   }
   postUsoTierra(uso: string): Observable<any> {
     let body = { uso, estado: 1 };
-    return this.http.post(`${this.URL}/tierras/usos/crear`, body).pipe(
+    return this.http.post(`${this.URL}/requerimientos/tierras/usos/crear`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -114,7 +114,7 @@ export class RequerimientosService {
   }
   putUsoTierra(id: number, uso: string): Observable<any> {
     let body = { id, uso };
-    return this.http.put(`${this.URL}/tierras/usos/editar`, body).pipe(
+    return this.http.put(`${this.URL}/requerimientos/tierras/usos/editar`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -122,7 +122,7 @@ export class RequerimientosService {
   }
   putUsoTierraEstado(id: number, estado: boolean): Observable<any> {
     let body = { id, estado };
-    return this.http.put(`${this.URL}/tierras/usos/editar/estado`, body).pipe(
+    return this.http.put(`${this.URL}/requerimientos/tierras/usos/editar/estado`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -130,7 +130,7 @@ export class RequerimientosService {
   }
   getEstructura(id: number): Observable<any> {
     let body = { id };
-    return this.http.post(`${this.URL}/estructuras`, body).pipe(
+    return this.http.post(`${this.URL}/requerimientos/estructuras`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -138,7 +138,7 @@ export class RequerimientosService {
   }
   postEstructura(estructura: string): Observable<any> {
     let body = { estructura, estado: 1 };
-    return this.http.post(`${this.URL}/estructuras/crear`, body).pipe(
+    return this.http.post(`${this.URL}/requerimientos/estructuras/crear`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -146,7 +146,7 @@ export class RequerimientosService {
   }
   putEstructura(id: number, estructura: string): Observable<any> {
     let body = { id, estructura };
-    return this.http.put(`${this.URL}/estructuras/editar`, body).pipe(
+    return this.http.put(`${this.URL}/requerimientos/estructuras/editar`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -154,7 +154,7 @@ export class RequerimientosService {
   }
   putEstructuraEstado(id: number, estado: boolean): Observable<any> {
     let body = { id, estado };
-    return this.http.put(`${this.URL}/estructuras/editar/estado`, body).pipe(
+    return this.http.put(`${this.URL}/requerimientos/estructuras/editar/estado`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -163,7 +163,7 @@ export class RequerimientosService {
 
   getTenenciaTierra(id: number): Observable<any> {
     let body = { id };
-    return this.http.post(`${this.URL}/tierras/tenencia`, body).pipe(
+    return this.http.post(`${this.URL}/requerimientos/tierras/tenencia`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -171,7 +171,7 @@ export class RequerimientosService {
   }
   postTenenciaTierra(tenencia: string): Observable<any> {
     let body = { tenencia, estado: 1 };
-    return this.http.post(`${this.URL}/tierras/tenencia/crear`, body).pipe(
+    return this.http.post(`${this.URL}/requerimientos/tierras/tenencia/crear`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -179,7 +179,7 @@ export class RequerimientosService {
   }
   putTenenciaTierra(id: number, tenencia: string): Observable<any> {
     let body = { id, tenencia };
-    return this.http.put(`${this.URL}/tierras/tenencia/editar`, body).pipe(
+    return this.http.put(`${this.URL}/requerimientos/tierras/tenencia/editar`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
@@ -187,7 +187,7 @@ export class RequerimientosService {
   }
   putTenenciaTierraEstado(id: number, estado: boolean): Observable<any> {
     let body = { id, estado };
-    return this.http.put(`${this.URL}/tierras/tenencia/editar/estado`, body).pipe(
+    return this.http.put(`${this.URL}/requerimientos/tierras/tenencia/editar/estado`, body).pipe(
       map(({ results }: any) => {
         return results;
       })

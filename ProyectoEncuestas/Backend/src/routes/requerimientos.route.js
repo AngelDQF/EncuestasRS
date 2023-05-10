@@ -17,9 +17,9 @@ router.put('/mercados/editar/estado', authMiddleware, checkTipo(["Admin"]), ctrP
 router.get('/tierras/usos', authMiddleware, checkTipo(["Admin", "Encuestador"]), ctrGetUsosTierra);
 router.get('/tierras/usos/desactivados', authMiddleware, checkTipo(["Admin"]), ctrGetUsosTierraDesactivados);
 router.post('/tierras/usos', authMiddleware, checkTipo(["Admin"]), ctrGetUsoTierraById);
-router.post('/tierras/usos', authMiddleware, checkTipo(["Admin"]), ctrPostUsoTierra);
-router.put('/tierras/usos', authMiddleware, checkTipo(["Admin"]), ctrPutUsoTierra);
-router.put('/tierras/usos', authMiddleware, checkTipo(["Admin"]), ctrPutUsoTierraEstado);
+router.post('/tierras/usos/crear', authMiddleware, checkTipo(["Admin"]), ctrPostUsoTierra);
+router.put('/tierras/usos/editar', authMiddleware, checkTipo(["Admin"]), ctrPutUsoTierra);
+router.put('/tierras/usos/editar/estado', authMiddleware, checkTipo(["Admin"]), ctrPutUsoTierraEstado);
 //Estructuras
 router.get('/estructuras', authMiddleware, checkTipo(["Admin", "Encuestador"]), ctrGetEstructuras);
 router.get('/estructuras/desactivados', authMiddleware, checkTipo(["Admin"]), ctrGetEstructurasDesactivados);

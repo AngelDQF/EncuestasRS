@@ -136,7 +136,6 @@ async function postMercado(mercado, estado) {
     if (consulta) {
       await pool.connect()
       await pool.request().query(`Exec prc_Mercados_Crear '${mercado}',  '${estado}'`);
-
       return "exito";
     } else {
       await pool.connect()//TODO: Cerramos la conexión
@@ -185,7 +184,8 @@ async function putMercadoEstado(id, estado) {
 async function verificarMercado(mercado) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    const result = await pool.request().query(`Exec prc_Fuente_Financiamiento_Buscar_Nombre '${mercado}'`);
+    const result = await pool.request().query(`Exec prc_Mercados_Buscar_Nombre '${mercado}'`);
+    console.log(result);
     return result.recordset.length === 0;
   }
   catch (error) {
@@ -195,7 +195,7 @@ async function verificarMercado(mercado) {
 async function verificarMercadoByID(id) {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
-    const result = await pool.request().query(`Exec prc_Fuente_Financiamiento_Buscar ${id}`);
+    const result = await pool.request().query(`Exec prc_Mercados_Buscar ${id}`);
     return result.recordset.length === 0;
   }
   catch (error) {
