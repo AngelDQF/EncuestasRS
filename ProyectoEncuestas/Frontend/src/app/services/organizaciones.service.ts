@@ -44,6 +44,13 @@ export class OrganizacionesService {
       })
     )
   }
+  getTiposOrganizacionDesactivados(): Observable<any> {
+    return this.http.get(`${this.URL}/organizaciones/tipos/desactivados`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
   postOrganizacion(tipo: number, social: boolean, org: string): Observable<any> {
     let body = { tipo, social, org, estado: 1 };
     return this.http.post(`${this.URL}/organizaciones`, body).pipe(

@@ -75,11 +75,11 @@ export class AgregarRecursoComponent implements OnInit {
   getRecurso() {
     try {
       if (this.data[2] == "bosque") {
-        this.recursosModel.getBosque(this.data[1]).subscribe((data: BosquesInterface[]) => {
+        this.recursosModel.getBosqueByID$(this.data[1]).subscribe((data: BosquesInterface[]) => {
           this.nombre = data[0].tipo;
         });
       } else {
-        this.recursosModel.getSuelo(this.data[1]).subscribe((data: SuelosInterface[]) => {
+        this.recursosModel.getSueloByID$(this.data[1]).subscribe((data: SuelosInterface[]) => {
           this.nombre = data[0].tipo;
         });
       }

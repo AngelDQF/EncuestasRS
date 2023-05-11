@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServiciosInterface } from '@models/administrar/servicios/servicios.interface';
-import { AgregarServicioComponent, InfoComponent } from '@shared/components';
+import { AgregarServicioComponent, EstadoServicioComponent, InfoComponent } from '@shared/components';
 import {ServiciosService } from 'src/app/services/servicios.service';
 
 @Component({
@@ -54,6 +54,21 @@ export class BasicosComponent implements OnInit {
       this.mensaje("Error","Ha ocurrido un error al editar",3);
     }
   }
+  desactivar(id:any) {
+    try {
+      if(id!==undefined){
+      const dialogRef= this.dialog.open(EstadoServicioComponent, {
+        width: '400px',
+        data: [false,id],
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerOrg()});
+    }else{
+      this.mensaje("Error", "Ha Ocurrido un Error al Desactivar la fuente de financiamiento", 3);
+    }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {
       this.dialog.open(InfoComponent, {
@@ -62,6 +77,22 @@ export class BasicosComponent implements OnInit {
       });
     } catch (error) {
       console.log(error);
+    }
+  }
+  showBoton(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  showEstado(estado:boolean){
+    if(estado ==null || estado == undefined){
+      return "";
+    }else if(estado==true){
+      return "Activo";
+    }else{
+      return "Inactivo";
     }
   }
 }

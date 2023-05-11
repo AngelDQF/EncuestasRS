@@ -36,7 +36,7 @@ export class RecursosService {
     )
   }
 
-  getBosque(id: number): Observable<any> {
+  getBosqueByID$(id: number): Observable<any> {
     let body = { id };
     return this.http.post(`${this.URL}/naturales/bosques`, body).pipe(
       map(({ results }: any) => {
@@ -69,7 +69,7 @@ export class RecursosService {
     )
   }
 
-  getSuelo(id: number): Observable<any> {
+  getSueloByID$(id: number): Observable<any> {
     let body = { id };
     return this.http.post(`${this.URL}/naturales/suelos`, body).pipe(
       map(({ results }: any) => {

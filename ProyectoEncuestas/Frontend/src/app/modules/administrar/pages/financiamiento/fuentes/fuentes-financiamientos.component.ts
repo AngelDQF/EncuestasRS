@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FuenteFinancimientoInterface } from '@models/administrar/financiamientos/fuentes-financiamientos.interface';
 import { FinanciamientosService} from '@serv/financiamientos.service';
-import { AgregarFinanciamientoComponent, InfoComponent } from '@shared/components';
+import { AgregarFinanciamientoComponent, EstadoFinanciamientoComponent, InfoComponent } from '@shared/components';
 
 @Component({
   selector: 'app-fuentes-financiamientos',
@@ -51,6 +51,37 @@ export class FuentesFinanciamientosComponent implements OnInit {
       dialogRef.afterClosed().subscribe(exc => { this.obtenerFuentes() });
     } catch (error) {
       this.mensaje("Error","Ha ocurrido un error al editar",3);
+    }
+  }
+  desactivar(id:any) {
+    try {
+      if(id!==undefined){
+      const dialogRef= this.dialog.open(EstadoFinanciamientoComponent, {
+        width: '400px',
+        data: [false,id,"fuente"],
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerFuentes()});
+    }else{
+      this.mensaje("Error", "Ha Ocurrido un Error al Desactivar la fuente de financiamiento", 3);
+    }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  showBoton(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  showEstado(estado:boolean){
+    if(estado ==null || estado == undefined){
+      return "";
+    }else if(estado==true){
+      return "Activo";
+    }else{
+      return "Inactivo";
     }
   }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {

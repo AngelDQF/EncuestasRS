@@ -40,6 +40,7 @@ import { MunicipiosComponent } from './pages/ubicaciones/municipios/municipios.c
 import { UbicacionesComponent } from './pages/ubicaciones/ubicaciones.component';
 import { EscolaridadComponent } from './pages/junta/escolaridad/escolaridad.component';
 import { EscolaridadDesactivadasComponent } from './pages/junta/escolaridad/escolaridad-desactivadas.component';
+import { OrganizacionesTiposDesactivadosComponent } from './pages/organizaciones/organizaciones-tipos/organizaciones-tipos-desactivados.component';
 
 const routes: Routes = [
   { path: '', component: AdministrarComponent },
@@ -95,6 +96,7 @@ const routes: Routes = [
       {
         path: 'tipos', children: [
           { path: '', component: OrganizacionesTiposComponent },
+          { path: 'desactivados', component: OrganizacionesTiposDesactivadosComponent }
         ]
       }
 

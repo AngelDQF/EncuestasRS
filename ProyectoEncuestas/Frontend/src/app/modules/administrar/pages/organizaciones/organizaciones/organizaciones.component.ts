@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { OrganizacionesInterface } from '@models/administrar/organizaciones/organizaciones.interface';
 import { OrganizacionesService } from '@serv/organizaciones.service';
+import { EstadoOrgComponent } from '@shared/components';
 import { InfoComponent } from '@shared/components/modals/info/info.component';
 import { AgregarOrgComponent } from '@shared/components/modals/organizaciones/agregar-org/agregar-org.component';
 
@@ -63,6 +64,21 @@ export class OrganizacionesComponent implements OnInit {
       dialogRef.afterClosed().subscribe(exc => { this.obtenerOrg() });
     } catch (error) {
       this.mensaje("Error", "Ha Ocurrido un Error al Crear la organización", 3);
+    }
+  }
+  desactivar(id:any) {
+    try {
+      if(id!==undefined){
+      const dialogRef= this.dialog.open(EstadoOrgComponent, {
+        width: '400px',
+        data: [false,id,"org"],
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerOrg()});
+    }else{
+      this.mensaje("Error", "Ha Ocurrido un Error al Desactivar la fuente de financiamiento", 3);
+    }
+    } catch (error) {
+      console.log(error);
     }
   }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {

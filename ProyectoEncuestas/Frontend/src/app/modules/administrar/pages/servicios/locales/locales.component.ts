@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServiciosInterface } from '@models/administrar/servicios/servicios.interface';
 import { ServiciosService } from '@serv/servicios.service';
-import { AgregarServicioComponent, InfoComponent } from '@shared/components';
+import { AgregarServicioComponent, EstadoServicioComponent, InfoComponent } from '@shared/components';
 
 @Component({
   selector: 'app-locales',
@@ -61,6 +61,37 @@ export class LocalesComponent implements OnInit {
       });
     } catch (error) {
       console.log(error);
+    }
+  }
+  desactivar(id:any) {
+    try {
+      if(id!==undefined){
+      const dialogRef= this.dialog.open(EstadoServicioComponent, {
+        width: '400px',
+        data: [false,id],
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerOrg()});
+    }else{
+      this.mensaje("Error", "Ha Ocurrido un Error al Desactivar la fuente de financiamiento", 3);
+    }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  showBoton(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  showEstado(estado:boolean){
+    if(estado ==null || estado == undefined){
+      return "";
+    }else if(estado==true){
+      return "Activo";
+    }else{
+      return "Inactivo";
     }
   }
 }

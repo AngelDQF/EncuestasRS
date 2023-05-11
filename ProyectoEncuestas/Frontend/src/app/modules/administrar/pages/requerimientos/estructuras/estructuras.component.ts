@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { EstructurasInterface } from '@models/administrar/requerimientos/estructuras.interface';
 import {  RequerimientosService } from '@serv/requerimientos.service';
-import { AgregarRequerimientoComponent, InfoComponent } from '@shared/components';
+import { AgregarRequerimientoComponent, EstadoRequerimientoComponent, InfoComponent } from '@shared/components';
 
 @Component({
   selector: 'app-estructuras',
@@ -61,6 +61,37 @@ export class EstructurasComponent implements OnInit {
       });
     } catch (error) {
       console.log(error);
+    }
+  }
+  desactivar(id:any) {
+    try {
+      if(id!==undefined){
+      const dialogRef= this.dialog.open(EstadoRequerimientoComponent, {
+        width: '400px',
+        data: [false,id,"estructura"],
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerEstructuras()});
+    }else{
+      this.mensaje("Error", "Ha ocurrido un error al desactivar la estructura", 3);
+    }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  showBoton(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  showEstado(estado:boolean){
+    if(estado ==null || estado == undefined){
+      return "";
+    }else if(estado==true){
+      return "Activo";
+    }else{
+      return "Inactivo";
     }
   }
 }

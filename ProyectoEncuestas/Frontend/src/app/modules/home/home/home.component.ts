@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   btn6: string = "Exportar";
   btn7: string = "Cerrar Sesión";
   btn8: string = "Mis Encuestas"
+  btn9: string = "Cambiar Mi Contraseña";
   token: any;
   mostrar: boolean;
   constructor(private cerrar: MatDialog, private cookie: CookieService) {

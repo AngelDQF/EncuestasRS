@@ -5,14 +5,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TiposOrgInterface } from '@models/administrar/organizaciones/tipos-org.interface';
 import { OrganizacionesService } from '@serv/organizaciones.service';
 import { EstadoOrgComponent, InfoComponent } from '@shared/components';
-import { AgregarOrgComponent } from '@shared/components/modals/organizaciones/agregar-org/agregar-org.component';
 
 @Component({
-  selector: 'app-organizaciones-tipos',
-  templateUrl: './organizaciones-tipos.component.html',
+  selector: 'app-organizaciones-tipos-desactivados',
+  templateUrl: './organizaciones-tipos-desactivados.component.html',
   styleUrls: ['../../../../card.css', '../../../../../app.component.css']
 })
-export class OrganizacionesTiposComponent implements OnInit {
+export class OrganizacionesTiposDesactivadosComponent implements OnInit{
   displayedColumns: string[] = ['id', 'opciones', 'tipo'];
   dataSource: any;
   txtBusqueda: string = "";
@@ -22,7 +21,7 @@ export class OrganizacionesTiposComponent implements OnInit {
     this.obtenerOrg();
   }
   obtenerOrg() {
-    this.orgModel.getTiposOrganizacion().subscribe((data: TiposOrgInterface[]) => {
+    this.orgModel.getTiposOrganizacionDesactivados().subscribe((data: TiposOrgInterface[]) => {
       this.dataSource = new MatTableDataSource<TiposOrgInterface>(data);
       this.dataSource.paginator = this.paginator;
     })
@@ -32,34 +31,12 @@ export class OrganizacionesTiposComponent implements OnInit {
     //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
     this.dataSource.filter = this.txtBusqueda.trim().toLowerCase();
   }
-  agregar() {
-    try {
-      const dialogRef = this.dialog.open(AgregarOrgComponent, {
-        width: '500px',
-        data: [1, '', 'tipo']
-      });
-      dialogRef.afterClosed().subscribe(exc => { this.obtenerOrg() });
-    } catch (error) {
-      this.mensaje("Error", "Ha Ocurrido un Error al Crear la Organización", 3);
-    }
-  }
-  editar(id: any) {
-    try {
-      const dialogRef = this.dialog.open(AgregarOrgComponent, {
-        width: '500px',
-        data: [2, id, 'tipo']
-      });
-      dialogRef.afterClosed().subscribe(exc => { this.obtenerOrg() });
-    } catch (error) {
-      this.mensaje("Error", "Ha ocurrido un error al editar", 3);
-    }
-  }
-  desactivar(id:any) {
+  activar(id:any) {
     try {
       if(id!==undefined){
       const dialogRef= this.dialog.open(EstadoOrgComponent, {
         width: '400px',
-        data: [false,id,"tipo"],
+        data: [true,id,"tipo"],
       });
       dialogRef.afterClosed().subscribe(exc=>{this.obtenerOrg()});
     }else{

@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { BosquesInterface } from '@models/administrar/recursos/bosques.interface';
-import { AgregarRecursoComponent, InfoComponent } from '@shared/components';
+import { AgregarRecursoComponent, EstadoRecursoComponent, InfoComponent } from '@shared/components';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -52,6 +52,37 @@ export class BosquesComponent implements OnInit{
       dialogRef.afterClosed().subscribe(exc => { this.obtenerBosques() });
     } catch (error) {
       this.mensaje("Error","Ha ocurrido un error al editar",3);
+    }
+  }
+  desactivar(id:any) {
+    try {
+      if(id!==undefined){
+      const dialogRef= this.dialog.open(EstadoRecursoComponent, {
+        width: '400px',
+        data: [false,id,"bosque"],
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerBosques()});
+    }else{
+      this.mensaje("Error", "Ha ocurrido un error al desactivar el tipo de bosque", 3);
+    }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  showBoton(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  showEstado(estado:boolean){
+    if(estado ==null || estado == undefined){
+      return "";
+    }else if(estado==true){
+      return "Activo";
+    }else{
+      return "Inactivo";
     }
   }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {

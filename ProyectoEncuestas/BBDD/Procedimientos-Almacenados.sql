@@ -1080,7 +1080,7 @@ UPDATE [dbo].[tbl_Suelos]
  WHERE [id_Suelo]=@id
 end
 
-Create Procedure prc_Suelos_Estado
+Create Procedure prc_Suelos_Editar_Estado
 @id int,@estado bit
 as begin
 UPDATE [dbo].[tbl_Suelos]

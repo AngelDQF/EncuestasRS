@@ -122,9 +122,8 @@ const ctrPutServicioDatos = async (req, res) => {
 }
 const ctrPutServicioEstado = async (req, res) => {
   try {
-
     const { id, estado } = req.body;
-    const resultado = await serviciosModel.putOrgEstado(id, estado);
+    const resultado = await serviciosModel.putServicioEstado(id, estado);
     if (resultado == 'exito') {
       res.json({ results: { mensaje: "El estado se cambio correctamente", estado: 2 } });
     } else if (resultado == 'vacio') {

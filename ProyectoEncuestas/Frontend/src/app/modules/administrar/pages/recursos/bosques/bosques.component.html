@@ -40,8 +40,8 @@
       <ng-container matColumnDef="opciones">
         <th mat-header-cell *matHeaderCellDef> Opciones </th>
         <td mat-cell *matCellDef="let element" class="">
-          <a (click)="editar(element.id)" class="botonEditarTabla"><i class="bi bi-pencil-square"></i></a>
-          <a class="botonDesactivarTabla"><i class="bi bi-trash3-fill"> </i></a>
+          <a *ngIf="showBoton(element.id)" (click)="editar(element.id)" class="botonEditarTabla"><i class="bi bi-pencil-square"></i></a>
+          <a *ngIf="showBoton(element.id)" (click)="desactivar(element.id)" class="botonDesactivarTabla"><i class="bi bi-trash3-fill"> </i></a>
         </td>
       </ng-container>
 

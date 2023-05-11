@@ -48,6 +48,7 @@ import { SharedModule } from '@shared/shared.module';
 import { EscolaridadComponent } from './pages/junta/escolaridad/escolaridad.component';
 import { EscolaridadDesactivadasComponent } from './pages/junta/escolaridad/escolaridad-desactivadas.component';
 import { MaterialExampleModule } from '@AM/*';
+import { OrganizacionesTiposDesactivadosComponent } from './pages/organizaciones/organizaciones-tipos/organizaciones-tipos-desactivados.component';
 @NgModule({
   declarations: [
     AdministrarComponent,
@@ -90,6 +91,7 @@ import { MaterialExampleModule } from '@AM/*';
     CaseriosComponent,
     EscolaridadComponent,
     EscolaridadDesactivadasComponent,
+    OrganizacionesTiposDesactivadosComponent,
 
   ],
   imports: [

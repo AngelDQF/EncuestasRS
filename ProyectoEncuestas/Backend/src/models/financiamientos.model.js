@@ -123,7 +123,6 @@ async function putFuenteFinEstado(id, estado) {
     if (!consulta) {
       await pool.connect()//TODO: Cerramos la conexión
       await pool.request().query(`Exec prc_Fuente_Financiamiento_Editar_Estado ${id}, '${estado}'`);
-      
       return "exito";
     } else {
       return "vacio"

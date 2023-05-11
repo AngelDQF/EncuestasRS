@@ -53,6 +53,7 @@
           <span *ngIf="isExpanded">Exportar</span>
         </div>
       </mat-list-item>
+
       <mat-list-item *ngIf="!mostrar" routerLink="/encuestas/user" [matTooltip]="btn8" matTooltipPosition="right">
         <div class="align-items-center d-flex">
           <mat-icon mat-list-icon class="menu-item"><i style="color:#5e0be3" class="bi bi-clipboard2-data-fill  mr-2 lead"></i></mat-icon>
@@ -60,6 +61,14 @@
         </div>
       </mat-list-item>
       
+      <mat-list-item [matTooltip]="btn9" matTooltipPosition="right">
+        <div class="align-items-center d-flex">
+          <mat-icon mat-list-icon class="menu-item"><i class="bi bi-shield-lock-fill mr-2 lead"
+              style="color:rgb(185, 28, 159);"></i></mat-icon>
+          <span *ngIf="isExpanded">Cambiar Mi<br> Contraseña</span>
+        </div>
+      </mat-list-item>
+
       <mat-list-item (click)="cerrarSesion()" class="botonCerrar" [matTooltip]="btn7" matTooltipPosition="right">
         <div class="align-items-center d-flex">
           <mat-icon mat-list-icon class="menu-item"><i class="bi bi-power" style="color:white;"></i></mat-icon>

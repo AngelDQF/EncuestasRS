@@ -72,6 +72,7 @@ as
 	FROM     dbo.tbl_Tipos_Organizacion
 	where estado_Tipo_Organizacion=0
 go
+select * from vew_Tipos_Organizaciones_Listar_Desactivados
 --Creación Vista Listar Organizaciones
 CREATE VIEW [dbo].[vew_Organizaciones_Listar]
 as

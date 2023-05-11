@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { OrganizacionesService } from '@serv/organizaciones.service';
 import { InfoComponent } from '../../info/info.component';
 import { OrganizacionesInterface } from '@models/administrar/organizaciones/organizaciones.interface';
+import { TiposOrgInterface } from '@models/administrar/organizaciones/tipos-org.interface';
 
 @Component({
   selector: 'app-estado-org',
@@ -10,58 +11,114 @@ import { OrganizacionesInterface } from '@models/administrar/organizaciones/orga
   styleUrls: ['../../modals.css', '../../../../../app.component.css']
 })
 export class EstadoOrgComponent implements OnInit {
-  usuarios: any;
+  organizaciones: any;
   nombre: any;
   titulo: any;
-  color:string ="";
-  color2:string ="";
+  color: string = "";
+  color2: string = "";
   constructor(public dialogoRef: MatDialogRef<EstadoOrgComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Array<any>, private orgService: OrganizacionesService, private dialog: MatDialog) {
+    @Inject(MAT_DIALOG_DATA) public data: Array<any>, private orgModel: OrganizacionesService, private dialog: MatDialog) {
   }
   ngOnInit(): void {
-    this.obtenerUser(this.data[0]);
-    this.getColor(this.data[2]);
+    this.getOrg();
+    this.getColor(this.data[0]);
   }
 
   onClickNo(): void {
     this.dialogoRef.close();
   }
-  getColor(estado:boolean){
+  getColor(estado: boolean) {
     if (estado) {
       this.color = "color1";
       this.color2 = "color2";
-    }else{
+      this.titulo = "Activar"
+    } else {
       this.color = "color2";
       this.color2 = "color1";
+      this.titulo = "Desactivar"
     }
-  } 
-  desactivar() {
-    // try {
-    //   if (this.data !== null) {
-    //     this.orgService.putEstadoUsuario(this.data[0], this.data[2]).subscribe(data => {
-    //       if (data.estado == 1) {
-    //         this.mensaje("Advertencia", `${data.mensaje}`, 1);
-    //       } else if (data.estado == 2) {
-    //         this.mensaje("Información", `${data.mensaje}`, 2);
-    //       } else {
-    //         this.mensaje("Error", `${data.mensaje}`, 3);
-    //       }
-    //     });
-    //   }
-    //   this.dialogoRef.close();
-    // } catch (error) {
-    //   this.mensaje("Error", `${error}`, 3);
-    // }
   }
-  obtenerUser(id: number) {
+  cambiarEstado() {
     try {
-      this.orgService.getOrganizacionByID(id).subscribe((data: OrganizacionesInterface) => {
-        this.usuarios = data;
-        this.nombre = this.usuarios[0].name;
-      })
-      this.titulo = this.data[1];
+      if (this.data[2] == "org") {
+        this.estadoOrg();
+      } else if (this.data[2] == "tipo") {
+        this.estadoTipoOrg();
+      } else {
+        this.mensaje("Error", "Ha ocurrido un error al cambiar el estado", 3)
+      }
+      this.dialogoRef.close();
     } catch (error) {
-      console.log(error);
+      this.mensaje("Error", `${error}`, 3);
+    }
+  }
+  getOrg() {
+    try {
+      if (this.data[2] == "org") {
+        this.orgModel.getOrganizacionByID(this.data[1]).subscribe((data: OrganizacionesInterface[]) => {
+          this.nombre = data[0].org;
+        });
+      } else {
+        this.orgModel.getTipoOrganizacionByID(this.data[1]).subscribe((data: TiposOrgInterface[]) => {
+          this.nombre = data[0].tipo;
+        });
+      }
+    } catch (error) {
+      this.mensaje("Error", `${error}`, 3);
+    }
+  }
+  estadoTipoOrg(): void {
+    try {
+      if (this.data[0] == true) {
+        this.orgModel.putTipoOrganizacionEstado(this.data[1], true).subscribe(data => {
+          if (data.estado == 1) {
+            this.mensaje("Advertencia", `${data.mensaje}`, 1);
+          } else if (data.estado == 2) {
+            this.mensaje("Información", `${data.mensaje}`, 2);
+          } else {
+            this.mensaje("Error", `${data.mensaje}`, 3);
+          }
+        });
+      } else {
+        this.orgModel.putTipoOrganizacionEstado(this.data[1], false).subscribe(data => {
+          if (data.estado == 1) {
+            this.mensaje("Advertencia", `${data.mensaje}`, 1);
+          } else if (data.estado == 2) {
+            this.mensaje("Información", `${data.mensaje}`, 2);
+          } else {
+            this.mensaje("Error", `${data.mensaje}`, 3);
+          }
+        });
+      }
+    } catch (error) {
+      this.mensaje("Error", `${error}`, 3);
+    }
+  }
+  estadoOrg(): void {
+    try {
+      if (this.data[0] == true) {
+        this.orgModel.putOrganizacionEstado(this.data[1], true).subscribe(data => {
+          if (data.estado == 1) {
+            this.mensaje("Advertencia", `${data.mensaje}`, 1);
+          } else if (data.estado == 2) {
+            this.mensaje("Información", `${data.mensaje}`, 2);
+          } else {
+            this.mensaje("Error", `${data.mensaje}`, 3);
+          }
+        });
+      } else {
+        this.orgModel.putOrganizacionEstado(this.data[1], false).subscribe(data => {
+          if (data.estado == 1) {
+            this.mensaje("Advertencia", `${data.mensaje}`, 1);
+          } else if (data.estado == 2) {
+            this.mensaje("Información", `${data.mensaje}`, 2);
+          } else {
+            this.mensaje("Error", `${data.mensaje}`, 3);
+          }
+        });
+      }
+    } catch (error) {
+      this.mensaje("Error", `${error}`, 3);
     }
   }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {

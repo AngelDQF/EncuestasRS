@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TiposOrgInterface } from '@models/administrar/organizaciones/tipos-org.interface';
 import { FinanciamientosService} from '@serv/financiamientos.service';
-import { AgregarFinanciamientoComponent, InfoComponent } from '@shared/components';
+import { AgregarFinanciamientoComponent, EstadoFinanciamientoComponent, InfoComponent } from '@shared/components';
 
 @Component({
   selector: 'app-tipos-financiamientos',
@@ -52,6 +52,37 @@ export class TiposFinanciamientosComponent implements OnInit {
       dialogRef.afterClosed().subscribe(exc => { this.obtenerTipos() });
     } catch (error) {
       this.mensaje("Error","Ha ocurrido un error al editar",3);
+    }
+  }
+  showBoton(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  showEstado(estado:boolean){
+    if(estado ==null || estado == undefined){
+      return "";
+    }else if(estado==true){
+      return "Activo";
+    }else{
+      return "Inactivo";
+    }
+  }
+  desactivar(id:any) {
+    try {
+      if(id!==undefined){
+      const dialogRef= this.dialog.open(EstadoFinanciamientoComponent, {
+        width: '400px',
+        data: [false,id,"tipo"],
+      });
+      dialogRef.afterClosed().subscribe(exc=>{this.obtenerTipos()});
+    }else{
+      this.mensaje("Error", "Ha Ocurrido un Error al Desactivar el Grado de Escolaridad", 3);
+    }
+    } catch (error) {
+      console.log(error);
     }
   }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
