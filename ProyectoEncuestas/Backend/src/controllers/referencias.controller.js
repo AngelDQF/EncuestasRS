@@ -40,11 +40,11 @@ const ctrPostReferenciaActa = async (req, res) => {
     const resultado = await refModel.postReferenciaActa(uid, name, ext, tipo, id);
     if (resultado == 'exito-post') {
       res.json({ results: { mensaje: "Referencia Agregada Exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
-    } else if (resultado == 'exito-put') {
-      res.json({ results: { mensaje: "Referencia Actualizada Exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
+    } else if (resultado == 'error') {
+      res.json({ results: { mensaje: "Ha Ocurrido un error", estado: 3 } })
     }
     else {
-      res.json({ results: { mensaje: "Ha Ocurrido un error", estado: 3 } })
+      res.json({ results: { mensaje: "Referencia Actualizada Exitosamente", estado: 2, code:resultado, put:true }});//TODO: Mostramos el resultado en un json
     }
   } catch {
     handleHttpError(res, 'ERROR_POST_ORGANIZACIÓN');//TODO: Si surge un error hacemos uso del metodo handleHttpError
@@ -57,10 +57,10 @@ const ctrPostReferenciaJunta = async (req, res) => {
     const resultado = await refModel.postReferenciaJunta(miembro, uid, name, ext, tipo, id);
     if (resultado == 'exito-post') {
       res.json({ results: { mensaje: "Referencia Agregada Exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
-    } else if (resultado == 'exito-post') {
-      res.json({ results: { mensaje: "Referencia Actualizada Exitosamente", estado: 2 } });//TODO: Mostramos el resultado en un json
-    } else {
+    } else if (resultado == 'error') {
       res.json({ results: { mensaje: "Ha Ocurrido un error", estado: 3 } })
+    } else {
+      res.json({ results: { mensaje: "Referencia Actualizada Exitosamente", estado: 2, code:resultado,put:true}});//TODO: Mostramos el resultado en un json
     }
   } catch {
     handleHttpError(res, 'ERROR_POST_ORGANIZACIÓN');//TODO: Si surge un error hacemos uso del metodo handleHttpError

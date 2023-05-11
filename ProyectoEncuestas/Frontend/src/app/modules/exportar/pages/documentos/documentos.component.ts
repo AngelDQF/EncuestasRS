@@ -53,11 +53,6 @@ export class DocumentosComponent implements OnInit {
       this.mensaje("Error:", `${error}`, 3)
     }
   }
-  verificarDatos() {
-    if (this.dataSource) {
-
-    }
-  }
   changeDep() {
     try {
       this.refModel.getReferenciasActasByDep(this.selDep.value).subscribe((data: ActasInterface[]) => {
@@ -85,7 +80,6 @@ export class DocumentosComponent implements OnInit {
         this.mensaje("Advertencia", "Ningún documento seleccionado", 1);
         return
       }
-      console.log(id);
       this.refModel.getDocumento(id).subscribe((data: Documento[]) => {
         if(data==null){
           this.mensaje("Advertencia","Documento no encontrado",1);
@@ -101,7 +95,13 @@ export class DocumentosComponent implements OnInit {
       this.mensaje("Error", `${error}`, 3)
     }
   }
-
+  showOption(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {
       const dialogRef = this.dialog.open(InfoComponent, {

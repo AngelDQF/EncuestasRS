@@ -1,72 +1,37 @@
 <div class="contenido">
-  <div class="row">
-    <div class="col-12">
-      <h1 class="titulo">Bienvenido Angel David Quintanilla Ferrufino
+  <div class="row mb-2">
+    <div class="col-12 headerListar">
+      <h1 class="titulo mb-2">{{message}} {{nombre}}
       </h1>
     </div>
-    <form>
-      <form  class="col-12">
-        <div class="card p-0 col-12">
-          <div class="row">
-            <div class="col-6 p-0 mt-5">
-              <div class="input-group pe-2">
-                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                  placeholder="Nombre" aria-describedby="inputGroup-sizing-default">
-              </div>
-            </div>
-            <div class="col-6 p-0 mt-5">
-              <div class="input-group ps-2">
-                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                  placeholder="Apellido" aria-describedby="inputGroup-sizing-default">
-              </div>
-            </div>
-            <div class="col-6 p-0 mt-5">
-              <div class="input-group pe-2">
-                <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                  placeholder="Teléfono" aria-describedby="inputGroup-sizing-default">
-              </div>
-            </div>
-            <div class="col-6 p-0 mt-5">
-              <div class="input-group ps-2">
-                <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                  placeholder="Identidad" aria-describedby="inputGroup-sizing-default">
-              </div>
-            </div>
-            <div class="col-6 p-0 mt-5">
-              <div class="input-group pe-2">
-                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-                <input type="email" class="form-control" aria-label="Sizing example input"
-                  placeholder="Correo" aria-describedby="inputGroup-sizing-default">
-              </div>
-            </div>
-            <div class="col-6 p-0 mt-5">
-              <div class="input-group ps-2">
-                <span for="btnCambio" class="input-group-text"><i class="bi bi-key-fill"></i></span>
-                <button id="btnCambio" name="btnCambio" type="button" class="form-control" aria-label="Sizing example input"
-                  placeholder="Ingrese la Contraseña" aria-describedby="inputGroup-sizing-default">Cambiar Contraseña</button>
-              </div>
-            </div>
-            <div class="col-6 p-0 mt-5">
-              <div class="input-group pe-2">
-                <span class="input-group-text"><i class="bi bi-person-fill-gear"></i></span>
-                <input type="email" class="form-control" aria-label="Sizing example input"
-                  placeholder="Correo" aria-describedby="inputGroup-sizing-default">
-              </div>
-            </div>
-            <div class="col-6 p-0 mt-5">
-              <div class="input-group pe-2">
-                <span class="input-group-text"><i class="bi bi-person-fill-gear"></i></span>
-                <input type="email" class="form-control" aria-label="Sizing example input"
-                  placeholder="Correo" aria-describedby="inputGroup-sizing-default">
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </form>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-lg-6 text-center"><i class="bi bi-person-circle iconUser"></i></div>
+    <div class="col-lg-6">
+      <div class="guion col-12 mb-md-4 mb-1 mt-md-4 mt-1">
+        <h2>Nombre: <span>{{nombre}}</span></h2>
+      </div>
+      <div class="guion col-12 mb-md-4 mb-1">
+        <h2>Número de Identidad: <span>{{dni}}</span></h2>
+      </div>
+      <div class="guion col-12 mb-md-4 mb-1">
+        <h2>Télefono: <span>{{tel}}</span></h2>
+      </div>
+      <div class="guion col-12 mb-md-4 mb-1">
+        <h2>Correo: <span>{{email}}</span></h2>
+      </div>
+      <div class="guion col-12 mb-md-4 mb-1">
+        <h2>Fecha de Creación: <span>{{creado}}</span></h2>
+      </div>
+      <div class="guion col-12 mb-md-4 mb-1">
+        <h2>Último Cambio: <span>{{cambio}}</span></h2>
+      </div>
+      <div class="guion col-12 mb-md-4 mb-1">
+        <h2>Sexo: <span>{{sexo}}</span></h2>
+      </div>
+      <div class="text-center col-12">
+        <button (click)="cambiar()" class="btn btn-primary">Cambiar Contraseña</button>
+      </div>
+    </div>
   </div>
 </div>

@@ -2,58 +2,73 @@
   --bs-gutter-x: 0px;
   background-color: #f7f7f7;
 }
-
-#btnCambio{
+.btn-primary {
+  font-weight: bold;
   background-color: var(--color1) !important;
-  color:#Fff;
+  border-color: var(--color2) !important;
 }
-.row {
-  margin: 0px !important;
+.btn-primary:hover{
+  background-color: var(--color1-2) !important;
 }
-h3 {
-  font-size: 20px !important;
+h2,
+span {
   margin: 0px;
+  font-size: 20px;
+  align-self: center;
+  font-weight: bold;
 }
-.card {
-  border: none !important;
-  height:100% !important;
-}
-.input-group-text {
-  background-color: #fff ;
-  border-radius: 0px !important;
-  width: 110px !important;
-  text-align: center !important;
-  display: inline !important;
-  padding: 0px !important;
-}
-.sel{
-  width: 140px !important;
-}
-.iconoRegresar i{
-  color:var(--color1) !important;
-}
-.input-group {
-  border-radius: 0px !important;
-  margin-top: 5px;
-}
-
-.form-control,
-.form-select {
-  border-radius: 0px !important;
-  background-color: aliceblue !important;
-  text-align: center !important;
-}
-.btnEliminar, .btnGuardar {
-  height: 100%;
-  font-size: 20px !important;
-}
-.btnEditar{
-  height: 35px;
-}
-i{
-  font-size: 30px !important;
+h2 {
   color: var(--color1);
 }
-input{
-  text-align: center;
+span {
+  margin-left: 10px;
+  color: var(--color1-2);
+  word-wrap: break-word;
+}
+.iconUser {
+  font-size: 350px;
+  height: 100%;
+  align-self: center;
+  animation-name: anim;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+.guion{
+  border-bottom: 1px solid var(--color1);
+}
+@keyframes anim {
+  0% {
+    color: var(--color1);
+  } 
+  25% {
+    color: var(--color1);
+  } 
+  50% {
+    color: var(--color1-2);
+  } 
+  75% {
+    color: var(--color1-2);
+  } 
+  100% {
+    color: var(--color1);
+  } 
+}
+@media screen and (max-width: 767px) {
+  h2,
+  span {
+    font-size: 10px;
+  }
+  .iconUser{
+    font-size: 50px;
+  }
+}
+/*Pantallas md*/
+@media screen and (min-width: 767px) and (max-width: 991px) {
+  h2,
+  span {
+    font-size: 15px;
+  }
+  .iconUser{
+    font-size: 200px;
+  }
 }

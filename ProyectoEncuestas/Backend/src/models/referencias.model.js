@@ -70,7 +70,7 @@ async function postReferenciaActa(uid, name, ext, tipo, id) {
     } else {
       await pool.connect()
       await pool.request().query(`Exec prc_Referencia_Editar '${uid}', '${name}', '${ext}'`);
-      return "exito-put";
+      return consulta;
     }
   } catch (error) {
     console.log(error);
@@ -82,13 +82,14 @@ async function postReferenciaJunta( miembro, uid, name, ext, tipo, id) {
     const consulta = await verificarReferenciaJunta(miembro);
     if (consulta == true) {
       await pool.connect()
-      let result = await pool.request().query(`Exec prc_Referencia_Crear '${uid}', '${name}', '${ext}', 1, ${id}`);
-      await pool.request().query(`Exec prc_Referencia_Junta_Crear '${result}', '${miembro}', '${uid}'`);
+      let result = await pool.request().query(`Exec prc_Referencia_Crear '${uid}', '${name}', '${ext}', ${tipo}, ${id}`);
+      let code=result.recordset[0].id
+      await pool.request().query(`Exec prc_Referencia_Junta_Crear '${code}', '${miembro}', '${uid}'`);
       return "exito-post";
     } else {
       await pool.connect()
       await pool.request().query(`Exec prc_Referencia_Editar '${consulta}', '${name}', '${ext}'`);
-      return "exito-put";
+      return consulta;
     }
   } catch (error) {
     console.log(error);

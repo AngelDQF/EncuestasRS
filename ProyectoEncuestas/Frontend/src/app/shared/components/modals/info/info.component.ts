@@ -9,20 +9,32 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class InfoComponent implements OnInit{
   titulo:any;
   cuerpo:any;
+  cuerpo2:any;
   icono:number;
   iconoContent:string;
   bordeModal:string;
   colorTitle:string;
   botonClass:string;
+  tipo:boolean;
   constructor(private dialogoRef:MatDialogRef<InfoComponent>,@Inject(MAT_DIALOG_DATA) public info: Array<any>){}
   ngOnInit(): void {
     this.titulo=this.info[0];
     this.cuerpo=this.info[1];
     this.icono=this.info[2];
     this.selectIcon();
+    this.selectTipo();
   }
   onClickNo(): void {
     this.dialogoRef.close();
+  }
+  selectTipo(){
+    if(this.info[3]==true){
+      this.tipo=true;
+      this.cuerpo2=this.info[4];
+    }else{
+      this.tipo=false;
+      this.cuerpo2="";
+    }
   }
   selectIcon():void{
     if(this.icono==1){

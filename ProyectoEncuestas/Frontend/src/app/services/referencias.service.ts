@@ -39,9 +39,9 @@ export class ReferenciasService {
       })
     )
   }
-  putDocumentos(file?: string, code?: string, name?: string): Observable<any> {
+  putDocumento(file: string, code: string, name: string): Observable<any> {
     let body = { file, code, name };
-    return this.http.post(`${this.BaseURLApiDocument}/update`, body).pipe(
+    return this.http.put(`${this.BaseURLApiDocument}/update`, body).pipe(
       map(data => {
         return data
       })
@@ -54,19 +54,30 @@ export class ReferenciasService {
       })
     )
   }
+  getVerificarDoc(uid:string): Observable<any> {
+    return this.http.get(`${this.BaseURLApiDocument}/byfilter?code=${uid}`).pipe(
+      map(({ isSuccess }: any) => {
+        return isSuccess;
+      })
+    )
+  }
   postReferencia(uid: string, name: string, ext: any, tipo: number, id: number): Observable<any> {
     let body = { uid, name, ext, tipo, id };
-    return this.http.post(`${this.URLMSol}/referencias`, body);
+    return this.http.post(`${this.URLMSol}/referencias`, body).pipe(
+      map(({results}:any)=>{
+        return results;
+      })
+    );
   }
   postReferenciaJunta(miembro: number, uid: string, name: string, ext: string, tipo: number, id: number): Observable<any> {
     let body = { miembro, uid, name, ext, tipo, id };
     return this.http.post(`${this.URLMSol}/referencias/junta`, body);
   }
-  getReferencias(): Observable<any> {
-    return this.http.get(`${this.URLMSol}/referencias`).pipe(
-      map(({ results }: any) => {
-        return results;
-      })
-    )
-  }
+  // getReferenciasDNI(): Observable<any> {
+  //   return this.http.get(`${this.URLMSol}/referencias/junta`).pipe(
+  //     map(({ results }: any) => {
+  //       return results;
+  //     })
+  //   )
+  // }
 }

@@ -36,19 +36,6 @@ export class DocumentosComponent implements OnInit {
 
     }
   }
-
-  mensaje(titulo: string, cuerpo: string, tipo: number): void {
-    try {
-      this.dialog.open(InfoComponent, {
-        width: '500px',
-        data: [titulo, cuerpo, tipo]
-      });
-      // dialogRef.afterClosed().subscribe(exc => { this.datosIniciales() });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   actaChange(files: any) {
     this.documentos = [];
     for (var i = 0; i < files.target.files.length; i++) {
@@ -67,43 +54,81 @@ export class DocumentosComponent implements OnInit {
   }
   enviarActa() {
     try {
+      let mensaje: any;
       this.documentos.forEach((element) => {
         let extension = utils.obtenerExtension(element.extension);
         let file = element.file?.replace('data:image/jpeg;base64,', '');
         file = element.file?.replace('data:application/pdf;base64,', '');
-        this.refModel.postDocumentos(file, element.code, element.name, extension).subscribe((data: any) => {
-          console.log(data);
-          if(data.isSuccess==false){
-            this.mensaje("Error",`${data.message}`,3);
-            return
+        this.refModel.postReferencia(element.code, element.name, extension, 1, this.idEncuesta).subscribe((datos: any) => {
+          if (datos.estado == 1) {
+            mensaje = `Advertencia: ${datos.mensaje}`;
+          } else if (datos.estado == 2) {
+            mensaje = `Éxito: ${datos.mensaje}`;
+          } else {
+            mensaje = `Error: ${datos.mensaje}`;
           }
-          this.postActa(element.code,element.name,extension,1,this.idEncuesta);
-          this.mensaje("Exito", "Documento Enviado", 2)
-          console.log(data);
+          if (datos.put == true) {
+            this.refModel.putDocumento(`${file}`, `${datos.code}`, `${element.name}`).subscribe((data: any) => {
+              if (data.isSuccess == false) {
+                this.mensaje("Información",`${mensaje}`,2,true,`Error: ${data.message}`);
+                return
+              }
+              this.mensaje("Información",`${mensaje}`,2,true,`Éxito: ${data.message}`);
+            })
+          } else {
+            this.refModel.postDocumentos(file, element.code, element.name, extension).subscribe((data: any) => {
+              console.log(data);
+              if (data.isSuccess == false) {
+                this.mensaje("Error", `${data.message}`, 3);
+                return
+              }
+              this.mensaje("Exito", "Documento Enviado", 2)
+              console.log(data);
+            });
+          }
         });
       })
     } catch (error) {
       this.mensaje("Error", "Error al enviar acta", 3)
     }
   }
-  enviarDNI(id_miembro:number) {
+  enviarDNI(id_miembro: number) {
     try {
+      let mensaje:any;
       this.documentos.forEach((element) => {
         let extension = `${utils.obtenerExtension(element.extension)}`;
         let file = element.file?.replace('data:image/jpeg;base64,', '');
         file = element.file?.replace('data:application/pdf;base64,', '');
-        let code=element.code
-        let name=element.name
-        console.log({file, code,name, extension})
-        this.refModel.postDocumentos(file, element.code, element.name, extension).subscribe((data: any) => {
-          if(data.isSuccess==false){
-            this.mensaje("Error",`${data.message}`,3);
-            return
+        let code = element.code
+        let name = element.name
+        console.log({ file, code, name, extension });
+        this.refModel.postReferenciaJunta(id_miembro, element.code, element.name, extension, 2, this.idEncuesta).subscribe((datos: any) => {
+          if (datos.estado == 1) {
+            mensaje=`Advertencia: ${datos.mensaje}`
+          } else if (datos.estado == 2) {
+            mensaje=`Éxito: ${datos.mensaje}`
+          } else {
+            mensaje=`Error: ${datos.mensaje}`
           }
-          this.postDNI(id_miembro,element.code,element.name,extension,2,this.idEncuesta);
-          this.mensaje("Exito", "Documento Enviado", 2)
-          console.log(data);
+          if (datos.put == true) {
+            this.refModel.putDocumento(`${file}`, `${datos.code}`, `${element.name}`).subscribe((data: any) => {
+              if (data.isSuccess == false) {
+                this.mensaje("Información",`${mensaje}`,2,true,`Error: ${data.message}`);
+                return
+              }
+              this.mensaje("Información",`${mensaje}`,2,true,`Éxito: ${data.message}`);
+            })
+          } else {
+            this.refModel.postDocumentos(file, element.code, element.name, extension).subscribe((data: any) => {
+              if (data.isSuccess == false) {
+                this.mensaje("Error", `${data.message}`, 3);
+                return
+              }
+              this.mensaje("Exito", "Documento Enviado", 2)
+            });
+          }
         });
+
       })
     } catch (error) {
       this.mensaje("Error", "Error al enviar acta", 3)
@@ -121,19 +146,26 @@ export class DocumentosComponent implements OnInit {
       this.mensaje("Error", "Error al enviar referencia", 3);
     }
   }
-  postDNI(miembro: number, uid: string, name: string, ext: string, tipo: number, id: number) {
+  verificarDocumento(code: string) {
     try {
-      this.refModel.postReferenciaJunta(miembro, uid, name, ext, tipo, id).subscribe((data:any)=>{
-        if(data[0].estado==1){
-          this.mensaje("Advertencia",`${data[0].mensaje}`,1)
-        }else if(data[0].estado==2){
-          this.mensaje("Información",`${data[0].mensaje}`,2)
-        }else{
-          this.mensaje("Error",`${data[0].mensaje}`,3)
-        }
-      });
+      this.refModel.getVerificarDoc(code).subscribe((data: any) => {
+        console.log(data);
+        alert(data);
+      })
     } catch (error) {
-      this.mensaje("Error", "Error al enviar referencia", 3);
+      this.mensaje("Error", `${error}`, 3);
+    }
+
+  }
+  mensaje(titulo: string, cuerpo: string, tipo: number,estado?:boolean,cuerpo2?:string): void {
+    try {
+      this.dialog.open(InfoComponent, {
+        width: '500px',
+        data: [titulo, cuerpo, tipo,estado, cuerpo2]
+      });
+      // dialogRef.afterClosed().subscribe(exc => { this.datosIniciales() });
+    } catch (error) {
+      console.log(error);
     }
   }
 }

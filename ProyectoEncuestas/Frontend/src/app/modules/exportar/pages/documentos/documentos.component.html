@@ -57,7 +57,7 @@
           <th mat-header-cell class="sizeCulum" *matHeaderCellDef> Opciones </th>
           <td mat-cell *matCellDef="let element" class="options-a">
               <div class="text-center">
-                <a (click)="getDocumento(element.uid)" matTooltip="Ver PDF" matTooltipPosition="above" class="botonDesactivarTabla"
+                <a *ngIf="showOption(element.id)" (click)="getDocumento(element.uid)" matTooltip="Ver PDF" matTooltipPosition="above" class="botonDesactivarTabla"
                   ><i class="bi bi-file-pdf-fill"></i></a>
               </div>
           </td>
