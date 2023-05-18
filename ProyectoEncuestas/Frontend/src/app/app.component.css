@@ -253,8 +253,8 @@ a {
   .titulo {
     font-size: 30px;
   }
-  .titulo p {
-    font-size: 70px;
+  mat-select{
+    font-size: 5px !important;
   }
   .contenido {
     padding: 15px;

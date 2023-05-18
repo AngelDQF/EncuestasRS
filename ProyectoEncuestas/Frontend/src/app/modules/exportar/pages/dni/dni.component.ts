@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSelect } from '@angular/material/select';
@@ -6,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Documento } from '@models/documentos/documentos.class';
 import { DNIInterface } from '@models/referencias/dni.interface';
 import { DepartamentosInterface } from '@models/ubicaciones/departamentos.interface';
+import { MunicipiosInterface } from '@models/ubicaciones/municipios.interface.ts';
 import { ReferenciasService } from '@serv/referencias.service';
 import { UbicacionesService } from '@serv/ubicaciones.service';
 import { InfoComponent } from '@shared/components';
@@ -22,16 +24,20 @@ export class DniComponent implements OnInit {
   txtBusqueda: string = "";
   tipoArchivo: string = "";
   departamentos: any;
+  municipios:any;
   showBoton: boolean;
   verificar: any;
+  frmSelects:FormGroup;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public page!: number;
-  constructor(private refModel: ReferenciasService, private dialog: MatDialog, private ubicacionesMode: UbicacionesService) { }
+  constructor(private refModel: ReferenciasService, private dialog: MatDialog, private ubicacionesModel: UbicacionesService,private fb:FormBuilder) { }
   ngOnInit(): void {
     this.obtenerDNI();
     this.getDepartamentos();
   }
+
   @ViewChild('selDep') selDep: MatSelect;
+  @ViewChild('selMun') selMun: MatSelect;
   obtenerDNI() {
     this.refModel.getReferenciasDNI().subscribe((data: DNIInterface[]) => {
       this.dataSource = new MatTableDataSource<DNIInterface>(data);
@@ -39,6 +45,8 @@ export class DniComponent implements OnInit {
       this.tipoArchivo = data[0].ext;
     })
     this.txtBusqueda = "";
+    this.getDepartamentos();
+    this.municipios=[];
   }
   buscarTabla() {
     //TODO: Filtrar los datos de la tabla en base al valor de búsqueda
@@ -46,7 +54,7 @@ export class DniComponent implements OnInit {
   }
   getDepartamentos(): void {
     try {
-      this.ubicacionesMode.getDepartamentos().subscribe((data: DepartamentosInterface) => {
+      this.ubicacionesModel.getDepartamentos().subscribe((data: DepartamentosInterface[]) => {
         this.departamentos = data;
       });
     } catch (error) {
@@ -56,13 +64,27 @@ export class DniComponent implements OnInit {
   changeDep() {
     try {
       this.refModel.getReferenciasActasByDep(this.selDep.value).subscribe((data: DNIInterface[]) => {
+        console.log(data);
         this.dataSource = new MatTableDataSource<DNIInterface>(data);
         this.dataSource.paginator = this.paginator;
         this.tipoArchivo = data[0].ext;
       })
       this.txtBusqueda = "";
+      this.ubicacionesModel.getMunicipiosByDep$(this.selDep.value).subscribe((data:MunicipiosInterface[])=>{
+        this.municipios=data;
+      });
     } catch (error) {
       this.mensaje("Error:", `${error}`, 3)
+    }
+  }
+  changeMun(){
+    try {
+      this.refModel.getReferenciasActasByMun(this.selMun.value).subscribe((data: DNIInterface[]) => {
+        this.dataSource = new MatTableDataSource<DNIInterface>(data);
+        this.dataSource.paginator = this.paginator;
+      })
+    } catch (error) {
+      this.mensaje('Error',`${error}`,3);
     }
   }
   getDocumento(id: string) {

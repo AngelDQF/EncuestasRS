@@ -136,8 +136,14 @@ export class EncuestasComponent implements OnInit {
     let { checkRios } = this.EncuestasForm.value
     if (checkRios) {
       this.txtCantRios.enable();
+      this.EncuestasForm.patchValue({
+        txtCantRios:[""]
+      })
     } else if (!checkRios) {
       this.txtCantRios.disable();
+      this.EncuestasForm.patchValue({
+        txtCantRios:[0]
+      })
     }
   }
   ckBosquesChange(): void {
@@ -146,6 +152,9 @@ export class EncuestasComponent implements OnInit {
       this.selectBosque.enable();
     } else if (!checkBosques) {
       this.selectBosque.disable();
+      this.EncuestasForm.patchValue({
+        selectBosque:[1]
+      })
     }
   }
   //Metodo para inicializar el formulario
@@ -162,9 +171,9 @@ export class EncuestasComponent implements OnInit {
       txtLongitud: ["", [Validators.required]],
       txtLatitud: ["", [Validators.required]],
       checkRios: [false, [Validators.required]],
-      txtCantRios: [0, [Validators.required]],
+      txtCantRios: ["", [Validators.required]],
       checkBosques: [false, [Validators.required]],
-      selectBosque: ["", [Validators.required]],
+      selectBosque: [1, [Validators.required]],
       selectSuelos: ["", [Validators.required]],
       selectTenencia: ["", [Validators.required]],
       selectNivelTec: ["", [Validators.required]],
@@ -498,6 +507,9 @@ export class EncuestasComponent implements OnInit {
       estBosques = 'Si';
     } else {
       estBosques = 'No';
+    }
+    if(txtCantRios=="" || txtCantRios==undefined) {
+      txtCantRios=0;
     }
     this.encuestasModel.postEncuesta$(txtHombres, txtMujeres, total, this.selDep.value, this.selMun.value, this.selAldea.value, this.selCaserio.value, txtAddress, selectOrgReunion, estRios, txtCantRios, estBosques, selectBosque, selectSuelos, selectTenencia, selectMercado, selectNivelTec, this.tokenString.id, mesa).subscribe((data: any) => {
       this.idEncuesta = data.mensaje;

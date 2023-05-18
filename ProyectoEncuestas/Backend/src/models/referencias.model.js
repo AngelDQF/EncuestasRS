@@ -45,10 +45,55 @@ async function getReferenciasActasByDep(id) {
     return "Error al listar las referencias"
   }
 }
+async function getReferenciasActasByMun(id) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query(`Exec prc_Referencia_Acta_Municipio '${id}'`);//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay referencias agregadas"
+    }
+  } catch (error) {
+    console.log(error);
+    return "Error al listar las referencias"
+  }
+}
 async function getReferenciasDNI() {
   try {
     await pool.connect()//TODO: Conectamos a la base de datos
     let result = await pool.request().query("SELECT * from vew_Referencias_DNI");//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay referencias agregadas"
+    }
+  } catch (error) {
+    console.log(error);
+    return "Error al listar las referencias"
+  }
+}
+async function getReferenciasDNIByDep(id) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query(`Exec prc_Referencia_Junta_By_Dep '${id}'`);//TODO: Ejecutamos la consulta
+    if (result.recordset.length !== 0) {
+      return result.recordset;//TODO: Retornamos los datos
+    }
+    else {
+      return "No hay referencias agregadas"
+    }
+  } catch (error) {
+    console.log(error);
+    return "Error al listar las referencias"
+  }
+}
+async function getReferenciasDNIByMun(id) {
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query(`Exec prc_Referencia_Junta_By_Mun '${id}'`);//TODO: Ejecutamos la consulta
     if (result.recordset.length !== 0) {
       return result.recordset;//TODO: Retornamos los datos
     }
@@ -77,13 +122,13 @@ async function postReferenciaActa(uid, name, ext, tipo, id) {
     return "error"
   }
 }
-async function postReferenciaJunta( miembro, uid, name, ext, tipo, id) {
+async function postReferenciaJunta(miembro, uid, name, ext, tipo, id) {
   try {
     const consulta = await verificarReferenciaJunta(miembro);
     if (consulta == true) {
       await pool.connect()
       let result = await pool.request().query(`Exec prc_Referencia_Crear '${uid}', '${name}', '${ext}', ${tipo}, ${id}`);
-      let code=result.recordset[0].id
+      let code = result.recordset[0].id
       await pool.request().query(`Exec prc_Referencia_Junta_Crear '${code}', '${miembro}', '${uid}'`);
       return "exito-post";
     } else {
@@ -124,4 +169,4 @@ async function verificarReferenciaJunta(id) {
     console.log(error);
   }
 }
-module.exports = { getReferenciasActas, getReferenciasDNI, postReferenciaActa, postReferenciaJunta, getReferenciasActasByDep, getReferenciaByEncuesta }
+module.exports = { getReferenciasActas, getReferenciasDNI, postReferenciaActa, postReferenciaJunta, getReferenciasActasByDep, getReferenciaByEncuesta, getReferenciasDNIByDep, getReferenciasDNIByMun,getReferenciasActasByMun }

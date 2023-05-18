@@ -24,8 +24,32 @@ export class ReferenciasService {
       })
     )
   }
+  getReferenciasActasByMun(id: number): Observable<any> {
+    let body = { id };
+    return this.http.post(`${this.URLMSol}/referencias/actas/municipio`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
   getReferenciasDNI(): Observable<any> {
     return this.http.get(`${this.URLMSol}/referencias/junta`).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getReferenciasDNIByMun(id: number): Observable<any> {
+    let body = { id };
+    return this.http.post(`${this.URLMSol}/referencias/junta/municipio`, body).pipe(
+      map(({ results }: any) => {
+        return results;
+      })
+    )
+  }
+  getReferenciasDNIByDep(id: number): Observable<any> {
+    let body = { id };
+    return this.http.post(`${this.URLMSol}/referencias/junta/departamento`, body).pipe(
       map(({ results }: any) => {
         return results;
       })

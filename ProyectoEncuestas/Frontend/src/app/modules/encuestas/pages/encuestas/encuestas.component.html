@@ -312,7 +312,7 @@
                   <mat-checkbox (change)="ckRiosChange()" formControlName="checkRios" color="primary"></mat-checkbox>
                 </td>
                 <td>
-                  <input formControlName="txtCantRios" placeholder="Ingrese la cantidad" type="number"
+                  <input formControlName="txtCantRios" placeholder="0" type="number"
                     class="form-control text-center">
                 </td>
               </tr>
@@ -326,7 +326,7 @@
                 </td>
                 <td>
                   <select class="form-select text-center" formControlName="selectBosque">
-                    <option selected value="">Tipo de Bosque</option>
+                    <option selected value="" disabled>Tipo de Bosque</option>
                     <option *ngFor="let tipo of tipoBosque" [value]="tipo.id">{{tipo.tipo}}</option>
                   </select>
                 </td>
