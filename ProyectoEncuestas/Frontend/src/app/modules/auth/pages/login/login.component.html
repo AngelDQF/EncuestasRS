@@ -5,20 +5,31 @@
     </div>
     <div class="col-12 col-md-6">
       <h2 class="col-12">Inicio de Sesión</h2>
-      <form [formGroup]="formLogin" (ngSubmit)="onLogin()">
+      <form *ngIf="!inicio" [formGroup]="formLogin" (ngSubmit)="onLogin()">
         <div class="form-group">
-          <label for="username">Username:</label>
+          <label for="username">Usuario:</label>
           <input formControlName="email" type="text" id="username" name="username">
         </div>
         <div class="form-group">
-          <label for="password">Password:</label>
+          <label for="password">Contraseña:</label>
           <input formControlName="password" type="password" id="password" name="password">
-          <div class="mt-1">
+          <div *ngIf="false" class="mt-1">
             <a id="recuperar" (click)="openDialog() ">¿Olvido su contraseña?</a>
           </div>
         </div>
         <div *ngIf="errorSesion" class="error">Usuario o contraseña Invalidos</div>
         <button [disabled]="formLogin.invalid" type="submit" class="btn btn-primary form-control">Acceder</button>
+      </form>
+      <form *ngIf="inicio" [formGroup]="formNew" (ngSubmit)="newUser()">
+        <div class="form-group">
+          <label for="username">Clave:</label>
+          <input formControlName="key" type="text" id="username" name="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña:</label>
+          <input formControlName="password" type="password" id="password" name="password">
+        </div>
+        <button [disabled]="formNew.invalid" type="submit" class="btn btn-primary form-control">Acceder</button>
       </form>
     </div>
   </div>

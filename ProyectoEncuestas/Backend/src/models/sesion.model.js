@@ -16,4 +16,15 @@ async function createA(key,contra){
     return "error";
   }
 }
-module.exports = {createA};
+async function comprobarUsuarios() {//TODO: Función para obtener todos los usuarios
+  try {
+    await pool.connect()//TODO: Conectamos a la base de datos
+    let result = await pool.request().query("SELECT * FROM vew_Usuarios_Listar");//TODO: Ejecutamos la consulta
+    //console.log(result.recordset);
+    return result.recordset.length === 0;
+  } catch (error) {
+    console.log(error);
+
+  }
+}
+module.exports = {createA,comprobarUsuarios};

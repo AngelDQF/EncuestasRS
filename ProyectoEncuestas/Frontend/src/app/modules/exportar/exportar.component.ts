@@ -12,11 +12,6 @@ export class ExportarComponent {
 
   constructors(){}
 
-
-
-
-
-
   descargarDocumento(documento: Documento) {
     let tipo= utils.obtenerTipo(documento.extension);
     const src = `data:${tipo};base64,${documento.file}`;

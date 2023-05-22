@@ -19,11 +19,22 @@ export class AuthService {
       email,
       password
     };
-
     return this.http.post(`${this.URL}/auth/login`, body).pipe(
       map(({ results }: any) => {
         return results;
       })
     );
+  }
+  comprobarUsuarios(): Observable<any> {
+    return this.http.get(`${this.URL}/sesion`);
+  }
+
+  createFirst(key: any, contra: any): Observable<any> {
+    const body = { key, contra };
+    return this.http.post(`${this.URL}/sesion/crear`, body).pipe(
+      map(({ results }: any) => {
+        return results
+      })
+    )
   }
 }

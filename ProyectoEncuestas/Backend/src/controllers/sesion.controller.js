@@ -18,9 +18,19 @@ const ctrCrearA = async (req, res) => {
       })
     }
   } catch (error) {
+    console.log(error);
     handleHttpError(res, 'ERROR_CREAR');
   }
 }
-module.exports ={
-  ctrCrearA
+const ctrComprobarUsuarios = async (req, res) => {
+  try {
+    const resultado = await sesionModel.comprobarUsuarios();
+    res.json(resultado)
+  } catch (error) {
+    handleHttpError(res, 'ERROR_CREAR');
+  }
+}
+module.exports = {
+  ctrCrearA,
+  ctrComprobarUsuarios
 }
