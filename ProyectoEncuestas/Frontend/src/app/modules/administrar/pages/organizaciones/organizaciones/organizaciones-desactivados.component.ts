@@ -47,6 +47,31 @@ export class OrganizacionesDesactivadosComponent implements OnInit {
       console.log(error);
     }
   }
+  showBoton(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  showSocial(social:boolean){
+    if(social ==null || social == undefined){
+      return "";
+    }else if(social==true){
+      return "Si";
+    }else{
+      return "No";
+    }
+  } 
+  showEstado(estado:boolean){
+    if(estado ==null || estado == undefined){
+      return "";
+    }else if(estado==true){
+      return "Activo";
+    }else{
+      return "Inactivo";
+    }
+  } 
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {
       this.dialog.open(InfoComponent, {

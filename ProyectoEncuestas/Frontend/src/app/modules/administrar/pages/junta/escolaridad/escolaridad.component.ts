@@ -72,6 +72,22 @@ export class EscolaridadComponent implements OnInit {
       this.mensaje("Error", "Ha Ocurrido un Error al Desactivar el Grado de Escolaridad", 3);
     }
   }
+  showBoton(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  showEstado(estado:boolean){
+    if(estado ==null || estado == undefined){
+      return "";
+    }else if(estado==true){
+      return "Activo";
+    }else{
+      return "Inactivo";
+    }
+  } 
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {
       this.dialog.open(InfoComponent, {

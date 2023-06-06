@@ -46,6 +46,13 @@ export class OrganizacionesTiposDesactivadosComponent implements OnInit{
       console.log(error);
     }
   }
+  showBoton(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
   mensaje(titulo: string, cuerpo: string, tipo: number): void {
     try {
       this.dialog.open(InfoComponent, {

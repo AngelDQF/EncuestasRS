@@ -108,6 +108,7 @@ export class EncuestasUserComponent implements OnInit {
       console.log(error);
     }
   }
+
   changeMun() {
     try {
       if (this.selMun.value == "") {

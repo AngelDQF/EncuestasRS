@@ -9,6 +9,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { EncuestasInterface } from '@models/encuesta/encuesta.interface';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DepartamentosUsersInterface } from '@models/encuesta/departamentos-users.interface';
+import { UsuariosService } from '@serv/usuarios.service';
+import { UsersInterface } from '@models/usuarios/users.interface';
 
 @Component({
   selector: 'app-mis-encuestas',
@@ -23,15 +25,17 @@ export class MisEncuestasComponent implements OnInit {
   dataSource: any;
   txtBusqueda: string = "";
   selectDep: any;
+  idUser: any;
   selectMun: any;
   token:any;
   frmSelects:FormGroup;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('selDep') selDep: MatSelect;
   @ViewChild('selMun') selMun: MatSelect;
-  constructor(private encuestasModel: EncuestasService, private dialog: MatDialog, private cookie:CookieService, private fb:FormBuilder) { 
+  constructor(private encuestasModel: EncuestasService, private dialog: MatDialog, private cookie:CookieService, private fb:FormBuilder,private userModel:UsuariosService) { 
     this.token = (this.getDecodedAccessToken(this.cookie.get('token'))).id;
     this.frmSelects = this.initForm();
+    this.getUser(this.getUserID());
   }
   ngOnInit(): void {
     this.obtenerEncuestas();
@@ -44,12 +48,28 @@ export class MisEncuestasComponent implements OnInit {
       selectMun: [""]
     })
   }
+  getUserID() {
+    try {
+      return this.idUser = (this.getDecodedAccessToken(this.cookie.get('token'))).id;
+    } catch (error) {
+      console.log("Error al buscar el id del usuario");
+    }
+  }
+  getUser(id: any) {
+    try {
+      this.userModel.getUsuarioById(id).subscribe((data: UsersInterface[]) => {
+        this.usuario=data[0].name;
+      })
+    } catch (error) {
+      console.log("usuario no encontrado");
+    }
+  }
   obtenerEncuestas(): void {
     try {
       this.encuestasModel.getUsuarioEncuestas$(this.token).subscribe((data:any)=>{
         this.dataSource = new MatTableDataSource<EncuestasInterface>(data);
         this.dataSource.paginator = this.paginator;
-        this.usuario = data[0].user;
+        console.log(data);
       })
     } catch (error) {
       console.log(error);
@@ -129,6 +149,13 @@ export class MisEncuestasComponent implements OnInit {
       return jwt_decode(tok);
     } catch (Error) {
       return null;
+    }
+  }
+  showBoton(id: number){
+    if(id ==null || id == undefined){
+      return false;
+    }else{
+      return true;
     }
   }
 }

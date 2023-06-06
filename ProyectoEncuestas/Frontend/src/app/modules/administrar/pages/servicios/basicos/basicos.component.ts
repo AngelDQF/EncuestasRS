@@ -94,5 +94,5 @@ export class BasicosComponent implements OnInit {
     }else{
       return "Inactivo";
     }
-  }
+  } 
 }

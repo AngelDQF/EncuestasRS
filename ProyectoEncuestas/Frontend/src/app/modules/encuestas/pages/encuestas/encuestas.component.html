@@ -16,7 +16,7 @@
     </div>
   </div>
   <form [formGroup]="EncuestasForm" class="mt-2">
-    <mat-stepper orientation="vertical" #stepper>
+    <mat-stepper orientation="vertical">
       <mat-step>
         <div id="Formulario" class="row form-control d-flex">
           <ng-template matStepLabel>
@@ -75,13 +75,13 @@
           <div class="col-12 col-md-6">
             <mat-form-field appearance="outline" class="form-control">
               <mat-label>Total de Hombres</mat-label>
-              <input type="number" class="text-center" matInput placeholder="0" formControlName="txtHombres" required>
+              <input min="0" pattern="^[0-9]+" type="number" class="text-center" matInput placeholder="0" formControlName="txtHombres" required>
             </mat-form-field>
           </div>
           <div class="col-12 col-md-6">
             <mat-form-field appearance="outline" class="form-control">
               <mat-label>Total de Mujeres</mat-label>
-              <input type="number" class="text-center" matInput placeholder="0" formControlName="txtMujeres" required>
+              <input min="0" pattern="^[0-9]+" type="number" class="text-center" matInput placeholder="0" formControlName="txtMujeres" required>
             </mat-form-field>
           </div>
           <div class="col-12 d-flex align-items-center">
@@ -160,7 +160,7 @@
                     <div class="col-12 col-md-6">
                       <mat-form-field appearance="outline" class="form-control">
                         <mat-label>Edad</mat-label>
-                        <input matInput placeholder="Edad" type="number" formControlName="txtEdad" required>
+                        <input min="1" pattern="^[0-9]+" matInput placeholder="Edad" type="number" formControlName="txtEdad" required>
                       </mat-form-field>
                     </div>
                     <div class="col-12 col-md-6">
@@ -312,7 +312,7 @@
                   <mat-checkbox (change)="ckRiosChange()" formControlName="checkRios" color="primary"></mat-checkbox>
                 </td>
                 <td>
-                  <input formControlName="txtCantRios" placeholder="0" type="number"
+                  <input min="0" pattern="^[0-9]+" formControlName="txtCantRios" placeholder="0" type="number"
                     class="form-control text-center">
                 </td>
               </tr>
